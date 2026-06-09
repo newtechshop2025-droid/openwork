@@ -224,7 +224,7 @@ export function registerOrgInvitationRoutes<T extends { Variables: OrgRouteVaria
           role,
         },
       })
-    } catch (error) {
+    } catch (error: unknown) {
       if (error instanceof DenEmailSendError) {
         // The invitation row is already persisted (step above). Log at error
         // level so operators can grep, and return a 502 so the caller can
