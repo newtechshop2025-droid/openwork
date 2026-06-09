@@ -784,7 +784,10 @@ function WorkspaceHeader({
       >
         <span className="block truncate">{workspaceLabel(workspace)}</span>
         {statusLabel ? (
-          <span className={cn("block text-xs", isError ? "text-destructive" : "text-muted-foreground")}>
+          <span
+            className={cn("block text-xs truncate", isError ? "text-destructive" : "text-muted-foreground")}
+            title={statusLabel}
+          >
             {statusLabel}
           </span>
         ) : null}

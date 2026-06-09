@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <linearGradient id="routerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Router body -->
+  <rect x="2" y="14" width="20" height="6" rx="2" fill="url(#routerGradient)" stroke="none" />
+  <circle cx="6" cy="17" r="1" fill="#ffffff" />
+  <circle cx="10" cy="17" r="1" fill="#ffffff" />
+  <circle cx="14" cy="17" r="1" fill="#ffffff" />
+  <circle cx="18" cy="17" r="1" fill="#4ade80" /> <!-- Green active status led -->
+  
+  <!-- Antennas -->
+  <path d="M5 14V6" stroke="url(#routerGradient)" stroke-width="2" />
+  <path d="M19 14V6" stroke="url(#routerGradient)" stroke-width="2" />
+  
+  <!-- Center Signal Pole -->
+  <path d="M12 14V4" stroke="url(#routerGradient)" stroke-width="2" />
+  <circle cx="12" cy="3" r="1.5" fill="url(#routerGradient)" />
+  
+  <!-- Signal Waves -->
+  <path d="M8 7a5.5 5.5 0 0 1 8 0" stroke="url(#routerGradient)" stroke-width="1.8" stroke-linecap="round" opacity="0.7" />
+  <path d="M5 4a10.5 10.5 0 0 1 14 0" stroke="url(#routerGradient)" stroke-width="1.8" stroke-linecap="round" opacity="0.4" />
+</svg>

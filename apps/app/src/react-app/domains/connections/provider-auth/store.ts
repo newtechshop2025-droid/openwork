@@ -26,6 +26,7 @@ import type {
   ProviderListItem,
   WorkspaceDisplay,
 } from "../../../../app/types";
+import type { OpenworkServerClient } from "../../../../app/lib/openwork-server";
 import { isDesktopRuntime, safeStringify } from "../../../../app/utils";
 import {
   compareProviders,
@@ -98,6 +99,7 @@ type CreateProviderAuthStoreOptions = {
   runtimeWorkspaceId: () => string | null;
   ensureRuntimeWorkspaceId?: () => Promise<string | null | undefined>;
   openworkServer: OpenworkServerStore;
+  workspaceClient?: () => OpenworkServerClient | null;
   setProviders: (value: ProviderListItem[]) => void;
   setProviderDefaults: (value: Record<string, string>) => void;
   setProviderConnectedIds: (value: string[]) => void;
@@ -201,17 +203,20 @@ export function createProviderAuthStore(options: CreateProviderAuthStoreOptions)
 
   const resolveOpenworkConfigTarget = async (mode: "read" | "write") => {
     const openworkSnapshot = options.openworkServer.getSnapshot();
-    const openworkClient = openworkSnapshot.openworkServerClient;
+    const isRemote = options.selectedWorkspaceDisplay().workspaceType === "remote";
+    const openworkClient = options.workspaceClient ? options.workspaceClient() : openworkSnapshot.openworkServerClient;
     let openworkWorkspaceId = options.runtimeWorkspaceId()?.trim() || null;
     if (!openworkWorkspaceId && openworkSnapshot.openworkServerStatus === "connected" && openworkClient) {
       openworkWorkspaceId = (await options.ensureRuntimeWorkspaceId?.())?.trim() || null;
     }
-    const hasOpenworkTarget =
+    const hasOpenworkTarget = isRemote ? Boolean(openworkClient && openworkWorkspaceId) : (
       openworkSnapshot.openworkServerStatus === "connected" &&
-      Boolean(openworkClient && openworkWorkspaceId);
-    const canUseOpenworkServer =
+      Boolean(openworkClient && openworkWorkspaceId)
+    );
+    const canUseOpenworkServer = isRemote ? hasOpenworkTarget : (
       hasOpenworkTarget &&
-      openworkSnapshot.openworkServerCapabilities?.config?.[mode] !== false;
+      openworkSnapshot.openworkServerCapabilities?.config?.[mode] !== false
+    );
     return {
       openworkClient,
       openworkWorkspaceId,

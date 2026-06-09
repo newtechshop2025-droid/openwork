@@ -347,4 +347,30 @@ export const BUILT_IN_OPENWORK_EXTENSION_MANIFESTS: OpenWorkExtensionManifest[] 
     ],
     lifecycle: { reload: ["config"], detection: ["provider:ollama"] },
   },
+  {
+    schemaVersion: 1,
+    id: "9router",
+    name: "9Router",
+    description: "Local AI Router and Token Saver at http://localhost:20128/v1.",
+    source: { format: "openwork-builtin", origin: "builtin", trusted: true },
+    icon: { src: "/ext-9router.svg" },
+    composer: { prompt: "Use 9Router to " },
+    setup: {
+      instructions: "Run 9Router locally, configure your providers in its dashboard at http://localhost:20128, then connect it as an OpenCode provider.",
+      primaryCta: "Configure 9Router",
+      secondaryCta: "Open Dashboard",
+    },
+    resources: [
+      { type: "local-service", id: "9router-api", label: "9Router API", description: "http://localhost:20128/v1", required: true },
+      { type: "provider", id: "9router", providerId: "9router", packageName: "@ai-sdk/openai-compatible", required: true },
+    ],
+    contributions: [
+      { type: "settings-panel", ref: "openwork.9router.settings", location: "settings-detail" },
+      { type: "composer-prompt", prompt: "Use 9Router to ", location: "composer" },
+    ],
+    enablement: [
+      { type: "provider-connected", ref: "9router", label: "9Router provider" },
+    ],
+    lifecycle: { reload: ["config"], detection: ["provider:9router"] },
+  },
 ];
