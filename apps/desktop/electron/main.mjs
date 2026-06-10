@@ -1424,7 +1424,25 @@ async function writeJsonFileAtomic(outputPath, value) {
   await mkdir(path.dirname(outputPath), { recursive: true });
   const tempPath = `${outputPath}.${process.pid}.${randomBytes(6).toString("hex")}.tmp`;
   await writeFile(tempPath, content, "utf8");
-  await rename(tempPath, outputPath);
+  let attempts = 5;
+  while (attempts > 0) {
+    try {
+      await rename(tempPath, outputPath);
+      return;
+    } catch (error) {
+      attempts--;
+      if (attempts === 0) {
+        try {
+          await writeFile(outputPath, content, "utf8");
+          await rm(tempPath, { force: true });
+          return;
+        } catch (fallbackError) {
+          throw error;
+        }
+      }
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
+  }
 }
 
 function normalizeDesktopBootstrapConfig(input) {

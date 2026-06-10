@@ -924,11 +924,14 @@ type OpencodeClientResult<T, E> =
 
 function createWorkspaceOpencodeClient(config: ServerConfig, workspace: WorkspaceInfo) {
   const connection = resolveWorkspaceOpencodeConnection(config, workspace);
+  if (!connection.baseUrl?.trim()) {
+    throw new ApiError(400, "opencode_unconfigured", "OpenCode base URL is missing for this workspace");
+  }
   const directory = resolveOpencodeDirectory(workspace);
   const directoryFetch = directory ? createOpencodeDirectoryFetch(directory) : undefined;
 
   return createOpencodeClient({
-    baseUrl: connection.baseUrl?.trim(),
+    baseUrl: connection.baseUrl.trim(),
     ...(directory ? { directory } : {}),
     ...(directoryFetch ? { fetch: directoryFetch } : {}),
     ...(connection.authHeader ? { headers: { Authorization: connection.authHeader } } : {}),

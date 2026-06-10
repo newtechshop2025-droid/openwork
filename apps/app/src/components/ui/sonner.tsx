@@ -3,7 +3,7 @@ import { Toaster as Sonner, toast as sonnerToast, type ToasterProps } from "sonn
 import { CircleCheckIcon, InfoIcon, TriangleAlertIcon, OctagonXIcon, Loader2Icon, type LucideIcon, XIcon } from "lucide-react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { getResolvedThemeMode, subscribeToTheme } from "@/app/theme"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 function useTheme() {
@@ -46,7 +46,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
       }}
       toastOptions={{
         classNames: {
-          toast: "cn-toast",
+          toast: "cn-toast pointer-events-auto",
         },
       }}
       {...props}
@@ -134,7 +134,7 @@ interface ToastCardProps {
 function ToastCard({ id, type, title, description, action, cancel, notification }: ToastCardProps) {
   if (notification) {
     return (
-      <div className={cn("flex w-full gap-3 rounded-2xl border border-border bg-popover/95 backdrop-blur-sm p-4 text-popover-foreground shadow-md md:max-w-sm ring-1 ring-popover-border/20 items-center")}>
+      <div className={cn("pointer-events-auto flex w-full gap-3 rounded-2xl border border-border bg-popover/95 backdrop-blur-sm p-4 text-popover-foreground shadow-md md:max-w-sm ring-1 ring-popover-border/20 items-center")}>
         <ToastIcon type={type} size="sm" />
         <div className="flex min-w-0 flex-1 flex-col gap-1">
           <div className="flex items-center justify-between gap-2">
@@ -154,7 +154,7 @@ function ToastCard({ id, type, title, description, action, cancel, notification 
   }
 
   return (
-    <div className={cn("flex w-full items-start gap-3 rounded-2xl border border-border bg-popover/95 backdrop-blur-sm p-4 text-popover-foreground shadow-md md:max-w-sm ring-1 ring-popover-border/20")}>
+    <div className={cn("pointer-events-auto flex w-full items-start gap-3 rounded-2xl border border-border bg-popover/95 backdrop-blur-sm p-4 text-popover-foreground shadow-md md:max-w-sm ring-1 ring-popover-border/20")}>
       <ToastIcon type={type} />
       <div className="flex min-w-0 flex-1 flex-col gap-1">
         <div className="flex items-center justify-between gap-2">
@@ -171,27 +171,28 @@ function ToastCard({ id, type, title, description, action, cancel, notification 
         {action || cancel ? (
           <div className="mt-2 flex gap-2">
             {action ? (
-              <Button
-                size="sm"
+              <button
+                type="button"
+                className={cn(buttonVariants({ size: "sm" }))}
                 onClick={() => {
                   action.onClick()
                   sonnerToast.dismiss(id)
                 }}
               >
                 {action.label}
-              </Button>
+              </button>
             ) : null}
             {cancel ? (
-              <Button
-                size="sm"
-                variant="outline"
+              <button
+                type="button"
+                className={cn(buttonVariants({ size: "sm", variant: "outline" }))}
                 onClick={() => {
                   cancel.onClick()
                   sonnerToast.dismiss(id)
                 }}
               >
                 {cancel.label}
-              </Button>
+              </button>
             ) : null}
           </div>
         ) : null}
