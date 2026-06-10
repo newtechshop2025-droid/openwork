@@ -66,7 +66,7 @@ describe("TokenService", () => {
 
   test("resolves scope for built-in client token", async () => {
     const scope = await service.scopeForToken("test-client-token");
-    expect(scope).toBe("collaborator");
+    expect(scope).toBe("owner");
   });
 
   test("returns null for unknown token", async () => {

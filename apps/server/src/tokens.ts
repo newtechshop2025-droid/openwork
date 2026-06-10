@@ -141,7 +141,7 @@ export class TokenService {
   async scopeForToken(token: string): Promise<TokenScope | null> {
     const trimmed = token.trim();
     if (!trimmed) return null;
-    if (trimmed === this.config.token) return "collaborator";
+    if (trimmed === this.config.token) return "owner";
     await this.ensureLoaded();
     const found = this.byHash.get(hashToken(trimmed));
     return found?.scope ?? null;
