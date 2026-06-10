@@ -137,11 +137,15 @@ function ToastCard({ id, type, title, description, action, cancel, notification 
       <div className={cn("flex w-full gap-3 rounded-2xl border border-border bg-popover/95 backdrop-blur-sm p-4 text-popover-foreground shadow-md md:max-w-sm ring-1 ring-popover-border/20 items-center")}>
         <ToastIcon type={type} size="sm" />
         <div className="flex min-w-0 flex-1 flex-col gap-1">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-between gap-2">
             <p className="text-sm font-medium">{title}</p>
-            <Button variant="ghost" size="sm" onClick={() => sonnerToast.dismiss(id)}>
+            <button
+              type="button"
+              className="ml-auto flex size-6 shrink-0 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors outline-none"
+              onClick={() => sonnerToast.dismiss(id)}
+            >
               <XIcon className="size-4" />
-            </Button>
+            </button>
           </div>
           {description ? <p className="text-sm text-muted-foreground">{description}</p> : null}
         </div>
@@ -153,11 +157,15 @@ function ToastCard({ id, type, title, description, action, cancel, notification 
     <div className={cn("flex w-full items-start gap-3 rounded-2xl border border-border bg-popover/95 backdrop-blur-sm p-4 text-popover-foreground shadow-md md:max-w-sm ring-1 ring-popover-border/20")}>
       <ToastIcon type={type} />
       <div className="flex min-w-0 flex-1 flex-col gap-1">
-        <div className="flex items-center gap-2">
-         <p className="text-sm font-medium">{title}</p>
-         <Button variant="ghost" size="sm" onClick={() => sonnerToast.dismiss(id)}>
-          <XIcon className="size-4" />
-          </Button>
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-sm font-medium">{title}</p>
+          <button
+            type="button"
+            className="ml-auto flex size-6 shrink-0 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors outline-none"
+            onClick={() => sonnerToast.dismiss(id)}
+          >
+            <XIcon className="size-4" />
+          </button>
         </div>
         {description ? <p className="text-sm text-muted-foreground">{description}</p> : null}
         {action || cancel ? (
