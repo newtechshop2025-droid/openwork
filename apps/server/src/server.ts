@@ -662,12 +662,12 @@ function assertOpencodeProxyAllowed(actor: Actor, method: string, proxyPath: str
     throw new ApiError(403, "forbidden", "Viewer tokens are read-only");
   }
 
-  // Prevent collaborators/viewers from self-approving OpenCode permission requests via the proxy.
-  // OpenCode uses /permission/:requestId/reply (and historically also a session-scoped variant).
-  if (scope !== "owner" && m !== "GET" && m !== "HEAD") {
+  // Prevent viewers from approving OpenCode permission requests via the proxy.
+  // Collaborators and owners are allowed to reply to permission requests since they can run commands.
+  if (scope !== "owner" && scope !== "collaborator" && m !== "GET" && m !== "HEAD") {
     const normalized = normalizeOpencodeProxyPath(proxyPath);
     if (/\/permission\/[^/]+\/reply$/.test(normalized)) {
-      throw new ApiError(403, "forbidden", "Only owner tokens can reply to permission requests");
+      throw new ApiError(403, "forbidden", "Only owner or collaborator tokens can reply to permission requests");
     }
   }
 }
