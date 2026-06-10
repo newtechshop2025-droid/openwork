@@ -427,7 +427,7 @@ export function isSandboxWorkspace(workspace: WorkspaceInfo) {
 }
 
 export function isRemoteConnectionWorkspace(workspace: WorkspaceInfo) {
-  return workspace.id.trim().startsWith("rem_");
+  return workspace.workspaceType === "remote";
 }
 
 export function isRemoteConnectionErrorMessage(message?: string | null) {

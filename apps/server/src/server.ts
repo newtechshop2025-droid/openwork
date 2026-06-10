@@ -1007,6 +1007,68 @@ async function proxyOpencodeRequest(input: {
   return sanitizeProxyResponse(response);
 }
 
+async function proxyRemoteOpenworkRequest(
+  workspace: WorkspaceInfo,
+  request: Request,
+  url: URL,
+): Promise<Response> {
+  let remoteWorkspaceId = workspace.openworkWorkspaceId || workspace.id;
+  if (!workspace.openworkWorkspaceId && remoteWorkspaceId.startsWith("rem_")) {
+    remoteWorkspaceId = remoteWorkspaceId.slice(4);
+  }
+  const targetPath = url.pathname.replace(/\/workspace\/[^/]+/, `/workspace/${encodeURIComponent(remoteWorkspaceId)}`);
+  const targetUrl = `${workspace.baseUrl?.replace(/\/+$/, "")}${targetPath}${url.search}`;
+
+  const headers = new Headers(request.headers);
+  headers.delete("host");
+  headers.delete("origin");
+  headers.delete("authorization");
+  headers.delete("x-openwork-host-token");
+  headers.delete("x-openwork-client-id");
+  if (workspace.openworkToken) {
+    headers.set("Authorization", `Bearer ${workspace.openworkToken}`);
+  }
+
+  const method = request.method.toUpperCase();
+  const body = method === "GET" || method === "HEAD"
+    ? undefined
+    : await request.arrayBuffer().then((buf) => (buf.byteLength > 0 ? buf : undefined));
+
+  const response = await fetch(targetUrl, {
+    method,
+    headers,
+    body,
+  });
+
+  return sanitizeProxyResponse(response);
+}
+
+async function checkAndProxyRemoteSession(
+  config: ServerConfig,
+  ctx: RequestContext,
+  sessionId: string,
+): Promise<Response | null> {
+  if (sessionId.startsWith("rem_")) {
+    const parts = sessionId.split("_");
+    if (parts[0] === "rem") {
+      const isNestedRem = parts[1] === "rem";
+      const workspaceId = isNestedRem
+        ? parts.slice(1, 4).join("_")
+        : parts.slice(1, 3).join("_");
+      const remoteSessionId = isNestedRem
+        ? parts.slice(4).join("_")
+        : parts.slice(3).join("_");
+      const workspace = config.workspaces.find((w) => w.id === workspaceId);
+      if (workspace && workspace.workspaceType === "remote") {
+        const targetUrl = new URL(ctx.url.toString());
+        targetUrl.pathname = targetUrl.pathname.replace(sessionId, remoteSessionId);
+        return proxyRemoteOpenworkRequest(workspace, ctx.request, targetUrl);
+      }
+    }
+  }
+  return null;
+}
+
 /**
  * Strip hop-by-hop and transport-level headers that Bun's native fetch keeps
  * in the upstream response even after it has already decoded the body for us.
@@ -2288,7 +2350,13 @@ function createRoutes(
     };
 
     config.workspaces = [workspace, ...config.workspaces.filter((entry) => entry.id !== workspace.id)];
-    if (!config.authorizedRoots.some((root) => resolve(root) === workspacePath)) {
+    if (!config.authorizedRoots.some((root) => {
+      const resolvedRoot = resolve(root);
+      if (process.platform === "win32") {
+        return resolvedRoot.toLowerCase() === workspacePath.toLowerCase();
+      }
+      return resolvedRoot === workspacePath;
+    })) {
       config.authorizedRoots = [...config.authorizedRoots, workspacePath];
     }
     const persisted = await persistServerWorkspaceState(config);
@@ -2479,7 +2547,14 @@ function createRoutes(
 
     if (deleted && workspace.workspaceType === "local") {
       // Only remove exact matches; authorizedRoots can contain broader entries.
-      config.authorizedRoots = config.authorizedRoots.filter((root) => resolve(root) !== resolve(workspace.path));
+      config.authorizedRoots = config.authorizedRoots.filter((root) => {
+        const resolvedRoot = resolve(root);
+        const resolvedPath = resolve(workspace.path);
+        if (process.platform === "win32") {
+          return resolvedRoot.toLowerCase() !== resolvedPath.toLowerCase();
+        }
+        return resolvedRoot !== resolvedPath;
+      });
     }
     const persisted = await persistServerWorkspaceState(config);
     onWorkspacesChanged();
@@ -2507,6 +2582,9 @@ function createRoutes(
 
   addRoute(routes, "GET", "/workspace/:id/config", "client", async (ctx) => {
     const workspace = await resolveWorkspace(config, ctx.params.id);
+    if (workspace.workspaceType === "remote") {
+      return proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
+    }
     const openwork = mergeOpenworkWorkspaceConfigs(
       await readOpenworkConfig(workspace.path),
       await readOpenworkWorkspaceConfig(config, workspace.id),
@@ -2692,6 +2770,22 @@ function createRoutes(
     const runtimeOpencode = await readRuntimeOpencodeConfig(config, workspace.id);
     const existingOpencode = mergeOpencodeConfigs(persistedOpencode, runtimeOpencode);
     const existingFoldersConfig = readAuthorizedFoldersFromOpencodeConfig(existingOpencode, workspace.path);
+
+    // Validate newly added folders exist and are directories
+    for (const folder of folders) {
+      if (!existingFoldersConfig.folders.includes(folder)) {
+        try {
+          const info = await stat(folder);
+          if (!info.isDirectory()) {
+            throw new ApiError(400, "not_a_directory", `Path is not a directory: ${folder}`);
+          }
+        } catch (error) {
+          if (error instanceof ApiError) throw error;
+          throw new ApiError(400, "directory_not_found", `Directory not found or inaccessible: ${folder}`);
+        }
+      }
+    }
+
     const nextExternalDirectory = mergeAuthorizedFoldersIntoExternalDirectory(
       folders,
       existingFoldersConfig.hiddenEntries,
@@ -2830,6 +2924,9 @@ function createRoutes(
 
   addRoute(routes, "GET", "/workspace/:id/opencode-config", "client", async (ctx) => {
     const workspace = await resolveWorkspace(config, ctx.params.id);
+    if (workspace.workspaceType === "remote") {
+      return proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
+    }
     const scope = normalizeOpencodeScope(ctx.url.searchParams.get("scope"));
     const configPath = resolveOpencodeConfigFilePath(scope, workspace.path);
     const result = await readRawOpencodeConfig(configPath);
@@ -2840,6 +2937,9 @@ function createRoutes(
     ensureWritable(config);
     requireClientScope(ctx, "collaborator");
     const workspace = await resolveWorkspace(config, ctx.params.id);
+    if (workspace.workspaceType === "remote") {
+      return proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
+    }
     const body = await readJsonBody(ctx.request);
     const scope = normalizeOpencodeScope(typeof body.scope === "string" ? body.scope : null);
     const content = typeof body.content === "string" ? body.content : null;
@@ -2960,6 +3060,9 @@ function createRoutes(
     ensureWritable(config);
     requireClientScope(ctx, "collaborator");
     const workspace = await resolveWorkspace(config, ctx.params.id);
+    if (workspace.workspaceType === "remote") {
+      return proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
+    }
     const body = await readJsonBody(ctx.request);
     const opencode = body.opencode as Record<string, unknown> | undefined;
     const openwork = body.openwork as Record<string, unknown> | undefined;
@@ -3202,6 +3305,21 @@ function createRoutes(
 
   addRoute(routes, "POST", "/workspace/:id/files/sessions", "client", async (ctx) => {
     const workspace = await resolveWorkspace(config, ctx.params.id);
+    if (workspace.workspaceType === "remote") {
+      const response = await proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
+      if (response.ok) {
+        try {
+          const data = await response.json() as { session: { id: string; [key: string]: unknown } };
+          if (data && data.session && typeof data.session.id === "string") {
+            data.session.id = `rem_${workspace.id}_${data.session.id}`;
+          }
+          return jsonResponse(data, response.status);
+        } catch {
+          // ignore
+        }
+      }
+      return response;
+    }
     const body = await readJsonBody(ctx.request);
     const ttlMs = parseFileSessionTtlMs((body as Record<string, unknown>).ttlSeconds);
     const requestWrite = (body as Record<string, unknown>).write !== false;
@@ -3223,6 +3341,8 @@ function createRoutes(
   });
 
   addRoute(routes, "POST", "/files/sessions/:sessionId/renew", "client", async (ctx) => {
+    const proxied = await checkAndProxyRemoteSession(config, ctx, ctx.params.sessionId);
+    if (proxied) return proxied;
     const body = await readJsonBody(ctx.request);
     const ttlMs = parseFileSessionTtlMs((body as Record<string, unknown>).ttlSeconds);
     const { session } = resolveFileSession(ctx, ctx.params.sessionId);
@@ -3234,12 +3354,16 @@ function createRoutes(
   });
 
   addRoute(routes, "DELETE", "/files/sessions/:sessionId", "client", async (ctx) => {
+    const proxied = await checkAndProxyRemoteSession(config, ctx, ctx.params.sessionId);
+    if (proxied) return proxied;
     const { session } = resolveFileSession(ctx, ctx.params.sessionId);
     fileSessions.close(session.id);
     return jsonResponse({ ok: true });
   });
 
   addRoute(routes, "GET", "/files/sessions/:sessionId/catalog/snapshot", "client", async (ctx) => {
+    const proxied = await checkAndProxyRemoteSession(config, ctx, ctx.params.sessionId);
+    if (proxied) return proxied;
     const { workspace } = resolveFileSession(ctx, ctx.params.sessionId);
     const prefix = parseCatalogPathFilter(ctx.url.searchParams.get("prefix"));
     const after = parseCatalogPathFilter(ctx.url.searchParams.get("after"));
@@ -3272,6 +3396,8 @@ function createRoutes(
   });
 
   addRoute(routes, "GET", "/files/sessions/:sessionId/catalog/events", "client", async (ctx) => {
+    const proxied = await checkAndProxyRemoteSession(config, ctx, ctx.params.sessionId);
+    if (proxied) return proxied;
     const { workspace } = resolveFileSession(ctx, ctx.params.sessionId);
     const since = parseSessionCursor(ctx.url.searchParams.get("since"));
     const events = fileSessions.listWorkspaceEvents(workspace.id, since);
@@ -3279,6 +3405,8 @@ function createRoutes(
   });
 
   addRoute(routes, "POST", "/files/sessions/:sessionId/read-batch", "client", async (ctx) => {
+    const proxied = await checkAndProxyRemoteSession(config, ctx, ctx.params.sessionId);
+    if (proxied) return proxied;
     const { workspace } = resolveFileSession(ctx, ctx.params.sessionId);
     const body = await readJsonBody(ctx.request);
     const paths = parseBatchPathList((body as Record<string, unknown>).paths);
@@ -3331,6 +3459,8 @@ function createRoutes(
   addRoute(routes, "POST", "/files/sessions/:sessionId/write-batch", "client", async (ctx) => {
     ensureWritable(config);
     requireClientScope(ctx, "collaborator");
+    const proxied = await checkAndProxyRemoteSession(config, ctx, ctx.params.sessionId);
+    if (proxied) return proxied;
     const { session, workspace } = resolveFileSession(ctx, ctx.params.sessionId);
     if (!session.canWrite) {
       throw new ApiError(403, "forbidden", "File session is read-only");
@@ -3463,6 +3593,8 @@ function createRoutes(
   addRoute(routes, "POST", "/files/sessions/:sessionId/ops", "client", async (ctx) => {
     ensureWritable(config);
     requireClientScope(ctx, "collaborator");
+    const proxied = await checkAndProxyRemoteSession(config, ctx, ctx.params.sessionId);
+    if (proxied) return proxied;
     const { session, workspace } = resolveFileSession(ctx, ctx.params.sessionId);
     if (!session.canWrite) {
       throw new ApiError(403, "forbidden", "File session is read-only");
@@ -3556,6 +3688,9 @@ function createRoutes(
 
   addRoute(routes, "GET", "/workspace/:id/files/content", "client", async (ctx) => {
     const workspace = await resolveWorkspace(config, ctx.params.id);
+    if (workspace.workspaceType === "remote") {
+      return proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
+    }
     const requested = (ctx.url.searchParams.get("path") ?? "").trim();
     const relativePath = normalizeWorkspaceRelativePath(requested, { allowSubdirs: true });
     if (!isSupportedWorkspaceTextFilePath(relativePath)) {
@@ -3582,6 +3717,9 @@ function createRoutes(
 
   addRoute(routes, "GET", "/workspace/:id/files/stat", "client", async (ctx) => {
     const workspace = await resolveWorkspace(config, ctx.params.id);
+    if (workspace.workspaceType === "remote") {
+      return proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
+    }
     const requested = (ctx.url.searchParams.get("path") ?? "").trim();
     const relativePath = normalizeWorkspaceRelativePath(requested, { allowSubdirs: true });
     const absPath = resolveSafeChildPath(workspace.path, relativePath);
@@ -3601,6 +3739,9 @@ function createRoutes(
 
   addRoute(routes, "GET", "/workspace/:id/files/raw", "client", async (ctx) => {
     const workspace = await resolveWorkspace(config, ctx.params.id);
+    if (workspace.workspaceType === "remote") {
+      return proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
+    }
     const requested = (ctx.url.searchParams.get("path") ?? "").trim();
     const relativePath = normalizeWorkspaceRelativePath(requested, { allowSubdirs: true });
     const absPath = resolveSafeChildPath(workspace.path, relativePath);
@@ -3624,6 +3765,9 @@ function createRoutes(
     ensureWritable(config);
     requireClientScope(ctx, "collaborator");
     const workspace = await resolveWorkspace(config, ctx.params.id);
+    if (workspace.workspaceType === "remote") {
+      return proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
+    }
     const body = await readJsonBody(ctx.request);
     const requestedPath = String(body.path ?? "");
     const relativePath = normalizeWorkspaceRelativePath(requestedPath, { allowSubdirs: true });
@@ -3685,6 +3829,9 @@ function createRoutes(
     ensureWritable(config);
     requireClientScope(ctx, "collaborator");
     const workspace = await resolveWorkspace(config, ctx.params.id);
+    if (workspace.workspaceType === "remote") {
+      return proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
+    }
     const body = await readJsonBody(ctx.request);
 
     const requestedPath = String(body.path ?? "");
@@ -3978,6 +4125,9 @@ function createRoutes(
 
   addRoute(routes, "GET", "/workspace/:id/mcp", "client", async (ctx) => {
     const workspace = await resolveWorkspace(config, ctx.params.id);
+    if (workspace.workspaceType === "remote") {
+      return proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
+    }
     const items = await listMcp(config, workspace.id, workspace.path);
     return jsonResponse({ items });
   });
@@ -3986,6 +4136,9 @@ function createRoutes(
     ensureWritable(config);
     requireClientScope(ctx, "collaborator");
     const workspace = await resolveWorkspace(config, ctx.params.id);
+    if (workspace.workspaceType === "remote") {
+      return proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
+    }
     const body = await readJsonBody(ctx.request);
     const name = String(body.name ?? "");
     const configPayload = body.config as Record<string, unknown> | undefined;
@@ -3998,7 +4151,7 @@ function createRoutes(
       summary: `Add MCP ${name}`,
       paths: [openworkConfigPath(workspace.path)],
     });
-    const result = await addMcp(config, workspace.id, name, configPayload);
+    const result = await addMcp(config, workspace.id, name, configPayload, workspace.path);
     await recordAudit(workspace.path, {
       id: shortId(),
       workspaceId: workspace.id,
@@ -4021,6 +4174,9 @@ function createRoutes(
     ensureWritable(config);
     requireClientScope(ctx, "collaborator");
     const workspace = await resolveWorkspace(config, ctx.params.id);
+    if (workspace.workspaceType === "remote") {
+      return proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
+    }
     const name = ctx.params.name ?? "";
     await requireApproval(ctx, {
       workspaceId: workspace.id,
@@ -4028,7 +4184,7 @@ function createRoutes(
       summary: `Remove MCP ${name}`,
       paths: [openworkConfigPath(workspace.path)],
     });
-    const removed = await removeMcp(config, workspace.id, name);
+    const removed = await removeMcp(config, workspace.id, name, workspace.path);
     await recordAudit(workspace.path, {
       id: shortId(),
       workspaceId: workspace.id,
@@ -4055,6 +4211,9 @@ function createRoutes(
     ensureWritable(config);
     requireClientScope(ctx, "collaborator");
     const workspace = await resolveWorkspace(config, ctx.params.id);
+    if (workspace.workspaceType === "remote") {
+      return proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
+    }
     const name = ctx.params.name ?? "";
     const body = await readJsonBody(ctx.request);
     if (!body || typeof body !== "object" || Array.isArray(body) || typeof body.enabled !== "boolean") {
@@ -4069,7 +4228,7 @@ function createRoutes(
       summary,
       paths: [openworkConfigPath(workspace.path)],
     });
-    const updated = await setMcpEnabled(config, workspace.id, name, enabled);
+    const updated = await setMcpEnabled(config, workspace.id, name, enabled, workspace.path);
     if (!updated) {
       throw new ApiError(404, "mcp_not_found", `MCP ${name} not found in workspace config`);
     }
@@ -4475,12 +4634,19 @@ async function resolveWorkspace(config: ServerConfig, id: string): Promise<Works
   const aliasWorkspaceId = workspaceId.startsWith("rem_") ? workspaceId.slice("rem_".length) : "";
   const workspace =
     config.workspaces.find((entry) => entry.id === workspaceId) ??
-    (aliasWorkspaceId ? config.workspaces.find((entry) => entry.id === aliasWorkspaceId) : undefined);
+    (aliasWorkspaceId ? config.workspaces.find((entry) => entry.id === aliasWorkspaceId) : undefined) ??
+    config.workspaces.find((entry) => entry.openworkWorkspaceId === workspaceId);
   if (!workspace) {
     throw new ApiError(404, "workspace_not_found", "Workspace not found");
   }
+  if (workspace.workspaceType === "remote") {
+    return { ...workspace, path: workspace.path?.trim() ?? "" };
+  }
   const resolvedWorkspace = resolve(workspace.path);
-  const authorized = await isAuthorizedRoot(resolvedWorkspace, config.authorizedRoots);
+  const authorized = await isAuthorizedRoot(resolvedWorkspace, [
+    ...config.authorizedRoots,
+    ...config.workspaces.map((w) => w.path),
+  ]);
   if (!authorized) {
     throw new ApiError(403, "workspace_unauthorized", "Workspace is not authorized");
   }
@@ -4503,7 +4669,8 @@ async function resolveWorkspaceForRegistry(config: ServerConfig, id: string): Pr
   const aliasWorkspaceId = workspaceId.startsWith("rem_") ? workspaceId.slice("rem_".length) : "";
   const workspace =
     config.workspaces.find((entry) => entry.id === workspaceId) ??
-    (aliasWorkspaceId ? config.workspaces.find((entry) => entry.id === aliasWorkspaceId) : undefined);
+    (aliasWorkspaceId ? config.workspaces.find((entry) => entry.id === aliasWorkspaceId) : undefined) ??
+    config.workspaces.find((entry) => entry.openworkWorkspaceId === workspaceId);
   if (!workspace) {
     throw new ApiError(404, "workspace_not_found", "Workspace not found");
   }
@@ -4521,10 +4688,17 @@ function reloadOpencodeEngineAfterInternalBootstrap(config: ServerConfig, worksp
 
 async function isAuthorizedRoot(workspacePath: string, roots: string[]): Promise<boolean> {
   const resolvedWorkspace = resolve(workspacePath);
+  const resolvedWorkspaceLower = resolvedWorkspace.toLowerCase();
   for (const root of roots) {
     const resolvedRoot = resolve(root);
-    if (resolvedWorkspace === resolvedRoot) return true;
-    if (resolvedWorkspace.startsWith(resolvedRoot + sep)) return true;
+    const resolvedRootLower = resolvedRoot.toLowerCase();
+    if (process.platform === "win32") {
+      if (resolvedWorkspaceLower === resolvedRootLower) return true;
+      if (resolvedWorkspaceLower.startsWith(resolvedRootLower + sep)) return true;
+    } else {
+      if (resolvedWorkspace === resolvedRoot) return true;
+      if (resolvedWorkspace.startsWith(resolvedRoot + sep)) return true;
+    }
   }
   return false;
 }

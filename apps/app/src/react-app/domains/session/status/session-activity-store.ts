@@ -168,7 +168,7 @@ export const useSessionActivityStore = create<SessionActivityStore>((set, get) =
           ...updateRecord(nextState, id, sessionId, (record) => {
             const normalized = normalizeRunStatus(status);
             const runActive = normalized === "running" || normalized === "retry";
-            if (!runActive && record.status !== "idle") return record;
+            if (runActive === record.runActive) return record;
             return {
               ...record,
               runActive,
@@ -192,7 +192,7 @@ export const useSessionActivityStore = create<SessionActivityStore>((set, get) =
     set((state) => updateRecord(state, workspace, session, (record) => {
       const normalized = normalizeRunStatus(status);
       const runActive = normalized === "running" || normalized === "retry";
-      if (!runActive && record.status !== "idle") return record;
+      if (runActive === record.runActive && (!runActive || record.assistantOutput === assistantOutput)) return record;
       return {
         ...record,
         runActive,

@@ -463,7 +463,20 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
   const [errorsByWorkspaceId, setErrorsByWorkspaceId] = useState<Record<string, string | null>>({});
   const [workspaceConnectionOverrides, setWorkspaceConnectionOverrides] = useState<Record<string, WorkspaceConnectionState>>({});
   const [legacySelectedWorkspaceId, setLegacySelectedWorkspaceId] = useState(() => navigationWorkspaceId ?? readActiveWorkspaceId() ?? "");
-  const selectedWorkspaceId = routeWorkspaceId || legacySelectedWorkspaceId;
+  const rawSelectedWorkspaceId = routeWorkspaceId || legacySelectedWorkspaceId;
+  const selectedWorkspace = useMemo(() => {
+    if (!rawSelectedWorkspaceId) return workspaces[0] ?? null;
+    const trimmed = rawSelectedWorkspaceId.trim();
+    const match = workspaces.find((w) => {
+      if (w.id === trimmed) return true;
+      if (w.openworkWorkspaceId === trimmed) return true;
+      const id1 = w.id.startsWith("rem_") ? w.id.slice(4) : w.id;
+      const id2 = trimmed.startsWith("rem_") ? trimmed.slice(4) : trimmed;
+      return id1 === id2;
+    });
+    return match ?? null;
+  }, [rawSelectedWorkspaceId, workspaces]);
+  const selectedWorkspaceId = selectedWorkspace?.id ?? rawSelectedWorkspaceId;
 
   useEffect(() => {
     if (!props.embedded || !route.redirectPath) return;
@@ -570,10 +583,7 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
     developerMode: false,
   });
 
-  const selectedWorkspace = useMemo(
-    () => workspaces.find((workspace) => workspace.id === selectedWorkspaceId) ?? (selectedWorkspaceId ? null : workspaces[0] ?? null),
-    [selectedWorkspaceId, workspaces],
-  );
+
   const workspaceConnectionStateById = useMemo(() => {
     const next: Record<string, WorkspaceConnectionState> = { ...workspaceConnectionOverrides };
     for (const workspace of workspaces) {
@@ -734,6 +744,11 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
         selectedWorkspaceRoot: () => routeStateRef.current.selectedWorkspaceRoot,
         workspaceType: () => routeStateRef.current.selectedWorkspaceType,
         openworkServer: openworkServerStore,
+        workspaceClient: () => {
+          const isRemote = selectedWorkspace?.workspaceType === "remote";
+          if (isRemote && !selectedWorkspaceEndpoint) return null;
+          return selectedWorkspaceEndpoint?.client ?? openworkClient;
+        },
         runtimeWorkspaceId: () => routeStateRef.current.runtimeWorkspaceId,
         ensureRuntimeWorkspaceId: async () =>
           routeStateRef.current.runtimeWorkspaceId?.trim() ||
@@ -742,7 +757,7 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
         developerMode: () => routeStateRef.current.developerMode,
         markReloadRequired: reloadCoordinator.markReloadRequired,
       }),
-    [openworkServerStore, reloadCoordinator.markReloadRequired],
+    [openworkServerStore, reloadCoordinator.markReloadRequired, selectedWorkspaceEndpoint, openworkClient, selectedWorkspace],
   );
   refreshMcpServersRef.current = connectionsStore.refreshMcpServers;
   notifyMcpReloadingRef.current = connectionsStore.notifyMcpReloading;
@@ -764,7 +779,11 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
           routeStateRef.current.selectedWorkspaceId.trim() ||
           null,
         openworkServer: openworkServerStore,
-        workspaceClient: () => selectedWorkspaceEndpoint?.client ?? openworkClient,
+        workspaceClient: () => {
+          const isRemote = selectedWorkspace?.workspaceType === "remote";
+          if (isRemote && !selectedWorkspaceEndpoint) return null;
+          return selectedWorkspaceEndpoint?.client ?? openworkClient;
+        },
         setProviders,
         setProviderDefaults,
         setProviderConnectedIds,
@@ -778,7 +797,7 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
           });
         },
       }),
-    [checkDesktopRestriction, openworkServerStore, reloadCoordinator.markReloadRequired, selectedWorkspaceEndpoint, openworkClient],
+    [checkDesktopRestriction, openworkServerStore, reloadCoordinator.markReloadRequired, selectedWorkspaceEndpoint, openworkClient, selectedWorkspace],
   );
   const extensionsStore = useMemo(
     () =>
@@ -789,11 +808,21 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
         selectedWorkspaceRoot: () => routeStateRef.current.selectedWorkspaceRoot,
         workspaceType: () => routeStateRef.current.selectedWorkspaceType,
         openworkServer: openworkServerStore,
-        openworkServerConnection: () => ({
-          openworkServerClient: selectedWorkspaceEndpoint?.client ?? routeStateRef.current.openworkServerClient,
-          openworkServerStatus: selectedWorkspaceEndpoint?.client ? "connected" : routeStateRef.current.openworkServerStatus,
-          openworkServerCapabilities: selectedWorkspaceEndpoint?.client ? ROUTE_OPENWORK_CAPABILITIES : routeStateRef.current.openworkServerCapabilities,
-        }),
+        openworkServerConnection: () => {
+          const isRemote = selectedWorkspace?.workspaceType === "remote";
+          if (isRemote && !selectedWorkspaceEndpoint) {
+            return {
+              openworkServerClient: null,
+              openworkServerStatus: "disconnected",
+              openworkServerCapabilities: null,
+            };
+          }
+          return {
+            openworkServerClient: selectedWorkspaceEndpoint?.client ?? routeStateRef.current.openworkServerClient,
+            openworkServerStatus: selectedWorkspaceEndpoint?.client ? "connected" : routeStateRef.current.openworkServerStatus,
+            openworkServerCapabilities: selectedWorkspaceEndpoint?.client ? ROUTE_OPENWORK_CAPABILITIES : routeStateRef.current.openworkServerCapabilities,
+          };
+        },
         runtimeWorkspaceId: () => routeStateRef.current.runtimeWorkspaceId,
         ensureRuntimeWorkspaceId: async () =>
           routeStateRef.current.runtimeWorkspaceId?.trim() ||
@@ -809,7 +838,7 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
         },
         markReloadRequired: reloadCoordinator.markReloadRequired,
       }),
-    [openworkServerStore, reloadCoordinator.markReloadRequired, selectedWorkspaceEndpoint, openworkClient],
+    [openworkServerStore, reloadCoordinator.markReloadRequired, selectedWorkspaceEndpoint, openworkClient, selectedWorkspace],
   );
   const openworkServerSnapshot = useOpenworkServerStoreSnapshot(openworkServerStore);
   const connectionsSnapshot = useConnectionsStoreSnapshot(connectionsStore);
@@ -1537,9 +1566,11 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
 
   // Load auto-compaction state from OpenCode config on workspace change.
   useEffect(() => {
+    const isRemote = selectedWorkspace?.workspaceType === "remote";
+    if (isRemote && !selectedWorkspaceEndpoint) return;
     const client = selectedWorkspaceEndpoint?.client ?? openworkClient;
     if (!client || !selectedWorkspaceId) return;
-    const workspaceId = routeStateRef.current.runtimeWorkspaceId?.trim() || selectedWorkspaceId;
+    const workspaceId = selectedWorkspaceEndpoint?.workspaceId ?? selectedWorkspaceId;
     let cancelled = false;
     (async () => {
       try {
@@ -1556,12 +1587,14 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
       }
     })();
     return () => { cancelled = true; };
-  }, [openworkClient, selectedWorkspaceId, selectedWorkspaceEndpoint]);
+  }, [openworkClient, selectedWorkspaceId, selectedWorkspaceEndpoint, selectedWorkspace]);
 
   const toggleAutoCompactContext = useCallback(async () => {
     if (autoCompactContextBusy) return;
-    const workspaceId = routeStateRef.current.runtimeWorkspaceId?.trim() || selectedWorkspaceId;
+    const isRemote = selectedWorkspace?.workspaceType === "remote";
+    if (isRemote && !selectedWorkspaceEndpoint) return;
     const client = selectedWorkspaceEndpoint?.client ?? openworkClient;
+    const workspaceId = selectedWorkspaceEndpoint?.workspaceId ?? selectedWorkspaceId;
     if (!client || !workspaceId) return;
     const next = !autoCompactContext;
     setAutoCompactContext(next);
@@ -1580,7 +1613,7 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
     } finally {
       setAutoCompactContextBusy(false);
     }
-  }, [autoCompactContext, autoCompactContextBusy, openworkClient, reloadCoordinator, selectedWorkspaceId, selectedWorkspaceEndpoint]);
+  }, [autoCompactContext, autoCompactContextBusy, openworkClient, reloadCoordinator, selectedWorkspaceId, selectedWorkspaceEndpoint, selectedWorkspace]);
 
   useEffect(() => {
     openworkServerStore.start();
@@ -1957,9 +1990,14 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
       if (createdId) {
         await workspaceSetSelected(createdId).catch(() => undefined);
         await workspaceSetRuntimeActive(createdId).catch(() => undefined);
+        setLegacySelectedWorkspaceId(createdId);
+        writeActiveWorkspaceId(createdId);
       }
       setCreateWorkspaceOpen(false);
       await refreshRouteState();
+      if (createdId) {
+        navigate(workspaceSettingsRoute(createdId, "general"), { replace: true });
+      }
     } catch (error) {
       setCreateWorkspaceError(describeWorkspaceCreateError(error));
     } finally {
@@ -1998,9 +2036,14 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
       if (createdId) {
         await workspaceSetSelected(createdId).catch(() => undefined);
         await workspaceSetRuntimeActive(createdId).catch(() => undefined);
+        setLegacySelectedWorkspaceId(createdId);
+        writeActiveWorkspaceId(createdId);
       }
       setCreateWorkspaceOpen(false);
       await refreshRouteState();
+      if (createdId) {
+        navigate(workspaceSettingsRoute(createdId, "general"), { replace: true });
+      }
       return true;
     } catch (error) {
       setCreateWorkspaceRemoteError(error instanceof Error ? error.message : t("app.unknown_error"));
@@ -2303,12 +2346,14 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
             })}
             opencodeDevModeEnabled={false}
             openDebugDeepLink={async () => ({ ok: false, message: "Debug deep links are not wired into the React settings route yet." })}
-            canMigrateRuntimeConfig={Boolean(openworkClient && selectedWorkspaceId)}
+            canMigrateRuntimeConfig={Boolean((selectedWorkspaceEndpoint?.client ?? openworkClient) && selectedWorkspaceId)}
             migrateRuntimeConfig={async () => {
-              if (!openworkClient || !selectedWorkspaceId) {
+              const client = selectedWorkspaceEndpoint?.client ?? openworkClient;
+              if (!client || !selectedWorkspaceId) {
                 throw new Error("Select a workspace before migrating legacy runtime config.");
               }
-              const result = await openworkClient.migrateRuntimeConfig(selectedWorkspaceId);
+              const workspaceId = selectedWorkspaceEndpoint?.workspaceId ?? selectedWorkspaceId;
+              const result = await client.migrateRuntimeConfig(workspaceId);
               if (result.migrated) {
                 void connectionsStore.refreshMcpServers();
                 void extensionsStore.refreshPlugins();
@@ -2316,10 +2361,12 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
               return { migrated: result.migrated, keys: result.keys };
             }}
             getRuntimeConfigStatus={async () => {
-              if (!openworkClient || !selectedWorkspaceId) {
+              const client = selectedWorkspaceEndpoint?.client ?? openworkClient;
+              if (!client || !selectedWorkspaceId) {
                 throw new Error("Select a workspace to inspect runtime config.");
               }
-              return openworkClient.getRuntimeConfigStatus(selectedWorkspaceId);
+              const workspaceId = selectedWorkspaceEndpoint?.workspaceId ?? selectedWorkspaceId;
+              return client.getRuntimeConfigStatus(workspaceId);
             }}
           />
         );

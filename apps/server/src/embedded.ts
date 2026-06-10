@@ -48,6 +48,7 @@ export async function startEmbeddedServer(options: EmbeddedServerOptions): Promi
 
   if (!config.readOnly) {
     for (const workspace of config.workspaces) {
+      if (workspace.workspaceType === "remote") continue;
       await ensureWorkspaceFiles(workspace.path, workspace.preset ?? "starter");
     }
   }

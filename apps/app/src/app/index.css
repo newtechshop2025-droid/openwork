@@ -519,4 +519,17 @@ select:disabled {
   html {
     @apply font-sans;
   }
+
+  /* Shiki Markdown Code Highlight fixes for Dark Mode */
+  .shiki {
+    background-color: transparent !important;
+  }
+  .dark .shiki,
+  [data-theme="dark"] .shiki {
+    color: var(--shiki-dark) !important;
+  }
+  .dark .shiki span,
+  [data-theme="dark"] .shiki span {
+    color: var(--shiki-dark) !important;
+  }
 }

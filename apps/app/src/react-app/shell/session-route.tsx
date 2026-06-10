@@ -542,11 +542,20 @@ export function SessionRoute() {
   const [workspaceConnectionOverrides, setWorkspaceConnectionOverrides] = useState<Record<string, WorkspaceConnectionState>>({});
   const [routeError, setRouteError] = useState<string | null>(null);
   const [legacySelectedWorkspaceId, setLegacySelectedWorkspaceId] = useState<string>(() => readActiveWorkspaceId() ?? "");
-  const selectedWorkspaceId = routeWorkspaceId || legacySelectedWorkspaceId;
-  const selectedWorkspace = useMemo(
-    () => workspaces.find((workspace) => workspace.id === selectedWorkspaceId) ?? (selectedWorkspaceId ? null : workspaces[0] ?? null),
-    [selectedWorkspaceId, workspaces],
-  );
+  const rawSelectedWorkspaceId = routeWorkspaceId || legacySelectedWorkspaceId;
+  const selectedWorkspace = useMemo(() => {
+    if (!rawSelectedWorkspaceId) return workspaces[0] ?? null;
+    const trimmed = rawSelectedWorkspaceId.trim();
+    const match = workspaces.find((w) => {
+      if (w.id === trimmed) return true;
+      if (w.openworkWorkspaceId === trimmed) return true;
+      const id1 = w.id.startsWith("rem_") ? w.id.slice(4) : w.id;
+      const id2 = trimmed.startsWith("rem_") ? trimmed.slice(4) : trimmed;
+      return id1 === id2;
+    });
+    return match ?? null;
+  }, [rawSelectedWorkspaceId, workspaces]);
+  const selectedWorkspaceId = selectedWorkspace?.id ?? rawSelectedWorkspaceId;
   // Workspace-scoped API calls (sessions, events, activate, opencode/*) must
   // hit the worker that owns the workspace, not the user's local server. The
   // single source of truth for that routing is `resolveWorkspaceEndpoint`.
@@ -1745,11 +1754,17 @@ export function SessionRoute() {
     [selectedSessionId, selectedWorkspaceId],
   );
   const todos = useQueryCacheState<TodoItem[]>(todoQueryKey, emptyTodos);
+  const runActive = useSessionActivityStore(
+    (state) =>
+      selectedWorkspaceId && selectedSessionId
+        ? state.recordsByWorkspaceId[selectedWorkspaceId]?.[selectedSessionId]?.runActive ?? false
+        : false,
+  );
   useEffect(() => {
     if (!opencodeClient || !selectedWorkspaceId || !selectedSessionId) return;
     let cancelled = false;
     const directory = selectedWorkspaceRoot || undefined;
-    void (async () => {
+    const fetchPermissions = async () => {
       const snapshotStartedAt = Date.now();
       try {
         const list = unwrap(await opencodeClient.permission.list({ directory }));
@@ -1760,17 +1775,22 @@ export function SessionRoute() {
         // Keep event-synced permission state if the snapshot read fails.
         // Hiding a pending approval can block the running task.
       }
-    })();
+    };
+    void fetchPermissions();
+
+    if (!runActive) return;
+    const interval = setInterval(fetchPermissions, 3000);
     return () => {
       cancelled = true;
+      clearInterval(interval);
     };
-  }, [opencodeClient, selectedSessionId, selectedWorkspaceId, selectedWorkspaceRoot]);
+  }, [opencodeClient, selectedSessionId, selectedWorkspaceId, selectedWorkspaceRoot, runActive]);
 
   useEffect(() => {
     if (!opencodeClient || !selectedWorkspaceId || !selectedSessionId) return;
     let cancelled = false;
     const directory = selectedWorkspaceRoot || undefined;
-    void (async () => {
+    const fetchQuestions = async () => {
       const snapshotStartedAt = Date.now();
       try {
         const list = unwrap(await opencodeClient.question.list({ directory }));
@@ -1781,11 +1801,16 @@ export function SessionRoute() {
         // Keep event-synced question state if the snapshot read fails.
         // Hiding a pending question can block the running task.
       }
-    })();
+    };
+    void fetchQuestions();
+
+    if (!runActive) return;
+    const interval = setInterval(fetchQuestions, 3000);
     return () => {
       cancelled = true;
+      clearInterval(interval);
     };
-  }, [opencodeClient, selectedSessionId, selectedWorkspaceId, selectedWorkspaceRoot]);
+  }, [opencodeClient, selectedSessionId, selectedWorkspaceId, selectedWorkspaceRoot, runActive]);
 
   const activePermission = pendingPermissions[0] ?? null;
   const respondPermission = useCallback(
@@ -2818,11 +2843,16 @@ export function SessionRoute() {
       if (createdId) {
         await workspaceSetSelected(createdId).catch(() => undefined);
         await workspaceSetRuntimeActive(createdId).catch(() => undefined);
+        setLegacySelectedWorkspaceId(createdId);
+        writeActiveWorkspaceId(createdId);
       }
       setCreateWorkspaceOpen(false);
       // Mark onboarding complete so the /welcome redirect never fires again.
       local.setPrefs((prev) => ({ ...prev, hasCompletedOnboarding: true }));
       await refreshRouteState();
+      if (createdId) {
+        navigateToWorkspaceSession(createdId, null, { replace: true });
+      }
       return true;
     } catch (error) {
       setCreateWorkspaceRemoteError(error instanceof Error ? error.message : t("app.unknown_error"));
@@ -2830,7 +2860,7 @@ export function SessionRoute() {
     } finally {
       setCreateWorkspaceRemoteBusy(false);
     }
-  }, [client, local, refreshRouteState]);
+  }, [client, local, navigateToWorkspaceSession, refreshRouteState]);
 
   return (
     <WorkspaceProvider

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "workspace": {
+    "name": "desktop",
+    "createdAt": 1780987795460,
+    "preset": "remote"
+  },
+  "authorizedRoots": [
+    "E:\\Open Source\\openwork\\apps\\desktop"
+  ],
+  "reload": null
+}

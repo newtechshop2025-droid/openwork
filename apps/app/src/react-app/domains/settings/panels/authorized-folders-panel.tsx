@@ -12,6 +12,15 @@ import {
   EmptyTitle,
 } from "@/components/ui/empty";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import { t } from "@/i18n";
 import type {
   OpenworkServerCapabilities,
@@ -151,8 +160,12 @@ export function AuthorizedFoldersPanel(props: AuthorizedFoldersPanelProps) {
     return null;
   }, [canReadConfig, canWriteConfig, openworkServerReady, openworkServerWorkspaceReady]);
 
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [manualPath, setManualPath] = useState("");
+
   const canPickAuthorizedFolder =
     isDesktopRuntime() && canWriteConfig && props.activeWorkspaceType === "local";
+  const canAddFolder = canWriteConfig;
   const workspaceRootFolder = serverWorkspaceRoot || props.selectedWorkspaceRoot.trim();
   const visibleAuthorizedFolders = useMemo(() => {
     const root = workspaceRootFolder;
@@ -266,81 +279,159 @@ export function AuthorizedFoldersPanel(props: AuthorizedFoldersPanelProps) {
     }
   }, [authorizedFolders, persistAuthorizedFolders, workspaceRootFolder]);
 
+  const handleAddFolderClick = useCallback(() => {
+    if (props.activeWorkspaceType === "local") {
+      void pickAuthorizedFolder();
+    } else {
+      setIsDialogOpen(true);
+    }
+  }, [props.activeWorkspaceType, pickAuthorizedFolder]);
+
+  const handleAddManualFolder = useCallback(async () => {
+    const trimmed = manualPath.trim();
+    if (!trimmed) return;
+
+    const normalized = normalizeAuthorizedFolderPath(trimmed);
+    const workspaceRoot = normalizeAuthorizedFolderPath(workspaceRootFolder);
+    if (!normalized) return;
+
+    if (workspaceRoot && normalized === workspaceRoot) {
+      setAuthorizedFoldersStatus(t("context_panel.workspace_root_available"));
+      setAuthorizedFoldersError(null);
+      setIsDialogOpen(false);
+      setManualPath("");
+      return;
+    }
+
+    if (authorizedFolders.includes(normalized)) {
+      setAuthorizedFoldersStatus(t("context_panel.folder_already_authorized"));
+      setAuthorizedFoldersError(null);
+      setIsDialogOpen(false);
+      setManualPath("");
+      return;
+    }
+
+    const success = await persistAuthorizedFolders([...authorizedFolders, normalized]);
+    if (success) {
+      setIsDialogOpen(false);
+      setManualPath("");
+    }
+  }, [manualPath, authorizedFolders, persistAuthorizedFolders, workspaceRootFolder]);
+
   return (
-    <LayoutSectionItem className="gap-6">
-      <LayoutSectionItemHeader>
-        <LayoutSectionItemTitle>
-          {t("context_panel.authorized_folders")}
-        </LayoutSectionItemTitle>
-        <LayoutSectionItemDescription>
-          {t("context_panel.authorized_folders_desc")}
-        </LayoutSectionItemDescription>
-        <LayoutSectionItemHeaderActions>
-          <Button
-            onClick={() => void pickAuthorizedFolder()}
-            disabled={authorizedFoldersLoading || authorizedFoldersSaving || !canPickAuthorizedFolder}
-          >
-            <Plus className="size-4" />
-            Add folder
-          </Button>
-        </LayoutSectionItemHeaderActions>
-      </LayoutSectionItemHeader>
+    <>
+      <LayoutSectionItem className="gap-6">
+        <LayoutSectionItemHeader>
+          <LayoutSectionItemTitle>
+            {t("context_panel.authorized_folders")}
+          </LayoutSectionItemTitle>
+          <LayoutSectionItemDescription>
+            {t("context_panel.authorized_folders_desc")}
+          </LayoutSectionItemDescription>
+          <LayoutSectionItemHeaderActions>
+            <Button
+              onClick={handleAddFolderClick}
+              disabled={authorizedFoldersLoading || authorizedFoldersSaving || !canAddFolder}
+            >
+              <Plus className="size-4" />
+              Add folder
+            </Button>
+          </LayoutSectionItemHeaderActions>
+        </LayoutSectionItemHeader>
 
-      {!canReadConfig ? (
-        <SettingsNotice>
-          {authorizedFoldersHint ?? t("context_panel.authorized_folders_no_access")}
-        </SettingsNotice>
-      ) : (
-        <>
-          {/* Folder list */}
-          {visibleAuthorizedFolders.length > 0 ? (
-            <ul className="flex flex-col gap-2">
-              {visibleAuthorizedFolders.map((folder) => (
-                <AuthorizedFolderItem
-                  key={folder}
-                  folder={folder}
-                  workspaceRootFolder={workspaceRootFolder}
-                  authorizedFoldersLoading={authorizedFoldersLoading}
-                  authorizedFoldersSaving={authorizedFoldersSaving}
-                  canWriteConfig={canWriteConfig}
-                  onRemove={removeAuthorizedFolder}
-                />
-              ))}
-            </ul>
-          ) : (
-            <Empty>
-              <EmptyHeader>
-                <EmptyMedia>
-                  <Folder className="text-muted-foreground" />
-                </EmptyMedia>
-                <EmptyTitle>
-                  {t("context_panel.no_external_folders")}
-                </EmptyTitle>
-                <EmptyDescription>
-                  {t("context_panel.add_folder_hint")}
-                </EmptyDescription>
-              </EmptyHeader>
-            <EmptyContent>
-              <Button
-                onClick={() => void pickAuthorizedFolder()}
-                disabled={authorizedFoldersLoading || authorizedFoldersSaving || !canPickAuthorizedFolder}
-              >
-                <Plus className="size-4" />
-                Add folder
-              </Button>
-            </EmptyContent>
-            </Empty>
-          )}
+        {!canReadConfig ? (
+          <SettingsNotice>
+            {authorizedFoldersHint ?? t("context_panel.authorized_folders_no_access")}
+          </SettingsNotice>
+        ) : (
+          <>
+            {/* Folder list */}
+            {visibleAuthorizedFolders.length > 0 ? (
+              <ul className="flex flex-col gap-2">
+                {visibleAuthorizedFolders.map((folder) => (
+                  <AuthorizedFolderItem
+                    key={folder}
+                    folder={folder}
+                    workspaceRootFolder={workspaceRootFolder}
+                    authorizedFoldersLoading={authorizedFoldersLoading}
+                    authorizedFoldersSaving={authorizedFoldersSaving}
+                    canWriteConfig={canWriteConfig}
+                    onRemove={removeAuthorizedFolder}
+                  />
+                ))}
+              </ul>
+            ) : (
+              <Empty>
+                <EmptyHeader>
+                  <EmptyMedia>
+                    <Folder className="text-muted-foreground" />
+                  </EmptyMedia>
+                  <EmptyTitle>
+                    {t("context_panel.no_external_folders")}
+                  </EmptyTitle>
+                  <EmptyDescription>
+                    {t("context_panel.add_folder_hint")}
+                  </EmptyDescription>
+                </EmptyHeader>
+                <EmptyContent>
+                  <Button
+                    onClick={handleAddFolderClick}
+                    disabled={authorizedFoldersLoading || authorizedFoldersSaving || !canAddFolder}
+                  >
+                    <Plus className="size-4" />
+                    Add folder
+                  </Button>
+                </EmptyContent>
+              </Empty>
+            )}
 
-          {/* Status / error */}
-          {authorizedFoldersStatus ? (
-            <SettingsNotice>{authorizedFoldersStatus}</SettingsNotice>
-          ) : null}
-          {authorizedFoldersError ? (
-            <SettingsNotice tone="error">{authorizedFoldersError}</SettingsNotice>
-          ) : null}
-        </>
-      )}
-    </LayoutSectionItem>
+            {/* Status / error */}
+            {authorizedFoldersStatus ? (
+              <SettingsNotice>{authorizedFoldersStatus}</SettingsNotice>
+            ) : null}
+            {authorizedFoldersError ? (
+              <SettingsNotice tone="error">{authorizedFoldersError}</SettingsNotice>
+            ) : null}
+          </>
+        )}
+      </LayoutSectionItem>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Authorize Remote Folder</DialogTitle>
+            <DialogDescription>
+              Because this is a remote workspace, you cannot select directories using a local file browser.
+              Please enter the absolute path of the directory on the remote machine.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-2 py-4">
+            <Input
+              placeholder="/absolute/path/to/folder"
+              value={manualPath}
+              onChange={(e) => setManualPath(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && manualPath.trim()) {
+                  void handleAddManualFolder();
+                }
+              }}
+            />
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                void handleAddManualFolder();
+              }}
+              disabled={authorizedFoldersLoading || authorizedFoldersSaving || !manualPath.trim()}
+            >
+              Authorize
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }

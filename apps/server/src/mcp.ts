@@ -3,7 +3,7 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { homedir } from "node:os";
 import type { McpItem, ServerConfig } from "./types.js";
-import { readJsoncFile } from "./jsonc.js";
+import { readJsoncFile, updateJsoncPath } from "./jsonc.js";
 import { opencodeConfigPath } from "./workspace-files.js";
 import { validateMcpConfig, validateMcpName } from "./validators.js";
 import { readRuntimeOpencodeConfig, runtimeMcpMap, writeRuntimeOpencodeConfig } from "./runtime-opencode-config-store.js";
@@ -90,6 +90,7 @@ export async function addMcp(
   workspaceId: string,
   name: string,
   config: Record<string, unknown>,
+  workspaceRoot?: string,
 ): Promise<{ action: "added" | "updated" }> {
   validateMcpName(name);
   validateMcpConfig(config);
@@ -98,15 +99,32 @@ export async function addMcp(
   const existed = Object.prototype.hasOwnProperty.call(mcpMap, name);
   mcpMap[name] = config;
   await writeRuntimeOpencodeConfig(serverConfig, workspaceId, (current) => ({ ...current, mcp: mcpMap }));
+
+  if (workspaceRoot) {
+    const configPath = opencodeConfigPath(workspaceRoot);
+    await updateJsoncPath(configPath, ["mcp", name], config);
+  }
+
   return { action: existed ? "updated" : "added" };
 }
 
-export async function removeMcp(serverConfig: ServerConfig, workspaceId: string, name: string): Promise<boolean> {
+export async function removeMcp(
+  serverConfig: ServerConfig,
+  workspaceId: string,
+  name: string,
+  workspaceRoot?: string,
+): Promise<boolean> {
   const runtimeConfig = await readRuntimeOpencodeConfig(serverConfig, workspaceId);
   const mcpMap = { ...runtimeMcpMap(runtimeConfig) };
   if (!Object.prototype.hasOwnProperty.call(mcpMap, name)) return false;
   delete mcpMap[name];
   await writeRuntimeOpencodeConfig(serverConfig, workspaceId, (current) => ({ ...current, mcp: mcpMap }));
+
+  if (workspaceRoot) {
+    const configPath = opencodeConfigPath(workspaceRoot);
+    await updateJsoncPath(configPath, ["mcp", name], undefined);
+  }
+
   return true;
 }
 
@@ -122,6 +140,7 @@ export async function setMcpEnabled(
   workspaceId: string,
   name: string,
   enabled: boolean,
+  workspaceRoot?: string,
 ): Promise<boolean> {
   validateMcpName(name);
   const runtimeConfig = await readRuntimeOpencodeConfig(serverConfig, workspaceId);
@@ -136,5 +155,11 @@ export async function setMcpEnabled(
   }
   mcpMap[name] = { ...(current as Record<string, unknown>), enabled };
   await writeRuntimeOpencodeConfig(serverConfig, workspaceId, (currentConfig) => ({ ...currentConfig, mcp: mcpMap }));
+
+  if (workspaceRoot) {
+    const configPath = opencodeConfigPath(workspaceRoot);
+    await updateJsoncPath(configPath, ["mcp", name, "enabled"], enabled);
+  }
+
   return true;
 }

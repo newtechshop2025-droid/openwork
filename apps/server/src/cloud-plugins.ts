@@ -550,7 +550,7 @@ export async function installCloudPlugin(input: {
     if (object.objectType === "mcp") {
       const configs = pluginMcpConfigsFromPayload(object, namespace);
       for (const config of configs) {
-        await addMcp(input.serverConfig, input.workspaceId, config.name, config.config);
+        await addMcp(input.serverConfig, input.workspaceId, config.name, config.config, input.workspaceRoot);
         files.push({
           configObjectId: object.id,
           versionId: version?.id ?? null,
@@ -589,7 +589,7 @@ export async function installCloudPlugin(input: {
     const name = file.objectType === "mcp" && !nextPaths.has(file.path) ? cloudPluginMcpNameFromPath(file.path) : null;
     return name ? [name] : [];
   });
-  await Promise.all(removedMcpNames.map((name) => removeMcp(input.serverConfig, input.workspaceId, name)));
+  await Promise.all(removedMcpNames.map((name) => removeMcp(input.serverConfig, input.workspaceId, name, input.workspaceRoot)));
 
   const imported: CloudImportedPlugin = {
     pluginId: input.resolved.plugin.id,
@@ -645,7 +645,7 @@ export async function removeCloudPlugin(input: {
   await Promise.all(imported.files.map(async (file) => {
     const mcpName = file.objectType === "mcp" ? cloudPluginMcpNameFromPath(file.path) : null;
     if (mcpName) {
-      await removeMcp(input.serverConfig, input.workspaceId, mcpName);
+      await removeMcp(input.serverConfig, input.workspaceId, mcpName, input.workspaceRoot);
       return;
     }
     await removePluginWorkspaceFile(input.workspaceRoot, file.path);

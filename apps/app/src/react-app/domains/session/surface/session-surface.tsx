@@ -390,6 +390,9 @@ export function SessionSurface(props: SessionSurfaceProps) {
   const sessionActivityStatus = useSessionActivityStore(
     (state) => state.statusesByWorkspaceId[props.workspaceId]?.[props.sessionId] ?? "idle",
   );
+  const runActive = useSessionActivityStore(
+    (state) => state.recordsByWorkspaceId[props.workspaceId]?.[props.sessionId]?.runActive ?? false,
+  );
   const draft = useComposerStateStore((state) => getComposerDraft(state, props.sessionId));
   const attachments = useComposerStateStore((state) => getComposerAttachments(state, props.sessionId));
   const mentions = useComposerStateStore((state) => getComposerMentions(state, props.sessionId));
@@ -439,6 +442,7 @@ export function SessionSurface(props: SessionSurfaceProps) {
     queryKey: snapshotQueryKey,
     queryFn: async () => (await props.client.getSessionSnapshot(props.workspaceId, props.sessionId, { limit: 140 })).item,
     staleTime: 500,
+    refetchInterval: runActive ? 3000 : false,
   });
 
   const currentSnapshot = snapshotQuery.data?.session.id === props.sessionId ? snapshotQuery.data : null;
@@ -637,12 +641,12 @@ export function SessionSurface(props: SessionSurfaceProps) {
     if (assistantOutputAfterAwaitStart) {
       return;
     }
-    if (sending || liveStatus.type !== "idle" || renderedMessages.length <= awaitingAssistantBaseline) return;
+    if (sending || liveStatus.type !== "idle") return;
     const id = window.setTimeout(() => {
       setAwaitingAssistantBaseline(null);
     }, 1200);
     return () => window.clearTimeout(id);
-  }, [assistantOutputAfterAwaitStart, awaitingAssistantBaseline, liveStatus.type, renderedMessages.length, sending]);
+  }, [assistantOutputAfterAwaitStart, awaitingAssistantBaseline, liveStatus.type, sending]);
 
   const model = deriveSessionRenderModel({
     intendedSessionId: props.sessionId,

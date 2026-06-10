@@ -213,12 +213,18 @@ export async function resolveServerConfig(cli: CliArgs): Promise<ServerConfig> {
   const configDir = dirname(configPath);
 
   const envWorkspaces = parseList(process.env.OPENWORK_WORKSPACES);
-  let workspaceConfigs: WorkspaceConfig[] =
-    cli.workspaces.length > 0
-      ? cli.workspaces.map((path) => ({ path }))
-      : envWorkspaces.length > 0
-        ? envWorkspaces.map((path) => ({ path }))
-        : fileConfig.workspaces ?? [];
+  const cliOrEnvPaths = cli.workspaces.length > 0 ? cli.workspaces : envWorkspaces;
+  let workspaceConfigs: WorkspaceConfig[] = fileConfig.workspaces ?? [];
+
+  if (cliOrEnvPaths.length > 0) {
+    const existingPaths = new Set(workspaceConfigs.map((w) => resolve(configDir, w.path)));
+    for (const path of cliOrEnvPaths) {
+      const resolvedPath = resolve(configDir, path);
+      if (!existingPaths.has(resolvedPath)) {
+        workspaceConfigs.push({ path });
+      }
+    }
+  }
 
   const envOpencodeBaseUrl = process.env.OPENWORK_OPENCODE_BASE_URL;
   const envOpencodeDirectory = process.env.OPENWORK_OPENCODE_DIRECTORY;

@@ -797,6 +797,29 @@ export function ReactSessionComposer(props: ComposerProps) {
     };
   }, [props.onDraftChange]);
 
+  const wasDisabledRef = useRef(props.disabled);
+  useEffect(() => {
+    if (wasDisabledRef.current && !props.disabled) {
+      const root = rootRef.current;
+      if (root) {
+        const editable = root.querySelector<HTMLElement>("[contenteditable='true']");
+        editable?.focus();
+      }
+    }
+    wasDisabledRef.current = props.disabled;
+  }, [props.disabled]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const root = rootRef.current;
+      if (root) {
+        const editable = root.querySelector<HTMLElement>("[contenteditable='true']");
+        editable?.focus();
+      }
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [props.draftScopeKey]);
+
   const handleKeyDownCapture: React.KeyboardEventHandler<HTMLDivElement> = (event) => {
     // IME composition guard — block Enter while IME is mid-character.
     const imeActive =

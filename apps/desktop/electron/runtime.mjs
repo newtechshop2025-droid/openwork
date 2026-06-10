@@ -632,8 +632,9 @@ export function createRuntimeManager({ app, desktopRoot, listLocalWorkspacePaths
 
   async function ensureDevModePaths() {
     const root = path.join(userDataDir, "openwork-dev-data");
+    const homeDir = path.join(root, "home");
     const paths = {
-      homeDir: path.join(root, "home"),
+      homeDir,
       xdgConfigHome: path.join(root, "xdg", "config"),
       xdgDataHome: path.join(root, "xdg", "data"),
       xdgCacheHome: path.join(root, "xdg", "cache"),
@@ -643,6 +644,11 @@ export function createRuntimeManager({ app, desktopRoot, listLocalWorkspacePaths
 
     for (const dir of Object.values(paths)) {
       await mkdir(dir, { recursive: true });
+    }
+    if (process.platform === "win32") {
+      await mkdir(path.join(homeDir, "Desktop"), { recursive: true }).catch(() => undefined);
+      await mkdir(path.join(homeDir, "Documents"), { recursive: true }).catch(() => undefined);
+      await mkdir(path.join(homeDir, "Downloads"), { recursive: true }).catch(() => undefined);
     }
     await mkdir(path.join(paths.xdgDataHome, "opencode"), { recursive: true });
     return paths;

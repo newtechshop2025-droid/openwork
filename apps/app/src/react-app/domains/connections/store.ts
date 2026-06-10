@@ -22,7 +22,7 @@ import {
   removeMcpFromConfig,
   validateMcpServerName,
 } from "../../../app/mcp";
-import { buildOpenworkWorkspaceBaseUrl } from "../../../app/lib/openwork-server";
+import { buildOpenworkWorkspaceBaseUrl, type OpenworkServerClient } from "../../../app/lib/openwork-server";
 import type {
   Client,
   McpServerEntry,
@@ -60,6 +60,7 @@ export function createConnectionsStore(options: {
   selectedWorkspaceRoot: () => string;
   workspaceType: () => "local" | "remote";
   openworkServer: OpenworkServerStore;
+  workspaceClient?: () => OpenworkServerClient | null;
   runtimeWorkspaceId: () => string | null;
   ensureRuntimeWorkspaceId?: () => Promise<string | null | undefined>;
   setProjectDir?: (value: string) => void;
@@ -132,7 +133,8 @@ export function createConnectionsStore(options: {
     const current = options.runtimeWorkspaceId()?.trim();
     if (current) return current;
     const openworkSnapshot = getOpenworkSnapshot();
-    if (openworkSnapshot.openworkServerStatus !== "connected" || !openworkSnapshot.openworkServerClient) {
+    const hasClient = Boolean(options.workspaceClient?.() ?? openworkSnapshot.openworkServerClient);
+    if (!hasClient || (options.workspaceType() !== "remote" && openworkSnapshot.openworkServerStatus !== "connected")) {
       return null;
     }
     const ensured = (await options.ensureRuntimeWorkspaceId?.())?.trim();
@@ -142,14 +144,14 @@ export function createConnectionsStore(options: {
 
   const resolveConfigOpenworkTarget = async (mode: "read" | "write") => {
     const openworkSnapshot = getOpenworkSnapshot();
-    const openworkClient = openworkSnapshot.openworkServerClient;
+    const openworkClient = options.workspaceClient?.() ?? openworkSnapshot.openworkServerClient;
     const openworkWorkspaceId = await resolveOpenworkWorkspaceId();
     const hasOpenworkTarget =
-      openworkSnapshot.openworkServerStatus === "connected" &&
-      Boolean(openworkClient && openworkWorkspaceId);
+      Boolean(openworkClient && openworkWorkspaceId) &&
+      (options.workspaceType() === "remote" || openworkSnapshot.openworkServerStatus === "connected");
     const canUseOpenworkServer =
       hasOpenworkTarget &&
-      openworkSnapshot.openworkServerCapabilities?.config?.[mode] !== false;
+      (options.workspaceType() === "remote" || openworkSnapshot.openworkServerCapabilities?.config?.[mode] !== false);
     return {
       openworkClient,
       openworkWorkspaceId,
@@ -160,14 +162,14 @@ export function createConnectionsStore(options: {
 
   const resolveMcpOpenworkTarget = async (mode: "read" | "write") => {
     const openworkSnapshot = getOpenworkSnapshot();
-    const openworkClient = openworkSnapshot.openworkServerClient;
+    const openworkClient = options.workspaceClient?.() ?? openworkSnapshot.openworkServerClient;
     const openworkWorkspaceId = await resolveOpenworkWorkspaceId();
     const hasOpenworkTarget =
-      openworkSnapshot.openworkServerStatus === "connected" &&
-      Boolean(openworkClient && openworkWorkspaceId);
+      Boolean(openworkClient && openworkWorkspaceId) &&
+      (options.workspaceType() === "remote" || openworkSnapshot.openworkServerStatus === "connected");
     const canUseOpenworkServer =
       hasOpenworkTarget &&
-      openworkSnapshot.openworkServerCapabilities?.mcp?.[mode] !== false;
+      (options.workspaceType() === "remote" || openworkSnapshot.openworkServerCapabilities?.mcp?.[mode] !== false);
     return {
       openworkClient,
       openworkWorkspaceId,
@@ -646,32 +648,44 @@ export function createConnectionsStore(options: {
         }
       }
 
+      const mcpAddConfig =
+        entryType === "remote"
+          ? {
+              type: "remote" as const,
+              url: entry.url!,
+              enabled: true,
+              ...(entry.oauth ? { oauth: {} } : {}),
+            }
+          : {
+              type: "local" as const,
+              command: (mcpEntryConfig["command"] as string[]) ?? entry.command!,
+              enabled: true,
+            };
+
       if (canUseOpenworkServer && openworkClient && openworkWorkspaceId) {
         // The OpenWork server is the source of truth for workspace-scoped MCP
-        // config in the React port. Avoid also calling the OpenCode SDK's MCP
-        // hot-add endpoint here: when the SDK client is rooted at the aggregate
-        // `/opencode` route it can resolve to an internal `local_*` workspace
-        // id that the OpenWork server does not expose, producing a confusing
-        // `workspace_not_found` after the config write already succeeded.
-        setStateField("mcpStatuses", filterConfiguredStatuses(snapshot.mcpStatuses, snapshot.mcpServers));
+        // config in the React port. We also call the OpenCode SDK's MCP hot-add
+        // endpoint so that the running engine process receives the config dynamically.
+        if (activeClient && resolvedProjectDir) {
+          try {
+            const status = unwrap(
+              await activeClient.mcp.add({
+                directory: resolvedProjectDir,
+                name: slug,
+                config: mcpAddConfig,
+              }),
+            );
+            setStateField("mcpStatuses", status as McpStatusMap);
+          } catch {
+            setStateField("mcpStatuses", filterConfiguredStatuses(snapshot.mcpStatuses, snapshot.mcpServers));
+          }
+        } else {
+          setStateField("mcpStatuses", filterConfiguredStatuses(snapshot.mcpStatuses, snapshot.mcpServers));
+        }
       } else {
         if (!activeClient || !resolvedProjectDir) {
           throw new Error(t("mcp.connect_server_first"));
         }
-        const mcpAddConfig =
-          entryType === "remote"
-            ? {
-                type: "remote" as const,
-                url: entry.url!,
-                enabled: true,
-                ...(entry.oauth ? { oauth: {} } : {}),
-              }
-            : {
-                type: "local" as const,
-                command: (mcpEntryConfig["command"] as string[]) ?? entry.command!,
-                enabled: true,
-              };
-
         const status = unwrap(
           await activeClient.mcp.add({
             directory: resolvedProjectDir,

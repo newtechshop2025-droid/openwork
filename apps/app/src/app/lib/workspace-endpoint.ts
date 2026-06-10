@@ -66,10 +66,7 @@ type WorkspaceEndpointInput = Pick<
  */
 export function isRemoteWorkspace(workspace: WorkspaceEndpointInput): boolean {
   if (!workspace) return false;
-  return (
-    workspace.id.trim().startsWith("rem_") &&
-    workspace.workspaceType === "remote"
-  );
+  return workspace.workspaceType === "remote";
 }
 
 /**
