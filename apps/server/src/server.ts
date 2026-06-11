@@ -816,6 +816,32 @@ export async function startServer(config: ServerConfig): Promise<ServeResult> {
 
       const route = matchRoute(routes, request.method, url.pathname);
       if (!route) {
+        if (
+          request.method === "GET" &&
+          (url.pathname.startsWith("/workspace/") || url.pathname === "/") &&
+          !url.pathname.match(/\/(config|desktop-cloud-sync|cloud-plugins|authorized-folders|runtime-config|opencode-config|audit|sessions|events|inbox|artifacts|files|plugins|skills|mcp|commands|export|import|blueprint|opencode|engine)(?:\/|$)/)
+        ) {
+          try {
+            const frontendUrl = `http://127.0.0.1:5174${url.pathname}${url.search}`;
+            const headers = new Headers(request.headers);
+            headers.delete("host");
+            headers.delete("origin");
+            const res = await fetch(frontendUrl, {
+              method: "GET",
+              headers,
+            });
+            const responseHeaders = new Headers(res.headers);
+            return finalize(
+              new Response(res.body, {
+                status: res.status,
+                statusText: res.statusText,
+                headers: responseHeaders,
+              }),
+            );
+          } catch (error) {
+            logger?.log("warn", "Failed to fallback proxy to frontend", { error });
+          }
+        }
         errorMessage = "not_found";
         return finalize(jsonResponse({ code: "not_found", message: "Not found" }, 404));
       }
