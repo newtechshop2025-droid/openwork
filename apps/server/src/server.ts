@@ -4648,7 +4648,7 @@ async function resolveWorkspace(config: ServerConfig, id: string): Promise<Works
   const aliasWorkspaceId = workspaceId.startsWith("rem_") ? workspaceId.slice("rem_".length) : "";
   const workspace =
     config.workspaces.find((entry) => entry.id === workspaceId) ??
-    (aliasWorkspaceId ? config.workspaces.find((entry) => entry.id === aliasWorkspaceId) : undefined) ??
+    (aliasWorkspaceId ? config.workspaces.find((entry) => entry.id === aliasWorkspaceId && entry.workspaceType === "local") : undefined) ??
     config.workspaces.find((entry) => entry.openworkWorkspaceId === workspaceId);
   if (!workspace) {
     throw new ApiError(404, "workspace_not_found", "Workspace not found");
@@ -4680,10 +4680,8 @@ async function resolveWorkspace(config: ServerConfig, id: string): Promise<Works
 
 async function resolveWorkspaceForRegistry(config: ServerConfig, id: string): Promise<WorkspaceInfo> {
   const workspaceId = id.trim();
-  const aliasWorkspaceId = workspaceId.startsWith("rem_") ? workspaceId.slice("rem_".length) : "";
   const workspace =
     config.workspaces.find((entry) => entry.id === workspaceId) ??
-    (aliasWorkspaceId ? config.workspaces.find((entry) => entry.id === aliasWorkspaceId) : undefined) ??
     config.workspaces.find((entry) => entry.openworkWorkspaceId === workspaceId);
   if (!workspace) {
     throw new ApiError(404, "workspace_not_found", "Workspace not found");
