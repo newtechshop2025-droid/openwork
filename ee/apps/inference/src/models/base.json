@@ -1809,6 +1809,113 @@
       }
     }
   },
+  "9router_newtech": {
+    "id": "9router_newtech",
+    "env": ["NINE_ROUTER_NEWTECH_API_KEY"],
+    "npm": "@ai-sdk/openai-compatible",
+    "api": "https://9router.openit.vn/v1",
+    "name": "9router_newtech",
+    "models": {
+      "kr/claude-sonnet-4.5": {
+        "id": "kr/claude-sonnet-4.5",
+        "name": "Claude 3.5 Sonnet (Kiro)",
+        "family": "claude-sonnet",
+        "attachment": true,
+        "reasoning": false,
+        "tool_call": true,
+        "temperature": true,
+        "modalities": { "input": ["text", "image"], "output": ["text"] },
+        "open_weights": false,
+        "limit": { "context": 200000, "output": 8192 }
+      },
+      "anthropic/claude-3-5-sonnet": {
+        "id": "anthropic/claude-3-5-sonnet",
+        "name": "Claude 3.5 Sonnet",
+        "family": "claude-sonnet",
+        "attachment": true,
+        "reasoning": false,
+        "tool_call": true,
+        "temperature": true,
+        "modalities": { "input": ["text", "image"], "output": ["text"] },
+        "open_weights": false,
+        "limit": { "context": 200000, "output": 8192 }
+      },
+      "openai/gpt-4o": {
+        "id": "openai/gpt-4o",
+        "name": "GPT-4o",
+        "family": "gpt",
+        "attachment": true,
+        "reasoning": false,
+        "tool_call": true,
+        "structured_output": true,
+        "temperature": true,
+        "modalities": { "input": ["text", "image"], "output": ["text"] },
+        "open_weights": false,
+        "limit": { "context": 128000, "output": 16384 }
+      },
+      "openai/gpt-4o-mini": {
+        "id": "openai/gpt-4o-mini",
+        "name": "GPT-4o mini",
+        "family": "gpt-mini",
+        "attachment": true,
+        "reasoning": false,
+        "tool_call": true,
+        "structured_output": true,
+        "temperature": true,
+        "modalities": { "input": ["text", "image"], "output": ["text"] },
+        "open_weights": false,
+        "limit": { "context": 128000, "output": 16384 }
+      },
+      "google/gemini-2.5-flash": {
+        "id": "google/gemini-2.5-flash",
+        "name": "Gemini 2.5 Flash",
+        "family": "gemini-flash",
+        "attachment": true,
+        "reasoning": false,
+        "tool_call": true,
+        "temperature": true,
+        "modalities": { "input": ["text", "image"], "output": ["text"] },
+        "open_weights": false,
+        "limit": { "context": 1000000, "output": 8192 }
+      },
+      "google/gemini-2.5-pro": {
+        "id": "google/gemini-2.5-pro",
+        "name": "Gemini 2.5 Pro",
+        "family": "gemini-pro",
+        "attachment": true,
+        "reasoning": false,
+        "tool_call": true,
+        "temperature": true,
+        "modalities": { "input": ["text", "image"], "output": ["text"] },
+        "open_weights": false,
+        "limit": { "context": 2000000, "output": 8192 }
+      },
+      "deepseek/deepseek-chat": {
+        "id": "deepseek/deepseek-chat",
+        "name": "DeepSeek Chat (V3)",
+        "family": "deepseek",
+        "attachment": false,
+        "reasoning": false,
+        "tool_call": true,
+        "temperature": true,
+        "modalities": { "input": ["text"], "output": ["text"] },
+        "open_weights": true,
+        "limit": { "context": 64000, "output": 8192 }
+      },
+      "deepseek/deepseek-reasoner": {
+        "id": "deepseek/deepseek-reasoner",
+        "name": "DeepSeek Reasoner (R1)",
+        "family": "deepseek-thinking",
+        "attachment": false,
+        "reasoning": true,
+        "tool_call": true,
+        "temperature": true,
+        "modalities": { "input": ["text"], "output": ["text"] },
+        "open_weights": true,
+        "limit": { "context": 64000, "output": 8192 }
+      }
+    }
+  },
   "302ai": {
     "id": "302ai",
     "env": ["302AI_API_KEY"],

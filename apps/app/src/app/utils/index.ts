@@ -47,6 +47,7 @@ export const FRIENDLY_PROVIDER_LABELS: Record<string, string> = {
   perplexity: "Perplexity",
   xai: "xAI",
   cohere: "Cohere",
+  "9router_newtech": "9router_newtech",
 };
 
 /**

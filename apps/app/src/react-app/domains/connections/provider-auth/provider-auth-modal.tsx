@@ -54,6 +54,7 @@ const PROVIDER_LABELS: Record<string, string> = {
   anthropic: "Anthropic",
   google: "Google",
   openrouter: "OpenRouter",
+  "9router_newtech": "9router_newtech",
 };
 
 const OPENWORK_MODELS_PROVIDER_ID = "openwork";
