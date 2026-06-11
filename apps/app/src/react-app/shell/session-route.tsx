@@ -1724,12 +1724,13 @@ export function SessionRoute() {
   // sync here so sign-in applies opencode.json changes before Settings opens.
   useCloudProviderAutoSync(sessionProviderAuthStore.runCloudProviderSync);
   const sessionProviderAuthSnapshot = useProviderAuthStoreSnapshot(sessionProviderAuthStore);
+  const queryWorkspaceId = selectedWorkspaceEndpoint?.workspaceId || "";
   const permissionQueryKey = useMemo(
     () =>
-      selectedWorkspaceId && selectedSessionId
-        ? reactPermissionKey(selectedWorkspaceId, selectedSessionId)
+      queryWorkspaceId && selectedSessionId
+        ? reactPermissionKey(queryWorkspaceId, selectedSessionId)
         : null,
-    [selectedSessionId, selectedWorkspaceId],
+    [selectedSessionId, queryWorkspaceId],
   );
   const pendingPermissions = useQueryCacheState<PendingPermission[]>(
     permissionQueryKey,
@@ -1737,10 +1738,10 @@ export function SessionRoute() {
   );
   const questionQueryKey = useMemo(
     () =>
-      selectedWorkspaceId && selectedSessionId
-        ? reactQuestionKey(selectedWorkspaceId, selectedSessionId)
+      queryWorkspaceId && selectedSessionId
+        ? reactQuestionKey(queryWorkspaceId, selectedSessionId)
         : null,
-    [selectedSessionId, selectedWorkspaceId],
+    [selectedSessionId, queryWorkspaceId],
   );
   const pendingQuestions = useQueryCacheState<PendingQuestion[]>(
     questionQueryKey,
@@ -1748,20 +1749,20 @@ export function SessionRoute() {
   );
   const todoQueryKey = useMemo(
     () =>
-      selectedWorkspaceId && selectedSessionId
-        ? reactTodoKey(selectedWorkspaceId, selectedSessionId)
+      queryWorkspaceId && selectedSessionId
+        ? reactTodoKey(queryWorkspaceId, selectedSessionId)
         : null,
-    [selectedSessionId, selectedWorkspaceId],
+    [selectedSessionId, queryWorkspaceId],
   );
   const todos = useQueryCacheState<TodoItem[]>(todoQueryKey, emptyTodos);
   const runActive = useSessionActivityStore(
     (state) =>
-      selectedWorkspaceId && selectedSessionId
-        ? state.recordsByWorkspaceId[selectedWorkspaceId]?.[selectedSessionId]?.runActive ?? false
+      queryWorkspaceId && selectedSessionId
+        ? state.recordsByWorkspaceId[queryWorkspaceId]?.[selectedSessionId]?.runActive ?? false
         : false,
   );
   useEffect(() => {
-    if (!opencodeClient || !selectedWorkspaceId || !selectedSessionId) return;
+    if (!opencodeClient || !queryWorkspaceId || !selectedSessionId) return;
     let cancelled = false;
     const directory = selectedWorkspaceRoot || undefined;
     const fetchPermissions = async () => {
@@ -1769,7 +1770,7 @@ export function SessionRoute() {
       try {
         const list = unwrap(await opencodeClient.permission.list({ directory }));
         if (!cancelled) {
-          seedPermissionState(selectedWorkspaceId, selectedSessionId, list, { snapshotStartedAt });
+          seedPermissionState(queryWorkspaceId, selectedSessionId, list, { snapshotStartedAt });
         }
       } catch {
         // Keep event-synced permission state if the snapshot read fails.
@@ -1784,10 +1785,10 @@ export function SessionRoute() {
       cancelled = true;
       clearInterval(interval);
     };
-  }, [opencodeClient, selectedSessionId, selectedWorkspaceId, selectedWorkspaceRoot, runActive]);
+  }, [opencodeClient, selectedSessionId, queryWorkspaceId, selectedWorkspaceRoot, runActive]);
 
   useEffect(() => {
-    if (!opencodeClient || !selectedWorkspaceId || !selectedSessionId) return;
+    if (!opencodeClient || !queryWorkspaceId || !selectedSessionId) return;
     let cancelled = false;
     const directory = selectedWorkspaceRoot || undefined;
     const fetchQuestions = async () => {
@@ -1795,7 +1796,7 @@ export function SessionRoute() {
       try {
         const list = unwrap(await opencodeClient.question.list({ directory }));
         if (!cancelled) {
-          seedQuestionState(selectedWorkspaceId, selectedSessionId, list, { snapshotStartedAt });
+          seedQuestionState(queryWorkspaceId, selectedSessionId, list, { snapshotStartedAt });
         }
       } catch {
         // Keep event-synced question state if the snapshot read fails.
@@ -1810,12 +1811,12 @@ export function SessionRoute() {
       cancelled = true;
       clearInterval(interval);
     };
-  }, [opencodeClient, selectedSessionId, selectedWorkspaceId, selectedWorkspaceRoot, runActive]);
+  }, [opencodeClient, selectedSessionId, queryWorkspaceId, selectedWorkspaceRoot, runActive]);
 
   const activePermission = pendingPermissions[0] ?? null;
   const respondPermission = useCallback(
     async (requestID: string, reply: "once" | "always" | "reject") => {
-      if (!opencodeClient || !selectedWorkspaceId || !selectedSessionId) return;
+      if (!opencodeClient || !queryWorkspaceId || !selectedSessionId) return;
       if (permissionReplyBusyRef.current) return;
       permissionReplyBusyRef.current = true;
       setPermissionReplyBusy(true);
@@ -1828,7 +1829,7 @@ export function SessionRoute() {
           }),
         );
         getReactQueryClient().setQueryData<PendingPermission[]>(
-          reactPermissionKey(selectedWorkspaceId, selectedSessionId),
+          reactPermissionKey(queryWorkspaceId, selectedSessionId),
           (current = []) => current.filter((permission) => permission.id !== requestID),
         );
       } catch (error) {
@@ -1840,12 +1841,12 @@ export function SessionRoute() {
         setPermissionReplyBusy(false);
       }
     },
-    [opencodeClient, selectedSessionId, selectedWorkspaceId, selectedWorkspaceRoot],
+    [opencodeClient, selectedSessionId, queryWorkspaceId, selectedWorkspaceRoot],
   );
   const activeQuestion = pendingQuestions[0] ?? null;
   const respondQuestion = useCallback(
     async (requestID: string, answers: string[][]) => {
-      if (!opencodeClient || !selectedWorkspaceId || !selectedSessionId) return;
+      if (!opencodeClient || !queryWorkspaceId || !selectedSessionId) return;
       if (questionReplyBusyRef.current) return;
       questionReplyBusyRef.current = true;
       setQuestionReplyBusy(true);
@@ -1858,7 +1859,7 @@ export function SessionRoute() {
           }),
         );
         getReactQueryClient().setQueryData<PendingQuestion[]>(
-          reactQuestionKey(selectedWorkspaceId, selectedSessionId),
+          reactQuestionKey(queryWorkspaceId, selectedSessionId),
           (current = []) => current.filter((question) => question.id !== requestID),
         );
       } catch (error) {
@@ -1870,7 +1871,7 @@ export function SessionRoute() {
         setQuestionReplyBusy(false);
       }
     },
-    [opencodeClient, selectedSessionId, selectedWorkspaceId, selectedWorkspaceRoot],
+    [opencodeClient, selectedSessionId, queryWorkspaceId, selectedWorkspaceRoot],
   );
   const showPreparingStatus =
     effectiveLoading ||

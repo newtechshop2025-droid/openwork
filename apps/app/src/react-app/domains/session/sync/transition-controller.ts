@@ -55,7 +55,7 @@ export function deriveSessionRenderModel(input: {
   return {
     intendedSessionId: input.intendedSessionId,
     renderedSessionId: input.renderedSessionId,
-    transitionState: input.isFetching ? "switching" : "idle",
+    transitionState: "idle",
     renderSource: "live",
   };
 }

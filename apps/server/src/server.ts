@@ -968,8 +968,15 @@ async function proxyOpencodeRequest(input: {
     throw new ApiError(400, "opencode_unconfigured", "OpenCode base URL is missing for this workspace");
   }
 
+  const directory = workspace ? resolveOpencodeDirectory(workspace) : null;
+
+  const searchParams = new URLSearchParams(input.url.search);
+  if (directory && !searchParams.has("directory")) {
+    searchParams.set("directory", directory);
+  }
+
   const proxyPath = input.proxyPath ?? input.url.pathname;
-  const targetUrl = buildOpencodeProxyUrl(baseUrl, proxyPath, input.url.search);
+  const targetUrl = buildOpencodeProxyUrl(baseUrl, proxyPath, searchParams.toString());
   const headers = new Headers(input.request.headers);
   headers.delete("authorization");
   headers.delete("x-openwork-host-token");
@@ -977,7 +984,6 @@ async function proxyOpencodeRequest(input: {
   headers.delete("host");
   headers.delete("origin");
 
-  const directory = workspace ? resolveOpencodeDirectory(workspace) : null;
   if (directory && !headers.has("x-opencode-directory")) {
     headers.set("x-opencode-directory", buildOpencodeDirectoryHeader(directory));
   }
