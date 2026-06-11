@@ -3491,7 +3491,9 @@ async function waitForHealthy(
   let lastError: string | null = null;
   while (Date.now() - start < timeoutMs) {
     try {
-      const response = await fetch(`${url.replace(/\/$/, "")}/health`);
+      const response = await fetch(`${url.replace(/\/$/, "")}/health`, {
+        signal: AbortSignal.timeout(2000),
+      });
       if (response.ok) return;
       lastError = `HTTP ${response.status}`;
     } catch (error) {
@@ -3531,7 +3533,9 @@ async function waitForOpenCodeRouterHealthy(
   let lastError: string | null = null;
   while (Date.now() - start < timeoutMs) {
     try {
-      const response = await fetch(`${baseUrl.replace(/\/$/, "")}/health`);
+      const response = await fetch(`${baseUrl.replace(/\/$/, "")}/health`, {
+        signal: AbortSignal.timeout(2000),
+      });
       if (response.ok) {
         return (await response.json()) as OpenCodeRouterHealthSnapshot;
       }
@@ -3559,6 +3563,7 @@ async function waitForOpenCodeRouterHealthyViaOpenwork(
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        signal: AbortSignal.timeout(2000),
       });
       if (response.ok) {
         return (await response.json()) as OpenCodeRouterHealthSnapshot;
@@ -3584,7 +3589,14 @@ async function waitForOpencodeHealthy(
   let lastError: string | null = null;
   while (Date.now() - start < timeoutMs) {
     try {
-      const health = unwrap(await client.global.health());
+      const health = unwrap(
+        await Promise.race([
+          client.global.health(),
+          new Promise<never>((_, reject) =>
+            setTimeout(() => reject(new Error("Timeout")), 2000)
+          ),
+        ])
+      );
       if (health?.healthy) return health;
       lastError = "Server reported unhealthy";
     } catch (error) {
@@ -3595,7 +3607,14 @@ async function waitForOpencodeHealthy(
       // Some environments have a broken OpenCode /health probe even while the
       // core API surface is already usable. Accept a successful path lookup as
       // readiness so session APIs can come up in those runtimes.
-      unwrap(await client.path.get());
+      unwrap(
+        await Promise.race([
+          client.path.get(),
+          new Promise<never>((_, reject) =>
+            setTimeout(() => reject(new Error("Timeout")), 2000)
+          ),
+        ])
+      );
       return { healthy: true, degraded: true, reason: lastError ?? undefined };
     } catch (error) {
       if (!lastError) {

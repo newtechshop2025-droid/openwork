@@ -163,7 +163,7 @@ export function createOpenworkServerStore(options: CreateOpenworkServerStoreOpti
     if (pref === "server") {
       return {
         token: settingsToken || undefined,
-        hostToken: settingsUrl && isLoopbackOpenworkServerUrl(settingsUrl) ? settingsHostToken || undefined : undefined,
+        hostToken: settingsHostToken || undefined,
       };
     }
     if (hostInfo?.baseUrl) {
@@ -171,7 +171,7 @@ export function createOpenworkServerStore(options: CreateOpenworkServerStoreOpti
     }
     return {
       token: settingsToken || undefined,
-      hostToken: settingsUrl && isLoopbackOpenworkServerUrl(settingsUrl) ? settingsHostToken || undefined : undefined,
+      hostToken: settingsHostToken || undefined,
     };
   };
 

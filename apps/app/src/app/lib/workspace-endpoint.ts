@@ -23,6 +23,7 @@ import type { WorkspaceInfo } from "./desktop";
 import {
   buildOpenworkWorkspaceBaseUrl,
   createOpenworkServerClient,
+  isLoopbackOpenworkServerUrl,
   type OpenworkServerClient,
 } from "./openwork-server";
 
@@ -84,7 +85,12 @@ export function workspaceServerId(workspace: WorkspaceEndpointInput): string {
 
 function pickRemoteBaseUrl(workspace: WorkspaceEndpointInput): string {
   if (!workspace) return "";
-  return (workspace.baseUrl ?? workspace.openworkHostUrl ?? "").trim();
+  const baseUrl = (workspace.baseUrl ?? "").trim();
+  const openworkHostUrl = (workspace.openworkHostUrl ?? "").trim();
+  if (baseUrl && isLoopbackOpenworkServerUrl(baseUrl) && openworkHostUrl && !isLoopbackOpenworkServerUrl(openworkHostUrl)) {
+    return openworkHostUrl;
+  }
+  return baseUrl || openworkHostUrl;
 }
 
 function pickRemoteToken(workspace: WorkspaceEndpointInput): string {

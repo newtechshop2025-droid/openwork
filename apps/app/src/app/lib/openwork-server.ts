@@ -737,25 +737,25 @@ export function hydrateOpenworkServerSettingsFromEnv() {
     const next: OpenworkServerSettings = { ...current };
     let changed = false;
 
-    if (!current.urlOverride && envUrl) {
+    if (envUrl && current.urlOverride !== normalizeOpenworkServerUrl(envUrl)) {
       next.urlOverride = normalizeOpenworkServerUrl(envUrl) ?? undefined;
       changed = true;
     }
 
-    if (!current.portOverride && envPort) {
+    if (envPort) {
       const parsed = Number(envPort);
-      if (Number.isFinite(parsed) && parsed > 0) {
+      if (Number.isFinite(parsed) && parsed > 0 && current.portOverride !== parsed) {
         next.portOverride = parsed;
         changed = true;
       }
     }
 
-    if (!current.token && envToken) {
+    if (envToken && current.token !== envToken) {
       next.token = envToken;
       changed = true;
     }
 
-    if (!current.hostToken && envHostToken) {
+    if (envHostToken && current.hostToken !== envHostToken) {
       next.hostToken = envHostToken;
       changed = true;
     }

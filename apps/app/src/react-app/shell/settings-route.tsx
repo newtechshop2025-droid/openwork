@@ -2026,11 +2026,16 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
         remoteType,
       };
       let list: WorkspaceList | null = null;
+      let lastError: string | null = null;
       if (openworkClient) {
-        list = await openworkClient.createRemoteWorkspace(payload).catch(() => null);
+        try {
+          list = await openworkClient.createRemoteWorkspace(payload);
+        } catch (error) {
+          lastError = error instanceof Error ? error.message : String(error);
+        }
       }
       if (!list) {
-        throw new Error("OpenWork server is unavailable. Start or reconnect the server before connecting a remote workspace.");
+        throw new Error(lastError ? `Connection failed: ${lastError}` : "OpenWork server is unavailable. Start or reconnect the server before connecting a remote workspace.");
       }
       const createdId = resolveWorkspaceListSelectedId(list) || list.workspaces[list.workspaces.length - 1]?.id || "";
       if (createdId) {

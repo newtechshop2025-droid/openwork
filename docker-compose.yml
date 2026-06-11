@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  openwork-backend:
+    image: node:22-bookworm
+    container_name: openwork-backend
+    user: "1000:1000"
+    working_dir: /app
+    environment:
+      - OPENWORK_DEV_MODE=1
+      - HOME=/home/node
+      - BUN_INSTALL=/home/node/.bun
+      - PATH=/home/node/.bun/bin:/app/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - CI=true
+      - OPENWORK_SIDECAR_SOURCE=external
+    volumes:
+      # Mount the codebase directory
+      - .:/app
+      # Mount the agent workspace directory (as used in systemd config)
+      - /srv/workspace:/srv/workspace
+    ports:
+      # Expose only to 127.0.0.1 so Nginx can safely reverse-proxy to it
+      - "127.0.0.1:8786:8786"
+    command: >
+      sh -c "
+      if ! command -v bun >/dev/null 2>&1; then
+        echo 'Installing Bun...' &&
+        curl -fsSL https://bun.sh/install | bash;
+      fi &&
+      export PATH=\"/home/node/.bun/bin:\$$PATH\" &&
+      npx --yes pnpm@11.4.0 --filter openwork-server build:bin &&
+      bun apps/orchestrator/src/cli.ts start --workspace /srv/workspace --openwork-port 8786 --openwork-host 0.0.0.0 --remote-access --approval auto --cors '*' --openwork-token openwork-token-local --openwork-host-token openwork-host-token-local --no-tui --openwork-server-bin /app/apps/server/dist/bin/openwork-server --allow-external
+      "
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8786/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    restart: always
+
+  openwork-frontend:
+    image: node:22-bookworm
+    container_name: openwork-frontend
+    user: "1000:1000"
+    working_dir: /app
+    environment:
+      - PORT=5174
+      - VITE_ALLOWED_HOSTS=openwork.openit.vn,all
+      - VITE_OPENWORK_URL=https://openwork.openit.vn
+      - VITE_OPENWORK_PORT=8786
+      - VITE_OPENWORK_TOKEN=openwork-token-local
+      - VITE_OPENWORK_HOST_TOKEN=openwork-host-token-local
+      - VITE_OPENWORK_DEPLOYMENT=web
+      - HOME=/home/node
+      - CI=true
+    volumes:
+      - .:/app
+    ports:
+      # Expose only to 127.0.0.1 so Nginx can safely reverse-proxy to it
+      - "127.0.0.1:5174:5174"
+    depends_on:
+      openwork-backend:
+        condition: service_healthy
+    command: >
+      sh -c "npx --yes pnpm@11.4.0 --filter @openwork/app dev --port 5174 --host 0.0.0.0"
+    restart: always

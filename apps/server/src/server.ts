@@ -366,8 +366,10 @@ async function fetchOpenworkWorkspaceList(hostUrl: string, token: string, hostTo
   if (hostToken) headers.set("X-OpenWork-Host-Token", hostToken);
 
   try {
+    console.log(`[DEBUG discovery] Outbound request to ${url} with auth token: ${token ? "exists" : "none"}`);
     const response = await fetch(url, { headers, signal: controller.signal });
     if (!response.ok) {
+      console.error(`[DEBUG discovery] Response not ok: ${response.status} ${response.statusText}`);
       throw new ApiError(
         502,
         "openwork_workspace_discovery_failed",
@@ -376,6 +378,7 @@ async function fetchOpenworkWorkspaceList(hostUrl: string, token: string, hostTo
     }
     return await response.json();
   } catch (error) {
+    console.error(`[DEBUG discovery] Error during fetch to ${url}:`, error);
     if (error instanceof ApiError) throw error;
     throw new ApiError(502, "openwork_workspace_discovery_failed", "OpenWork workspace discovery failed", {
       error: String(error),
@@ -1124,10 +1127,12 @@ async function requireClient(request: Request, config: ServerConfig, tokens: Tok
   const header = request.headers.get("authorization") ?? "";
   const match = header.match(/^Bearer\s+(.+)$/i);
   const token = match?.[1];
+  console.log(`[DEBUG auth] requireClient: auth header length: ${header.length}, matched token: "${token || ""}"`);
   if (!token) {
     throw new ApiError(401, "unauthorized", "Invalid bearer token");
   }
   const scope = await tokens.scopeForToken(token);
+  console.log(`[DEBUG auth] requireClient: scope resolved for token: "${scope || "none"}"`);
   if (!scope) {
     throw new ApiError(401, "unauthorized", "Invalid bearer token");
   }
