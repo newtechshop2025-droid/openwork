@@ -89,7 +89,11 @@ afterEach(async () => {
     await stops.pop()?.();
   }
   while (roots.length) {
-    await rm(roots.pop()!, { recursive: true, force: true });
+    try {
+      await rm(roots.pop()!, { recursive: true, force: true });
+    } catch {
+      // Ignore cleanup failures on Windows where processes might hold locks temporarily
+    }
   }
   if (priorDataDir === undefined) {
     delete process.env.OPENWORK_DATA_DIR;
@@ -125,7 +129,7 @@ describe("authorized folders routes", () => {
     expect(body).toMatchObject({
       folders: ["/shared"],
       hiddenCount: 2,
-      workspaceRoot: root,
+      workspaceRoot: root.replace(/\\/g, "/"),
     });
   });
 

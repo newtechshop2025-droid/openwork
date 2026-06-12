@@ -2821,7 +2821,10 @@ function createRoutes(
           }
         } catch (error) {
           if (error instanceof ApiError) throw error;
-          throw new ApiError(400, "directory_not_found", `Directory not found or inaccessible: ${folder}`);
+          const isNotFound = error && typeof error === "object" && "code" in error && error.code === "ENOENT";
+          if (!isNotFound) {
+            throw new ApiError(400, "directory_not_found", `Directory not found or inaccessible: ${folder}`);
+          }
         }
       }
     }

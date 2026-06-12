@@ -1814,6 +1814,50 @@ export function SessionRoute() {
   }, [opencodeClient, selectedSessionId, queryWorkspaceId, selectedWorkspaceRoot, runActive]);
 
   const activePermission = pendingPermissions[0] ?? null;
+
+  const lastActivePermissionIdRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (activePermission) {
+      if (lastActivePermissionIdRef.current !== activePermission.id) {
+        lastActivePermissionIdRef.current = activePermission.id;
+        const kind = activePermission.permission === "bash"
+          ? "Bash command"
+          : activePermission.permission === "edit"
+          ? "Edit file"
+          : activePermission.permission === "read"
+          ? "Read file"
+          : activePermission.permission === "doom_loop"
+          ? "Confirm tool loop"
+          : activePermission.permission;
+        const patterns = activePermission.patterns.filter((p: string) => p.trim().length > 0);
+        const scopeStr = patterns.join(", ") || "";
+        toast("Permission Requested", {
+          description: `${kind}${scopeStr ? `: ${scopeStr}` : ""}`,
+          duration: 15000,
+        });
+      }
+    } else {
+      lastActivePermissionIdRef.current = null;
+    }
+  }, [activePermission]);
+
+  const activeQuestion = pendingQuestions[0] ?? null;
+
+  const lastActiveQuestionIdRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (activeQuestion) {
+      if (lastActiveQuestionIdRef.current !== activeQuestion.id) {
+        lastActiveQuestionIdRef.current = activeQuestion.id;
+        toast("Agent Question", {
+          description: activeQuestion.questions?.[0]?.question || "The agent has a question for you.",
+          duration: 15000,
+        });
+      }
+    } else {
+      lastActiveQuestionIdRef.current = null;
+    }
+  }, [activeQuestion]);
+
   const respondPermission = useCallback(
     async (requestID: string, reply: "once" | "always" | "reject") => {
       if (!opencodeClient || !queryWorkspaceId || !selectedSessionId) return;
@@ -1843,7 +1887,6 @@ export function SessionRoute() {
     },
     [opencodeClient, selectedSessionId, queryWorkspaceId, selectedWorkspaceRoot],
   );
-  const activeQuestion = pendingQuestions[0] ?? null;
   const respondQuestion = useCallback(
     async (requestID: string, answers: string[][]) => {
       if (!opencodeClient || !queryWorkspaceId || !selectedSessionId) return;

@@ -46,7 +46,7 @@ interface FileConfig {
 
 const DEFAULT_PORT = 8787;
 const DEFAULT_HOST = "127.0.0.1";
-const DEFAULT_TIMEOUT_MS = 30000;
+const DEFAULT_TIMEOUT_MS = 600000;
 const DEFAULT_LOG_FORMAT: LogFormat = "pretty";
 const DEFAULT_LOG_REQUESTS = true;
 
