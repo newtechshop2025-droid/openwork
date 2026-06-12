@@ -818,7 +818,7 @@ export async function startServer(config: ServerConfig): Promise<ServeResult> {
       if (!route) {
         if (
           request.method === "GET" &&
-          (url.pathname.startsWith("/workspace/") || url.pathname === "/") &&
+          (url.pathname.startsWith("/workspace/") || url.pathname === "/" || url.pathname.startsWith("/@") || url.pathname.startsWith("/src/")) &&
           !url.pathname.match(/\/(config|desktop-cloud-sync|cloud-plugins|authorized-folders|runtime-config|opencode-config|audit|sessions|events|inbox|artifacts|files|plugins|skills|mcp|commands|export|import|blueprint|opencode|engine)(?:\/|$)/)
         ) {
           try {

@@ -1,9 +1,8 @@
+import { Database as BunDatabase } from "bun:sqlite";
 import { describe, expect, test } from "bun:test";
 import { mkdtemp, mkdir, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-
-import { Database } from "bun:sqlite";
 
 import { resolveOpencodeDbPath, seedOpencodeSessionMessages } from "./opencode-db.js";
 
@@ -11,7 +10,7 @@ async function createDb(): Promise<{ path: string; dispose: () => void }> {
   const dir = await mkdtemp(join(tmpdir(), "openwork-opencode-db-"));
   await mkdir(dir, { recursive: true });
   const dbPath = join(dir, "opencode-test.db");
-  const db = new Database(dbPath);
+  const db = new BunDatabase(dbPath);
   db.exec(`
     create table session (
       id text primary key,
@@ -37,7 +36,7 @@ async function createDb(): Promise<{ path: string; dispose: () => void }> {
   db.close();
   return {
     path: dbPath,
-    dispose: () => new Database(dbPath).close(),
+    dispose: () => new BunDatabase(dbPath).close(),
   };
 }
 
@@ -58,7 +57,7 @@ describe("seedOpencodeSessionMessages", () => {
 
     expect(result).toEqual({ inserted: 3, skipped: false });
 
-    const db = new Database(fixture.path, { readonly: true });
+    const db = new BunDatabase(fixture.path, { readonly: true });
     const rows = db.query("select id, session_id, data from message order by time_created asc").all() as Array<{
       id: string;
       session_id: string;

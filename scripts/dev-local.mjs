@@ -15,7 +15,7 @@ const workerProxyPort = process.env.DEN_WORKER_PROXY_PORT?.trim() || "8789"
 const inferencePort = process.env.INFERENCE_PORT?.trim() || "8791"
 const webPort = process.env.DEN_WEB_PORT?.trim() || "3005"
 const appPort = process.env.OPENWORK_APP_PORT?.trim() || process.env.PORT?.trim() || "5173"
-const databaseUrl = process.env.DATABASE_URL?.trim() || "mysql://root:password@127.0.0.1:3306/openwork_den"
+const databaseUrl = process.env.DATABASE_URL?.trim() || "mysql://root:password@127.0.0.1:3308/openwork_den"
 const dbEncryptionKey =
   process.env.DEN_DB_ENCRYPTION_KEY?.trim() ||
   "local-dev-db-encryption-key-please-change-1234567890"

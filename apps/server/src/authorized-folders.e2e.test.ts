@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, test } from "bun:test";
-import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 
@@ -136,11 +136,15 @@ describe("authorized folders routes", () => {
   test("dedupes, filters workspace root, and preserves hidden entries on write", async () => {
     const root = resolve(await createWorkspaceRoot());
     const configPath = join(root, "opencode.jsonc");
+    const sharedDir = join(root, "shared");
+    const existingDir = join(root, "existing");
+    await mkdir(sharedDir, { recursive: true });
+    await mkdir(existingDir, { recursive: true });
     await writeFile(configPath, JSON.stringify({
       permission: {
         external_directory: {
           [`${root}/*`]: "allow",
-          "/existing/*": "allow",
+          [`${existingDir}/*`]: "allow",
           "/hidden": "allow",
           "/denied/*": "deny",
         },
@@ -151,27 +155,27 @@ describe("authorized folders routes", () => {
     const response = await fetch(`${base}/workspace/ws_1/authorized-folders`, {
       method: "PUT",
       headers: clientAuth(),
-      body: JSON.stringify({ folders: ["/shared", "/shared/", root, `${root}/*`, "/existing/*"] }),
+      body: JSON.stringify({ folders: [sharedDir, `${sharedDir}/`, root, `${root}/*`, `${existingDir}/*`] }),
     });
     expect(response.status).toBe(200);
     const body = await response.json() as AuthorizedFoldersBody;
-    expect(body.folders).toEqual(["/shared", "/existing"]);
+    expect(body.folders).toEqual([sharedDir, existingDir]);
     expect(body.hiddenCount).toBe(2);
     expect(typeof body.updatedAt).toBe("number");
 
-    expect(readExternalDirectory(await readFile(configPath, "utf8"))["/shared/*"]).toBeUndefined();
+    expect(readExternalDirectory(await readFile(configPath, "utf8"))[`${sharedDir}/*`]).toBeUndefined();
     const runtimeConfig = await readRuntimeOpencodeConfig(config, "ws_1");
     const externalDirectory = runtimeConfig.permission?.external_directory ?? {};
     expect(externalDirectory["/hidden"]).toBe("allow");
     expect(externalDirectory["/denied/*"]).toBe("deny");
-    expect(externalDirectory["/shared/*"]).toBe("allow");
-    expect(externalDirectory["/existing/*"]).toBe("allow");
+    expect(externalDirectory[`${sharedDir}/*`]).toBe("allow");
+    expect(externalDirectory[`${existingDir}/*`]).toBe("allow");
     expect(externalDirectory[`${root}/*`]).toBeUndefined();
     expect(Object.keys(externalDirectory).sort()).toEqual([
       "/denied/*",
-      "/existing/*",
       "/hidden",
-      "/shared/*",
+      `${existingDir}/*`,
+      `${sharedDir}/*`,
     ]);
   });
 

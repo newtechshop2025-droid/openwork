@@ -7,7 +7,7 @@ PROJECT_NAME="openwork-web-local"
 
 # Local-dev defaults — match the MySQL container in docker-compose.web-local.yml.
 # These are only used when not already set in the environment or .env.
-: "${DATABASE_URL:=mysql://root:password@127.0.0.1:3306/openwork_den}"
+: "${DATABASE_URL:=mysql://root:password@127.0.0.1:3308/openwork_den}"
 : "${BETTER_AUTH_SECRET:=local-dev-secret-not-for-production-use!!}"
 
 pick_port() {

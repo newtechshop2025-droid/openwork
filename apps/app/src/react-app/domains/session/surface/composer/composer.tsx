@@ -718,7 +718,27 @@ export function ReactSessionComposer(props: ComposerProps) {
   };
 
   const applySkillSelection = (name: string) => {
-    props.onDraftChange(`[skill ${name}] `);
+    const skillString = `[skill ${name}] `;
+    let nextDraft = props.draft;
+    const slashMatch = nextDraft.match(/^\/(\S+)\s*(.*)$/s);
+    if (slashMatch) {
+      const command = slashMatch[1];
+      const rest = slashMatch[2] ?? "";
+      const skillMatch = rest.match(/^\[skill ([^\]]+)\]\s*/);
+      if (skillMatch) {
+        nextDraft = `/${command} ${skillString}${rest.slice(skillMatch[0].length)}`;
+      } else {
+        nextDraft = `/${command} ${skillString}${rest}`;
+      }
+    } else {
+      const skillMatch = nextDraft.match(/^\[skill ([^\]]+)\]\s*/);
+      if (skillMatch) {
+        nextDraft = `${skillString}${nextDraft.slice(skillMatch[0].length)}`;
+      } else {
+        nextDraft = `${skillString}${nextDraft}`;
+      }
+    }
+    props.onDraftChange(nextDraft);
     setSlashOpen(false);
     setToolMenuOpen(false);
   };

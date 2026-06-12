@@ -3,7 +3,12 @@ import { existsSync, readdirSync } from "node:fs";
 import { homedir } from "node:os";
 import { isAbsolute, join } from "node:path";
 
-import Database from "better-sqlite3";
+import BetterSqlite3 from "better-sqlite3";
+
+// Bun does not support the better-sqlite3 native addon; fall back to bun:sqlite at runtime.
+const Database: typeof BetterSqlite3 = typeof Bun !== "undefined"
+  ? (await import("bun:sqlite")).Database as unknown as typeof BetterSqlite3
+  : BetterSqlite3;
 
 type SeedMessage = {
   role: "assistant" | "user";
