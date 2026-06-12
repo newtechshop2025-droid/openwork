@@ -25,10 +25,10 @@ export function ProviderIcon(props: ProviderIconProps) {
   const isOpenCode = hasProviderFamily("opencode");
 
   const fallbackLetters = (() => {
-    if (normalizedId === "openrouter") return "OR";
-    if (normalizedId === "deepseek") return "DS";
-    if (normalizedId === "google") return "GO";
-    if (normalizedId.length >= 2) return normalizedId.substring(0, 2).toUpperCase();
+    if (normalizedId === "openrouter" || normalizedName.includes("openrouter")) return "OR";
+    if (normalizedId === "deepseek" || normalizedName.includes("deepseek")) return "DS";
+    if (normalizedId === "google" || normalizedName.includes("google")) return "GO";
+    if (normalizedId.length >= 2 && normalizedId !== "9router") return normalizedId.substring(0, 2).toUpperCase();
     return "AI";
   })();
 

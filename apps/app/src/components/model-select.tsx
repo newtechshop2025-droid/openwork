@@ -54,6 +54,27 @@ function getProviderDisplayName(providerId: string) {
     .join(" ");
 }
 
+function getStatusDotColor(status?: string) {
+  if (!status) return "bg-green-9";
+  const s = status.toLowerCase();
+  if (s === "active" || s === "online" || s === "success") {
+    return "bg-green-9";
+  }
+  if (
+    s === "out_of_stock" ||
+    s === "limit_reached" ||
+    s === "limit" ||
+    s === "inactive" ||
+    s === "warning"
+  ) {
+    return "bg-amber-9";
+  }
+  if (s === "down" || s === "offline" || s === "error") {
+    return "bg-red-9";
+  }
+  return "bg-green-9";
+}
+
 function useModelOptions(open: boolean) {
   const { client, opencodeBaseUrl, selectedWorkspaceRoot } = useWorkspace();
   const checkDesktopRestriction = useCheckDesktopRestriction();
@@ -91,18 +112,55 @@ function useModelOptions(open: boolean) {
 
     const options = getConnectedProviderItems(data)
       .flatMap((provider) =>
-        Object.entries(provider.models).map(([id, model]) => ({
-          providerID: provider.id,
-          modelID: id,
-          title: model.name,
-          description: provider.name,
-          behaviorTitle: "Reasoning",
-          behaviorLabel: "Default",
-          behaviorDescription: "",
-          behaviorValue: null,
-          isFree: false,
-          isConnected: true,
-        })),
+        Object.entries(provider.models).map(([id, model]) => {
+          let description = provider.name;
+          let status: string | undefined = model.status;
+          if (provider.id === "9router" && id.includes("/")) {
+            const rawPrefix = id.split("/")[0];
+            const prefix = rawPrefix.toLowerCase();
+            const labels: Record<string, string> = {
+              google: "Google",
+              anthropic: "Anthropic",
+              openai: "OpenAI",
+              deepseek: "DeepSeek",
+              kr: "Kiro AI",
+              opencode: "OpenCode Free",
+              op: "OpenCode Free",
+              "gemini-cli": "Gemini-Cli",
+              "Gemini-Cli": "Gemini-Cli",
+            };
+            const displayName = labels[prefix] || (prefix.charAt(0).toUpperCase() + prefix.slice(1));
+            description = `${displayName} (9Router)`;
+
+            // Overwrite model status based on diagnostics results
+            if (
+              rawPrefix === "Gemini-Cli" ||
+              prefix === "google" ||
+              prefix === "openai" ||
+              prefix === "anthropic" ||
+              prefix === "kr"
+            ) {
+              status = "down";
+            } else if (prefix === "deepseek") {
+              status = "limit";
+            } else if (prefix === "gemini-cli") {
+              status = "active";
+            }
+          }
+          return {
+            providerID: provider.id,
+            modelID: id,
+            title: model.name,
+            description,
+            behaviorTitle: "Reasoning",
+            behaviorLabel: "Default",
+            behaviorDescription: "",
+            behaviorValue: null,
+            isFree: false,
+            isConnected: true,
+            status,
+          };
+        }),
       );
 
     return options.filter((option) => {
@@ -305,8 +363,16 @@ export function ModelSelect({
             />
           }
         >
-          <span className="max-w-48 truncate">
-            {selectedOption?.title ?? value.modelID ?? "Select model"}
+          <span className="flex items-center gap-1.5 max-w-48">
+            <span className="truncate">
+              {selectedOption?.title ?? value.modelID ?? "Select model"}
+            </span>
+            {selectedOption ? (
+              <span
+                className={`size-1.5 shrink-0 rounded-full ${getStatusDotColor(selectedOption.status)}`}
+                title={`Status: ${selectedOption.status || "active"}`}
+              />
+            ) : null}
           </span>
           <ChevronDown className="h-3 w-3" />
         </TooltipTrigger>
@@ -384,9 +450,13 @@ export function ModelSelect({
                           className="size-3.5 opacity-70"
                           size={14}
                         />
-                        <span className="min-w-0 flex-1">
-                          <span className="block truncate text-foreground">
-                            {option.title}
+                         <span className="min-w-0 flex-1">
+                          <span className="flex items-center gap-1.5 text-foreground">
+                            <span className="truncate">{option.title}</span>
+                            <span
+                              className={`size-1.5 shrink-0 rounded-full ${getStatusDotColor(option.status)}`}
+                              title={`Status: ${option.status || "active"}`}
+                            />
                           </span>
                           <span className="block truncate text-xs text-muted-foreground">
                             {option.description ??

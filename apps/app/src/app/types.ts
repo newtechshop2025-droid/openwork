@@ -424,6 +424,7 @@ export type ModelOption = {
   isRecommended?: boolean;
   /** "cloud" for org-managed providers (lpr_*), undefined for local. */
   source?: "cloud";
+  status?: string;
 };
 
 export type SelectedSessionSnapshot = {

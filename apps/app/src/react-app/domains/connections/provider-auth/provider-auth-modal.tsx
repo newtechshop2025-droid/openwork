@@ -611,19 +611,34 @@ export default function ProviderAuthModal(props: ProviderAuthModalProps) {
         clearTimeout(timeoutId);
       }
 
-      // If no models were fetched, use the fallback list
-      if (Object.keys(fetchedModels).length === 0) {
-        fetchedModels = {
-          "kr/claude-sonnet-4.5": { name: "Claude 3.5 Sonnet (Kiro)" },
-          "anthropic/claude-3-5-sonnet": { name: "Claude 3.5 Sonnet" },
-          "openai/gpt-4o": { name: "GPT-4o" },
-          "openai/gpt-4o-mini": { name: "GPT-4o mini" },
-          "google/gemini-2.5-flash": { name: "Gemini 2.5 Flash" },
-          "google/gemini-2.5-pro": { name: "Gemini 2.5 Pro" },
-          "deepseek/deepseek-chat": { name: "DeepSeek Chat (V3)" },
-          "deepseek/deepseek-reasoner": { name: "DeepSeek Reasoner (R1)" }
-        };
-      }
+      // Always merge fallback/custom models so they are never lost when the dynamic fetch succeeds
+      fetchedModels = {
+        "kr/claude-sonnet-4.5": { name: "Claude 3.5 Sonnet (Kiro)" },
+        "anthropic/claude-3-5-sonnet": { name: "Claude 3.5 Sonnet" },
+        "openai/gpt-4o": { name: "GPT-4o" },
+        "openai/gpt-4o-mini": { name: "GPT-4o mini" },
+        "google/gemini-2.5-flash": { name: "Gemini 2.5 Flash" },
+        "google/gemini-2.5-pro": { name: "Gemini 2.5 Pro" },
+        "Gemini-Cli/gemini-3-flash-preview": { name: "Gemini 3 Flash Preview (Gemini-Cli)" },
+        "Gemini-Cli/gemini-3-pro-preview": { name: "Gemini 3 Pro Preview (Gemini-Cli)" },
+        "Gemini-Cli/gemini-2.5-flash": { name: "Gemini 2.5 Flash (Gemini-Cli)" },
+        "Gemini-Cli/gemini-2.5-flash-lite": { name: "Gemini 2.5 Flash Lite (Gemini-Cli)" },
+        "Gemini-Cli/gemini-2.5-pro": { name: "Gemini 2.5 Pro (Gemini-Cli)" },
+        "Gemini-Cli/gemini-3.1-flash-lite": { name: "Gemini 3.1 Flash Lite (Gemini-Cli)" },
+        "Gemini-Cli/gemini-3.1-flash-lite-preview": { name: "Gemini 3.1 Flash Lite Preview (Gemini-Cli)" },
+        "Gemini-Cli/gemini-3.1-pro-preview": { name: "Gemini 3.1 Pro Preview (Gemini-Cli)" },
+        "gemini-cli/gemini-3-flash-preview": { name: "Gemini 3 Flash Preview (gemini-cli)" },
+        "gemini-cli/gemini-3-pro-preview": { name: "Gemini 3 Pro Preview (gemini-cli)" },
+        "gemini-cli/gemini-2.5-flash": { name: "Gemini 2.5 Flash (gemini-cli)" },
+        "gemini-cli/gemini-2.5-flash-lite": { name: "Gemini 2.5 Flash Lite (gemini-cli)" },
+        "gemini-cli/gemini-2.5-pro": { name: "Gemini 2.5 Pro (gemini-cli)" },
+        "gemini-cli/gemini-3.1-flash-lite": { name: "Gemini 3.1 Flash Lite (gemini-cli)" },
+        "gemini-cli/gemini-3.1-flash-lite-preview": { name: "Gemini 3.1 Flash Lite Preview (gemini-cli)" },
+        "gemini-cli/gemini-3.1-pro-preview": { name: "Gemini 3.1 Pro Preview (gemini-cli)" },
+        "deepseek/deepseek-chat": { name: "DeepSeek Chat (V3)" },
+        "deepseek/deepseek-reasoner": { name: "DeepSeek Reasoner (R1)" },
+        ...fetchedModels,
+      };
 
       try {
         await props.onSubmitApiKey(selectedEntry.id, trimmed, {
