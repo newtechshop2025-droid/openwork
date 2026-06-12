@@ -2940,8 +2940,8 @@ export function SessionRoute() {
           ),
         ),
         onSelect: sessionProviderAuthStore.startProviderAuth,
-        onSubmitApiKey: async (providerId, apiKey) => {
-          const result = await sessionProviderAuthStore.submitProviderApiKey(providerId, apiKey);
+        onSubmitApiKey: async (providerId, apiKey, extraOptions) => {
+          const result = await sessionProviderAuthStore.submitProviderApiKey(providerId, apiKey, extraOptions);
           setRecentProviderIds(new Set([providerId]));
           setModelPickerQuery("");
           setModelPickerOpen(true);

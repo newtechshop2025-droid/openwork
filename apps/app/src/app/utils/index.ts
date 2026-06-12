@@ -48,6 +48,7 @@ export const FRIENDLY_PROVIDER_LABELS: Record<string, string> = {
   xai: "xAI",
   cohere: "Cohere",
   "9router_newtech": "9router_newtech",
+  "9router": "9Router",
 };
 
 /**

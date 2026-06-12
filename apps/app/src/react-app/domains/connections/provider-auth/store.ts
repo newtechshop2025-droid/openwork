@@ -176,6 +176,14 @@ export function createProviderAuthStore(options: CreateProviderAuthStoreOptions)
   const getProviderAuthProviders = (): ProviderAuthProvider[] => {
     const merged = new Map<string, ProviderAuthProvider>();
 
+    if (!isDesktopProviderBlocked({ providerId: "9router", checkRestriction: options.checkDesktopAppRestriction })) {
+      merged.set("9router", {
+        id: "9router",
+        name: "9Router",
+        env: ["NINE_ROUTER_API_KEY"],
+      });
+    }
+
     for (const provider of options.providers()) {
       const id = provider.id?.trim();
       if (!id) continue;
@@ -1295,7 +1303,11 @@ export function createProviderAuthStore(options: CreateProviderAuthStoreOptions)
     }
   }
 
-  async function submitProviderApiKey(providerId: string, apiKey: string) {
+  async function submitProviderApiKey(
+    providerId: string,
+    apiKey: string,
+    extraOptions?: { baseURL?: string; models?: Record<string, { name: string }> },
+  ) {
     setStateField("providerAuthError", null);
     const c = options.client();
     if (!c) {
@@ -1309,6 +1321,49 @@ export function createProviderAuthStore(options: CreateProviderAuthStoreOptions)
     assertProviderAllowedByDesktopPolicy(providerId);
 
     try {
+      if (providerId === "9router" && extraOptions?.baseURL) {
+        const resolvedBaseURL = extraOptions.baseURL.trim();
+        const modelsConfig = extraOptions.models || {};
+        await updateProjectConfigFile(
+          (raw) => {
+            let updated = raw.trim()
+              ? raw
+              : '{\n  "$schema": "https://opencode.ai/config.json"\n}\n';
+            const providerEdits = modify(
+              updated,
+              ["provider", "9router"],
+              {
+                npm: "@ai-sdk/openai-compatible",
+                name: "9Router",
+                options: { baseURL: resolvedBaseURL },
+                models: modelsConfig,
+              },
+              { formattingOptions: { insertSpaces: true, tabSize: 2 } },
+            );
+            updated = applyEdits(updated, providerEdits);
+            return updated.endsWith("\n") ? updated : `${updated}\n`;
+          },
+          (config) => {
+            const nextConfig = { ...config };
+            const currentProvider =
+              typeof nextConfig.provider === "object" && nextConfig.provider !== null
+                ? (nextConfig.provider as Record<string, unknown>)
+                : {};
+            nextConfig.provider = {
+              ...currentProvider,
+              "9router": {
+                npm: "@ai-sdk/openai-compatible",
+                name: "9Router",
+                options: { baseURL: resolvedBaseURL },
+                models: modelsConfig,
+              },
+            };
+            return nextConfig;
+          },
+        );
+        options.markOpencodeConfigReloadRequired();
+      }
+
       await c.auth.set({ providerID: providerId, auth: { type: "api", key: trimmed } });
       await refreshProviders({ dispose: true });
       return `${t("status.connected")} ${providerId}`;

@@ -55,6 +55,7 @@ const PROVIDER_LABELS: Record<string, string> = {
   google: "Google",
   openrouter: "OpenRouter",
   "9router_newtech": "9router_newtech",
+  "9router": "9Router",
 };
 
 const OPENWORK_MODELS_PROVIDER_ID = "openwork";
@@ -70,7 +71,11 @@ export type ProviderAuthModalProps = {
   connectedProviderIds: string[];
   authMethods: Record<string, ProviderAuthMethod[]>;
   onSelect: (providerId: string, methodIndex?: number) => Promise<ProviderOAuthStartResult>;
-  onSubmitApiKey: (providerId: string, apiKey: string) => Promise<string | void>;
+  onSubmitApiKey: (
+    providerId: string,
+    apiKey: string,
+    extraOptions?: { baseURL?: string; models?: Record<string, { name: string }> },
+  ) => Promise<string | void>;
   onConnectCloudProvider: (cloudProviderId: string) => Promise<string | void>;
   onSubmitOAuth: (
     providerId: string,
@@ -93,6 +98,7 @@ export default function ProviderAuthModal(props: ProviderAuthModalProps) {
   const [selectedProviderId, setSelectedProviderId] = useState<string | null>(null);
   const [selectedCloudMethod, setSelectedCloudMethod] = useState<ProviderAuthMethod | null>(null);
   const [apiKeyInput, setApiKeyInput] = useState("");
+  const [apiEndpointInput, setApiEndpointInput] = useState("https://9router.openit.vn/v1");
   const [oauthCodeInput, setOauthCodeInput] = useState("");
   const [oauthSession, setOauthSession] = useState<ProviderOAuthSession | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -265,6 +271,7 @@ export default function ProviderAuthModal(props: ProviderAuthModalProps) {
     setSelectedProviderId(null);
     setSelectedCloudMethod(null);
     setApiKeyInput("");
+    setApiEndpointInput("https://9router.openit.vn/v1");
     setOauthCodeInput("");
     setOauthSession(null);
     setSearchQuery("");
@@ -556,14 +563,87 @@ export default function ProviderAuthModal(props: ProviderAuthModalProps) {
       return;
     }
 
-    setLocalError(null);
-    try {
-      await props.onSubmitApiKey(selectedEntry.id, trimmed);
-      // Close the modal after a successful save
-      props.onClose();
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "Failed to save API key";
-      setLocalError(message);
+    if (selectedEntry.id === "9router") {
+      const endpointTrimmed = apiEndpointInput.trim();
+      if (!endpointTrimmed) {
+        setLocalError("API endpoint is required.");
+        return;
+      }
+      if (!trimmed.startsWith("sk-4d")) {
+        setLocalError("API key must start with sk-4d...");
+        return;
+      }
+      setLocalError(null);
+
+      // Fetch models dynamically from the 9router endpoint
+      const cleanUrl = endpointTrimmed.replace(/\/$/, "");
+      const headers: Record<string, string> = {
+        "Content-Type": "application/json",
+      };
+      if (trimmed) {
+        headers["Authorization"] = `Bearer ${trimmed}`;
+      }
+
+      let fetchedModels: Record<string, { name: string }> = {};
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 6000);
+      try {
+        const response = await fetch(`${cleanUrl}/models`, {
+          method: "GET",
+          headers,
+          signal: controller.signal,
+        });
+        clearTimeout(timeoutId);
+        if (response.ok) {
+          const data = await response.json();
+          const rawList = Array.isArray(data) ? data : Array.isArray(data?.data) ? data.data : [];
+          for (const m of rawList) {
+            const id = String(m?.id || m || "").trim();
+            const name = String(m?.name || m?.id || m || "").trim();
+            if (id) {
+              fetchedModels[id] = { name };
+            }
+          }
+        }
+      } catch (err) {
+        console.warn("Failed to fetch models dynamically from 9router:", err);
+      } finally {
+        clearTimeout(timeoutId);
+      }
+
+      // If no models were fetched, use the fallback list
+      if (Object.keys(fetchedModels).length === 0) {
+        fetchedModels = {
+          "kr/claude-sonnet-4.5": { name: "Claude 3.5 Sonnet (Kiro)" },
+          "anthropic/claude-3-5-sonnet": { name: "Claude 3.5 Sonnet" },
+          "openai/gpt-4o": { name: "GPT-4o" },
+          "openai/gpt-4o-mini": { name: "GPT-4o mini" },
+          "google/gemini-2.5-flash": { name: "Gemini 2.5 Flash" },
+          "google/gemini-2.5-pro": { name: "Gemini 2.5 Pro" },
+          "deepseek/deepseek-chat": { name: "DeepSeek Chat (V3)" },
+          "deepseek/deepseek-reasoner": { name: "DeepSeek Reasoner (R1)" }
+        };
+      }
+
+      try {
+        await props.onSubmitApiKey(selectedEntry.id, trimmed, {
+          baseURL: endpointTrimmed,
+          models: fetchedModels,
+        });
+        props.onClose();
+      } catch (error) {
+        const message = error instanceof Error ? error.message : "Failed to save API key";
+        setLocalError(message);
+      }
+    } else {
+      setLocalError(null);
+      try {
+        await props.onSubmitApiKey(selectedEntry.id, trimmed);
+        props.onClose();
+      } catch (error) {
+        const message = error instanceof Error ? error.message : "Failed to save API key";
+        setLocalError(message);
+      }
     }
   };
 
@@ -877,20 +957,53 @@ export default function ProviderAuthModal(props: ProviderAuthModalProps) {
                       </button>
                     </div>
                   ) : null}
-                  <TextInput
-                    label="API key"
-                    type="password"
-                    placeholder={isOpencodeZenProvider(selectedEntry.id) ? "ock_..." : "sk-..."}
-                    value={apiKeyInput}
-                    onChange={(event) => {
-                      setApiKeyInput(event.currentTarget.value);
-                      if (localError) setLocalError(null);
-                    }}
-                    autoComplete="off"
-                    autoCapitalize="off"
-                    spellCheck={false}
-                    disabled={actionDisabled}
-                  />
+                  {selectedEntry.id === "9router" ? (
+                    <>
+                      <TextInput
+                        label="API endpoint"
+                        type="text"
+                        placeholder="https://9router.openit.vn/v1"
+                        value={apiEndpointInput}
+                        onChange={(event) => {
+                          setApiEndpointInput(event.currentTarget.value);
+                          if (localError) setLocalError(null);
+                        }}
+                        autoComplete="off"
+                        autoCapitalize="off"
+                        spellCheck={false}
+                        disabled={actionDisabled}
+                      />
+                      <TextInput
+                        label="API key"
+                        type="password"
+                        placeholder="sk-4d..."
+                        value={apiKeyInput}
+                        onChange={(event) => {
+                          setApiKeyInput(event.currentTarget.value);
+                          if (localError) setLocalError(null);
+                        }}
+                        autoComplete="off"
+                        autoCapitalize="off"
+                        spellCheck={false}
+                        disabled={actionDisabled}
+                      />
+                    </>
+                  ) : (
+                    <TextInput
+                      label="API key"
+                      type="password"
+                      placeholder={isOpencodeZenProvider(selectedEntry.id) ? "ock_..." : "sk-..."}
+                      value={apiKeyInput}
+                      onChange={(event) => {
+                        setApiKeyInput(event.currentTarget.value);
+                        if (localError) setLocalError(null);
+                      }}
+                      autoComplete="off"
+                      autoCapitalize="off"
+                      spellCheck={false}
+                      disabled={actionDisabled}
+                    />
+                  )}
                   {selectedEntry.env.length > 0 ? (
                     <div className="text-[11px] text-gray-9">
                       Env vars: <span className="font-mono">{selectedEntry.env.join(", ")}</span>
