@@ -720,22 +720,35 @@ export function ReactSessionComposer(props: ComposerProps) {
   const applySkillSelection = (name: string) => {
     const skillString = `[skill ${name}] `;
     let nextDraft = props.draft;
-    const slashMatch = nextDraft.match(/^\/(\S+)\s*(.*)$/s);
-    if (slashMatch) {
-      const command = slashMatch[1];
-      const rest = slashMatch[2] ?? "";
-      const skillMatch = rest.match(/^\[skill ([^\]]+)\]\s*/);
-      if (skillMatch) {
-        nextDraft = `/${command} ${skillString}${rest.slice(skillMatch[0].length)}`;
+    
+    const slashQueryMatch = nextDraft.match(/\/([A-Za-z0-9_-]*)$/);
+    if (slashQueryMatch) {
+      const query = slashQueryMatch[1];
+      const isExactValidCommand = nextDraft === `/${query}` && commands.some(cmd => cmd.name === query && (!cmd.source || cmd.source === "command"));
+      
+      if (isExactValidCommand) {
+        nextDraft = `${nextDraft} ${skillString}`;
       } else {
-        nextDraft = `/${command} ${skillString}${rest}`;
+        nextDraft = nextDraft.replace(/\/([A-Za-z0-9_-]*)$/, skillString);
       }
     } else {
-      const skillMatch = nextDraft.match(/^\[skill ([^\]]+)\]\s*/);
-      if (skillMatch) {
-        nextDraft = `${skillString}${nextDraft.slice(skillMatch[0].length)}`;
+      const slashMatch = nextDraft.match(/^\/(\S+)\s*(.*)$/s);
+      if (slashMatch) {
+        const command = slashMatch[1];
+        const rest = slashMatch[2] ?? "";
+        const skillMatch = rest.match(/^\[skill ([^\]]+)\]\s*/);
+        if (skillMatch) {
+          nextDraft = `/${command} ${skillString}${rest.slice(skillMatch[0].length)}`;
+        } else {
+          nextDraft = `/${command} ${skillString}${rest}`;
+        }
       } else {
-        nextDraft = `${skillString}${nextDraft}`;
+        const skillMatch = nextDraft.match(/^\[skill ([^\]]+)\]\s*/);
+        if (skillMatch) {
+          nextDraft = `${skillString}${nextDraft.slice(skillMatch[0].length)}`;
+        } else {
+          nextDraft = `${skillString}${nextDraft}`;
+        }
       }
     }
     props.onDraftChange(nextDraft);
