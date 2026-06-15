@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { isSupportedWorkspaceTextFilePath, normalizeWorkspaceRelativePath } from "./server.js";
+import { isSupportedWorkspaceTextFilePath, normalizeWorkspaceRelativePath, resolveWorkspaceRelativePath } from "./server.js";
 
 describe("normalizeWorkspaceRelativePath", () => {
   test("accepts a plain workspace-relative path", () => {
@@ -58,5 +58,22 @@ describe("isSupportedWorkspaceTextFilePath", () => {
 
   test("rejects unsupported binary-like extensions", () => {
     expect(isSupportedWorkspaceTextFilePath(".opencode/plugins/cloud.bin")).toBe(false);
+  });
+});
+
+describe("resolveWorkspaceRelativePath", () => {
+  test("resolves relative path correctly", () => {
+    expect(resolveWorkspaceRelativePath("/home/acer/openwork", "notes.md")).toBe("notes.md");
+    expect(resolveWorkspaceRelativePath("/home/acer/openwork", "dir/notes.md")).toBe("dir/notes.md");
+  });
+
+  test("resolves absolute path inside workspace root correctly", () => {
+    expect(resolveWorkspaceRelativePath("/home/acer/openwork", "/home/acer/openwork/notes.md")).toBe("notes.md");
+    expect(resolveWorkspaceRelativePath("/home/acer/openwork", "/home/acer/openwork/dir/notes.md")).toBe("dir/notes.md");
+  });
+
+  test("throws error if absolute path is outside workspace root", () => {
+    expect(() => resolveWorkspaceRelativePath("/home/acer/openwork", "/home/acer/downloads/notes.md")).toThrow();
+    expect(() => resolveWorkspaceRelativePath("/home/acer/openwork", "/etc/passwd")).toThrow();
   });
 });
