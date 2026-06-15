@@ -23,12 +23,15 @@ export type ArtifactPanelTab = {
   type: "artifact";
   label: string;
   preview: OpenTargetPreview;
+  origin?: "transcript" | "explorer";
+  path?: string; // case-preserved file path from catalog (tab.id is lowercased)
 }
 
 export type ExplorerPanelTab = {
   id: string;
   type: "explorer";
   label: string;
+  revealPath?: string;
 }
 
 export type PanelTab = BrowserPanelTab | ArtifactPanelTab | ExplorerPanelTab;
@@ -99,6 +102,11 @@ function reconcileOpenArtifactTabs(
   const tabs = session.tabs
     .map((tab) => {
       if (tab.type !== "artifact") {
+        return tab;
+      }
+
+      // Explorer-opened tabs survive transcript reconciliation.
+      if (tab.origin === "explorer") {
         return tab;
       }
 

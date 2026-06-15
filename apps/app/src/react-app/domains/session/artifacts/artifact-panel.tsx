@@ -61,7 +61,29 @@ function isTextContent(target: OpenTarget): boolean {
 export function ArtifactPanel({ sessionId, tab, client, workspaceId, workspaceRoot, isRemoteWorkspace = false, onClose }: ArtifactPanelProps) {
   const transcriptTargets = usePanelTabStore((state) => state.transcriptArtifactTargets[sessionId] ?? EMPTY_TRANSCRIPT_TARGETS);
   const artifactTargets = useMemo(() => transcriptTargets.filter(isCollectibleArtifactTarget), [transcriptTargets]);
-  const target = artifactTargets.find((item) => item.id === tab.id) ?? null;
+  const target = useMemo(() => {
+    const found = artifactTargets.find((item) => item.id === tab.id);
+    if (found) return found;
+
+    // When the tab was opened from the file explorer, the target is not in
+    // the transcript targets. Construct a synthetic OpenTarget from the
+    // tab metadata so the panel can still load and display the file.
+    if (tab.origin === "explorer" && tab.id.startsWith("file:")) {
+      const filePath = tab.path ?? tab.id.slice("file:".length);
+      return {
+        id: tab.id,
+        kind: "file" as const,
+        value: filePath,
+        name: tab.label,
+        preview: tab.preview,
+        confidence: 100,
+        reason: "explorer",
+        exists: true,
+      } satisfies OpenTarget;
+    }
+
+    return null;
+  }, [artifactTargets, tab]);
 
   if (!target || !client || !workspaceId) {
     return null;

@@ -411,6 +411,16 @@ export function SessionPage(props: SessionPageProps) {
       label: target.name,
       preview: target.preview,
     });
+    // Also reveal the file in the workspace explorer so the user can
+    // navigate to and manage the file directly.
+    if (target.kind === "file") {
+      openTab(sessionId, {
+        id: "files",
+        type: "explorer",
+        label: "Workspace Files",
+        revealPath: target.value,
+      });
+    }
     preserveSidePanelOnPanelOpenRef.current = true;
     setCurrentSidePanel("panel");
   }, [activePanelTab?.id, browserUrlForTarget, openTab, props.selectedSessionId, setCurrentSidePanel]);

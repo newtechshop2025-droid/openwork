@@ -5,6 +5,9 @@ import {
   deriveOpenTargets,
   isCollectibleArtifactTarget,
   selectAutoOpenTarget,
+  linkifyOpenTargets,
+  parseOpenWorkTargetHref,
+  isOpenWorkTargetHref,
 } from "../src/react-app/domains/session/artifacts/open-target";
 
 function message(id: string, role: "user" | "assistant", text: string): UIMessage {
@@ -263,5 +266,162 @@ describe("deriveOpenTargets", () => {
 
     expect(targets.map((target) => target.value)).toContain("Bao_cao_RAM.docx");
     expect(targets.map((target) => target.value)).toContain("Bao_cao_RAM.pptx");
+  });
+
+  it("strips workspaceRoot prefix for local workspaces", () => {
+    const targets = deriveOpenTargets([
+      toolMessage("msg_tool", "write", { filePath: "/home/user/project/reports/summary.md" }, { filePath: "/home/user/project/reports/summary.md" }),
+    ], { workspaceRoot: "/home/user/project" });
+
+    expect(targets.map((target) => target.value)).toContain("reports/summary.md");
+  });
+
+  it("does not strip workspaceRoot prefix for remote workspaces", () => {
+    const targets = deriveOpenTargets([
+      toolMessage("msg_tool", "write", { filePath: "/srv/workspace/reports/summary.md" }, { filePath: "/srv/workspace/reports/summary.md" }),
+    ], { workspaceRoot: "/srv/workspace", isRemoteWorkspace: true });
+
+    // For remote workspaces, workspaceRoot stripping AND leading-slash stripping
+    // are skipped so the remote server can resolve the absolute path against its
+    // own filesystem root via relative(workspaceResolved, absolutePath).
+    expect(targets.map((target) => target.value)).toContain("/srv/workspace/reports/summary.md");
+  });
+
+  it("still strips workspace/<id>/ protocol prefixes for remote workspaces", () => {
+    const targets = deriveOpenTargets([
+      toolMessage("msg_tool", "write", { filePath: "Workspace/ws_abc123/reports/summary.md" }, { filePath: "Workspace/ws_abc123/reports/summary.md" }),
+    ], { isRemoteWorkspace: true });
+
+    expect(targets.map((target) => target.value)).toContain("reports/summary.md");
+  });
+});
+
+describe("isCollectibleArtifactTarget", () => {
+  it("accepts high-confidence file targets with optimistic exists for remote", () => {
+    const target = {
+      id: "file:output.md",
+      kind: "file" as const,
+      value: "output.md",
+      name: "output.md",
+      preview: "markdown" as const,
+      confidence: 95,
+      reason: "write tool metadata",
+      exists: true,
+    };
+
+    expect(isCollectibleArtifactTarget(target)).toBe(true);
+  });
+
+  it("rejects file targets with exists: false even for remote", () => {
+    const target = {
+      id: "file:missing.md",
+      kind: "file" as const,
+      value: "missing.md",
+      name: "missing.md",
+      preview: "markdown" as const,
+      confidence: 95,
+      reason: "write tool metadata",
+      exists: false,
+    };
+
+    expect(isCollectibleArtifactTarget(target)).toBe(false);
+  });
+
+  it("rejects file targets with undefined exists", () => {
+    const target = {
+      id: "file:unknown.md",
+      kind: "file" as const,
+      value: "unknown.md",
+      name: "unknown.md",
+      preview: "markdown" as const,
+      confidence: 95,
+      reason: "write tool metadata",
+    };
+
+    expect(isCollectibleArtifactTarget(target)).toBe(false);
+  });
+});
+
+describe("linkifyOpenTargets", () => {
+  const fileTarget = {
+    id: "file:/srv/workspace/docs.docx",
+    kind: "file" as const,
+    value: "/srv/workspace/docs.docx",
+    name: "docs.docx",
+    preview: "external" as const,
+    confidence: 65,
+    reason: "message",
+  };
+  const urlTarget = {
+    id: "url:https://example.com/api",
+    kind: "url" as const,
+    value: "https://example.com/api",
+    name: "api",
+    preview: "browser" as const,
+    confidence: 70,
+    reason: "message",
+  };
+
+  it("wraps bare file path in markdown link", () => {
+    const text = "Created /srv/workspace/docs.docx with content.";
+    const result = linkifyOpenTargets(text, [fileTarget]);
+    expect(result).toContain("[/srv/workspace/docs.docx](#openwork-target:");
+    expect(result).toContain(encodeURIComponent(fileTarget.id));
+  });
+
+  it("wraps bare URL in markdown link", () => {
+    const text = "Check https://example.com/api for details.";
+    const result = linkifyOpenTargets(text, [urlTarget]);
+    expect(result).toContain("[https://example.com/api](#openwork-target:");
+  });
+
+  it("does not double-link already linked markdown syntax", () => {
+    const text = "See [docs](/srv/workspace/docs.docx) for info.";
+    const result = linkifyOpenTargets(text, [fileTarget]);
+    // Should NOT add another link around the path inside the existing link
+    expect(result).not.toContain("[/srv/workspace/docs.docx](#openwork-target:");
+  });
+
+  it("returns original text when no targets match", () => {
+    const text = "Hello world";
+    const result = linkifyOpenTargets(text, [fileTarget]);
+    expect(result).toBe("Hello world");
+  });
+
+  it("returns original text when targets array is empty", () => {
+    const text = "Created /srv/workspace/docs.docx";
+    const result = linkifyOpenTargets(text, []);
+    expect(result).toBe(text);
+  });
+
+  it("handles multiple targets in one text", () => {
+    const text = "Created /srv/workspace/docs.docx. See https://example.com/api.";
+    const result = linkifyOpenTargets(text, [fileTarget, urlTarget]);
+    expect(result).toContain("[/srv/workspace/docs.docx](#openwork-target:");
+    expect(result).toContain("[https://example.com/api](#openwork-target:");
+  });
+});
+
+describe("parseOpenWorkTargetHref", () => {
+  it("parses a valid openwork target href", () => {
+    const id = "file:/srv/workspace/docs.docx";
+    const href = `#openwork-target:${encodeURIComponent(id)}`;
+    expect(parseOpenWorkTargetHref(href)).toBe(id);
+  });
+
+  it("returns null for non-openwork hrefs", () => {
+    expect(parseOpenWorkTargetHref("#section")).toBeNull();
+    expect(parseOpenWorkTargetHref("https://example.com")).toBeNull();
+  });
+});
+
+describe("isOpenWorkTargetHref", () => {
+  it("recognizes openwork target hrefs", () => {
+    expect(isOpenWorkTargetHref("#openwork-target:file%3A%2Ftest.md")).toBe(true);
+  });
+
+  it("rejects other hrefs", () => {
+    expect(isOpenWorkTargetHref("#section")).toBe(false);
+    expect(isOpenWorkTargetHref("https://example.com")).toBe(false);
   });
 });

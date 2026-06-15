@@ -1,5 +1,5 @@
 /** @jsxImportSource react */
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { 
   Folder, 
@@ -27,6 +27,8 @@ type WorkspaceFilesExplorerProps = {
   workspaceId: string | null;
   workspaceRoot: string;
   isRemoteWorkspace?: boolean;
+  catalogRefreshKey?: number;
+  revealPath?: string;
   onClose: () => void;
 };
 
@@ -44,13 +46,58 @@ export function WorkspaceFilesExplorer({
   client,
   workspaceId,
   isRemoteWorkspace = false,
+  catalogRefreshKey,
+  revealPath,
   onClose,
 }: WorkspaceFilesExplorerProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedFolders, setExpandedFolders] = useState<Record<string, boolean>>({});
   const [downloadingPaths, setDownloadingPaths] = useState<Record<string, boolean>>({});
+  const [highlightedPath, setHighlightedPath] = useState<string | null>(null);
   const openTab = usePanelTabStore((state) => state.openTab);
   const { tabs } = useSessionPanelState(sessionId);
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+
+  // Reveal a file path: expand parent folders and highlight the file.
+  useEffect(() => {
+    if (!revealPath) return;
+
+    // Normalize the reveal path to match catalog item paths.
+    const normalized = revealPath.replace(/[\\]+/g, "/").replace(/^\/+/, "");
+
+    setExpandedFolders((prev) => {
+      const next = { ...prev };
+      let changed = false;
+      const parts = normalized.split("/");
+      let current = "";
+      // Expand all parent directories.
+      for (let i = 0; i < parts.length - 1; i++) {
+        const part = parts[i];
+        if (!part) continue;
+        current = current ? `${current}/${part}` : part;
+        if (!next[current]) {
+          next[current] = true;
+          changed = true;
+        }
+      }
+      return changed ? next : prev;
+    });
+
+    // Highlight the file briefly.
+    setHighlightedPath(normalized);
+    const timer = window.setTimeout(() => setHighlightedPath(null), 3000);
+
+    // Scroll to the file after a short delay for the tree to render.
+    const scrollTimer = window.setTimeout(() => {
+      const el = scrollContainerRef.current?.querySelector(`[data-file-path="${CSS.escape(normalized)}"]`);
+      el?.scrollIntoView({ block: "center", behavior: "smooth" });
+    }, 150);
+
+    return () => {
+      window.clearTimeout(timer);
+      window.clearTimeout(scrollTimer);
+    };
+  }, [revealPath]);
 
   useEffect(() => {
     setExpandedFolders((prev) => {
@@ -97,12 +144,16 @@ export function WorkspaceFilesExplorer({
   const fileSessionId = fileSession?.session?.id;
 
   // 2. Fetch workspace files catalog
-  const { 
-    data: catalog, 
-    isLoading: isCatalogLoading, 
-    isError: isCatalogError, 
+  // For remote workspaces, always refetch on mount to stay in sync with
+  // the remote filesystem (files may have been written by the AI since
+  // the last catalog fetch).
+  const {
+    data: catalog,
+    isLoading: isCatalogLoading,
+    isError: isCatalogError,
     error: catalogError,
-    refetch: refetchCatalog 
+    isFetching: isCatalogFetching,
+    refetch: refetchCatalog,
   } = useQuery({
     queryKey: ["workspace-files-catalog", workspaceId, fileSessionId],
     queryFn: async () => {
@@ -110,6 +161,7 @@ export function WorkspaceFilesExplorer({
       return client.getFileSessionCatalog(fileSessionId);
     },
     enabled: !!client && !!fileSessionId,
+    refetchOnMount: isRemoteWorkspace ? "always" : undefined,
   });
 
   const handleRefresh = () => {
@@ -119,6 +171,13 @@ export function WorkspaceFilesExplorer({
       void refetchCatalog();
     }
   };
+
+  // Auto-refresh catalog when refresh key changes (e.g., after AI completes writing files)
+  useEffect(() => {
+    if (catalogRefreshKey !== undefined && catalogRefreshKey > 0) {
+      handleRefresh();
+    }
+  }, [catalogRefreshKey]);
 
   const handleDownload = async (event: React.MouseEvent, path: string, name: string) => {
     event.stopPropagation();
@@ -147,6 +206,8 @@ export function WorkspaceFilesExplorer({
       type: "artifact",
       label: name,
       preview: previewType,
+      origin: "explorer",
+      path,
     });
   };
 
@@ -248,9 +309,12 @@ export function WorkspaceFilesExplorer({
       const isExpanded = !!expandedFolders[node.path];
       const isDownloading = !!downloadingPaths[node.path];
 
+      const isHighlighted = highlightedPath === node.path;
+
       return (
         <div key={node.path} className="flex flex-col">
           <div
+            data-file-path={!isDir ? node.path : undefined}
             onClick={() => {
               if (isDir) {
                 toggleFolder(node.path);
@@ -258,7 +322,7 @@ export function WorkspaceFilesExplorer({
                 handleOpenFile(node.path, node.name);
               }
             }}
-            className="group flex h-8 cursor-pointer items-center justify-between rounded px-2 hover:bg-dls-hover"
+            className={`group flex h-8 cursor-pointer items-center justify-between rounded px-2 hover:bg-dls-hover${isHighlighted ? " bg-amber-2 ring-1 ring-amber-5" : ""}`}
             style={{ paddingLeft: `${Math.max(8, depth * 16)}px` }}
           >
             <div className="flex min-w-0 flex-1 items-center gap-1.5 text-xs text-foreground">
@@ -336,6 +400,7 @@ export function WorkspaceFilesExplorer({
   };
 
   const isBusy = isSessionLoading || isCatalogLoading;
+  const isRefreshing = isCatalogFetching && !isCatalogLoading;
   const isErr = isSessionError || isCatalogError;
 
   return (
@@ -363,7 +428,7 @@ export function WorkspaceFilesExplorer({
                   disabled={isBusy}
                   aria-label="Refresh files list"
                 >
-                  <RefreshCw className={`h-4 w-4 ${isBusy ? "animate-spin" : ""}`} />
+                  <RefreshCw className={`h-4 w-4 ${isBusy || isRefreshing ? "animate-spin" : ""}`} />
                 </Button>
               )}
             />
@@ -404,7 +469,7 @@ export function WorkspaceFilesExplorer({
         </div>
       </div>
 
-      <div className="min-h-0 flex-1 overflow-y-auto p-2">
+      <div ref={scrollContainerRef} className="min-h-0 flex-1 overflow-y-auto p-2">
         {isBusy ? (
           <div className="flex h-32 flex-col items-center justify-center gap-2 text-center text-xs text-muted-foreground">
             <Loader2 className="h-5 w-5 animate-spin" />
@@ -412,7 +477,12 @@ export function WorkspaceFilesExplorer({
           </div>
         ) : isErr ? (
           <div className="flex h-32 flex-col items-center justify-center gap-2 text-center text-xs text-red-9 p-4">
-            Failed to load workspace files.
+            {isRemoteWorkspace
+              ? "Could not load files from remote workspace. Check your connection and try again."
+              : "Failed to load workspace files."}
+            {isRemoteWorkspace && catalogError ? (
+              <span className="text-[10px] opacity-60">{String(catalogError?.message ?? "")}</span>
+            ) : null}
             <Button variant="outline" size="sm" onClick={handleRefresh}>
               Retry
             </Button>

@@ -46,6 +46,7 @@ type SidePanelProps = {
   workspaceId: string | null;
   workspaceRoot: string;
   isRemoteWorkspace?: boolean;
+  catalogRefreshKey?: number;
   onClose: () => void;
 };
 
@@ -388,6 +389,7 @@ export function SidePanel({
   workspaceId,
   workspaceRoot,
   isRemoteWorkspace = false,
+  catalogRefreshKey,
   onClose,
 }: SidePanelProps) {
   const { tabs } = useSessionPanelState(sessionId);
@@ -449,6 +451,8 @@ export function SidePanel({
               workspaceId={workspaceId}
               workspaceRoot={workspaceRoot}
               isRemoteWorkspace={isRemoteWorkspace}
+              catalogRefreshKey={catalogRefreshKey}
+              revealPath={activeTab.revealPath}
               onClose={onClose}
             />
           </div>

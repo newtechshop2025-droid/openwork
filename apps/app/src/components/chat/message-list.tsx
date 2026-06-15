@@ -78,6 +78,8 @@ import {
 } from "@/lib/build-in-tools"
 import type { ThreadStatus } from "@/lib/messages"
 import { cn } from "@/lib/utils"
+import { useOpenTargets } from "@/lib/target-provider"
+import { linkifyOpenTargets, parseOpenWorkTargetHref } from "@/react-app/domains/session/artifacts/open-target"
 import { groupMessages, isMessageGroup, getLastTextPart, getAssistantRenderGroups, getFileTitle, getMediaBadge, type UIMessageWithIndex, getMessagesText } from "./utils"
 
 interface ToolMessageProps {
@@ -259,19 +261,51 @@ type AssistantMessageProps = {
 const AssistantMessage = React.memo(
   ({ message }: AssistantMessageProps) => {
     const { showThinking } = useMessageList()
+    const { openTargets, onOpenTarget } = useOpenTargets()
     const assistantRenderGroups = React.useMemo(
       () => getAssistantRenderGroups(message.parts, showThinking),
       [message.parts, showThinking]
     )
+
+    // Pre-process text groups to linkify known OpenTarget paths/URLs
+    const linkifiedGroups = React.useMemo(
+      () => assistantRenderGroups.map((group) => {
+        if (group.kind === "text" || group.kind === "reasoning") {
+          return { ...group, text: linkifyOpenTargets(group.text, openTargets) };
+        }
+        return group;
+      }),
+      [assistantRenderGroups, openTargets],
+    )
+
+    // Delegated click handler for #openwork-target: links in rendered markdown
+    const handleClick = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest("a[data-openwork-target]");
+      if (!anchor) return;
+
+      const href = anchor.getAttribute("data-openwork-target") ?? anchor.getAttribute("href") ?? "";
+      const targetId = parseOpenWorkTargetHref(href);
+      if (!targetId) return;
+
+      // Find the matching OpenTarget
+      const matchedTarget = openTargets.find((t) => t.id === targetId);
+      if (matchedTarget && onOpenTarget) {
+        e.preventDefault();
+        e.stopPropagation();
+        onOpenTarget(matchedTarget);
+      }
+    }, [openTargets, onOpenTarget]);
 
     return (
       <Message
         className="mx-auto flex w-full max-w-3xl flex-col items-start gap-2 px-2 md:px-10"
         data-message-id={message.id}
         data-message-role={message.role}
+        onClick={handleClick}
       >
         <div className="group flex w-full flex-col gap-0 space-y-2">
-          {assistantRenderGroups.map((group, index) => {
+          {linkifiedGroups.map((group, index) => {
             if (group.kind === "text") {
               return (
                 <MessageContent

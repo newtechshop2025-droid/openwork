@@ -170,6 +170,11 @@ const baseMarkedOptions = {
     link({ href, title, tokens }) {
       const safe = escapeAttribute(safeHref(href));
       const titleAttr = title ? ` title="${escapeAttribute(title)}"` : "";
+      const isTargetLink = href.startsWith("#openwork-target:");
+
+      if (isTargetLink) {
+        return `<a href="${safe}"${titleAttr} data-openwork-target="${escapeAttribute(href)}" class="text-indigo-10 underline underline-offset-2 cursor-pointer transition-colors hover:text-indigo-8">${this.parser.parseInline(tokens)}</a>`;
+      }
 
       return `<a href="${safe}"${titleAttr} target="_blank" rel="noreferrer noopener" class="text-indigo-10 underline underline-offset-2 transition-colors hover:text-indigo-8">${this.parser.parseInline(tokens)}</a>`;
     },

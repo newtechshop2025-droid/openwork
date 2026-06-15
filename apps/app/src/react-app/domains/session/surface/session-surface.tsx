@@ -551,7 +551,7 @@ export function SessionSurface(props: SessionSurfaceProps) {
     () => deriveRenderedSessionMessages({ transcriptState, snapshot }),
     [snapshot, transcriptState],
   );
-  const openTargets = useMemo(() => deriveOpenTargets(renderedMessages, { workspaceRoot: props.workspaceRoot }), [renderedMessages, props.workspaceRoot]);
+  const openTargets = useMemo(() => deriveOpenTargets(renderedMessages, { workspaceRoot: props.workspaceRoot, isRemoteWorkspace: props.isRemoteWorkspace }), [renderedMessages, props.workspaceRoot, props.isRemoteWorkspace]);
   const openTargetsFingerprint = useMemo(
     () => openTargets.map((target) => `${target.kind}:${target.value}:${target.confidence}`).join("|"),
     [openTargets],
@@ -609,13 +609,29 @@ export function SessionSurface(props: SessionSurfaceProps) {
       try {
         const response = await props.client.resolveArtifacts(props.workspaceId, openTargets);
         if (!cancelled) {
-          const nextTargets = response.items as OpenTarget[];
+          const serverTargets = response.items as OpenTarget[];
+          // For remote workspaces, the server may report `exists: false` for files
+          // that genuinely exist — path normalization differences or timing can
+          // cause false negatives. Optimistically mark high-confidence file
+          // targets as existing so users can always click/open/download them.
+          // If the file is truly missing, the artifact panel shows an error.
+          const nextTargets = props.isRemoteWorkspace
+            ? serverTargets.map((target) => {
+                if (target.kind === "file" && target.exists !== true && target.confidence >= 65) {
+                  return { ...target, exists: true };
+                }
+                return target;
+              })
+            : serverTargets;
           initializeAutoOpenState(nextTargets);
           setVerifiedOpenTargets(nextTargets);
         }
       } catch {
         if (!cancelled) {
-          const nextTargets = openTargets.map((target) => ({ ...target, exists: target.kind === "url" }));
+          const nextTargets = openTargets.map((target) => ({
+            ...target,
+            exists: target.kind === "url" || (props.isRemoteWorkspace && target.kind === "file" && target.confidence >= 65),
+          }));
           initializeAutoOpenState(nextTargets);
           setVerifiedOpenTargets(nextTargets);
         }
