@@ -1,5 +1,5 @@
 /** @jsxImportSource react */
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { 
   Folder, 
@@ -18,7 +18,7 @@ import type { OpenworkServerClient } from "@/app/lib/openwork-server";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { formatFileSize } from "@/lib/utils";
-import { usePanelTabStore } from "../panel/panel-tab-store";
+import { usePanelTabStore, useSessionPanelState } from "../panel/panel-tab-store";
 import { basename, classifyOpenTarget } from "./open-target";
 
 type WorkspaceFilesExplorerProps = {
@@ -50,6 +50,33 @@ export function WorkspaceFilesExplorer({
   const [expandedFolders, setExpandedFolders] = useState<Record<string, boolean>>({});
   const [downloadingPaths, setDownloadingPaths] = useState<Record<string, boolean>>({});
   const openTab = usePanelTabStore((state) => state.openTab);
+  const { tabs } = useSessionPanelState(sessionId);
+
+  useEffect(() => {
+    setExpandedFolders((prev) => {
+      const next = { ...prev };
+      let changed = false;
+
+      for (const tab of tabs) {
+        if (tab.type === "artifact" && tab.id.startsWith("file:")) {
+          const filePath = tab.id.slice("file:".length);
+          const parts = filePath.split("/");
+          let current = "";
+          for (let i = 0; i < parts.length - 1; i++) {
+            const part = parts[i];
+            if (!part) continue;
+            current = current ? `${current}/${part}` : part;
+            if (next[current] === undefined) {
+              next[current] = true;
+              changed = true;
+            }
+          }
+        }
+      }
+
+      return changed ? next : prev;
+    });
+  }, [tabs]);
 
   // 1. Create file session to read catalog
   const { 

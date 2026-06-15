@@ -1,6 +1,6 @@
 /** @jsxImportSource react */
 import type * as React from "react";
-import { Download, Loader2 } from "lucide-react";
+import { Download, Loader2, FolderOpen } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -81,18 +81,27 @@ export function ImagePreview({ src, alt, className, ...props }: ImagePreviewProp
 
 interface PreviewUnavailableProps extends React.ComponentProps<"div"> {
   onDownload?: () => void;
+  onReveal?: () => void;
 }
 
-export function PreviewUnavailable({ onDownload, className, ...props }: PreviewUnavailableProps) {
+export function PreviewUnavailable({ onDownload, onReveal, className, ...props }: PreviewUnavailableProps) {
   return (
     <div className={cn("flex flex-col h-full items-center justify-center p-6 text-center text-muted-foreground gap-4", className)} {...props}>
       <div className="text-sm font-medium">Preview is not available for this file type.</div>
-      {onDownload && (
-        <Button onClick={onDownload} variant="default" size="sm" className="gap-2">
-          <Download className="h-4 w-4" />
-          Download File
-        </Button>
-      )}
+      <div className="flex items-center gap-3">
+        {onDownload && (
+          <Button onClick={onDownload} variant="default" size="sm" className="gap-2">
+            <Download className="h-4 w-4" />
+            Download File
+          </Button>
+        )}
+        {onReveal && (
+          <Button onClick={onReveal} variant="outline" size="sm" className="gap-2">
+            <FolderOpen className="h-4 w-4" />
+            Reveal in Explorer
+          </Button>
+        )}
+      </div>
     </div>
   );
 }

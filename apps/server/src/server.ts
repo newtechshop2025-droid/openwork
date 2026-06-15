@@ -1086,22 +1086,19 @@ async function checkAndProxyRemoteSession(
   ctx: RequestContext,
   sessionId: string,
 ): Promise<Response | null> {
-  if (sessionId.startsWith("rem_")) {
-    const parts = sessionId.split("_");
-    if (parts[0] === "rem") {
-      const isNestedRem = parts[1] === "rem";
-      const workspaceId = isNestedRem
-        ? parts.slice(1, 4).join("_")
-        : parts.slice(1, 3).join("_");
-      const remoteSessionId = isNestedRem
-        ? parts.slice(4).join("_")
-        : parts.slice(3).join("_");
-      const workspace = config.workspaces.find((w) => w.id === workspaceId);
-      if (workspace && workspace.workspaceType === "remote") {
-        const targetUrl = new URL(ctx.url.toString());
-        targetUrl.pathname = targetUrl.pathname.replace(sessionId, remoteSessionId);
-        return proxyRemoteOpenworkRequest(workspace, ctx.request, targetUrl);
-      }
+  if (!sessionId.startsWith("rem_")) {
+    return null;
+  }
+  for (const workspace of config.workspaces) {
+    if (workspace.workspaceType !== "remote") {
+      continue;
+    }
+    const prefix = `rem_${workspace.id}_`;
+    if (sessionId.startsWith(prefix)) {
+      const remoteSessionId = sessionId.slice(prefix.length);
+      const targetUrl = new URL(ctx.url.toString());
+      targetUrl.pathname = targetUrl.pathname.replace(sessionId, remoteSessionId);
+      return proxyRemoteOpenworkRequest(workspace, ctx.request, targetUrl);
     }
   }
   return null;

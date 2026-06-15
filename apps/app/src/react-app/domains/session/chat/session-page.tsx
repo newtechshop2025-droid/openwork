@@ -2,7 +2,7 @@
 import type { CSSProperties } from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePanelRef } from "react-resizable-panels";
-import { Columns2, FileText, Globe, Mic2, Settings2, X, Zap } from "lucide-react";
+import { Columns2, FileText, FolderOpen, Globe, Mic2, Settings2, X, Zap } from "lucide-react";
 
 import { t } from "../../../../i18n";
 import { OPENWORK_EXTENSION_CATALOG } from "../../../../app/constants";
@@ -291,6 +291,13 @@ export function SessionPage(props: SessionPageProps) {
   const activeSidePanel = voiceSidePanelOpen ? "voice" : sessionSidePanel;
   const sidePanelOpen = activeSidePanel !== null;
   const panelRailActive = activeSidePanel === "panel";
+  const activeTabId = sessionPanelState.activeTabId;
+  const activeTab = useMemo(
+    () => sessionPanelState.tabs.find((tab) => tab.id === activeTabId) ?? null,
+    [sessionPanelState.tabs, activeTabId],
+  );
+  const filesRailActive = panelRailActive && activeTab?.type === "explorer";
+  const artifactsRailActive = panelRailActive && activeTab?.type === "artifact";
   const extensionsRailActive = activeSidePanel === "extensions";
   const voiceRailActive = activeSidePanel === "voice";
   const voiceExtension = useMemo(
@@ -476,6 +483,31 @@ export function SessionPage(props: SessionPageProps) {
       toggleCurrentSidePanel("panel");
     }
   }, [artifactFileTargets, hasArtifactTargets, openTab, panelRailActive, props.selectedSessionId, selectTab, sessionPanelState, toggleCurrentSidePanel]);
+  const openFilesRailPane = useCallback(() => {
+    if (!props.selectedSessionId) return;
+    const activeTab = sessionPanelState.tabs.find((tab) => tab.id === sessionPanelState.activeTabId);
+    const explorerTab = sessionPanelState.tabs.find((tab) => tab.type === "explorer");
+    if (panelRailActive && activeTab?.type === "explorer") {
+      toggleCurrentSidePanel("panel");
+      return;
+    }
+    if (!panelRailActive) {
+      preserveSidePanelOnPanelOpenRef.current = true;
+    }
+    if (explorerTab) {
+      selectTab(props.selectedSessionId, explorerTab.id);
+    } else {
+      openTab(props.selectedSessionId, {
+        id: "files",
+        type: "explorer",
+        label: "Workspace Files",
+        preview: "text",
+      });
+    }
+    if (!panelRailActive) {
+      toggleCurrentSidePanel("panel");
+    }
+  }, [openTab, panelRailActive, props.selectedSessionId, selectTab, sessionPanelState, toggleCurrentSidePanel]);
   const openExtensionsRailPane = useCallback(() => {
     toggleCurrentSidePanel("extensions");
   }, [toggleCurrentSidePanel]);
@@ -1220,13 +1252,27 @@ export function SessionPage(props: SessionPageProps) {
               variant="ghost"
               size="icon-sm"
               className={cn(
-                "rounded-xl transition-colors hover:bg-muted hover:text-foreground",
-                panelRailActive && "bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary",
+                "rounded-xl transition-colors hover:bg-muted hover:text-foreground relative",
+                filesRailActive && "bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary",
+              )}
+              onClick={openFilesRailPane}
+              title="Workspace Files"
+              aria-label="Workspace Files"
+              aria-pressed={filesRailActive}
+            >
+              <FolderOpen size={17} />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              className={cn(
+                "rounded-xl transition-colors hover:bg-muted hover:text-foreground relative",
+                artifactsRailActive && "bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary",
               )}
               onClick={openArtifactRailPane}
               title={hasArtifactTargets ? `Artifacts (${artifactTargetCount})` : "No artifacts yet"}
               aria-label={hasArtifactTargets ? `Artifacts (${artifactTargetCount})` : "No artifacts yet"}
-              aria-pressed={panelRailActive}
+              aria-pressed={artifactsRailActive}
               disabled={!hasArtifactTargets}
             >
               <FileText size={17} />

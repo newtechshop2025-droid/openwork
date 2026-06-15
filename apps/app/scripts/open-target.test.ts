@@ -255,4 +255,13 @@ describe("deriveOpenTargets", () => {
 
     expect(selectAutoOpenTarget(targets)).toBeNull();
   });
+
+  it("extracts markdown-formatted bold/italic filenames", () => {
+    const targets = deriveOpenTargets([
+      message("msg_1", "assistant", "Created **Bao_cao_RAM.docx** and *Bao_cao_RAM.pptx* successfully."),
+    ]);
+
+    expect(targets.map((target) => target.value)).toContain("Bao_cao_RAM.docx");
+    expect(targets.map((target) => target.value)).toContain("Bao_cao_RAM.pptx");
+  });
 });

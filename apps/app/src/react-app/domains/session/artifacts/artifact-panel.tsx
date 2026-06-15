@@ -1,7 +1,7 @@
 /** @jsxImportSource react */
 import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Download, ExternalLink, X } from "lucide-react";
+import { Download, ExternalLink, X, FolderOpen } from "lucide-react";
 
 import type { OpenworkServerClient } from "@/app/lib/openwork-server";
 import { openDesktopPath } from "@/app/lib/desktop";
@@ -32,6 +32,7 @@ type ArtifactPanelProps = {
 };
 
 type ArtifactPanelViewProps = {
+  sessionId: string;
   client: OpenworkServerClient;
   workspaceId: string;
   workspaceRoot: string;
@@ -68,6 +69,7 @@ export function ArtifactPanel({ sessionId, tab, client, workspaceId, workspaceRo
 
   return (
     <ArtifactPanelView
+      sessionId={sessionId}
       client={client}
       workspaceId={workspaceId}
       workspaceRoot={workspaceRoot}
@@ -78,7 +80,8 @@ export function ArtifactPanel({ sessionId, tab, client, workspaceId, workspaceRo
   );
 }
 
-function ArtifactPanelView({ client, workspaceId, workspaceRoot, isRemoteWorkspace = false, target, onClose }: ArtifactPanelViewProps) {
+function ArtifactPanelView({ sessionId, client, workspaceId, workspaceRoot, isRemoteWorkspace = false, target, onClose }: ArtifactPanelViewProps) {
+  const openTab = usePanelTabStore((state) => state.openTab);
   const queryClient = useQueryClient();
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState("");
@@ -276,16 +279,35 @@ function ArtifactPanelView({ client, workspaceId, workspaceRoot, isRemoteWorkspa
             )
           ) : null}
           {target.kind === "file" ? (
-            <Tooltip>
-              <TooltipTrigger
-                render={(
-                  <Button variant="ghost" size="icon-sm" onClick={() => void download()} aria-label="Download artifact">
-                    <Download />
-                  </Button>
-                )}
-              />
-              <TooltipContent>Download artifact</TooltipContent>
-            </Tooltip>
+            <>
+              <Tooltip>
+                <TooltipTrigger
+                  render={(
+                    <Button
+                      variant="ghost"
+                      size="icon-sm"
+                      onClick={() => {
+                        openTab(sessionId, { id: "files", type: "explorer", label: "Workspace Files" });
+                      }}
+                      aria-label="Reveal in Explorer"
+                    >
+                      <FolderOpen />
+                    </Button>
+                  )}
+                />
+                <TooltipContent>Reveal in Explorer</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger
+                  render={(
+                    <Button variant="ghost" size="icon-sm" onClick={() => void download()} aria-label="Download artifact">
+                      <Download />
+                    </Button>
+                  )}
+                />
+                <TooltipContent>Download artifact</TooltipContent>
+              </Tooltip>
+            </>
           ) : null}
           <Tooltip>
             <TooltipTrigger
@@ -334,7 +356,12 @@ function ArtifactPanelView({ client, workspaceId, workspaceRoot, isRemoteWorkspa
         ) : data?.kind === "text" ? (
           <PlainText content={data.data} />
         ) : (
-          <PreviewUnavailable onDownload={download} />
+          <PreviewUnavailable
+            onDownload={download}
+            onReveal={() => {
+              openTab(sessionId, { id: "files", type: "explorer", label: "Workspace Files" });
+            }}
+          />
         )}
       </div>
     </div>
