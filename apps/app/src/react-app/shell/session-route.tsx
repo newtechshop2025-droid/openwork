@@ -2247,6 +2247,10 @@ export function SessionRoute() {
       onModelVariantChange: (value: string | null) => {
         local.setPrefs((previous) => ({ ...previous, modelVariant: value }));
       },
+      permissionMode: local.prefs.permissionMode ?? "default",
+      onPermissionModeChange: (value: string) => {
+        local.setPrefs((previous) => ({ ...previous, permissionMode: value }));
+      },
       agentLabel: selectedAgent ? selectedAgent.charAt(0).toUpperCase() + selectedAgent.slice(1) : t("session.default_agent"),
       selectedAgent,
       listAgents: async () => {

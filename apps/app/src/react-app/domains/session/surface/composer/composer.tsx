@@ -13,6 +13,7 @@ import { isOpenWorkExtensionEnabled, isOpenWorkExtensionHidden, OPENWORK_EXTENSI
 import { useDesktopRestriction } from "@/react-app/domains/cloud/desktop-config-provider";
 import { ModelBehaviorSelect } from "@/components/model-behavior-select";
 import { ModelSelect } from "@/components/model-select";
+import { PermissionModeSelect } from "@/components/permission-mode-select";
 import { LexicalPromptEditor } from "./editor";
 import { getSlashCommandQuery } from "./slash-command";
 
@@ -67,6 +68,8 @@ type ComposerProps = {
   modelVariant: string | null;
   modelBehaviorOptions?: { value: string | null; label: string }[];
   onModelVariantChange: (value: string | null) => void;
+  permissionMode?: string;
+  onPermissionModeChange?: (value: string) => void;
   agentLabel: string;
   selectedAgent: string | null;
   listAgents: () => Promise<Agent[]>;
@@ -1484,6 +1487,11 @@ export function ReactSessionComposer(props: ComposerProps) {
                   label={props.modelVariantLabel}
                   options={props.modelBehaviorOptions}
                   onChange={props.onModelVariantChange}
+                  disabled={props.busy}
+                />
+                <PermissionModeSelect
+                  value={props.permissionMode ?? "default"}
+                  onChange={props.onPermissionModeChange ?? (() => {})}
                   disabled={props.busy}
                 />
               </div>

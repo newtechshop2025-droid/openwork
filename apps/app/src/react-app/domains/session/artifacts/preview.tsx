@@ -1,8 +1,9 @@
 /** @jsxImportSource react */
 import type * as React from "react";
-import { Loader2 } from "lucide-react";
+import { Download, Loader2 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import { MarkdownBlock } from "../surface/markdown";
 
 interface PreviewLoadingProps extends React.ComponentProps<"div"> {}
@@ -78,8 +79,20 @@ export function ImagePreview({ src, alt, className, ...props }: ImagePreviewProp
   );
 }
 
-interface PreviewUnavailableProps extends React.ComponentProps<"div"> {}
+interface PreviewUnavailableProps extends React.ComponentProps<"div"> {
+  onDownload?: () => void;
+}
 
-export function PreviewUnavailable({ className, ...props }: PreviewUnavailableProps) {
-  return <div className={cn("p-4 text-sm text-muted-foreground", className)} {...props}>Preview unavailable. Open externally to view this file.</div>;
+export function PreviewUnavailable({ onDownload, className, ...props }: PreviewUnavailableProps) {
+  return (
+    <div className={cn("flex flex-col h-full items-center justify-center p-6 text-center text-muted-foreground gap-4", className)} {...props}>
+      <div className="text-sm font-medium">Preview is not available for this file type.</div>
+      {onDownload && (
+        <Button onClick={onDownload} variant="default" size="sm" className="gap-2">
+          <Download className="h-4 w-4" />
+          Download File
+        </Button>
+      )}
+    </div>
+  );
 }

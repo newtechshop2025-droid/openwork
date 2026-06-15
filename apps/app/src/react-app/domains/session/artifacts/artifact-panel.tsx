@@ -334,7 +334,7 @@ function ArtifactPanelView({ client, workspaceId, workspaceRoot, isRemoteWorkspa
         ) : data?.kind === "text" ? (
           <PlainText content={data.data} />
         ) : (
-          <PreviewUnavailable />
+          <PreviewUnavailable onDownload={download} />
         )}
       </div>
     </div>

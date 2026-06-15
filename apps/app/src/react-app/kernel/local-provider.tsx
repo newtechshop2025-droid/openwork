@@ -24,6 +24,7 @@ export type LocalPreferences = {
   showThinking: boolean;
   modelVariant: string | null;
   defaultModel: ModelRef | null;
+  permissionMode?: string;
   /**
    * Release channel the desktop app is subscribed to. Defaults to
    * "stable". Alpha is only honored on macOS; the updater helper falls
@@ -60,6 +61,7 @@ const INITIAL_PREFS: LocalPreferences = {
   showThinking: DEFAULT_SHOW_THINKING,
   modelVariant: null,
   defaultModel: null,
+  permissionMode: "default",
   releaseChannel: "stable",
   featureFlags: { microsandboxCreateSandbox: true },
   hasCompletedOnboarding: false,

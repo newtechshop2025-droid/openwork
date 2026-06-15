@@ -103,6 +103,8 @@ export type SessionSurfaceProps = {
   modelVariant: string | null;
   modelBehaviorOptions?: { value: string | null; label: string }[];
   onModelVariantChange: (value: string | null) => void;
+  permissionMode?: string;
+  onPermissionModeChange?: (value: string) => void;
   agentLabel: string;
   selectedAgent: string | null;
   listAgents: () => Promise<import("@opencode-ai/sdk/v2/client").Agent[]>;
@@ -1264,6 +1266,8 @@ export function SessionSurface(props: SessionSurfaceProps) {
         modelVariant={props.modelVariant}
         modelBehaviorOptions={props.modelBehaviorOptions}
         onModelVariantChange={props.onModelVariantChange}
+        permissionMode={props.permissionMode}
+        onPermissionModeChange={props.onPermissionModeChange}
         agentLabel={props.agentLabel}
         selectedAgent={props.selectedAgent}
         listAgents={props.listAgents}
