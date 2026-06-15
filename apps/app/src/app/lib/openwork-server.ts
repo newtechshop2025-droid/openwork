@@ -1550,6 +1550,28 @@ export function createOpenworkServerClient(options: { baseUrl: string; token?: s
         { token, hostToken, timeoutMs: timeouts.binary },
       ),
 
+    createFileSession: (workspaceId: string) =>
+      requestJson<{ session: { id: string } }>(
+        baseUrl,
+        `/workspace/${encodeURIComponent(workspaceId)}/files/sessions`,
+        { token, hostToken, method: "POST", body: {} }
+      ),
+
+    getFileSessionCatalog: (sessionId: string) =>
+      requestJson<{
+        items: Array<{
+          path: string;
+          kind: "file" | "dir";
+          size: number;
+          mtimeMs: number;
+        }>;
+      }>(
+        baseUrl,
+        `/files/sessions/${encodeURIComponent(sessionId)}/catalog/snapshot`,
+        { token, hostToken }
+      ),
+
+
     listArtifacts: (workspaceId: string) =>
       requestJson<OpenworkArtifactList>(baseUrl, `/workspace/${encodeURIComponent(workspaceId)}/artifacts`, {
         token,

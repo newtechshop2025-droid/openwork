@@ -1355,6 +1355,23 @@ export function normalizeWorkspaceRelativePath(input: string, options: { allowSu
   return parts.join("/");
 }
 
+export function resolveWorkspaceRelativePath(workspaceRoot: string, requestedPath: string): string {
+  const trimmed = requestedPath.trim();
+  if (!trimmed) {
+    throw new ApiError(400, "invalid_path", "Path is required");
+  }
+  const workspaceResolved = resolve(workspaceRoot);
+  let pathFromWorkspace = trimmed;
+  if (isAbsolute(trimmed)) {
+    const absolutePath = resolve(trimmed);
+    pathFromWorkspace = relative(workspaceResolved, absolutePath);
+    if (!pathFromWorkspace || pathFromWorkspace === ".." || pathFromWorkspace.startsWith(`..${sep}`) || isAbsolute(pathFromWorkspace)) {
+      throw new ApiError(400, "invalid_path", "Path is outside the workspace");
+    }
+  }
+  return normalizeWorkspaceRelativePath(pathFromWorkspace, { allowSubdirs: true });
+}
+
 export function isSupportedWorkspaceTextFilePath(relativePath: string): boolean {
   const lowered = relativePath.toLowerCase();
   return [
@@ -3310,6 +3327,9 @@ function createRoutes(
 
   addRoute(routes, "GET", "/workspace/:id/artifacts", "client", async (ctx) => {
     const workspace = await resolveWorkspace(config, ctx.params.id);
+    if (workspace.workspaceType === "remote") {
+      return proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
+    }
     if (!resolveOutboxEnabled()) {
       return jsonResponse({ items: [] });
     }
@@ -3320,6 +3340,9 @@ function createRoutes(
 
   addRoute(routes, "GET", "/workspace/:id/artifacts/:artifactId", "client", async (ctx) => {
     const workspace = await resolveWorkspace(config, ctx.params.id);
+    if (workspace.workspaceType === "remote") {
+      return proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
+    }
     if (!resolveOutboxEnabled()) {
       throw new ApiError(404, "outbox_disabled", "Workspace outbox is disabled");
     }
@@ -3344,6 +3367,9 @@ function createRoutes(
 
   addRoute(routes, "POST", "/workspace/:id/artifacts/resolve", "client", async (ctx) => {
     const workspace = await resolveWorkspace(config, ctx.params.id);
+    if (workspace.workspaceType === "remote") {
+      return proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
+    }
     const body = await readJsonBody(ctx.request);
     const items = await resolveWorkspaceArtifactTargets(workspace.path, (body as Record<string, unknown>).targets);
     return jsonResponse({ items });
@@ -3738,7 +3764,7 @@ function createRoutes(
       return proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
     }
     const requested = (ctx.url.searchParams.get("path") ?? "").trim();
-    const relativePath = normalizeWorkspaceRelativePath(requested, { allowSubdirs: true });
+    const relativePath = resolveWorkspaceRelativePath(workspace.path, requested);
     if (!isSupportedWorkspaceTextFilePath(relativePath)) {
       throw new ApiError(400, "invalid_path", "Only supported text artifact files can be read inline");
     }
@@ -3767,7 +3793,7 @@ function createRoutes(
       return proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
     }
     const requested = (ctx.url.searchParams.get("path") ?? "").trim();
-    const relativePath = normalizeWorkspaceRelativePath(requested, { allowSubdirs: true });
+    const relativePath = resolveWorkspaceRelativePath(workspace.path, requested);
     const absPath = resolveSafeChildPath(workspace.path, relativePath);
     if (!(await exists(absPath))) {
       return jsonResponse({ ok: true, path: relativePath, exists: false });
@@ -3789,7 +3815,7 @@ function createRoutes(
       return proxyRemoteOpenworkRequest(workspace, ctx.request, ctx.url);
     }
     const requested = (ctx.url.searchParams.get("path") ?? "").trim();
-    const relativePath = normalizeWorkspaceRelativePath(requested, { allowSubdirs: true });
+    const relativePath = resolveWorkspaceRelativePath(workspace.path, requested);
     const absPath = resolveSafeChildPath(workspace.path, relativePath);
     if (!(await exists(absPath))) {
       throw new ApiError(404, "file_not_found", "File not found");
@@ -3816,7 +3842,7 @@ function createRoutes(
     }
     const body = await readJsonBody(ctx.request);
     const requestedPath = String(body.path ?? "");
-    const relativePath = normalizeWorkspaceRelativePath(requestedPath, { allowSubdirs: true });
+    const relativePath = resolveWorkspaceRelativePath(workspace.path, requestedPath);
     if (typeof body.dataBase64 !== "string") {
       throw new ApiError(400, "invalid_payload", "dataBase64 must be a string");
     }
@@ -3881,7 +3907,7 @@ function createRoutes(
     const body = await readJsonBody(ctx.request);
 
     const requestedPath = String(body.path ?? "");
-    const relativePath = normalizeWorkspaceRelativePath(requestedPath, { allowSubdirs: true });
+    const relativePath = resolveWorkspaceRelativePath(workspace.path, requestedPath);
     if (!isSupportedWorkspaceTextFilePath(relativePath)) {
       throw new ApiError(400, "invalid_path", "Only supported text artifact files can be edited inline");
     }

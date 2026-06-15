@@ -549,7 +549,7 @@ export function SessionSurface(props: SessionSurfaceProps) {
     () => deriveRenderedSessionMessages({ transcriptState, snapshot }),
     [snapshot, transcriptState],
   );
-  const openTargets = useMemo(() => deriveOpenTargets(renderedMessages), [renderedMessages]);
+  const openTargets = useMemo(() => deriveOpenTargets(renderedMessages, { workspaceRoot: props.workspaceRoot }), [renderedMessages, props.workspaceRoot]);
   const openTargetsFingerprint = useMemo(
     () => openTargets.map((target) => `${target.kind}:${target.value}:${target.confidence}`).join("|"),
     [openTargets],

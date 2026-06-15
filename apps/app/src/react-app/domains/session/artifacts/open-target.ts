@@ -56,18 +56,47 @@ const URI_PATTERN = /^(?:https?|wss?|file):\/\//i;
 
 type DeriveOpenTargetsOptions = {
   includeFileMentions?: boolean;
+  workspaceRoot?: string;
 };
 
-function normalizePath(path: string) {
-  return path
-    .trim()
-    .replace(/[\\]+/g, "/")
-    .replace(/^\.\//, "")
-    .replace(WORKSPACES_PREFIX_PATTERN, "")
-    .replace(WORKSPACE_ID_PREFIX_PATTERN, "");
+function cleanWorkspaceRoot(root: string) {
+  return root.trim().replace(/[\\]+/g, "/").replace(/\/+$/, "");
 }
 
-function basename(value: string) {
+function normalizePath(path: string, workspaceRoot?: string) {
+  let clean = path.trim().replace(/[\\]+/g, "/");
+
+  if (workspaceRoot) {
+    const cleanRoot = cleanWorkspaceRoot(workspaceRoot);
+    if (cleanRoot) {
+      if (clean.toLowerCase().startsWith(cleanRoot.toLowerCase() + "/")) {
+        clean = clean.slice(cleanRoot.length + 1);
+      } else if (clean.toLowerCase() === cleanRoot.toLowerCase()) {
+        clean = "";
+      }
+    }
+  }
+
+  clean = clean.replace(/^\/+/, "");
+  clean = clean.replace(/^\.\//, "");
+
+  const spacesMatch = clean.match(WORKSPACES_PREFIX_PATTERN);
+  if (spacesMatch) {
+    clean = clean.slice(spacesMatch[0].length);
+  }
+  const idMatch = clean.match(WORKSPACE_ID_PREFIX_PATTERN);
+  if (idMatch) {
+    clean = clean.slice(idMatch[0].length);
+  }
+
+  if (clean.toLowerCase().startsWith("workspace/")) {
+    clean = clean.slice(10);
+  }
+
+  return clean.replace(/^\/+/, "");
+}
+
+export function basename(value: string) {
   const clean = value.split(/[?#]/)[0] ?? value;
   return clean.split("/").filter(Boolean).pop() ?? value;
 }
@@ -78,7 +107,7 @@ function extname(value: string) {
   return index >= 0 ? name.slice(index) : "";
 }
 
-function classifyOpenTarget(value: string, kind: OpenTargetKind): OpenTargetPreview {
+export function classifyOpenTarget(value: string, kind: OpenTargetKind): OpenTargetPreview {
   if (kind === "url") return "browser";
   const ext = extname(value);
   if ([".md", ".markdown", ".mdx"].includes(ext)) return "markdown";
@@ -95,8 +124,8 @@ function shouldScanAssistantFileMentions(text: string) {
   return ASSISTANT_ARTIFACT_MENTION_PATTERN.test(text);
 }
 
-function targetFromFile(path: string, confidence: number, reason: string): OpenTarget | null {
-  const normalized = normalizePath(path).replace(/[.,;:]+$/, "");
+function targetFromFile(path: string, confidence: number, reason: string, workspaceRoot?: string): OpenTarget | null {
+  const normalized = normalizePath(path, workspaceRoot).replace(/[.,;:]+$/, "");
   if (!normalized || normalized.length > 500 || !normalized.includes(".")) return null;
   return {
     id: `file:${normalized.toLowerCase()}`,
@@ -159,7 +188,7 @@ function scanText(
   text: string,
   confidence: number,
   reason: string,
-  options: { includeFiles: boolean },
+  options: { includeFiles: boolean; workspaceRoot?: string },
 ) {
   if (!text) {
     return;
@@ -181,7 +210,7 @@ function scanText(
 
   FILE_PATTERN.lastIndex = 0;
   for (const match of text.matchAll(FILE_PATTERN)) {
-    if (match[1]) addTarget(map, targetFromFile(match[1], confidence, reason));
+    if (match[1]) addTarget(map, targetFromFile(match[1], confidence, reason, options.workspaceRoot));
   }
 }
 
@@ -242,9 +271,9 @@ function collectPatchFileValues(value: unknown) {
   return values;
 }
 
-function addFileValues(map: Map<string, OpenTarget>, values: string[], confidence: number, reason: string) {
+function addFileValues(map: Map<string, OpenTarget>, values: string[], confidence: number, reason: string, workspaceRoot?: string) {
   for (const value of values) {
-    addTarget(map, targetFromFile(value, confidence, reason));
+    addTarget(map, targetFromFile(value, confidence, reason, workspaceRoot));
   }
 }
 
@@ -256,6 +285,7 @@ export function deriveOpenTargets(messages: UIMessage[], options: DeriveOpenTarg
       if (part.type === "text" && typeof part.text === "string") {
         scanText(targets, part.text, message.role === "assistant" ? 65 : 40, "message", {
           includeFiles: options.includeFileMentions === true || (message.role === "assistant" && shouldScanAssistantFileMentions(part.text)),
+          workspaceRoot: options.workspaceRoot,
         });
         continue;
       }
@@ -264,10 +294,10 @@ export function deriveOpenTargets(messages: UIMessage[], options: DeriveOpenTarg
         addTarget(
           targets,
           part.filename
-            ? targetFromFile(part.filename, 95, "attachment source")
+            ? targetFromFile(part.filename, 95, "attachment source", options.workspaceRoot)
             : URI_PATTERN.test(part.title)
               ? targetFromUrl(part.title, 95, "attachment source")
-              : targetFromFile(part.title, 95, "attachment source"),
+              : targetFromFile(part.title, 95, "attachment source", options.workspaceRoot),
         );
         continue;
       }
@@ -286,10 +316,11 @@ export function deriveOpenTargets(messages: UIMessage[], options: DeriveOpenTarg
           [part.input, part.output].flatMap(collectFileMetadataValues),
           95,
           "write tool metadata",
+          options.workspaceRoot,
         );
-        addFileValues(targets, collectPatchFileValues(part.input), 95, "patch metadata");
+        addFileValues(targets, collectPatchFileValues(part.input), 95, "patch metadata", options.workspaceRoot);
         if (typeof part.output === "string") {
-          scanText(targets, part.output, 90, "write tool output", { includeFiles: true });
+          scanText(targets, part.output, 90, "write tool output", { includeFiles: true, workspaceRoot: options.workspaceRoot });
         }
       }
 
@@ -299,11 +330,12 @@ export function deriveOpenTargets(messages: UIMessage[], options: DeriveOpenTarg
           [part.input, part.output].flatMap(collectNestedFileMetadataValues),
           95,
           "artifact tool metadata",
+          options.workspaceRoot,
         );
       }
 
       if (!discoveryTool) {
-        scanText(targets, JSON.stringify(part.output ?? part.input ?? ""), 75, "tool output", { includeFiles: false });
+        scanText(targets, JSON.stringify(part.output ?? part.input ?? ""), 75, "tool output", { includeFiles: false, workspaceRoot: options.workspaceRoot });
       }
     }
   }

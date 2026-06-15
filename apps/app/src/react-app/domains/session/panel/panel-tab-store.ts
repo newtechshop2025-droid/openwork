@@ -5,7 +5,7 @@ import { isCollectibleArtifactTarget, type OpenTarget, type OpenTargetPreview } 
 
 export const PERSISTED_PANEL_TAB_STORE_KEY = "openwork:panel-tabs:v1";
 
-export type PanelTabType = "artifact" | "browser";
+export type PanelTabType = "artifact" | "browser" | "explorer";
 
 export type BrowserPanelTab = {
   id: string;
@@ -25,7 +25,13 @@ export type ArtifactPanelTab = {
   preview: OpenTargetPreview;
 }
 
-export type PanelTab = BrowserPanelTab | ArtifactPanelTab;
+export type ExplorerPanelTab = {
+  id: string;
+  type: "explorer";
+  label: string;
+}
+
+export type PanelTab = BrowserPanelTab | ArtifactPanelTab | ExplorerPanelTab;
 
 export type SessionPanelState = {
   tabs: PanelTab[];

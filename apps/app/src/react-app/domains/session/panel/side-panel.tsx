@@ -8,6 +8,7 @@ import {
   Plus,
   RotateCw,
   X,
+  Folder,
 } from "lucide-react";
 import { useDragControls } from "motion/react";
 
@@ -23,6 +24,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 
 import { ArtifactIcon } from "../artifacts/artifact-icon";
 import { ArtifactPanel } from "../artifacts/artifact-panel";
+import { WorkspaceFilesExplorer } from "../artifacts/workspace-files-explorer";
 import {
   type BrowserPanelTab,
   type PanelTab as PanelTabEntry,
@@ -114,6 +116,8 @@ function SidePanelTab({ tab, active, onSelect, onClose }: SidePanelTabProps) {
             ) : (
               <Globe />
             )
+          ) : tab.type === "explorer" ? (
+            <Folder className="size-3.5 shrink-0 text-amber-9" />
           ) : (
             <ArtifactIcon type={tab.preview} />
           )}
@@ -437,6 +441,17 @@ export function SidePanel({
         ) : null}
         {activeTab?.type === "browser" ? (
           <BrowserPanelContent tab={activeTab} onClose={onClose} />
+        ) : activeTab?.type === "explorer" ? (
+          <div className="min-h-0 flex-1 overflow-hidden">
+            <WorkspaceFilesExplorer
+              sessionId={sessionId}
+              client={client}
+              workspaceId={workspaceId}
+              workspaceRoot={workspaceRoot}
+              isRemoteWorkspace={isRemoteWorkspace}
+              onClose={onClose}
+            />
+          </div>
         ) : activeTab?.type === "artifact" ? (
           <div className="min-h-0 flex-1 overflow-hidden">
             <ArtifactPanel
