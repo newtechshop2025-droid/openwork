@@ -11,7 +11,7 @@ import {
   type WorkspaceInfo,
   type WorkspaceList,
 } from "../../app/lib/desktop";
-import { isDesktopRuntime } from "../../app/utils";
+import { isDesktopRuntime, buildPermissionRules } from "../../app/utils";
 import { createClient, unwrap } from "../../app/lib/opencode";
 import { useLocal } from "../kernel/local-provider";
 import { usePlatform } from "../kernel/platform";
@@ -181,7 +181,10 @@ export function WelcomeRoute() {
               `${(buildOpenworkWorkspaceBaseUrl(serverBaseUrl, targetWorkspaceId) ?? serverBaseUrl).replace(/\/+$/, "")}/opencode`,
               workspacePath || undefined,
               { token: serverToken, mode: "openwork" },
-            ).session.create({ directory: workspacePath || undefined }));
+            ).session.create({
+              directory: workspacePath || undefined,
+              permission: buildPermissionRules(local.prefs.permissionMode ?? "default"),
+            }));
             targetSessionId = session.id;
           } catch {
             // Best-effort first task creation.

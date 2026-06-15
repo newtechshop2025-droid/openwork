@@ -1199,3 +1199,78 @@ export function deriveWorkingFiles(items: ArtifactItem[]): string[] {
 
   return results;
 }
+
+export function buildPermissionRules(mode: string) {
+  switch (mode) {
+    case "bypass":
+    case "auto":
+      return [
+        {
+          permission: "*",
+          pattern: "*",
+          action: "allow" as const,
+        },
+      ];
+    case "accept_edits":
+      return [
+        {
+          permission: "bash",
+          pattern: "*",
+          action: "ask" as const,
+        },
+        {
+          permission: "*",
+          pattern: "*",
+          action: "allow" as const,
+        },
+      ];
+    case "plan":
+      return [
+        {
+          permission: "read",
+          pattern: "*",
+          action: "allow" as const,
+        },
+        {
+          permission: "grep",
+          pattern: "*",
+          action: "allow" as const,
+        },
+        {
+          permission: "glob",
+          pattern: "*",
+          action: "allow" as const,
+        },
+        {
+          permission: "*",
+          pattern: "*",
+          action: "deny" as const,
+        },
+      ];
+    case "default":
+    default:
+      return [
+        {
+          permission: "read",
+          pattern: "*",
+          action: "allow" as const,
+        },
+        {
+          permission: "grep",
+          pattern: "*",
+          action: "allow" as const,
+        },
+        {
+          permission: "glob",
+          pattern: "*",
+          action: "allow" as const,
+        },
+        {
+          permission: "*",
+          pattern: "*",
+          action: "ask" as const,
+        },
+      ];
+  }
+}
+

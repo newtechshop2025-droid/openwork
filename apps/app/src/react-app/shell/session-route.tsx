@@ -73,6 +73,7 @@ import {
   normalizeSessionStatus,
   resolveModelDisplayName,
   safeStringify,
+  buildPermissionRules,
 } from "@/app/utils";
 import { t } from "@/i18n";
 import { useLocal } from "@/react-app/kernel/local-provider";
@@ -2547,7 +2548,10 @@ export function SessionRoute() {
       setErrorsByWorkspaceId((current) => ({ ...current, [workspaceId]: null }));
       setRouteError(null);
       const session = unwrap(
-        await workspaceClient.session.create({ directory: workspace.path?.trim() || undefined }),
+        await workspaceClient.session.create({
+          directory: workspace.path?.trim() || undefined,
+          permission: buildPermissionRules(local.prefs.permissionMode ?? "default"),
+        }),
       );
       setLegacySelectedWorkspaceId(workspaceId);
       writeActiveWorkspaceId(workspaceId || null);
@@ -2834,7 +2838,10 @@ export function SessionRoute() {
               `${(buildOpenworkWorkspaceBaseUrl(baseUrl, targetWorkspaceId) ?? baseUrl).replace(/\/+$/, "")}/opencode`,
               workspacePath || undefined,
               { token, mode: "openwork" },
-            ).session.create({ directory: workspacePath || undefined }))
+            ).session.create({
+              directory: workspacePath || undefined,
+              permission: buildPermissionRules(local.prefs.permissionMode ?? "default"),
+            }))
           : null;
         setLegacySelectedWorkspaceId(targetWorkspaceId);
         writeActiveWorkspaceId(targetWorkspaceId);
@@ -3098,7 +3105,10 @@ export function SessionRoute() {
             );
             try {
               const session = unwrap(
-                await workspaceClient.session.create({ directory: workspace.path?.trim() || undefined }),
+                await workspaceClient.session.create({
+                  directory: workspace.path?.trim() || undefined,
+                  permission: buildPermissionRules(local.prefs.permissionMode ?? "default"),
+                }),
               );
               saveSessionDraft(workspaceId, session.id, { text: prompt, mode: "prompt" });
               writeActiveWorkspaceId(workspaceId || null);
