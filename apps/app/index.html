@@ -21,6 +21,42 @@
           document.documentElement.dataset.theme = "light";
           document.documentElement.style.colorScheme = "light";
         }
+
+        function handleChunkError(msg) {
+          try {
+            var lastReload = sessionStorage.getItem("openwork.lastChunkReload");
+            var now = Date.now();
+            if (lastReload && now - parseInt(lastReload, 10) < 5000) {
+              console.error("Chunk load failed repeatedly, stopping auto-reload to avoid loop.", msg);
+              return;
+            }
+            sessionStorage.setItem("openwork.lastChunkReload", now.toString());
+          } catch (err) {}
+          console.warn("Chunk load failed, reloading...", msg);
+          window.location.reload();
+        }
+
+        window.addEventListener("error", function (e) {
+          var msg = (e && e.message) || "";
+          if (
+            msg.indexOf("Failed to fetch dynamically imported module") > -1 ||
+            msg.indexOf("Importing a module script failed") > -1
+          ) {
+            handleChunkError(msg);
+          }
+        }, true);
+
+        window.addEventListener("unhandledrejection", function (e) {
+          var reason = e && e.reason;
+          var msg = (reason && (reason.message || reason)) || "";
+          if (
+            typeof msg === "string" &&
+            (msg.indexOf("Failed to fetch dynamically imported module") > -1 ||
+              msg.indexOf("Importing a module script failed") > -1)
+          ) {
+            handleChunkError(msg);
+          }
+        });
       })();
     </script>
   </head>

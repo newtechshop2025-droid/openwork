@@ -1,0 +1,9 @@
+{
+  "fixedSectionOk": true,
+  "nodesRecovered": 0,
+  "edgesRestored": 0,
+  "crossBatchEdgesAdded": 0,
+  "typesRemapped": 0,
+  "complexityRemapped": 0,
+  "notes": ["Assembled graph matches the expected structure perfectly. Import edges are fully preserved and valid."]
+}

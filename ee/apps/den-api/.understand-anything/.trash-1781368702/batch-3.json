@@ -1,0 +1,3274 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/CONSTS.ts",
+      "type": "file",
+      "name": "CONSTS.ts",
+      "filePath": "src/CONSTS.ts",
+      "summary": "Service module implementing core logical behaviors for CONSTS.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/auth.ts",
+      "type": "file",
+      "name": "auth.ts",
+      "filePath": "src/auth.ts",
+      "summary": "Authentication logic using Better Auth with support for API keys and SSO configuration.",
+      "tags": [
+        "authentication",
+        "core",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/auth.ts:localMcpResourceAliases",
+      "type": "function",
+      "name": "localMcpResourceAliases",
+      "filePath": "src/auth.ts",
+      "lineRange": [
+        28,
+        46
+      ],
+      "summary": "Exported function localMcpResourceAliases implementing logic inside auth.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/auth.ts:hasRole",
+      "type": "function",
+      "name": "hasRole",
+      "filePath": "src/auth.ts",
+      "lineRange": [
+        78,
+        84
+      ],
+      "summary": "Exported function hasRole implementing logic inside auth.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/auth.ts:maybeString",
+      "type": "function",
+      "name": "maybeString",
+      "filePath": "src/auth.ts",
+      "lineRange": [
+        86,
+        88
+      ],
+      "summary": "Exported function maybeString implementing logic inside auth.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/auth.ts:pickRemoteIdentity",
+      "type": "function",
+      "name": "pickRemoteIdentity",
+      "filePath": "src/auth.ts",
+      "lineRange": [
+        90,
+        98
+      ],
+      "summary": "Exported function pickRemoteIdentity implementing logic inside auth.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/auth.ts:getInvitationOrigin",
+      "type": "function",
+      "name": "getInvitationOrigin",
+      "filePath": "src/auth.ts",
+      "lineRange": [
+        100,
+        105
+      ],
+      "summary": "Exported function getInvitationOrigin implementing logic inside auth.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/auth.ts:buildInvitationLink",
+      "type": "function",
+      "name": "buildInvitationLink",
+      "filePath": "src/auth.ts",
+      "lineRange": [
+        107,
+        112
+      ],
+      "summary": "Exported function buildInvitationLink implementing logic inside auth.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/auth.ts:hasMcpScope",
+      "type": "function",
+      "name": "hasMcpScope",
+      "filePath": "src/auth.ts",
+      "lineRange": [
+        114,
+        116
+      ],
+      "summary": "Exported function hasMcpScope implementing logic inside auth.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/billing/polar.ts",
+      "type": "file",
+      "name": "polar.ts",
+      "filePath": "src/billing/polar.ts",
+      "summary": "Service module implementing core logical behaviors for polar.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/billing/polar.ts:sanitizeApiBase",
+      "type": "function",
+      "name": "sanitizeApiBase",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        143,
+        145
+      ],
+      "summary": "Exported function sanitizeApiBase implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:parseJson",
+      "type": "function",
+      "name": "parseJson",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        147,
+        153
+      ],
+      "summary": "Exported function parseJson implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:isRecord",
+      "type": "function",
+      "name": "isRecord",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        155,
+        157
+      ],
+      "summary": "Exported function isRecord implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:polarFetch",
+      "type": "function",
+      "name": "polarFetch",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        159,
+        171
+      ],
+      "summary": "Exported function polarFetch implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:polarFetchJson",
+      "type": "function",
+      "name": "polarFetchJson",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        173,
+        178
+      ],
+      "summary": "Exported function polarFetchJson implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:assertPaywallConfig",
+      "type": "function",
+      "name": "assertPaywallConfig",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        180,
+        193
+      ],
+      "summary": "Exported function assertPaywallConfig implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:getCustomerStateByExternalId",
+      "type": "function",
+      "name": "getCustomerStateByExternalId",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        195,
+        210
+      ],
+      "summary": "Exported function getCustomerStateByExternalId implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:getCustomerStateById",
+      "type": "function",
+      "name": "getCustomerStateById",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        212,
+        227
+      ],
+      "summary": "Exported function getCustomerStateById implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:getCustomerByEmail",
+      "type": "function",
+      "name": "getCustomerByEmail",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        229,
+        247
+      ],
+      "summary": "Exported function getCustomerByEmail implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:linkCustomerExternalId",
+      "type": "function",
+      "name": "linkCustomerExternalId",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        249,
+        265
+      ],
+      "summary": "Exported function linkCustomerExternalId implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:hasRequiredBenefit",
+      "type": "function",
+      "name": "hasRequiredBenefit",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        267,
+        273
+      ],
+      "summary": "Exported function hasRequiredBenefit implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:evaluateCloudWorkerAccess",
+      "type": "function",
+      "name": "evaluateCloudWorkerAccess",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        280,
+        314
+      ],
+      "summary": "Exported function evaluateCloudWorkerAccess implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/billing/polar.ts:normalizeRecurringInterval",
+      "type": "function",
+      "name": "normalizeRecurringInterval",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        316,
+        318
+      ],
+      "summary": "Exported function normalizeRecurringInterval implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:normalizeRecurringIntervalCount",
+      "type": "function",
+      "name": "normalizeRecurringIntervalCount",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        320,
+        322
+      ],
+      "summary": "Exported function normalizeRecurringIntervalCount implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:isActiveSubscriptionStatus",
+      "type": "function",
+      "name": "isActiveSubscriptionStatus",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        324,
+        327
+      ],
+      "summary": "Exported function isActiveSubscriptionStatus implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:toBillingSubscription",
+      "type": "function",
+      "name": "toBillingSubscription",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        329,
+        347
+      ],
+      "summary": "Exported function toBillingSubscription implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:toBillingPriceFromSubscription",
+      "type": "function",
+      "name": "toBillingPriceFromSubscription",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        349,
+        360
+      ],
+      "summary": "Exported function toBillingPriceFromSubscription implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:listSubscriptionsByExternalCustomer",
+      "type": "function",
+      "name": "listSubscriptionsByExternalCustomer",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        362,
+        400
+      ],
+      "summary": "Exported function listSubscriptionsByExternalCustomer implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/billing/polar.ts:getPrimarySubscriptionForCustomer",
+      "type": "function",
+      "name": "getPrimarySubscriptionForCustomer",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        402,
+        410
+      ],
+      "summary": "Exported function getPrimarySubscriptionForCustomer implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:listRecentOrdersByExternalCustomer",
+      "type": "function",
+      "name": "listRecentOrdersByExternalCustomer",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        412,
+        430
+      ],
+      "summary": "Exported function listRecentOrdersByExternalCustomer implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:getOrderInvoiceUrl",
+      "type": "function",
+      "name": "getOrderInvoiceUrl",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        432,
+        447
+      ],
+      "summary": "Exported function getOrderInvoiceUrl implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:toBillingInvoice",
+      "type": "function",
+      "name": "toBillingInvoice",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        449,
+        470
+      ],
+      "summary": "Exported function toBillingInvoice implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/billing/polar.ts:listBillingInvoices",
+      "type": "function",
+      "name": "listBillingInvoices",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        472,
+        482
+      ],
+      "summary": "Exported function listBillingInvoices implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:createCustomerPortalUrl",
+      "type": "function",
+      "name": "createCustomerPortalUrl",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        484,
+        504
+      ],
+      "summary": "Exported function createCustomerPortalUrl implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/billing/polar.ts:extractAmountFromProductPrice",
+      "type": "function",
+      "name": "extractAmountFromProductPrice",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        506,
+        532
+      ],
+      "summary": "Exported function extractAmountFromProductPrice implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/billing/polar.ts:extractBillingPriceFromProduct",
+      "type": "function",
+      "name": "extractBillingPriceFromProduct",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        534,
+        559
+      ],
+      "summary": "Exported function extractBillingPriceFromProduct implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/billing/polar.ts:getProductBillingPrice",
+      "type": "function",
+      "name": "getProductBillingPrice",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        561,
+        576
+      ],
+      "summary": "Exported function getProductBillingPrice implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:requireCloudWorkerAccess",
+      "type": "function",
+      "name": "requireCloudWorkerAccess",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        578,
+        587
+      ],
+      "summary": "Exported function requireCloudWorkerAccess implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/billing/polar.ts:getCloudWorkerBillingStatus",
+      "type": "function",
+      "name": "getCloudWorkerBillingStatus",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        589,
+        634
+      ],
+      "summary": "Exported function getCloudWorkerBillingStatus implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/billing/polar.ts:getCloudWorkerAdminBillingStatus",
+      "type": "function",
+      "name": "getCloudWorkerAdminBillingStatus",
+      "filePath": "src/billing/polar.ts",
+      "lineRange": [
+        636,
+        713
+      ],
+      "summary": "Exported function getCloudWorkerAdminBillingStatus implementing logic inside polar.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/env.ts",
+      "type": "file",
+      "name": "env.ts",
+      "filePath": "src/env.ts",
+      "summary": "Environment variable schema definitions and configuration validation using Zod.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/env.ts:splitCsv",
+      "type": "function",
+      "name": "splitCsv",
+      "filePath": "src/env.ts",
+      "lineRange": [
+        130,
+        135
+      ],
+      "summary": "Exported function splitCsv implementing logic inside env.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/env.ts:optionalString",
+      "type": "function",
+      "name": "optionalString",
+      "filePath": "src/env.ts",
+      "lineRange": [
+        137,
+        140
+      ],
+      "summary": "Exported function optionalString implementing logic inside env.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/env.ts:normalizeOrigin",
+      "type": "function",
+      "name": "normalizeOrigin",
+      "filePath": "src/env.ts",
+      "lineRange": [
+        142,
+        148
+      ],
+      "summary": "Exported function normalizeOrigin implementing logic inside env.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/loops.ts",
+      "type": "file",
+      "name": "loops.ts",
+      "filePath": "src/loops.ts",
+      "summary": "Service module implementing core logical behaviors for loops.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/loops.ts:splitName",
+      "type": "function",
+      "name": "splitName",
+      "filePath": "src/loops.ts",
+      "lineRange": [
+        8,
+        14
+      ],
+      "summary": "Exported function splitName implementing logic inside loops.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/loops.ts:syncDenSignupContact",
+      "type": "function",
+      "name": "syncDenSignupContact",
+      "filePath": "src/loops.ts",
+      "lineRange": [
+        16,
+        67
+      ],
+      "summary": "Exported function syncDenSignupContact implementing logic inside loops.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/loops.ts:sendSubscribedToDenEvent",
+      "type": "function",
+      "name": "sendSubscribedToDenEvent",
+      "filePath": "src/loops.ts",
+      "lineRange": [
+        69,
+        121
+      ],
+      "summary": "Exported function sendSubscribedToDenEvent implementing logic inside loops.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/auth/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "src/routes/auth/index.ts",
+      "summary": "REST API routes for auth module.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/auth/index.ts:rewriteAuthRequest",
+      "type": "function",
+      "name": "rewriteAuthRequest",
+      "filePath": "src/routes/auth/index.ts",
+      "lineRange": [
+        14,
+        18
+      ],
+      "summary": "Exported function rewriteAuthRequest implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/auth/index.ts:rewriteMcpClientRegistrationRequest",
+      "type": "function",
+      "name": "rewriteMcpClientRegistrationRequest",
+      "filePath": "src/routes/auth/index.ts",
+      "lineRange": [
+        20,
+        47
+      ],
+      "summary": "Exported function rewriteMcpClientRegistrationRequest implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/auth/index.ts:rewriteMetadataOrigin",
+      "type": "function",
+      "name": "rewriteMetadataOrigin",
+      "filePath": "src/routes/auth/index.ts",
+      "lineRange": [
+        49,
+        65
+      ],
+      "summary": "Exported function rewriteMetadataOrigin implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/auth/index.ts:requestOrigin",
+      "type": "function",
+      "name": "requestOrigin",
+      "filePath": "src/routes/auth/index.ts",
+      "lineRange": [
+        67,
+        69
+      ],
+      "summary": "Exported function requestOrigin implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/auth/index.ts:readStoredClientScopes",
+      "type": "function",
+      "name": "readStoredClientScopes",
+      "filePath": "src/routes/auth/index.ts",
+      "lineRange": [
+        71,
+        82
+      ],
+      "summary": "Exported function readStoredClientScopes implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/auth/index.ts:ensureMcpClientScopes",
+      "type": "function",
+      "name": "ensureMcpClientScopes",
+      "filePath": "src/routes/auth/index.ts",
+      "lineRange": [
+        84,
+        121
+      ],
+      "summary": "Exported function ensureMcpClientScopes implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/auth/index.ts:registerAuthRoutes",
+      "type": "function",
+      "name": "registerAuthRoutes",
+      "filePath": "src/routes/auth/index.ts",
+      "lineRange": [
+        123,
+        156
+      ],
+      "summary": "Exported function registerAuthRoutes implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/auth/scim.ts",
+      "type": "file",
+      "name": "scim.ts",
+      "filePath": "src/routes/auth/scim.ts",
+      "summary": "REST API routes for auth module.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/auth/scim.ts:readBearerToken",
+      "type": "function",
+      "name": "readBearerToken",
+      "filePath": "src/routes/auth/scim.ts",
+      "lineRange": [
+        19,
+        23
+      ],
+      "summary": "Exported function readBearerToken implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/auth/scim.ts:logScimSyncWarning",
+      "type": "function",
+      "name": "logScimSyncWarning",
+      "filePath": "src/routes/auth/scim.ts",
+      "lineRange": [
+        25,
+        28
+      ],
+      "summary": "Exported function logScimSyncWarning implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/auth/scim.ts:syncScimMutationFromResponse",
+      "type": "function",
+      "name": "syncScimMutationFromResponse",
+      "filePath": "src/routes/auth/scim.ts",
+      "lineRange": [
+        30,
+        64
+      ],
+      "summary": "Exported function syncScimMutationFromResponse implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/auth/scim.ts:registerScimAuthRoutes",
+      "type": "function",
+      "name": "registerScimAuthRoutes",
+      "filePath": "src/routes/auth/scim.ts",
+      "lineRange": [
+        66,
+        254
+      ],
+      "summary": "Exported function registerScimAuthRoutes implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/org/sso.ts",
+      "type": "file",
+      "name": "sso.ts",
+      "filePath": "src/routes/org/sso.ts",
+      "summary": "REST API route router and endpoint handlers for organization sso.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/org/sso.ts:isRecord",
+      "type": "function",
+      "name": "isRecord",
+      "filePath": "src/routes/org/sso.ts",
+      "lineRange": [
+        116,
+        118
+      ],
+      "summary": "Exported function isRecord implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/sso.ts:maybeString",
+      "type": "function",
+      "name": "maybeString",
+      "filePath": "src/routes/org/sso.ts",
+      "lineRange": [
+        120,
+        122
+      ],
+      "summary": "Exported function maybeString implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/sso.ts:maybeBoolean",
+      "type": "function",
+      "name": "maybeBoolean",
+      "filePath": "src/routes/org/sso.ts",
+      "lineRange": [
+        124,
+        126
+      ],
+      "summary": "Exported function maybeBoolean implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/sso.ts:asStringArray",
+      "type": "function",
+      "name": "asStringArray",
+      "filePath": "src/routes/org/sso.ts",
+      "lineRange": [
+        128,
+        130
+      ],
+      "summary": "Exported function asStringArray implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/sso.ts:parseConfig",
+      "type": "function",
+      "name": "parseConfig",
+      "filePath": "src/routes/org/sso.ts",
+      "lineRange": [
+        132,
+        143
+      ],
+      "summary": "Exported function parseConfig implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/sso.ts:getWebOrigin",
+      "type": "function",
+      "name": "getWebOrigin",
+      "filePath": "src/routes/org/sso.ts",
+      "lineRange": [
+        145,
+        147
+      ],
+      "summary": "Exported function getWebOrigin implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/sso.ts:requestDomainVerificationToken",
+      "type": "function",
+      "name": "requestDomainVerificationToken",
+      "filePath": "src/routes/org/sso.ts",
+      "lineRange": [
+        149,
+        156
+      ],
+      "summary": "Exported function requestDomainVerificationToken implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/sso.ts:serializeConnection",
+      "type": "function",
+      "name": "serializeConnection",
+      "filePath": "src/routes/org/sso.ts",
+      "lineRange": [
+        158,
+        189
+      ],
+      "summary": "Exported function serializeConnection implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/sso.ts:buildConnectionPayload",
+      "type": "function",
+      "name": "buildConnectionPayload",
+      "filePath": "src/routes/org/sso.ts",
+      "lineRange": [
+        191,
+        222
+      ],
+      "summary": "Exported function buildConnectionPayload implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/sso.ts:registerOrgSsoRoutes",
+      "type": "function",
+      "name": "registerOrgSsoRoutes",
+      "filePath": "src/routes/org/sso.ts",
+      "lineRange": [
+        224,
+        524
+      ],
+      "summary": "Exported function registerOrgSsoRoutes implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/scim.ts",
+      "type": "file",
+      "name": "scim.ts",
+      "filePath": "src/scim.ts",
+      "summary": "Service module implementing core logical behaviors for scim.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/scim.ts:decodeBase64Url",
+      "type": "function",
+      "name": "decodeBase64Url",
+      "filePath": "src/scim.ts",
+      "lineRange": [
+        24,
+        28
+      ],
+      "summary": "Exported function decodeBase64Url implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/scim.ts:buildOrganizationScimProviderId",
+      "type": "function",
+      "name": "buildOrganizationScimProviderId",
+      "filePath": "src/scim.ts",
+      "lineRange": [
+        30,
+        32
+      ],
+      "summary": "Exported function buildOrganizationScimProviderId implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/scim.ts:maybeString",
+      "type": "function",
+      "name": "maybeString",
+      "filePath": "src/scim.ts",
+      "lineRange": [
+        34,
+        36
+      ],
+      "summary": "Exported function maybeString implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/scim.ts:asRecord",
+      "type": "function",
+      "name": "asRecord",
+      "filePath": "src/scim.ts",
+      "lineRange": [
+        38,
+        40
+      ],
+      "summary": "Exported function asRecord implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/scim.ts:asArray",
+      "type": "function",
+      "name": "asArray",
+      "filePath": "src/scim.ts",
+      "lineRange": [
+        42,
+        44
+      ],
+      "summary": "Exported function asArray implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/scim.ts:safeEqualSecret",
+      "type": "function",
+      "name": "safeEqualSecret",
+      "filePath": "src/scim.ts",
+      "lineRange": [
+        46,
+        50
+      ],
+      "summary": "Exported function safeEqualSecret implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/scim.ts:resolveScimProviderFromBearerToken",
+      "type": "function",
+      "name": "resolveScimProviderFromBearerToken",
+      "filePath": "src/scim.ts",
+      "lineRange": [
+        52,
+        78
+      ],
+      "summary": "Exported function resolveScimProviderFromBearerToken implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/scim.ts:syncExternalIdentityFromScimResource",
+      "type": "function",
+      "name": "syncExternalIdentityFromScimResource",
+      "filePath": "src/scim.ts",
+      "lineRange": [
+        80,
+        141
+      ],
+      "summary": "Exported function syncExternalIdentityFromScimResource implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/scim.ts:syncExternalIdentityFromScimUserId",
+      "type": "function",
+      "name": "syncExternalIdentityFromScimUserId",
+      "filePath": "src/scim.ts",
+      "lineRange": [
+        143,
+        181
+      ],
+      "summary": "Exported function syncExternalIdentityFromScimUserId implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/scim.ts:deactivateExternalIdentityForScimUser",
+      "type": "function",
+      "name": "deactivateExternalIdentityForScimUser",
+      "filePath": "src/scim.ts",
+      "lineRange": [
+        183,
+        212
+      ],
+      "summary": "Exported function deactivateExternalIdentityForScimUser implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/scim.ts:getScimBaseUrl",
+      "type": "function",
+      "name": "getScimBaseUrl",
+      "filePath": "src/scim.ts",
+      "lineRange": [
+        214,
+        216
+      ],
+      "summary": "Exported function getScimBaseUrl implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/scim.ts:getOrganizationScimConnection",
+      "type": "function",
+      "name": "getOrganizationScimConnection",
+      "filePath": "src/scim.ts",
+      "lineRange": [
+        218,
+        226
+      ],
+      "summary": "Exported function getOrganizationScimConnection implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/scim.ts:rotateOrganizationScimToken",
+      "type": "function",
+      "name": "rotateOrganizationScimToken",
+      "filePath": "src/scim.ts",
+      "lineRange": [
+        228,
+        256
+      ],
+      "summary": "Exported function rotateOrganizationScimToken implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/scim.ts:deleteOrganizationScimConnection",
+      "type": "function",
+      "name": "deleteOrganizationScimConnection",
+      "filePath": "src/scim.ts",
+      "lineRange": [
+        258,
+        267
+      ],
+      "summary": "Exported function deleteOrganizationScimConnection implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/scim.ts:cleanupExternalIdentitiesForDeletedScimConnection",
+      "type": "function",
+      "name": "cleanupExternalIdentitiesForDeletedScimConnection",
+      "filePath": "src/scim.ts",
+      "lineRange": [
+        269,
+        305
+      ],
+      "summary": "Exported function cleanupExternalIdentitiesForDeletedScimConnection implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/scim.ts:deleteScimProvisionedAccess",
+      "type": "function",
+      "name": "deleteScimProvisionedAccess",
+      "filePath": "src/scim.ts",
+      "lineRange": [
+        307,
+        343
+      ],
+      "summary": "Exported function deleteScimProvisionedAccess implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/sso.ts",
+      "type": "file",
+      "name": "sso.ts",
+      "filePath": "src/sso.ts",
+      "summary": "Service module implementing core logical behaviors for sso.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/sso.ts:buildOrganizationSsoProviderId",
+      "type": "function",
+      "name": "buildOrganizationSsoProviderId",
+      "filePath": "src/sso.ts",
+      "lineRange": [
+        51,
+        53
+      ],
+      "summary": "Exported function buildOrganizationSsoProviderId implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/sso.ts:getOrganizationSsoSignInPath",
+      "type": "function",
+      "name": "getOrganizationSsoSignInPath",
+      "filePath": "src/sso.ts",
+      "lineRange": [
+        55,
+        57
+      ],
+      "summary": "Exported function getOrganizationSsoSignInPath implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/sso.ts:getSsoAcsUrl",
+      "type": "function",
+      "name": "getSsoAcsUrl",
+      "filePath": "src/sso.ts",
+      "lineRange": [
+        59,
+        61
+      ],
+      "summary": "Exported function getSsoAcsUrl implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/sso.ts:getSsoMetadataUrl",
+      "type": "function",
+      "name": "getSsoMetadataUrl",
+      "filePath": "src/sso.ts",
+      "lineRange": [
+        63,
+        65
+      ],
+      "summary": "Exported function getSsoMetadataUrl implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/sso.ts:getSsoOidcRedirectUrl",
+      "type": "function",
+      "name": "getSsoOidcRedirectUrl",
+      "filePath": "src/sso.ts",
+      "lineRange": [
+        67,
+        69
+      ],
+      "summary": "Exported function getSsoOidcRedirectUrl implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/sso.ts:getOidcDiscoveryUrl",
+      "type": "function",
+      "name": "getOidcDiscoveryUrl",
+      "filePath": "src/sso.ts",
+      "lineRange": [
+        71,
+        73
+      ],
+      "summary": "Exported function getOidcDiscoveryUrl implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/sso.ts:normalizeIssuer",
+      "type": "function",
+      "name": "normalizeIssuer",
+      "filePath": "src/sso.ts",
+      "lineRange": [
+        75,
+        77
+      ],
+      "summary": "Exported function normalizeIssuer implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/sso.ts:resolveOidcEndpoints",
+      "type": "function",
+      "name": "resolveOidcEndpoints",
+      "filePath": "src/sso.ts",
+      "lineRange": [
+        79,
+        119
+      ],
+      "summary": "Exported function resolveOidcEndpoints implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/sso.ts:getSsoProviderByProviderId",
+      "type": "function",
+      "name": "getSsoProviderByProviderId",
+      "filePath": "src/sso.ts",
+      "lineRange": [
+        121,
+        129
+      ],
+      "summary": "Exported function getSsoProviderByProviderId implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/sso.ts:registerBetterAuthSsoProvider",
+      "type": "function",
+      "name": "registerBetterAuthSsoProvider",
+      "filePath": "src/sso.ts",
+      "lineRange": [
+        131,
+        192
+      ],
+      "summary": "Exported function registerBetterAuthSsoProvider implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/sso.ts:getOrganizationSsoConnection",
+      "type": "function",
+      "name": "getOrganizationSsoConnection",
+      "filePath": "src/sso.ts",
+      "lineRange": [
+        194,
+        202
+      ],
+      "summary": "Exported function getOrganizationSsoConnection implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/sso.ts:deleteOrganizationSsoConnection",
+      "type": "function",
+      "name": "deleteOrganizationSsoConnection",
+      "filePath": "src/sso.ts",
+      "lineRange": [
+        204,
+        249
+      ],
+      "summary": "Exported function deleteOrganizationSsoConnection implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/sso.ts:registerOrganizationSsoConnection",
+      "type": "function",
+      "name": "registerOrganizationSsoConnection",
+      "filePath": "src/sso.ts",
+      "lineRange": [
+        251,
+        347
+      ],
+      "summary": "Exported function registerOrganizationSsoConnection implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/sso.ts:startOrganizationSsoSignIn",
+      "type": "function",
+      "name": "startOrganizationSsoSignIn",
+      "filePath": "src/sso.ts",
+      "lineRange": [
+        349,
+        361
+      ],
+      "summary": "Exported function startOrganizationSsoSignIn implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/sso.ts:getSsoProviderForConnection",
+      "type": "function",
+      "name": "getSsoProviderForConnection",
+      "filePath": "src/sso.ts",
+      "lineRange": [
+        363,
+        374
+      ],
+      "summary": "Exported function getSsoProviderForConnection implementing logic inside sso.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/utils/email/send-email.ts",
+      "type": "file",
+      "name": "send-email.ts",
+      "filePath": "src/utils/email/send-email.ts",
+      "summary": "Service module implementing core logical behaviors for send email.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/utils/email/send-email.ts:sendEmail",
+      "type": "function",
+      "name": "sendEmail",
+      "filePath": "src/utils/email/send-email.ts",
+      "lineRange": [
+        6,
+        18
+      ],
+      "summary": "Exported function sendEmail implementing logic inside send-email.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/auth.ts",
+      "target": "function:src/auth.ts:localMcpResourceAliases",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "function:src/auth.ts:localMcpResourceAliases",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "function:src/auth.ts:hasRole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "function:src/auth.ts:hasRole",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "function:src/auth.ts:maybeString",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "function:src/auth.ts:maybeString",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "function:src/auth.ts:pickRemoteIdentity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "function:src/auth.ts:pickRemoteIdentity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "function:src/auth.ts:getInvitationOrigin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "function:src/auth.ts:getInvitationOrigin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "function:src/auth.ts:buildInvitationLink",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "function:src/auth.ts:buildInvitationLink",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "function:src/auth.ts:hasMcpScope",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "function:src/auth.ts:hasMcpScope",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "file:src/active-organization.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "file:src/api-keys.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "file:src/loops.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "file:src/organization-access.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "file:src/orgs.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/auth.ts",
+      "target": "file:src/utils/email/send-email.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:sanitizeApiBase",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:sanitizeApiBase",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:parseJson",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:parseJson",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:isRecord",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:isRecord",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:polarFetch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:polarFetch",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:polarFetchJson",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:polarFetchJson",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:assertPaywallConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:assertPaywallConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:getCustomerStateByExternalId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:getCustomerStateByExternalId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:getCustomerStateById",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:getCustomerStateById",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:getCustomerByEmail",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:getCustomerByEmail",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:linkCustomerExternalId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:linkCustomerExternalId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:hasRequiredBenefit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:hasRequiredBenefit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:evaluateCloudWorkerAccess",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:evaluateCloudWorkerAccess",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:normalizeRecurringInterval",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:normalizeRecurringInterval",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:normalizeRecurringIntervalCount",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:normalizeRecurringIntervalCount",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:isActiveSubscriptionStatus",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:isActiveSubscriptionStatus",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:toBillingSubscription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:toBillingSubscription",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:toBillingPriceFromSubscription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:toBillingPriceFromSubscription",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:listSubscriptionsByExternalCustomer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:listSubscriptionsByExternalCustomer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:getPrimarySubscriptionForCustomer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:getPrimarySubscriptionForCustomer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:listRecentOrdersByExternalCustomer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:listRecentOrdersByExternalCustomer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:getOrderInvoiceUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:getOrderInvoiceUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:toBillingInvoice",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:toBillingInvoice",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:listBillingInvoices",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:listBillingInvoices",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:createCustomerPortalUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:createCustomerPortalUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:extractAmountFromProductPrice",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:extractAmountFromProductPrice",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:extractBillingPriceFromProduct",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:extractBillingPriceFromProduct",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:getProductBillingPrice",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:getProductBillingPrice",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:requireCloudWorkerAccess",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:requireCloudWorkerAccess",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:getCloudWorkerBillingStatus",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:getCloudWorkerBillingStatus",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:getCloudWorkerAdminBillingStatus",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "function:src/billing/polar.ts:getCloudWorkerAdminBillingStatus",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/billing/polar.ts",
+      "target": "file:src/loops.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/env.ts",
+      "target": "function:src/env.ts:splitCsv",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/env.ts",
+      "target": "function:src/env.ts:splitCsv",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/env.ts",
+      "target": "function:src/env.ts:optionalString",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/env.ts",
+      "target": "function:src/env.ts:optionalString",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/env.ts",
+      "target": "function:src/env.ts:normalizeOrigin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/env.ts",
+      "target": "function:src/env.ts:normalizeOrigin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/env.ts",
+      "target": "file:src/CONSTS.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/loops.ts",
+      "target": "function:src/loops.ts:splitName",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/loops.ts",
+      "target": "function:src/loops.ts:splitName",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/loops.ts",
+      "target": "function:src/loops.ts:syncDenSignupContact",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/loops.ts",
+      "target": "function:src/loops.ts:syncDenSignupContact",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/loops.ts",
+      "target": "function:src/loops.ts:sendSubscribedToDenEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/loops.ts",
+      "target": "function:src/loops.ts:sendSubscribedToDenEvent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/loops.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "function:src/routes/auth/index.ts:rewriteAuthRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "function:src/routes/auth/index.ts:rewriteAuthRequest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "function:src/routes/auth/index.ts:rewriteMcpClientRegistrationRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "function:src/routes/auth/index.ts:rewriteMcpClientRegistrationRequest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "function:src/routes/auth/index.ts:rewriteMetadataOrigin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "function:src/routes/auth/index.ts:rewriteMetadataOrigin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "function:src/routes/auth/index.ts:requestOrigin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "function:src/routes/auth/index.ts:requestOrigin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "function:src/routes/auth/index.ts:readStoredClientScopes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "function:src/routes/auth/index.ts:readStoredClientScopes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "function:src/routes/auth/index.ts:ensureMcpClientScopes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "function:src/routes/auth/index.ts:ensureMcpClientScopes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "function:src/routes/auth/index.ts:registerAuthRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "function:src/routes/auth/index.ts:registerAuthRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "file:src/auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "file:src/routes/auth/desktop-handoff.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "file:src/routes/auth/scim.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/auth/index.ts",
+      "target": "file:src/session.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/auth/scim.ts",
+      "target": "function:src/routes/auth/scim.ts:readBearerToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/auth/scim.ts",
+      "target": "function:src/routes/auth/scim.ts:readBearerToken",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/auth/scim.ts",
+      "target": "function:src/routes/auth/scim.ts:logScimSyncWarning",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/auth/scim.ts",
+      "target": "function:src/routes/auth/scim.ts:logScimSyncWarning",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/auth/scim.ts",
+      "target": "function:src/routes/auth/scim.ts:syncScimMutationFromResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/auth/scim.ts",
+      "target": "function:src/routes/auth/scim.ts:syncScimMutationFromResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/auth/scim.ts",
+      "target": "function:src/routes/auth/scim.ts:registerScimAuthRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/auth/scim.ts",
+      "target": "function:src/routes/auth/scim.ts:registerScimAuthRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/auth/scim.ts",
+      "target": "file:src/auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/auth/scim.ts",
+      "target": "file:src/scim.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/auth/scim.ts",
+      "target": "file:src/session.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:isRecord",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:isRecord",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:maybeString",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:maybeString",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:maybeBoolean",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:maybeBoolean",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:asStringArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:asStringArray",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:parseConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:parseConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:getWebOrigin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:getWebOrigin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:requestDomainVerificationToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:requestDomainVerificationToken",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:serializeConnection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:serializeConnection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:buildConnectionPayload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:buildConnectionPayload",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:registerOrgSsoRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "function:src/routes/org/sso.ts:registerOrgSsoRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "file:src/auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "file:src/routes/org/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/sso.ts",
+      "target": "file:src/sso.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:decodeBase64Url",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:decodeBase64Url",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:buildOrganizationScimProviderId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:buildOrganizationScimProviderId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:maybeString",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:maybeString",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:asRecord",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:asRecord",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:asArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:asArray",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:safeEqualSecret",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:safeEqualSecret",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:resolveScimProviderFromBearerToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:resolveScimProviderFromBearerToken",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:syncExternalIdentityFromScimResource",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:syncExternalIdentityFromScimResource",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:syncExternalIdentityFromScimUserId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:syncExternalIdentityFromScimUserId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:deactivateExternalIdentityForScimUser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:deactivateExternalIdentityForScimUser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:getScimBaseUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:getScimBaseUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:getOrganizationScimConnection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:getOrganizationScimConnection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:rotateOrganizationScimToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:rotateOrganizationScimToken",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:deleteOrganizationScimConnection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:deleteOrganizationScimConnection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:cleanupExternalIdentitiesForDeletedScimConnection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:cleanupExternalIdentitiesForDeletedScimConnection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:deleteScimProvisionedAccess",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "function:src/scim.ts:deleteScimProvisionedAccess",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "file:src/auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/scim.ts",
+      "target": "file:src/orgs.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:buildOrganizationSsoProviderId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:buildOrganizationSsoProviderId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:getOrganizationSsoSignInPath",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:getOrganizationSsoSignInPath",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:getSsoAcsUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:getSsoAcsUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:getSsoMetadataUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:getSsoMetadataUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:getSsoOidcRedirectUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:getSsoOidcRedirectUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:getOidcDiscoveryUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:getOidcDiscoveryUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:normalizeIssuer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:normalizeIssuer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:resolveOidcEndpoints",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:resolveOidcEndpoints",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:getSsoProviderByProviderId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:getSsoProviderByProviderId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:registerBetterAuthSsoProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:registerBetterAuthSsoProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:getOrganizationSsoConnection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:getOrganizationSsoConnection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:deleteOrganizationSsoConnection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:deleteOrganizationSsoConnection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:registerOrganizationSsoConnection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:registerOrganizationSsoConnection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:startOrganizationSsoSignIn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:startOrganizationSsoSignIn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:getSsoProviderForConnection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "function:src/sso.ts:getSsoProviderForConnection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "file:src/auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/sso.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/utils/email/send-email.ts",
+      "target": "function:src/utils/email/send-email.ts:sendEmail",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/utils/email/send-email.ts",
+      "target": "function:src/utils/email/send-email.ts:sendEmail",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/utils/email/send-email.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

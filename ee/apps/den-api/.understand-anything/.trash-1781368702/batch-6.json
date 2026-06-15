@@ -1,0 +1,2737 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/routes/workers/activity.ts",
+      "type": "file",
+      "name": "activity.ts",
+      "filePath": "src/routes/workers/activity.ts",
+      "summary": "REST API endpoints governing background worker and runtime agent activity.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "worker",
+        "infrastructure"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/workers/activity.ts:registerWorkerActivityRoutes",
+      "type": "function",
+      "name": "registerWorkerActivityRoutes",
+      "filePath": "src/routes/workers/activity.ts",
+      "lineRange": [
+        28,
+        118
+      ],
+      "summary": "Exported function registerWorkerActivityRoutes implementing logic inside activity.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/workers/billing.ts",
+      "type": "file",
+      "name": "billing.ts",
+      "filePath": "src/routes/workers/billing.ts",
+      "summary": "REST API endpoints governing background worker and runtime agent billing.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "worker",
+        "infrastructure"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/workers/billing.ts:registerWorkerBillingRoutes",
+      "type": "function",
+      "name": "registerWorkerBillingRoutes",
+      "filePath": "src/routes/workers/billing.ts",
+      "lineRange": [
+        18,
+        54
+      ],
+      "summary": "Exported function registerWorkerBillingRoutes implementing logic inside billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/workers/core.ts",
+      "type": "file",
+      "name": "core.ts",
+      "filePath": "src/routes/workers/core.ts",
+      "summary": "REST API endpoints governing background worker and runtime agent core.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "worker",
+        "infrastructure"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/workers/core.ts:registerWorkerCoreRoutes",
+      "type": "function",
+      "name": "registerWorkerCoreRoutes",
+      "filePath": "src/routes/workers/core.ts",
+      "lineRange": [
+        127,
+        515
+      ],
+      "summary": "Exported function registerWorkerCoreRoutes implementing logic inside core.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/workers/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "src/routes/workers/index.ts",
+      "summary": "REST API endpoints governing background worker and runtime agent index.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "worker",
+        "infrastructure"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/workers/index.ts:registerWorkerRoutes",
+      "type": "function",
+      "name": "registerWorkerRoutes",
+      "filePath": "src/routes/workers/index.ts",
+      "lineRange": [
+        8,
+        13
+      ],
+      "summary": "Exported function registerWorkerRoutes implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/routes/workers/runtime.ts",
+      "type": "file",
+      "name": "runtime.ts",
+      "filePath": "src/routes/workers/runtime.ts",
+      "summary": "REST API endpoints governing background worker and runtime agent runtime.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "worker",
+        "infrastructure"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/workers/runtime.ts:registerWorkerRuntimeRoutes",
+      "type": "function",
+      "name": "registerWorkerRuntimeRoutes",
+      "filePath": "src/routes/workers/runtime.ts",
+      "lineRange": [
+        11,
+        115
+      ],
+      "summary": "Exported function registerWorkerRuntimeRoutes implementing logic inside runtime.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/workers/shared.ts",
+      "type": "file",
+      "name": "shared.ts",
+      "filePath": "src/routes/workers/shared.ts",
+      "summary": "REST API endpoints governing background worker and runtime agent shared.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "worker",
+        "infrastructure"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:token",
+      "type": "function",
+      "name": "token",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        60,
+        60
+      ],
+      "summary": "Exported function token implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:parseWorkerIdParam",
+      "type": "function",
+      "name": "parseWorkerIdParam",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        62,
+        64
+      ],
+      "summary": "Exported function parseWorkerIdParam implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:parseUserId",
+      "type": "function",
+      "name": "parseUserId",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        66,
+        68
+      ],
+      "summary": "Exported function parseUserId implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:isRecord",
+      "type": "function",
+      "name": "isRecord",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        70,
+        72
+      ],
+      "summary": "Exported function isRecord implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:normalizeUrl",
+      "type": "function",
+      "name": "normalizeUrl",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        74,
+        76
+      ],
+      "summary": "Exported function normalizeUrl implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:parseWorkspaceSelection",
+      "type": "function",
+      "name": "parseWorkspaceSelection",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        78,
+        104
+      ],
+      "summary": "Exported function parseWorkspaceSelection implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:resolveConnectUrlFromWorker",
+      "type": "function",
+      "name": "resolveConnectUrlFromWorker",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        106,
+        134
+      ],
+      "summary": "Exported function resolveConnectUrlFromWorker implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:getConnectUrlCandidates",
+      "type": "function",
+      "name": "getConnectUrlCandidates",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        136,
+        151
+      ],
+      "summary": "Exported function getConnectUrlCandidates implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:readBearerToken",
+      "type": "function",
+      "name": "readBearerToken",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        153,
+        160
+      ],
+      "summary": "Exported function readBearerToken implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:parseHeartbeatTimestamp",
+      "type": "function",
+      "name": "parseHeartbeatTimestamp",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        162,
+        171
+      ],
+      "summary": "Exported function parseHeartbeatTimestamp implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:newerDate",
+      "type": "function",
+      "name": "newerDate",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        173,
+        181
+      ],
+      "summary": "Exported function newerDate implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:resolveConnectUrlFromCandidates",
+      "type": "function",
+      "name": "resolveConnectUrlFromCandidates",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        183,
+        192
+      ],
+      "summary": "Exported function resolveConnectUrlFromCandidates implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:getWorkerRuntimeAccess",
+      "type": "function",
+      "name": "getWorkerRuntimeAccess",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        194,
+        212
+      ],
+      "summary": "Exported function getWorkerRuntimeAccess implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:fetchWorkerRuntimeJson",
+      "type": "function",
+      "name": "fetchWorkerRuntimeJson",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        214,
+        264
+      ],
+      "summary": "Exported function fetchWorkerRuntimeJson implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:countUserCloudWorkers",
+      "type": "function",
+      "name": "countUserCloudWorkers",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        266,
+        274
+      ],
+      "summary": "Exported function countUserCloudWorkers implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:getLatestWorkerInstance",
+      "type": "function",
+      "name": "getLatestWorkerInstance",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        276,
+        285
+      ],
+      "summary": "Exported function getLatestWorkerInstance implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:toInstanceResponse",
+      "type": "function",
+      "name": "toInstanceResponse",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        287,
+        300
+      ],
+      "summary": "Exported function toInstanceResponse implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:toWorkerResponse",
+      "type": "function",
+      "name": "toWorkerResponse",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        302,
+        320
+      ],
+      "summary": "Exported function toWorkerResponse implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:continueCloudProvisioning",
+      "type": "function",
+      "name": "continueCloudProvisioning",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        322,
+        360
+      ],
+      "summary": "Exported function continueCloudProvisioning implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:requireCloudAccessOrPayment",
+      "type": "function",
+      "name": "requireCloudAccessOrPayment",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        362,
+        368
+      ],
+      "summary": "Exported function requireCloudAccessOrPayment implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:getWorkerTokensAndConnect",
+      "type": "function",
+      "name": "getWorkerTokensAndConnect",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        370,
+        403
+      ],
+      "summary": "Exported function getWorkerTokensAndConnect implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:deleteWorkerCascade",
+      "type": "function",
+      "name": "deleteWorkerCascade",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        405,
+        428
+      ],
+      "summary": "Exported function deleteWorkerCascade implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/workers/shared.ts:getWorkerByIdForOrg",
+      "type": "function",
+      "name": "getWorkerByIdForOrg",
+      "filePath": "src/routes/workers/shared.ts",
+      "lineRange": [
+        430,
+        438
+      ],
+      "summary": "Exported function getWorkerByIdForOrg implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/workers/daytona.ts",
+      "type": "file",
+      "name": "daytona.ts",
+      "filePath": "src/workers/daytona.ts",
+      "summary": "Provisioning client and runtime manager for worker containers: daytona.",
+      "tags": [
+        "worker",
+        "infrastructure",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:sleep",
+      "type": "function",
+      "name": "sleep",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        30,
+        30
+      ],
+      "summary": "Exported function sleep implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:slug",
+      "type": "function",
+      "name": "slug",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        34,
+        39
+      ],
+      "summary": "Exported function slug implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:shellQuote",
+      "type": "function",
+      "name": "shellQuote",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        41,
+        43
+      ],
+      "summary": "Exported function shellQuote implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:createDaytonaClient",
+      "type": "function",
+      "name": "createDaytonaClient",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        45,
+        51
+      ],
+      "summary": "Exported function createDaytonaClient implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:daytonaApiUrl",
+      "type": "function",
+      "name": "daytonaApiUrl",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        53,
+        55
+      ],
+      "summary": "Exported function daytonaApiUrl implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:readDaytonaSandboxListPage",
+      "type": "function",
+      "name": "readDaytonaSandboxListPage",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        57,
+        81
+      ],
+      "summary": "Exported function readDaytonaSandboxListPage implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:listDaytonaSandboxIdsByLabels",
+      "type": "function",
+      "name": "listDaytonaSandboxIdsByLabels",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        83,
+        117
+      ],
+      "summary": "Exported function listDaytonaSandboxIdsByLabels implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:normalizedSignedPreviewExpirySeconds",
+      "type": "function",
+      "name": "normalizedSignedPreviewExpirySeconds",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        119,
+        124
+      ],
+      "summary": "Exported function normalizedSignedPreviewExpirySeconds implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:signedPreviewRefreshAt",
+      "type": "function",
+      "name": "signedPreviewRefreshAt",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        126,
+        130
+      ],
+      "summary": "Exported function signedPreviewRefreshAt implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:workerProxyUrl",
+      "type": "function",
+      "name": "workerProxyUrl",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        132,
+        134
+      ],
+      "summary": "Exported function workerProxyUrl implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:workerActivityHeartbeatUrl",
+      "type": "function",
+      "name": "workerActivityHeartbeatUrl",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        136,
+        139
+      ],
+      "summary": "Exported function workerActivityHeartbeatUrl implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:assertDaytonaConfig",
+      "type": "function",
+      "name": "assertDaytonaConfig",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        141,
+        145
+      ],
+      "summary": "Exported function assertDaytonaConfig implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:workerHint",
+      "type": "function",
+      "name": "workerHint",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        147,
+        149
+      ],
+      "summary": "Exported function workerHint implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:sandboxLabels",
+      "type": "function",
+      "name": "sandboxLabels",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        151,
+        156
+      ],
+      "summary": "Exported function sandboxLabels implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:sandboxName",
+      "type": "function",
+      "name": "sandboxName",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        158,
+        162
+      ],
+      "summary": "Exported function sandboxName implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:sharedVolumeName",
+      "type": "function",
+      "name": "sharedVolumeName",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        164,
+        166
+      ],
+      "summary": "Exported function sharedVolumeName implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:workerVolumeRootSubpath",
+      "type": "function",
+      "name": "workerVolumeRootSubpath",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        168,
+        170
+      ],
+      "summary": "Exported function workerVolumeRootSubpath implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:workspaceVolumeSubpath",
+      "type": "function",
+      "name": "workspaceVolumeSubpath",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        172,
+        174
+      ],
+      "summary": "Exported function workspaceVolumeSubpath implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:dataVolumeSubpath",
+      "type": "function",
+      "name": "dataVolumeSubpath",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        176,
+        178
+      ],
+      "summary": "Exported function dataVolumeSubpath implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:sharedVolumeMounts",
+      "type": "function",
+      "name": "sharedVolumeMounts",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        180,
+        193
+      ],
+      "summary": "Exported function sharedVolumeMounts implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:buildOpenWorkStartCommand",
+      "type": "function",
+      "name": "buildOpenWorkStartCommand",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        195,
+        255
+      ],
+      "summary": "Exported function buildOpenWorkStartCommand implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:waitForVolumeReady",
+      "type": "function",
+      "name": "waitForVolumeReady",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        257,
+        269
+      ],
+      "summary": "Exported function waitForVolumeReady implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:buildVolumeCleanupCommand",
+      "type": "function",
+      "name": "buildVolumeCleanupCommand",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        271,
+        289
+      ],
+      "summary": "Exported function buildVolumeCleanupCommand implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:cleanupWorkerDataOnDaytona",
+      "type": "function",
+      "name": "cleanupWorkerDataOnDaytona",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        291,
+        353
+      ],
+      "summary": "Exported function cleanupWorkerDataOnDaytona implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:waitForHealth",
+      "type": "function",
+      "name": "waitForHealth",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        355,
+        403
+      ],
+      "summary": "Exported function waitForHealth implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:upsertDaytonaSandbox",
+      "type": "function",
+      "name": "upsertDaytonaSandbox",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        405,
+        445
+      ],
+      "summary": "Exported function upsertDaytonaSandbox implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:getDaytonaSandboxRecord",
+      "type": "function",
+      "name": "getDaytonaSandboxRecord",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        447,
+        455
+      ],
+      "summary": "Exported function getDaytonaSandboxRecord implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:refreshDaytonaSignedPreview",
+      "type": "function",
+      "name": "refreshDaytonaSignedPreview",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        457,
+        488
+      ],
+      "summary": "Exported function refreshDaytonaSignedPreview implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:getDaytonaSignedPreviewForProxy",
+      "type": "function",
+      "name": "getDaytonaSignedPreviewForProxy",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        490,
+        502
+      ],
+      "summary": "Exported function getDaytonaSignedPreviewForProxy implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:provisionWorkerOnDaytona",
+      "type": "function",
+      "name": "provisionWorkerOnDaytona",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        504,
+        598
+      ],
+      "summary": "Exported function provisionWorkerOnDaytona implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/workers/daytona.ts:deprovisionWorkerOnDaytona",
+      "type": "function",
+      "name": "deprovisionWorkerOnDaytona",
+      "filePath": "src/workers/daytona.ts",
+      "lineRange": [
+        600,
+        633
+      ],
+      "summary": "Exported function deprovisionWorkerOnDaytona implementing logic inside daytona.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/workers/provisioner.ts",
+      "type": "file",
+      "name": "provisioner.ts",
+      "filePath": "src/workers/provisioner.ts",
+      "summary": "Provisioning client and runtime manager for worker containers: provisioner.",
+      "tags": [
+        "worker",
+        "infrastructure",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/workers/provisioner.ts:sleep",
+      "type": "function",
+      "name": "sleep",
+      "filePath": "src/workers/provisioner.ts",
+      "lineRange": [
+        56,
+        56
+      ],
+      "summary": "Exported function sleep implementing logic inside provisioner.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/provisioner.ts:slug",
+      "type": "function",
+      "name": "slug",
+      "filePath": "src/workers/provisioner.ts",
+      "lineRange": [
+        58,
+        63
+      ],
+      "summary": "Exported function slug implementing logic inside provisioner.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/provisioner.ts:hostFromUrl",
+      "type": "function",
+      "name": "hostFromUrl",
+      "filePath": "src/workers/provisioner.ts",
+      "lineRange": [
+        65,
+        75
+      ],
+      "summary": "Exported function hostFromUrl implementing logic inside provisioner.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/provisioner.ts:renderRequest",
+      "type": "function",
+      "name": "renderRequest",
+      "filePath": "src/workers/provisioner.ts",
+      "lineRange": [
+        77,
+        106
+      ],
+      "summary": "Exported function renderRequest implementing logic inside provisioner.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/workers/provisioner.ts:waitForDeployLive",
+      "type": "function",
+      "name": "waitForDeployLive",
+      "filePath": "src/workers/provisioner.ts",
+      "lineRange": [
+        108,
+        133
+      ],
+      "summary": "Exported function waitForDeployLive implementing logic inside provisioner.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/workers/provisioner.ts:waitForHealth",
+      "type": "function",
+      "name": "waitForHealth",
+      "filePath": "src/workers/provisioner.ts",
+      "lineRange": [
+        135,
+        155
+      ],
+      "summary": "Exported function waitForHealth implementing logic inside provisioner.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/workers/provisioner.ts:listRenderServices",
+      "type": "function",
+      "name": "listRenderServices",
+      "filePath": "src/workers/provisioner.ts",
+      "lineRange": [
+        157,
+        189
+      ],
+      "summary": "Exported function listRenderServices implementing logic inside provisioner.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/workers/provisioner.ts:attachRenderCustomDomain",
+      "type": "function",
+      "name": "attachRenderCustomDomain",
+      "filePath": "src/workers/provisioner.ts",
+      "lineRange": [
+        191,
+        237
+      ],
+      "summary": "Exported function attachRenderCustomDomain implementing logic inside provisioner.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/workers/provisioner.ts:assertRenderConfig",
+      "type": "function",
+      "name": "assertRenderConfig",
+      "filePath": "src/workers/provisioner.ts",
+      "lineRange": [
+        239,
+        246
+      ],
+      "summary": "Exported function assertRenderConfig implementing logic inside provisioner.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/provisioner.ts:provisionWorkerOnRender",
+      "type": "function",
+      "name": "provisionWorkerOnRender",
+      "filePath": "src/workers/provisioner.ts",
+      "lineRange": [
+        248,
+        333
+      ],
+      "summary": "Exported function provisionWorkerOnRender implementing logic inside provisioner.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/workers/provisioner.ts:provisionWorker",
+      "type": "function",
+      "name": "provisionWorker",
+      "filePath": "src/workers/provisioner.ts",
+      "lineRange": [
+        335,
+        353
+      ],
+      "summary": "Exported function provisionWorker implementing logic inside provisioner.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/provisioner.ts:deprovisionWorker",
+      "type": "function",
+      "name": "deprovisionWorker",
+      "filePath": "src/workers/provisioner.ts",
+      "lineRange": [
+        355,
+        406
+      ],
+      "summary": "Exported function deprovisionWorker implementing logic inside provisioner.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/workers/vanity-domain.ts",
+      "type": "file",
+      "name": "vanity-domain.ts",
+      "filePath": "src/workers/vanity-domain.ts",
+      "summary": "Provisioning client and runtime manager for worker containers: vanity domain.",
+      "tags": [
+        "worker",
+        "infrastructure",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/workers/vanity-domain.ts:normalizeUrl",
+      "type": "function",
+      "name": "normalizeUrl",
+      "filePath": "src/workers/vanity-domain.ts",
+      "lineRange": [
+        1,
+        3
+      ],
+      "summary": "Exported function normalizeUrl implementing logic inside vanity-domain.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/vanity-domain.ts:slug",
+      "type": "function",
+      "name": "slug",
+      "filePath": "src/workers/vanity-domain.ts",
+      "lineRange": [
+        5,
+        11
+      ],
+      "summary": "Exported function slug implementing logic inside vanity-domain.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/vanity-domain.ts:splitHostname",
+      "type": "function",
+      "name": "splitHostname",
+      "filePath": "src/workers/vanity-domain.ts",
+      "lineRange": [
+        13,
+        29
+      ],
+      "summary": "Exported function splitHostname implementing logic inside vanity-domain.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/vanity-domain.ts:hostFromUrl",
+      "type": "function",
+      "name": "hostFromUrl",
+      "filePath": "src/workers/vanity-domain.ts",
+      "lineRange": [
+        31,
+        37
+      ],
+      "summary": "Exported function hostFromUrl implementing logic inside vanity-domain.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/vanity-domain.ts:withVercelScope",
+      "type": "function",
+      "name": "withVercelScope",
+      "filePath": "src/workers/vanity-domain.ts",
+      "lineRange": [
+        39,
+        46
+      ],
+      "summary": "Exported function withVercelScope implementing logic inside vanity-domain.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/vanity-domain.ts:vercelRequest",
+      "type": "function",
+      "name": "vercelRequest",
+      "filePath": "src/workers/vanity-domain.ts",
+      "lineRange": [
+        55,
+        93
+      ],
+      "summary": "Exported function vercelRequest implementing logic inside vanity-domain.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/workers/vanity-domain.ts:customDomainForWorker",
+      "type": "function",
+      "name": "customDomainForWorker",
+      "filePath": "src/workers/vanity-domain.ts",
+      "lineRange": [
+        95,
+        107
+      ],
+      "summary": "Exported function customDomainForWorker implementing logic inside vanity-domain.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/workers/vanity-domain.ts:ensureVercelDnsRecord",
+      "type": "function",
+      "name": "ensureVercelDnsRecord",
+      "filePath": "src/workers/vanity-domain.ts",
+      "lineRange": [
+        109,
+        183
+      ],
+      "summary": "Exported function ensureVercelDnsRecord implementing logic inside vanity-domain.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/routes/workers/activity.ts",
+      "target": "function:src/routes/workers/activity.ts:registerWorkerActivityRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/activity.ts",
+      "target": "function:src/routes/workers/activity.ts:registerWorkerActivityRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/activity.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/activity.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/activity.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/activity.ts",
+      "target": "file:src/routes/workers/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/billing.ts",
+      "target": "function:src/routes/workers/billing.ts:registerWorkerBillingRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/billing.ts",
+      "target": "function:src/routes/workers/billing.ts:registerWorkerBillingRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/billing.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/billing.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/billing.ts",
+      "target": "file:src/routes/workers/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/core.ts",
+      "target": "function:src/routes/workers/core.ts:registerWorkerCoreRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/core.ts",
+      "target": "function:src/routes/workers/core.ts:registerWorkerCoreRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/core.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/core.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/core.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/core.ts",
+      "target": "file:src/organization-limits.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/core.ts",
+      "target": "file:src/routes/workers/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/core.ts",
+      "target": "file:src/user.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/index.ts",
+      "target": "function:src/routes/workers/index.ts:registerWorkerRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/index.ts",
+      "target": "function:src/routes/workers/index.ts:registerWorkerRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/index.ts",
+      "target": "file:src/routes/workers/activity.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/index.ts",
+      "target": "file:src/routes/workers/billing.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/index.ts",
+      "target": "file:src/routes/workers/core.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/index.ts",
+      "target": "file:src/routes/workers/runtime.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/index.ts",
+      "target": "file:src/routes/workers/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/runtime.ts",
+      "target": "function:src/routes/workers/runtime.ts:registerWorkerRuntimeRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/runtime.ts",
+      "target": "function:src/routes/workers/runtime.ts:registerWorkerRuntimeRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/runtime.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/runtime.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/runtime.ts",
+      "target": "file:src/routes/workers/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:token",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:token",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:parseWorkerIdParam",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:parseWorkerIdParam",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:parseUserId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:parseUserId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:isRecord",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:isRecord",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:normalizeUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:normalizeUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:parseWorkspaceSelection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:parseWorkspaceSelection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:resolveConnectUrlFromWorker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:resolveConnectUrlFromWorker",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:getConnectUrlCandidates",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:getConnectUrlCandidates",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:readBearerToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:readBearerToken",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:parseHeartbeatTimestamp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:parseHeartbeatTimestamp",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:newerDate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:newerDate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:resolveConnectUrlFromCandidates",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:resolveConnectUrlFromCandidates",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:getWorkerRuntimeAccess",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:getWorkerRuntimeAccess",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:fetchWorkerRuntimeJson",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:fetchWorkerRuntimeJson",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:countUserCloudWorkers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:countUserCloudWorkers",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:getLatestWorkerInstance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:getLatestWorkerInstance",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:toInstanceResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:toInstanceResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:toWorkerResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:toWorkerResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:continueCloudProvisioning",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:continueCloudProvisioning",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:requireCloudAccessOrPayment",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:requireCloudAccessOrPayment",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:getWorkerTokensAndConnect",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:getWorkerTokensAndConnect",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:deleteWorkerCascade",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:deleteWorkerCascade",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:getWorkerByIdForOrg",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "function:src/routes/workers/shared.ts:getWorkerByIdForOrg",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "file:src/billing/polar.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "file:src/session.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "file:src/workers/provisioner.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/workers/shared.ts",
+      "target": "file:src/workers/vanity-domain.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:sleep",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:sleep",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:slug",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:slug",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:shellQuote",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:shellQuote",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:createDaytonaClient",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:createDaytonaClient",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:daytonaApiUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:daytonaApiUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:readDaytonaSandboxListPage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:readDaytonaSandboxListPage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:listDaytonaSandboxIdsByLabels",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:listDaytonaSandboxIdsByLabels",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:normalizedSignedPreviewExpirySeconds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:normalizedSignedPreviewExpirySeconds",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:signedPreviewRefreshAt",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:signedPreviewRefreshAt",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:workerProxyUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:workerProxyUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:workerActivityHeartbeatUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:workerActivityHeartbeatUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:assertDaytonaConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:assertDaytonaConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:workerHint",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:workerHint",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:sandboxLabels",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:sandboxLabels",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:sandboxName",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:sandboxName",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:sharedVolumeName",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:sharedVolumeName",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:workerVolumeRootSubpath",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:workerVolumeRootSubpath",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:workspaceVolumeSubpath",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:workspaceVolumeSubpath",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:dataVolumeSubpath",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:dataVolumeSubpath",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:sharedVolumeMounts",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:sharedVolumeMounts",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:buildOpenWorkStartCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:buildOpenWorkStartCommand",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:waitForVolumeReady",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:waitForVolumeReady",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:buildVolumeCleanupCommand",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:buildVolumeCleanupCommand",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:cleanupWorkerDataOnDaytona",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:cleanupWorkerDataOnDaytona",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:waitForHealth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:waitForHealth",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:upsertDaytonaSandbox",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:upsertDaytonaSandbox",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:getDaytonaSandboxRecord",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:getDaytonaSandboxRecord",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:refreshDaytonaSignedPreview",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:refreshDaytonaSignedPreview",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:getDaytonaSignedPreviewForProxy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:getDaytonaSignedPreviewForProxy",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:provisionWorkerOnDaytona",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:provisionWorkerOnDaytona",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:deprovisionWorkerOnDaytona",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "function:src/workers/daytona.ts:deprovisionWorkerOnDaytona",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/workers/daytona.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:sleep",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:sleep",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:slug",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:slug",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:hostFromUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:hostFromUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:renderRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:renderRequest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:waitForDeployLive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:waitForDeployLive",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:waitForHealth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:waitForHealth",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:listRenderServices",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:listRenderServices",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:attachRenderCustomDomain",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:attachRenderCustomDomain",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:assertRenderConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:assertRenderConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:provisionWorkerOnRender",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:provisionWorkerOnRender",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:provisionWorker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:provisionWorker",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:deprovisionWorker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "function:src/workers/provisioner.ts:deprovisionWorker",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "file:src/workers/daytona.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/workers/provisioner.ts",
+      "target": "file:src/workers/vanity-domain.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/workers/vanity-domain.ts",
+      "target": "function:src/workers/vanity-domain.ts:normalizeUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/vanity-domain.ts",
+      "target": "function:src/workers/vanity-domain.ts:normalizeUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/vanity-domain.ts",
+      "target": "function:src/workers/vanity-domain.ts:slug",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/vanity-domain.ts",
+      "target": "function:src/workers/vanity-domain.ts:slug",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/vanity-domain.ts",
+      "target": "function:src/workers/vanity-domain.ts:splitHostname",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/vanity-domain.ts",
+      "target": "function:src/workers/vanity-domain.ts:splitHostname",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/vanity-domain.ts",
+      "target": "function:src/workers/vanity-domain.ts:hostFromUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/vanity-domain.ts",
+      "target": "function:src/workers/vanity-domain.ts:hostFromUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/vanity-domain.ts",
+      "target": "function:src/workers/vanity-domain.ts:withVercelScope",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/vanity-domain.ts",
+      "target": "function:src/workers/vanity-domain.ts:withVercelScope",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/vanity-domain.ts",
+      "target": "function:src/workers/vanity-domain.ts:vercelRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/vanity-domain.ts",
+      "target": "function:src/workers/vanity-domain.ts:vercelRequest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/vanity-domain.ts",
+      "target": "function:src/workers/vanity-domain.ts:customDomainForWorker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/vanity-domain.ts",
+      "target": "function:src/workers/vanity-domain.ts:customDomainForWorker",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/workers/vanity-domain.ts",
+      "target": "function:src/workers/vanity-domain.ts:ensureVercelDnsRecord",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/workers/vanity-domain.ts",
+      "target": "function:src/workers/vanity-domain.ts:ensureVercelDnsRecord",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

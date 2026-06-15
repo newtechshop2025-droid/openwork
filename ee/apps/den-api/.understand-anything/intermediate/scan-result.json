@@ -1,0 +1,1039 @@
+{
+  "name": "@openwork-ee/den-api",
+  "description": "Hono-based Den control plane implementation containing full migrated Den API route surfaces.",
+  "languages": [
+    "markdown",
+    "typescript"
+  ],
+  "frameworks": [
+    "Hono",
+    "Better Auth",
+    "Stripe",
+    "Zod",
+    "Docker"
+  ],
+  "files": [
+    {
+      "path": ".understand-anything/.understandignore",
+      "language": "unknown",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 62,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/active-organization.ts",
+      "language": "typescript",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/admin-allowlist.ts",
+      "language": "typescript",
+      "sizeLines": 53,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/api-keys.ts",
+      "language": "typescript",
+      "sizeLines": 223,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/app.ts",
+      "language": "typescript",
+      "sizeLines": 229,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/auth.ts",
+      "language": "typescript",
+      "sizeLines": 475,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/billing/polar.ts",
+      "language": "typescript",
+      "sizeLines": 713,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/CONSTS.ts",
+      "language": "typescript",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/db.ts",
+      "language": "typescript",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/desktop-policies.ts",
+      "language": "typescript",
+      "sizeLines": 124,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/env.ts",
+      "language": "typescript",
+      "sizeLines": 330,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/generated/app-version.ts",
+      "language": "typescript",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/index.ts",
+      "language": "typescript",
+      "sizeLines": 3,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/inference.ts",
+      "language": "typescript",
+      "sizeLines": 579,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/llm/models-dev.ts",
+      "language": "typescript",
+      "sizeLines": 143,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/load-env.ts",
+      "language": "typescript",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/loops.ts",
+      "language": "typescript",
+      "sizeLines": 121,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/mcp/auth.ts",
+      "language": "typescript",
+      "sizeLines": 167,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/mcp/catalog.ts",
+      "language": "typescript",
+      "sizeLines": 220,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/mcp/index.ts",
+      "language": "typescript",
+      "sizeLines": 59,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/mcp/invoke.ts",
+      "language": "typescript",
+      "sizeLines": 103,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/mcp/policy.ts",
+      "language": "typescript",
+      "sizeLines": 80,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/mcp/README.md",
+      "language": "markdown",
+      "sizeLines": 72,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/middleware/admin.ts",
+      "language": "typescript",
+      "sizeLines": 36,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/middleware/current-user.ts",
+      "language": "typescript",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/middleware/index.ts",
+      "language": "typescript",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/middleware/member-teams.ts",
+      "language": "typescript",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/middleware/organization-context.ts",
+      "language": "typescript",
+      "sizeLines": 91,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/middleware/README.md",
+      "language": "markdown",
+      "sizeLines": 43,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/middleware/user-organizations.ts",
+      "language": "typescript",
+      "sizeLines": 94,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/middleware/validation.ts",
+      "language": "typescript",
+      "sizeLines": 36,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/openapi.ts",
+      "language": "typescript",
+      "sizeLines": 114,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/organization-access.ts",
+      "language": "typescript",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/organization-limits.ts",
+      "language": "typescript",
+      "sizeLines": 188,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/organization-member-hooks.ts",
+      "language": "typescript",
+      "sizeLines": 44,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/orgs.ts",
+      "language": "typescript",
+      "sizeLines": 1064,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/admin/index.ts",
+      "language": "typescript",
+      "sizeLines": 322,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/admin/README.md",
+      "language": "markdown",
+      "sizeLines": 21,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/routes/auth/desktop-handoff.ts",
+      "language": "typescript",
+      "sizeLines": 281,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/auth/index.ts",
+      "language": "typescript",
+      "sizeLines": 156,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/auth/README.md",
+      "language": "markdown",
+      "sizeLines": 25,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/routes/auth/scim.ts",
+      "language": "typescript",
+      "sizeLines": 254,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/me/index.ts",
+      "language": "typescript",
+      "sizeLines": 164,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/me/README.md",
+      "language": "markdown",
+      "sizeLines": 23,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/routes/org/api-keys.ts",
+      "language": "typescript",
+      "sizeLines": 328,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/billing.ts",
+      "language": "typescript",
+      "sizeLines": 221,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/core.ts",
+      "language": "typescript",
+      "sizeLines": 416,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/desktop-policies.ts",
+      "language": "typescript",
+      "sizeLines": 402,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/index.ts",
+      "language": "typescript",
+      "sizeLines": 80,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/inference.ts",
+      "language": "typescript",
+      "sizeLines": 123,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/invitations.ts",
+      "language": "typescript",
+      "sizeLines": 318,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/llm-providers.ts",
+      "language": "typescript",
+      "sizeLines": 1065,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/members.ts",
+      "language": "typescript",
+      "sizeLines": 138,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/plugin-system/access.ts",
+      "language": "typescript",
+      "sizeLines": 290,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/plugin-system/connector-cleanup.ts",
+      "language": "typescript",
+      "sizeLines": 58,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/plugin-system/contracts.ts",
+      "language": "typescript",
+      "sizeLines": 1012,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/plugin-system/github-app.ts",
+      "language": "typescript",
+      "sizeLines": 642,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/plugin-system/github-discovery.ts",
+      "language": "typescript",
+      "sizeLines": 519,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/plugin-system/index.ts",
+      "language": "typescript",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/plugin-system/routes.ts",
+      "language": "typescript",
+      "sizeLines": 1963,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/plugin-system/schemas.ts",
+      "language": "typescript",
+      "sizeLines": 916,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/plugin-system/store.ts",
+      "language": "typescript",
+      "sizeLines": 4270,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/README.md",
+      "language": "markdown",
+      "sizeLines": 42,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/routes/org/resources.ts",
+      "language": "typescript",
+      "sizeLines": 294,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/roles.ts",
+      "language": "typescript",
+      "sizeLines": 257,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/scim.ts",
+      "language": "typescript",
+      "sizeLines": 259,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/shared.ts",
+      "language": "typescript",
+      "sizeLines": 235,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/skills.ts",
+      "language": "typescript",
+      "sizeLines": 1158,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/sso.ts",
+      "language": "typescript",
+      "sizeLines": 524,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/org/teams.ts",
+      "language": "typescript",
+      "sizeLines": 331,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/README.md",
+      "language": "markdown",
+      "sizeLines": 23,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/routes/telemetry/index.ts",
+      "language": "typescript",
+      "sizeLines": 158,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/version/index.ts",
+      "language": "typescript",
+      "sizeLines": 27,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/version/README.md",
+      "language": "markdown",
+      "sizeLines": 3,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/routes/webhooks/github.ts",
+      "language": "typescript",
+      "sizeLines": 100,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/webhooks/index.ts",
+      "language": "typescript",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/webhooks/stripe.ts",
+      "language": "typescript",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/workers/activity.ts",
+      "language": "typescript",
+      "sizeLines": 118,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/workers/billing.ts",
+      "language": "typescript",
+      "sizeLines": 54,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/workers/core.ts",
+      "language": "typescript",
+      "sizeLines": 515,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/workers/index.ts",
+      "language": "typescript",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/workers/README.md",
+      "language": "markdown",
+      "sizeLines": 24,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/routes/workers/runtime.ts",
+      "language": "typescript",
+      "sizeLines": 115,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/routes/workers/shared.ts",
+      "language": "typescript",
+      "sizeLines": 438,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/scim.ts",
+      "language": "typescript",
+      "sizeLines": 343,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/server.ts",
+      "language": "typescript",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/session.ts",
+      "language": "typescript",
+      "sizeLines": 238,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/sso.ts",
+      "language": "typescript",
+      "sizeLines": 374,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/stripe-billing.ts",
+      "language": "typescript",
+      "sizeLines": 618,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/user.ts",
+      "language": "typescript",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/utils/email/send-email.ts",
+      "language": "typescript",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/version.ts",
+      "language": "typescript",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/workers/daytona.ts",
+      "language": "typescript",
+      "sizeLines": 633,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/workers/provisioner.ts",
+      "language": "typescript",
+      "sizeLines": 406,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/workers/vanity-domain.ts",
+      "language": "typescript",
+      "sizeLines": 183,
+      "fileCategory": "code"
+    }
+  ],
+  "totalFiles": 96,
+  "filteredByIgnore": 15,
+  "estimatedComplexity": "moderate",
+  "importMap": {
+    ".understand-anything/.understandignore": [],
+    "README.md": [],
+    "src/active-organization.ts": [
+      "src/db.ts"
+    ],
+    "src/admin-allowlist.ts": [
+      "src/db.ts"
+    ],
+    "src/api-keys.ts": [
+      "src/db.ts"
+    ],
+    "src/app.ts": [
+      "src/env.ts",
+      "src/load-env.ts",
+      "src/mcp/index.ts",
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/routes/admin/index.ts",
+      "src/routes/auth/index.ts",
+      "src/routes/me/index.ts",
+      "src/routes/org/index.ts",
+      "src/routes/telemetry/index.ts",
+      "src/routes/version/index.ts",
+      "src/routes/webhooks/index.ts",
+      "src/routes/workers/index.ts",
+      "src/session.ts"
+    ],
+    "src/auth.ts": [
+      "src/active-organization.ts",
+      "src/api-keys.ts",
+      "src/db.ts",
+      "src/env.ts",
+      "src/loops.ts",
+      "src/organization-access.ts",
+      "src/orgs.ts",
+      "src/utils/email/send-email.ts"
+    ],
+    "src/billing/polar.ts": [
+      "src/env.ts",
+      "src/loops.ts"
+    ],
+    "src/CONSTS.ts": [],
+    "src/db.ts": [
+      "src/env.ts"
+    ],
+    "src/desktop-policies.ts": [
+      "src/db.ts"
+    ],
+    "src/env.ts": [
+      "src/CONSTS.ts"
+    ],
+    "src/generated/app-version.ts": [],
+    "src/index.ts": [
+      "src/app.ts"
+    ],
+    "src/inference.ts": [
+      "src/db.ts",
+      "src/env.ts"
+    ],
+    "src/llm/models-dev.ts": [],
+    "src/load-env.ts": [],
+    "src/loops.ts": [
+      "src/env.ts"
+    ],
+    "src/mcp/auth.ts": [
+      "src/auth.ts",
+      "src/db.ts",
+      "src/env.ts"
+    ],
+    "src/mcp/catalog.ts": [
+      "src/mcp/policy.ts"
+    ],
+    "src/mcp/index.ts": [
+      "src/mcp/auth.ts",
+      "src/mcp/catalog.ts",
+      "src/mcp/invoke.ts"
+    ],
+    "src/mcp/invoke.ts": [
+      "src/mcp/auth.ts",
+      "src/mcp/catalog.ts",
+      "src/mcp/policy.ts",
+      "src/session.ts"
+    ],
+    "src/mcp/policy.ts": [],
+    "src/mcp/README.md": [],
+    "src/middleware/admin.ts": [
+      "src/admin-allowlist.ts",
+      "src/db.ts",
+      "src/session.ts"
+    ],
+    "src/middleware/current-user.ts": [
+      "src/session.ts"
+    ],
+    "src/middleware/index.ts": [],
+    "src/middleware/member-teams.ts": [
+      "src/middleware/organization-context.ts",
+      "src/orgs.ts",
+      "src/session.ts"
+    ],
+    "src/middleware/organization-context.ts": [
+      "src/api-keys.ts",
+      "src/middleware/user-organizations.ts",
+      "src/orgs.ts",
+      "src/session.ts"
+    ],
+    "src/middleware/README.md": [],
+    "src/middleware/user-organizations.ts": [
+      "src/api-keys.ts",
+      "src/orgs.ts",
+      "src/session.ts"
+    ],
+    "src/middleware/validation.ts": [],
+    "src/openapi.ts": [],
+    "src/organization-access.ts": [],
+    "src/organization-limits.ts": [
+      "src/db.ts"
+    ],
+    "src/organization-member-hooks.ts": [
+      "src/db.ts",
+      "src/inference.ts",
+      "src/stripe-billing.ts"
+    ],
+    "src/orgs.ts": [
+      "src/db.ts",
+      "src/desktop-policies.ts",
+      "src/organization-access.ts",
+      "src/organization-limits.ts",
+      "src/organization-member-hooks.ts"
+    ],
+    "src/routes/admin/index.ts": [
+      "src/billing/polar.ts",
+      "src/db.ts",
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/session.ts"
+    ],
+    "src/routes/admin/README.md": [],
+    "src/routes/auth/desktop-handoff.ts": [
+      "src/db.ts",
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/session.ts"
+    ],
+    "src/routes/auth/index.ts": [
+      "src/auth.ts",
+      "src/db.ts",
+      "src/env.ts",
+      "src/openapi.ts",
+      "src/routes/auth/desktop-handoff.ts",
+      "src/routes/auth/scim.ts",
+      "src/session.ts"
+    ],
+    "src/routes/auth/README.md": [],
+    "src/routes/auth/scim.ts": [
+      "src/auth.ts",
+      "src/scim.ts",
+      "src/session.ts"
+    ],
+    "src/routes/me/index.ts": [
+      "src/desktop-policies.ts",
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/organization-limits.ts",
+      "src/orgs.ts",
+      "src/session.ts"
+    ],
+    "src/routes/me/README.md": [],
+    "src/routes/org/api-keys.ts": [
+      "src/api-keys.ts",
+      "src/auth.ts",
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/routes/org/shared.ts"
+    ],
+    "src/routes/org/billing.ts": [
+      "src/billing/polar.ts",
+      "src/env.ts",
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/routes/org/shared.ts",
+      "src/stripe-billing.ts",
+      "src/user.ts"
+    ],
+    "src/routes/org/core.ts": [
+      "src/auth.ts",
+      "src/db.ts",
+      "src/env.ts",
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/orgs.ts",
+      "src/routes/org/shared.ts",
+      "src/user.ts"
+    ],
+    "src/routes/org/desktop-policies.ts": [
+      "src/db.ts",
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/routes/org/shared.ts"
+    ],
+    "src/routes/org/index.ts": [
+      "src/middleware/user-organizations.ts",
+      "src/routes/org/api-keys.ts",
+      "src/routes/org/billing.ts",
+      "src/routes/org/core.ts",
+      "src/routes/org/desktop-policies.ts",
+      "src/routes/org/inference.ts",
+      "src/routes/org/invitations.ts",
+      "src/routes/org/llm-providers.ts",
+      "src/routes/org/members.ts",
+      "src/routes/org/plugin-system/routes.ts",
+      "src/routes/org/resources.ts",
+      "src/routes/org/roles.ts",
+      "src/routes/org/scim.ts",
+      "src/routes/org/shared.ts",
+      "src/routes/org/skills.ts",
+      "src/routes/org/sso.ts",
+      "src/routes/org/teams.ts"
+    ],
+    "src/routes/org/inference.ts": [
+      "src/inference.ts",
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/routes/org/shared.ts",
+      "src/stripe-billing.ts"
+    ],
+    "src/routes/org/invitations.ts": [
+      "src/db.ts",
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/organization-member-hooks.ts",
+      "src/orgs.ts",
+      "src/routes/org/shared.ts",
+      "src/stripe-billing.ts",
+      "src/utils/email/send-email.ts"
+    ],
+    "src/routes/org/llm-providers.ts": [
+      "src/db.ts",
+      "src/llm/models-dev.ts",
+      "src/middleware/index.ts",
+      "src/middleware/member-teams.ts",
+      "src/openapi.ts",
+      "src/routes/org/shared.ts"
+    ],
+    "src/routes/org/members.ts": [
+      "src/db.ts",
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/orgs.ts",
+      "src/routes/org/shared.ts"
+    ],
+    "src/routes/org/plugin-system/access.ts": [
+      "src/db.ts",
+      "src/orgs.ts",
+      "src/routes/org/shared.ts"
+    ],
+    "src/routes/org/plugin-system/connector-cleanup.ts": [],
+    "src/routes/org/plugin-system/contracts.ts": [
+      "src/routes/org/plugin-system/schemas.ts"
+    ],
+    "src/routes/org/plugin-system/github-app.ts": [],
+    "src/routes/org/plugin-system/github-discovery.ts": [],
+    "src/routes/org/plugin-system/index.ts": [],
+    "src/routes/org/plugin-system/routes.ts": [
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/routes/org/plugin-system/access.ts",
+      "src/routes/org/plugin-system/contracts.ts",
+      "src/routes/org/plugin-system/schemas.ts",
+      "src/routes/org/plugin-system/store.ts",
+      "src/routes/org/shared.ts"
+    ],
+    "src/routes/org/plugin-system/schemas.ts": [
+      "src/openapi.ts",
+      "src/routes/org/shared.ts"
+    ],
+    "src/routes/org/plugin-system/store.ts": [
+      "src/db.ts",
+      "src/env.ts",
+      "src/orgs.ts",
+      "src/routes/org/plugin-system/access.ts",
+      "src/routes/org/plugin-system/connector-cleanup.ts",
+      "src/routes/org/plugin-system/github-app.ts",
+      "src/routes/org/plugin-system/github-discovery.ts"
+    ],
+    "src/routes/org/README.md": [],
+    "src/routes/org/resources.ts": [
+      "src/db.ts",
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/routes/org/plugin-system/access.ts",
+      "src/routes/org/shared.ts"
+    ],
+    "src/routes/org/roles.ts": [
+      "src/db.ts",
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/orgs.ts",
+      "src/routes/org/shared.ts"
+    ],
+    "src/routes/org/scim.ts": [
+      "src/middleware/index.ts",
+      "src/routes/org/shared.ts",
+      "src/scim.ts"
+    ],
+    "src/routes/org/shared.ts": [
+      "src/env.ts",
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/session.ts"
+    ],
+    "src/routes/org/skills.ts": [
+      "src/db.ts",
+      "src/middleware/index.ts",
+      "src/middleware/member-teams.ts",
+      "src/openapi.ts",
+      "src/routes/org/shared.ts"
+    ],
+    "src/routes/org/sso.ts": [
+      "src/auth.ts",
+      "src/env.ts",
+      "src/middleware/index.ts",
+      "src/routes/org/shared.ts",
+      "src/sso.ts"
+    ],
+    "src/routes/org/teams.ts": [
+      "src/db.ts",
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/routes/org/shared.ts"
+    ],
+    "src/routes/README.md": [],
+    "src/routes/telemetry/index.ts": [
+      "src/db.ts",
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/session.ts"
+    ],
+    "src/routes/version/index.ts": [
+      "src/openapi.ts",
+      "src/version.ts"
+    ],
+    "src/routes/version/README.md": [],
+    "src/routes/webhooks/github.ts": [
+      "src/env.ts",
+      "src/openapi.ts",
+      "src/routes/org/plugin-system/contracts.ts",
+      "src/routes/org/plugin-system/schemas.ts",
+      "src/routes/org/plugin-system/store.ts"
+    ],
+    "src/routes/webhooks/index.ts": [
+      "src/routes/webhooks/github.ts",
+      "src/routes/webhooks/stripe.ts"
+    ],
+    "src/routes/webhooks/stripe.ts": [
+      "src/openapi.ts",
+      "src/stripe-billing.ts"
+    ],
+    "src/routes/workers/activity.ts": [
+      "src/db.ts",
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/routes/workers/shared.ts"
+    ],
+    "src/routes/workers/billing.ts": [
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/routes/workers/shared.ts"
+    ],
+    "src/routes/workers/core.ts": [
+      "src/db.ts",
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/organization-limits.ts",
+      "src/routes/workers/shared.ts",
+      "src/user.ts"
+    ],
+    "src/routes/workers/index.ts": [
+      "src/routes/workers/activity.ts",
+      "src/routes/workers/billing.ts",
+      "src/routes/workers/core.ts",
+      "src/routes/workers/runtime.ts",
+      "src/routes/workers/shared.ts"
+    ],
+    "src/routes/workers/README.md": [],
+    "src/routes/workers/runtime.ts": [
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/routes/workers/shared.ts"
+    ],
+    "src/routes/workers/shared.ts": [
+      "src/billing/polar.ts",
+      "src/db.ts",
+      "src/env.ts",
+      "src/middleware/index.ts",
+      "src/openapi.ts",
+      "src/session.ts",
+      "src/workers/provisioner.ts",
+      "src/workers/vanity-domain.ts"
+    ],
+    "src/scim.ts": [
+      "src/auth.ts",
+      "src/db.ts",
+      "src/env.ts",
+      "src/orgs.ts"
+    ],
+    "src/server.ts": [
+      "src/app.ts",
+      "src/env.ts"
+    ],
+    "src/session.ts": [
+      "src/api-keys.ts",
+      "src/auth.ts",
+      "src/db.ts"
+    ],
+    "src/sso.ts": [
+      "src/auth.ts",
+      "src/db.ts",
+      "src/env.ts"
+    ],
+    "src/stripe-billing.ts": [
+      "src/db.ts",
+      "src/env.ts",
+      "src/inference.ts"
+    ],
+    "src/user.ts": [],
+    "src/utils/email/send-email.ts": [
+      "src/env.ts"
+    ],
+    "src/version.ts": [
+      "src/generated/app-version.ts"
+    ],
+    "src/workers/daytona.ts": [
+      "src/db.ts",
+      "src/env.ts"
+    ],
+    "src/workers/provisioner.ts": [
+      "src/env.ts",
+      "src/workers/daytona.ts",
+      "src/workers/vanity-domain.ts"
+    ],
+    "src/workers/vanity-domain.ts": []
+  }
+}

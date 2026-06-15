@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
 import { once } from "node:events";
-import { mkdtemp, mkdir, realpath, rm } from "node:fs/promises";
+import { mkdtemp, mkdir, realpath, rm, cp } from "node:fs/promises";
 import { createServer } from "node:net";
-import { tmpdir } from "node:os";
+import { tmpdir, homedir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -87,6 +87,14 @@ const workspaceB = join(root, "ws-b");
 await mkdir(workspaceA, { recursive: true });
 await mkdir(workspaceB, { recursive: true });
 
+// Copy local sidecars if they exist to avoid downloading from GitHub in test environment
+const cacheSidecars = join(homedir(), ".openwork", "openwork-orchestrator", "sidecars");
+try {
+  await cp(cacheSidecars, join(dataDir, "sidecars"), { recursive: true });
+} catch {
+  // ignore
+}
+
 const daemonPort = await findFreePort();
 const opencodePort = await findFreePort();
 const daemonUrl = `http://127.0.0.1:${daemonPort}`;
@@ -114,6 +122,17 @@ const daemon = spawn(
     stdio: ["ignore", "pipe", "pipe"],
   },
 );
+
+let daemonStdout = "";
+let daemonStderr = "";
+daemon.stdout.setEncoding("utf8");
+daemon.stderr.setEncoding("utf8");
+daemon.stdout.on("data", (chunk) => {
+  daemonStdout += chunk;
+});
+daemon.stderr.on("data", (chunk) => {
+  daemonStderr += chunk;
+});
 
 try {
   await waitFor(`${daemonUrl}/health`);
@@ -149,7 +168,13 @@ try {
 } catch (error) {
   console.error(
     JSON.stringify(
-      { ok: false, error: error instanceof Error ? error.message : String(error), daemonUrl },
+      {
+        ok: false,
+        error: error instanceof Error ? error.message : String(error),
+        daemonUrl,
+        daemonStdout: daemonStdout.trim() || undefined,
+        daemonStderr: daemonStderr.trim() || undefined,
+      },
       null,
       2,
     ),
@@ -161,5 +186,8 @@ try {
     // ignore
   }
 } finally {
+  if (daemon.exitCode === null) {
+    daemon.kill("SIGTERM");
+  }
   await rm(root, { recursive: true, force: true });
 }

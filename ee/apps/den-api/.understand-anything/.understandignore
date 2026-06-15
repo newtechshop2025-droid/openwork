@@ -1,0 +1,9 @@
+# .understandignore - exclusions for den-api analysis
+node_modules/
+dist/
+test/
+scripts/
+.env
+.env.example
+package.json
+tsconfig.json

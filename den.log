@@ -1,0 +1,151 @@
+nohup: ignoring input
+$ node scripts/dev-local.mjs
+[den] Using existing MySQL at 127.0.0.1:3308
+[den] Syncing Den schema...
+$ pnpm run build:utils && tsup
+$ pnpm --dir ../utils run build
+$ tsup
+CLI Building entry: {"index":"src/index.ts","typeid":"src/typeid.ts"}
+CLI Using tsconfig: tsconfig.json
+CLI tsup v8.5.1
+CLI Using tsup config: /home/acer/openwork/ee/packages/utils/tsup.config.ts
+CLI Target: es2022
+CLI Cleaning output folder
+ESM Build start
+ESM dist/typeid.js 5.40 KB
+ESM dist/index.js  9.72 KB
+ESM ⚡️ Build success in 114ms
+DTS Build start
+DTS ⚡️ Build success in 3172ms
+DTS dist/index.d.ts  750.00 B
+DTS dist/typeid.d.ts 9.12 KB
+CLI Building entry: {"index":"src/index.ts","schema":"src/schema.ts","schema/auth":"src/schema/auth.ts","schema/desktop-policies":"src/schema/desktop-policies.ts","schema/inference":"src/schema/inference.ts","schema/org":"src/schema/org.ts","schema/sharables/skills":"src/schema/sharables/skills.ts","schema/subscriptions":"src/schema/subscriptions.ts","schema/teams":"src/schema/teams.ts","schema/workers":"src/schema/workers.ts","schema/system":"src/schema/system.ts","schema/telemetry":"src/schema/telemetry.ts","drizzle":"src/drizzle.ts"}
+CLI Using tsconfig: tsconfig.json
+CLI tsup v8.5.1
+CLI Using tsup config: /home/acer/openwork/ee/packages/den-db/tsup.config.ts
+CLI Target: es2022
+CLI Cleaning output folder
+ESM Build start
+DTS Build start
+ESM dist/schema/desktop-policies.js 10.49 KB
+ESM dist/schema/inference.js        17.48 KB
+ESM dist/schema/sharables/skills.js 12.38 KB
+ESM dist/schema/org.js              5.96 KB
+ESM dist/schema/subscriptions.js    7.87 KB
+ESM dist/index.js                   107.04 KB
+ESM dist/schema.js                  92.86 KB
+ESM dist/schema/teams.js            7.29 KB
+ESM dist/schema/auth.js             17.75 KB
+ESM dist/schema/telemetry.js        1.53 KB
+ESM dist/drizzle.js                 103.00 B
+ESM dist/schema/workers.js          5.00 KB
+ESM dist/schema/system.js           1.54 KB
+ESM ⚡️ Build success in 572ms
+DTS ⚡️ Build success in 12115ms
+DTS dist/drizzle.d.ts                 103.00 B
+DTS dist/schema/auth.d.ts             201.42 KB
+DTS dist/schema/desktop-policies.d.ts 21.65 KB
+DTS dist/schema/inference.d.ts        67.63 KB
+DTS dist/schema/org.d.ts              47.87 KB
+DTS dist/schema/sharables/skills.d.ts 32.27 KB
+DTS dist/schema/subscriptions.d.ts    22.59 KB
+DTS dist/schema/teams.d.ts            11.33 KB
+DTS dist/schema/workers.d.ts          30.38 KB
+DTS dist/schema/system.d.ts           8.01 KB
+DTS dist/schema/telemetry.d.ts        3.81 KB
+DTS dist/index.d.ts                   9.47 KB
+DTS dist/schema.d.ts                  271.92 KB
+Reading config file '/home/acer/openwork/ee/packages/den-db/drizzle.config.ts'
+[⣷] Pulling schema from database...
+[2K[1G[⣯] Pulling schema from database...
+[2K[1G[⣟] Pulling schema from database...
+[2K[1G[⡿] Pulling schema from database...
+[2K[1G[⢿] Pulling schema from database...
+[2K[1G[✓] Pulling schema from database...
+Reading schema files:
+/home/acer/openwork/ee/packages/den-db/src/schema.ts
+
+[✓] Changes applied
+[den] Allowed local web origins: http://localhost:3005,http://127.0.0.1:3005,http://0.0.0.0:3005,http://localhost:5173,http://127.0.0.1:5173,http://192.168.0.37:3005,http://192.168.0.141:3005,http://100.98.60.3:3005,http://172.23.0.1:3005,http://172.24.0.1:3005,http://172.26.0.1:3005,http://172.19.0.1:3005,http://192.168.32.1:3005,http://172.27.0.1:3005,http://192.168.48.1:3005,http://172.28.0.1:3005,http://192.168.16.1:3005,http://172.21.0.1:3005,http://172.17.0.1:3005,http://192.168.64.1:3005,http://172.29.0.1:3005,http://192.168.80.1:3005,http://172.30.0.1:3005,http://172.20.0.1:3005,http://172.25.0.1:3005,http://172.18.0.1:3005,http://172.22.0.1:3005
+
+Attention:
+Turborepo now collects completely anonymous telemetry regarding usage.
+This information is used to shape the Turborepo roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://turborepo.dev/docs/telemetry
+
+• turbo 2.8.20
+
+   • Packages in scope: @openwork-ee/den-api, @openwork-ee/den-web, @openwork-ee/den-worker-proxy, @openwork-ee/inference
+   • Running dev:local in 4 packages
+   • Remote caching disabled
+
+@openwork-ee/den-web:dev:local: cache bypass, force executing 9a2ab94dd910de88
+@openwork-ee/den-api:dev:local: cache bypass, force executing 76d816582f2a3470
+@openwork-ee/inference:dev:local: cache bypass, force executing ccaa6dfdedc1f293
+@openwork-ee/den-worker-proxy:dev:local: cache bypass, force executing 4d024e8fcb990382
+@openwork-ee/den-api:dev:local: $ pnpm run build:email && sh -lc 'OPENWORK_DEV_MODE=1 PORT=${DEN_API_PORT:-8790} tsx watch src/server.ts'
+@openwork-ee/den-worker-proxy:dev:local: $ sh -lc 'NODE_OPTIONS=--conditions=development OPENWORK_DEV_MODE=1 PORT=${DEN_WORKER_PROXY_PORT:-8789} tsx watch src/server.ts'
+@openwork-ee/den-web:dev:local: $ sh -lc 'OPENWORK_DEV_MODE=1 NEXT_PUBLIC_POSTHOG_KEY= NEXT_PUBLIC_POSTHOG_API_KEY= next dev --hostname 0.0.0.0 --port ${DEN_WEB_PORT:-3005}'
+@openwork-ee/inference:dev:local: $ sh -lc 'OPENWORK_DEV_MODE=1 pnpm run models:build && OPENWORK_DEV_MODE=1 PORT=${INFERENCE_PORT:-8791} tsx watch src/server.ts'
+@openwork-ee/den-api:dev:local: $ pnpm --filter @openwork/email build
+@openwork-ee/den-web:dev:local: ▲ Next.js 16.2.1 (Turbopack)
+@openwork-ee/den-web:dev:local: - Local:         http://localhost:3005
+@openwork-ee/den-web:dev:local: - Network:       http://0.0.0.0:3005
+@openwork-ee/den-web:dev:local: ✓ Ready in 856ms
+@openwork-ee/den-api:dev:local: $ tsup
+@openwork-ee/inference:dev:local: $ node scripts/build-models.mjs
+@openwork-ee/den-api:dev:local: CLI Building entry: {"index":"src/index.ts","templates/index":"src/templates/index.ts"}
+@openwork-ee/den-api:dev:local: CLI Using tsconfig: tsconfig.json
+@openwork-ee/den-api:dev:local: CLI tsup v8.5.1
+@openwork-ee/den-api:dev:local: CLI Using tsup config: /home/acer/openwork/packages/email/tsup.config.ts
+@openwork-ee/den-api:dev:local: CLI Target: es2022
+@openwork-ee/den-api:dev:local: CLI Cleaning output folder
+@openwork-ee/den-api:dev:local: ESM Build start
+@openwork-ee/den-web:dev:local: ⚠ Slow filesystem detected. The benchmark took 235ms. If /home/acer/openwork/ee/apps/den-web/.next/dev is a network drive, consider moving it to a local folder.
+@openwork-ee/den-web:dev:local: See more: https://nextjs.org/docs/app/guides/local-development
+@openwork-ee/den-api:dev:local: ESM dist/templates/index.js 162.00 B
+@openwork-ee/den-api:dev:local: ESM dist/index.js           3.75 KB
+@openwork-ee/den-api:dev:local: ESM dist/chunk-ZKYNI7IM.js  13.10 KB
+@openwork-ee/den-api:dev:local: ESM ⚡️ Build success in 36ms
+@openwork-ee/inference:dev:local: [inference] generated models-site/models/api.json (dev)
+@openwork-ee/den-api:dev:local: DTS Build start
+@openwork-ee/den-web:dev:local: ○ Compiling proxy ...
+@openwork-ee/inference:dev:local: inference listening on 8791
+@openwork-ee/den-web:dev:local: 
+@openwork-ee/den-api:dev:local: DTS ⚡️ Build success in 14037ms
+@openwork-ee/den-api:dev:local: DTS dist/index.d.ts           1.44 KB
+@openwork-ee/den-api:dev:local: DTS dist/templates/index.d.ts 1.59 KB
+@openwork-ee/den-worker-proxy:dev:local: worker proxy listening on 8789
+@openwork-ee/den-api:dev:local: [2m2026-06-12T05:44:47.703Z[0m [33mWARN[0m [1m[Better Auth]:[0m Please ensure '/.well-known/oauth-authorization-server/api/auth' exists. Upon completion, clear with silenceWarnings.oauthAuthServerConfig.
+@openwork-ee/den-api:dev:local: den-api listening on 8788
+@openwork-ee/den-web:dev:local: Browserslist: browsers data (caniuse-lite) is 6 months old. Please run:
+@openwork-ee/den-web:dev:local:   npx update-browserslist-db@latest
+@openwork-ee/den-web:dev:local:   Why you should do it regularly: https://github.com/browserslist/update-db#readme
+@openwork-ee/den-web:dev:local: ○ Compiling / ...
+@openwork-ee/den-web:dev:local:  HEAD / 200 in 5.2s (next.js: 4.8s, application-code: 342ms)
+@openwork-ee/inference:dev:local: 1:40:37 PM [tsx] change in ./src/env.ts Restarting...
+@openwork-ee/den-api:dev:local: 1:40:37 PM [tsx] change in ./src/generated/app-version.ts Restarting...
+@openwork-ee/inference:dev:local: cinference listening on 8791
+@openwork-ee/den-api:dev:local: [2m2026-06-12T06:40:43.558Z[0m [33mWARN[0m [1m[Better Auth]:[0m Please ensure '/.well-known/oauth-authorization-server/api/auth' exists. Upon completion, clear with silenceWarnings.oauthAuthServerConfig.
+@openwork-ee/den-api:dev:local: cden-api listening on 8788
+@openwork-ee/den-web:dev:local:  HEAD / 200 in 523ms (next.js: 136ms, application-code: 386ms)
+@openwork-ee/inference:dev:local: <-- GET /models/api.json
+@openwork-ee/inference:dev:local: --> GET /models/api.json [32m200[0m 80ms
+@openwork-ee/inference:dev:local: <-- GET /models/api.json
+@openwork-ee/inference:dev:local: --> GET /models/api.json [32m200[0m 2s
+@openwork-ee/den-web:dev:local: [?25h
+@openwork-ee/den-api:dev:local: [ELIFECYCLE] Command failed.
+@openwork-ee/den-worker-proxy:dev:local: [ELIFECYCLE] Command failed.
+@openwork-ee/inference:dev:local: [ELIFECYCLE] Command failed.
+@openwork-ee/den-web:dev:local: [ELIFECYCLE] Command failed.
+ ERROR  @openwork-ee/den-api#dev:local: command (/home/acer/openwork/ee/apps/den-api) /home/acer/.local/share/pnpm/store/v11/links/@/pnpm/11.4.0/7da4915c2a4fbe025467924c75bd94f7bb806fe78f4ac0fd45fdaa5ba8c25e77/bin/pnpm run dev:local exited (137)
+ ERROR  @openwork-ee/den-worker-proxy#dev:local: command (/home/acer/openwork/ee/apps/den-worker-proxy) /home/acer/.local/share/pnpm/store/v11/links/@/pnpm/11.4.0/7da4915c2a4fbe025467924c75bd94f7bb806fe78f4ac0fd45fdaa5ba8c25e77/bin/pnpm run dev:local exited (137)
+ ERROR  @openwork-ee/inference#dev:local: command (/home/acer/openwork/ee/apps/inference) /home/acer/.local/share/pnpm/store/v11/links/@/pnpm/11.4.0/7da4915c2a4fbe025467924c75bd94f7bb806fe78f4ac0fd45fdaa5ba8c25e77/bin/pnpm run dev:local exited (137)
+
+ Tasks:    0 successful, 4 total
+Cached:    0 cached, 4 total
+  Time:    3h23m35.666s 
+Failed:    @openwork-ee/den-api#dev:local, @openwork-ee/den-worker-proxy#dev:local, @openwork-ee/inference#dev:local
+
+ ERROR  run failed: command  exited (137)

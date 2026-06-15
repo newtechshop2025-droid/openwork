@@ -20,7 +20,7 @@ import {
   realpath,
 } from "node:fs/promises";
 import { readdirSync, readFileSync, statSync } from "node:fs";
-import { createServer as createNetServer } from "node:net";
+import { createServer as createNetServer, connect as netConnect } from "node:net";
 import { createServer as createHttpServer } from "node:http";
 import { homedir, hostname, networkInterfaces, platform, tmpdir } from "node:os";
 import {
@@ -3482,11 +3482,53 @@ function resolveSelfCommand(): { command: string; prefixArgs: string[] } {
   return { command: process.argv[0], prefixArgs: [] };
 }
 
+async function waitForPortOpen(
+  host: string,
+  port: number,
+  timeoutMs = 10_000,
+  pollMs = 250,
+): Promise<void> {
+  const start = Date.now();
+  while (Date.now() - start < timeoutMs) {
+    try {
+      await new Promise<void>((resolve, reject) => {
+        const socket = netConnect(port, host);
+        socket.once("connect", () => {
+          socket.end();
+          resolve();
+        });
+        socket.once("error", (err) => {
+          reject(err);
+        });
+        socket.setTimeout(1000);
+        socket.once("timeout", () => {
+          socket.destroy();
+          reject(new Error("Socket timeout"));
+        });
+      });
+      return;
+    } catch {
+      // Keep polling until timeout
+    }
+    await new Promise((resolve) => setTimeout(resolve, pollMs));
+  }
+  throw new Error(`Timed out waiting for port ${port} to open on ${host}`);
+}
+
 async function waitForHealthy(
   url: string,
   timeoutMs = 10_000,
   pollMs = 250,
 ): Promise<void> {
+  try {
+    const parsed = new URL(url);
+    const host = parsed.hostname;
+    const port = parsed.port ? parseInt(parsed.port, 10) : (parsed.protocol === "https:" ? 443 : 80);
+    await waitForPortOpen(host, port, timeoutMs, pollMs);
+  } catch {
+    // Fall back to direct fetch if URL parsing fails
+  }
+
   const start = Date.now();
   let lastError: string | null = null;
   while (Date.now() - start < timeoutMs) {
@@ -3529,6 +3571,15 @@ async function waitForOpenCodeRouterHealthy(
   timeoutMs = 10_000,
   pollMs = 500,
 ) {
+  try {
+    const parsed = new URL(baseUrl);
+    const host = parsed.hostname;
+    const port = parsed.port ? parseInt(parsed.port, 10) : (parsed.protocol === "https:" ? 443 : 80);
+    await waitForPortOpen(host, port, timeoutMs, pollMs);
+  } catch {
+    // Fall back to direct fetch if URL parsing fails
+  }
+
   const start = Date.now();
   let lastError: string | null = null;
   while (Date.now() - start < timeoutMs) {
@@ -3586,36 +3637,47 @@ async function waitForOpencodeHealthy(
   pollMs = 250,
 ) {
   const start = Date.now();
+  // Cast client to any to bypass missing/protected/incorrect third-party type declarations in @opencode-ai/sdk.
+  const config = (client as any).client?.getConfig?.() || {};
+  const baseUrl = (config.baseUrl || "").replace(/\/$/, "");
+  const directory = config.directory || "";
+  const headers = new Headers(config.headers as any);
+
+  try {
+    const parsed = new URL(baseUrl);
+    const host = parsed.hostname;
+    const port = parsed.port ? parseInt(parsed.port, 10) : (parsed.protocol === "https:" ? 443 : 80);
+    await waitForPortOpen(host, port, timeoutMs, pollMs);
+  } catch {
+    // Fall back to direct fetch if URL parsing fails
+  }
+
   let lastError: string | null = null;
   while (Date.now() - start < timeoutMs) {
     try {
-      const health = unwrap(
-        await Promise.race([
-          client.global.health(),
-          new Promise<never>((_, reject) =>
-            setTimeout(() => reject(new Error("Timeout")), 2000)
-          ),
-        ])
-      );
-      if (health?.healthy) return health;
-      lastError = "Server reported unhealthy";
+      const url = `${baseUrl}/global/health?directory=${encodeURIComponent(directory)}`;
+      const response = await fetch(url, {
+        headers,
+        signal: AbortSignal.timeout(2000),
+      });
+      if (response.ok) {
+        const payload = (await response.json()) as any;
+        if (payload?.healthy) return payload;
+      }
+      lastError = `HTTP ${response.status}`;
     } catch (error) {
       lastError = error instanceof Error ? error.message : String(error);
     }
 
     try {
-      // Some environments have a broken OpenCode /health probe even while the
-      // core API surface is already usable. Accept a successful path lookup as
-      // readiness so session APIs can come up in those runtimes.
-      unwrap(
-        await Promise.race([
-          client.path.get(),
-          new Promise<never>((_, reject) =>
-            setTimeout(() => reject(new Error("Timeout")), 2000)
-          ),
-        ])
-      );
-      return { healthy: true, degraded: true, reason: lastError ?? undefined };
+      const url = `${baseUrl}/path?directory=${encodeURIComponent(directory)}`;
+      const response = await fetch(url, {
+        headers,
+        signal: AbortSignal.timeout(2000),
+      });
+      if (response.ok) {
+        return { healthy: true, degraded: true, reason: lastError ?? undefined };
+      }
     } catch (error) {
       if (!lastError) {
         lastError = error instanceof Error ? error.message : String(error);
@@ -8776,5 +8838,5 @@ async function main() {
 
 main().catch((error) => {
   console.error(error instanceof Error ? error.message : String(error));
-  process.exitCode = 1;
+  process.exit(1);
 });

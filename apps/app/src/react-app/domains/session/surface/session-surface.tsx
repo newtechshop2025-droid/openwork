@@ -1226,7 +1226,7 @@ export function SessionSurface(props: SessionSurfaceProps) {
         />
       </div>
 
-      <div ref={composerShellRef} className="shrink-0 border-t border-dls-border/70 px-0 pb-3 pt-3">
+      <div ref={composerShellRef} className="shrink-0 border-t border-dls-border/70 px-0 pb-0 pt-0.5">
         {(props.providerConnectedCount ?? 0) === 0 ? (
           <button
             type="button"

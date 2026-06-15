@@ -1,0 +1,147 @@
+[
+  {
+    "id": "layer:entry-and-config",
+    "name": "Entry & Configuration",
+    "description": "Main entry points, configuration files, and database client initialization.",
+    "nodeIds": [
+      "file:src/llm/models-dev.ts",
+      "file:src/middleware/index.ts",
+      "file:src/openapi.ts",
+      "file:src/user.ts",
+      "file:src/api-keys.ts",
+      "file:src/CONSTS.ts",
+      "file:src/env.ts",
+      "file:src/loops.ts",
+      "file:src/utils/email/send-email.ts",
+      "file:src/app.ts",
+      "file:src/generated/app-version.ts",
+      "file:src/index.ts",
+      "file:src/load-env.ts",
+      "file:src/routes/admin/index.ts",
+      "file:src/routes/telemetry/index.ts",
+      "file:src/routes/version/index.ts",
+      "file:src/server.ts",
+      "file:src/version.ts",
+      "file:src/admin-allowlist.ts",
+      "file:src/db.ts",
+      "file:src/inference.ts",
+      "file:src/middleware/admin.ts",
+      "file:.understand-anything/.understandignore",
+      "file:src/middleware/validation.ts"
+    ]
+  },
+  {
+    "id": "layer:auth-and-session",
+    "name": "Auth & Session",
+    "description": "Authentication route handlers, session validation, and SSO/SCIM integrations.",
+    "nodeIds": [
+      "file:src/middleware/current-user.ts",
+      "file:src/routes/auth/desktop-handoff.ts",
+      "file:src/routes/me/index.ts",
+      "file:src/session.ts",
+      "file:src/auth.ts",
+      "file:src/routes/auth/index.ts",
+      "file:src/routes/auth/scim.ts",
+      "file:src/scim.ts",
+      "file:src/sso.ts"
+    ]
+  },
+  {
+    "id": "layer:org-management",
+    "name": "Organization Management",
+    "description": "Core business logic and API routing surfaces for organizations, teams, and member access.",
+    "nodeIds": [
+      "file:src/routes/org/api-keys.ts",
+      "file:src/routes/org/core.ts",
+      "file:src/routes/org/desktop-policies.ts",
+      "file:src/routes/org/index.ts",
+      "file:src/routes/org/inference.ts",
+      "file:src/routes/org/llm-providers.ts",
+      "file:src/routes/org/members.ts",
+      "file:src/routes/org/resources.ts",
+      "file:src/routes/org/roles.ts",
+      "file:src/routes/org/scim.ts",
+      "file:src/routes/org/shared.ts",
+      "file:src/routes/org/skills.ts",
+      "file:src/routes/org/teams.ts",
+      "file:src/middleware/member-teams.ts",
+      "file:src/middleware/organization-context.ts",
+      "file:src/middleware/user-organizations.ts",
+      "file:src/organization-access.ts",
+      "file:src/organization-limits.ts",
+      "file:src/orgs.ts",
+      "file:src/routes/org/sso.ts",
+      "file:src/active-organization.ts",
+      "file:src/organization-member-hooks.ts",
+      "file:src/routes/org/invitations.ts"
+    ]
+  },
+  {
+    "id": "layer:worker-provisioning",
+    "name": "Worker & Infrastructure",
+    "description": "Worker lifecycle events, container sandbox provisioning runner integrations, and vanity domains.",
+    "nodeIds": [
+      "file:src/desktop-policies.ts",
+      "file:src/routes/webhooks/github.ts",
+      "file:src/routes/webhooks/index.ts",
+      "file:src/routes/webhooks/stripe.ts",
+      "file:src/routes/workers/activity.ts",
+      "file:src/routes/workers/billing.ts",
+      "file:src/routes/workers/core.ts",
+      "file:src/routes/workers/index.ts",
+      "file:src/routes/workers/runtime.ts",
+      "file:src/routes/workers/shared.ts",
+      "file:src/workers/daytona.ts",
+      "file:src/workers/provisioner.ts",
+      "file:src/workers/vanity-domain.ts"
+    ]
+  },
+  {
+    "id": "layer:mcp-integration",
+    "name": "MCP Integration",
+    "description": "Model Context Protocol (MCP) server endpoints, route registration, catalog mapping, and invoke controllers.",
+    "nodeIds": [
+      "file:src/mcp/auth.ts",
+      "file:src/mcp/catalog.ts",
+      "file:src/mcp/index.ts",
+      "file:src/mcp/invoke.ts",
+      "file:src/mcp/policy.ts"
+    ]
+  },
+  {
+    "id": "layer:billing-and-payments",
+    "name": "Billing & Payments",
+    "description": "Stripe and Polar billing integration adapters for seat count, subscriptions, and payment webhooks.",
+    "nodeIds": [
+      "file:src/routes/org/billing.ts",
+      "file:src/routes/org/plugin-system/access.ts",
+      "file:src/routes/org/plugin-system/routes.ts",
+      "file:src/billing/polar.ts",
+      "file:src/routes/org/plugin-system/connector-cleanup.ts",
+      "file:src/routes/org/plugin-system/contracts.ts",
+      "file:src/routes/org/plugin-system/github-app.ts",
+      "file:src/routes/org/plugin-system/github-discovery.ts",
+      "file:src/routes/org/plugin-system/schemas.ts",
+      "file:src/routes/org/plugin-system/store.ts",
+      "file:src/stripe-billing.ts",
+      "file:src/routes/org/plugin-system/index.ts"
+    ]
+  },
+  {
+    "id": "layer:documentation",
+    "name": "Documentation",
+    "description": "Guides, READMEs, and technical markdown documentations.",
+    "nodeIds": [
+      "file:README.md",
+      "file:src/mcp/README.md",
+      "file:src/middleware/README.md",
+      "file:src/routes/admin/README.md",
+      "file:src/routes/auth/README.md",
+      "file:src/routes/me/README.md",
+      "file:src/routes/org/README.md",
+      "file:src/routes/README.md",
+      "file:src/routes/version/README.md",
+      "file:src/routes/workers/README.md"
+    ]
+  }
+]

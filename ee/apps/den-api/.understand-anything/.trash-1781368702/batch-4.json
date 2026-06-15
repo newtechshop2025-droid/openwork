@@ -1,0 +1,626 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/app.ts",
+      "type": "file",
+      "name": "app.ts",
+      "filePath": "src/app.ts",
+      "summary": "Core application initializer that registers middleware, route groups, and Swagger docs.",
+      "tags": [
+        "entry-point",
+        "core",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/generated/app-version.ts",
+      "type": "file",
+      "name": "app-version.ts",
+      "filePath": "src/generated/app-version.ts",
+      "summary": "Service module implementing core logical behaviors for app version.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "src/index.ts",
+      "summary": "Service module implementing core logical behaviors for index.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/load-env.ts",
+      "type": "file",
+      "name": "load-env.ts",
+      "filePath": "src/load-env.ts",
+      "summary": "Service module implementing core logical behaviors for load env.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/routes/admin/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "src/routes/admin/index.ts",
+      "summary": "REST API routes for admin module.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/admin/index.ts:normalizeEmail",
+      "type": "function",
+      "name": "normalizeEmail",
+      "filePath": "src/routes/admin/index.ts",
+      "lineRange": [
+        30,
+        32
+      ],
+      "summary": "Exported function normalizeEmail implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/admin/index.ts:toNumber",
+      "type": "function",
+      "name": "toNumber",
+      "filePath": "src/routes/admin/index.ts",
+      "lineRange": [
+        34,
+        41
+      ],
+      "summary": "Exported function toNumber implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/admin/index.ts:isWithinDays",
+      "type": "function",
+      "name": "isWithinDays",
+      "filePath": "src/routes/admin/index.ts",
+      "lineRange": [
+        43,
+        55
+      ],
+      "summary": "Exported function isWithinDays implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/admin/index.ts:normalizeProvider",
+      "type": "function",
+      "name": "normalizeProvider",
+      "filePath": "src/routes/admin/index.ts",
+      "lineRange": [
+        57,
+        68
+      ],
+      "summary": "Exported function normalizeProvider implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/admin/index.ts:parseBooleanQuery",
+      "type": "function",
+      "name": "parseBooleanQuery",
+      "filePath": "src/routes/admin/index.ts",
+      "lineRange": [
+        70,
+        77
+      ],
+      "summary": "Exported function parseBooleanQuery implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/admin/index.ts:mapWithConcurrency",
+      "type": "function",
+      "name": "mapWithConcurrency",
+      "filePath": "src/routes/admin/index.ts",
+      "lineRange": [
+        79,
+        98
+      ],
+      "summary": "Exported function mapWithConcurrency implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/admin/index.ts:registerAdminRoutes",
+      "type": "function",
+      "name": "registerAdminRoutes",
+      "filePath": "src/routes/admin/index.ts",
+      "lineRange": [
+        100,
+        322
+      ],
+      "summary": "Exported function registerAdminRoutes implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/telemetry/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "src/routes/telemetry/index.ts",
+      "summary": "REST API routes for telemetry module.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/telemetry/index.ts:registerTelemetryRoutes",
+      "type": "function",
+      "name": "registerTelemetryRoutes",
+      "filePath": "src/routes/telemetry/index.ts",
+      "lineRange": [
+        32,
+        158
+      ],
+      "summary": "Exported function registerTelemetryRoutes implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/version/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "src/routes/version/index.ts",
+      "summary": "REST API routes for version module.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/version/index.ts:registerVersionRoutes",
+      "type": "function",
+      "name": "registerVersionRoutes",
+      "filePath": "src/routes/version/index.ts",
+      "lineRange": [
+        12,
+        27
+      ],
+      "summary": "Exported function registerVersionRoutes implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/server.ts",
+      "type": "file",
+      "name": "server.ts",
+      "filePath": "src/server.ts",
+      "summary": "Main server entry point that instantiates the Hono app and binds to the HTTP port.",
+      "tags": [
+        "entry-point",
+        "core",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/version.ts",
+      "type": "file",
+      "name": "version.ts",
+      "filePath": "src/version.ts",
+      "summary": "Service module implementing core logical behaviors for version.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/version.ts:normalizeVersion",
+      "type": "function",
+      "name": "normalizeVersion",
+      "filePath": "src/version.ts",
+      "lineRange": [
+        5,
+        8
+      ],
+      "summary": "Exported function normalizeVersion implementing logic inside version.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/app.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app.ts",
+      "target": "file:src/load-env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app.ts",
+      "target": "file:src/mcp/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app.ts",
+      "target": "file:src/routes/admin/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app.ts",
+      "target": "file:src/routes/auth/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app.ts",
+      "target": "file:src/routes/me/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app.ts",
+      "target": "file:src/routes/org/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app.ts",
+      "target": "file:src/routes/telemetry/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app.ts",
+      "target": "file:src/routes/version/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app.ts",
+      "target": "file:src/routes/webhooks/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app.ts",
+      "target": "file:src/routes/workers/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/app.ts",
+      "target": "file:src/session.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/index.ts",
+      "target": "file:src/app.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/admin/index.ts",
+      "target": "function:src/routes/admin/index.ts:normalizeEmail",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/admin/index.ts",
+      "target": "function:src/routes/admin/index.ts:normalizeEmail",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/admin/index.ts",
+      "target": "function:src/routes/admin/index.ts:toNumber",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/admin/index.ts",
+      "target": "function:src/routes/admin/index.ts:toNumber",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/admin/index.ts",
+      "target": "function:src/routes/admin/index.ts:isWithinDays",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/admin/index.ts",
+      "target": "function:src/routes/admin/index.ts:isWithinDays",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/admin/index.ts",
+      "target": "function:src/routes/admin/index.ts:normalizeProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/admin/index.ts",
+      "target": "function:src/routes/admin/index.ts:normalizeProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/admin/index.ts",
+      "target": "function:src/routes/admin/index.ts:parseBooleanQuery",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/admin/index.ts",
+      "target": "function:src/routes/admin/index.ts:parseBooleanQuery",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/admin/index.ts",
+      "target": "function:src/routes/admin/index.ts:mapWithConcurrency",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/admin/index.ts",
+      "target": "function:src/routes/admin/index.ts:mapWithConcurrency",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/admin/index.ts",
+      "target": "function:src/routes/admin/index.ts:registerAdminRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/admin/index.ts",
+      "target": "function:src/routes/admin/index.ts:registerAdminRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/admin/index.ts",
+      "target": "file:src/billing/polar.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/admin/index.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/admin/index.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/admin/index.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/admin/index.ts",
+      "target": "file:src/session.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/telemetry/index.ts",
+      "target": "function:src/routes/telemetry/index.ts:registerTelemetryRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/telemetry/index.ts",
+      "target": "function:src/routes/telemetry/index.ts:registerTelemetryRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/telemetry/index.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/telemetry/index.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/telemetry/index.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/telemetry/index.ts",
+      "target": "file:src/session.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/version/index.ts",
+      "target": "function:src/routes/version/index.ts:registerVersionRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/version/index.ts",
+      "target": "function:src/routes/version/index.ts:registerVersionRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/version/index.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/version/index.ts",
+      "target": "file:src/version.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/server.ts",
+      "target": "file:src/app.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/server.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/version.ts",
+      "target": "function:src/version.ts:normalizeVersion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/version.ts",
+      "target": "function:src/version.ts:normalizeVersion",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/version.ts",
+      "target": "file:src/generated/app-version.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

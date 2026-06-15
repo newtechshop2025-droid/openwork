@@ -1,0 +1,62 @@
+[
+  {
+    "order": 1,
+    "title": "Project Bootstrapping & Routing",
+    "description": "Start here to understand how the API server boots using Hono node server and registers all API routes, Swagger UI, and middleware.",
+    "nodeIds": [
+      "file:src/server.ts",
+      "file:src/app.ts",
+      "file:src/openapi.ts"
+    ]
+  },
+  {
+    "order": 2,
+    "title": "Authentication & Sessions",
+    "description": "Understand the authentication surface powered by Better Auth, including custom middlewares to resolve session contexts and desktop app authorization handoffs.",
+    "nodeIds": [
+      "file:src/auth.ts",
+      "file:src/session.ts",
+      "file:src/routes/auth/index.ts"
+    ]
+  },
+  {
+    "order": 3,
+    "title": "Organization & Member Access Control",
+    "description": "Explore how organizations, roles, invitations, and access limits are seeded, validated, and managed.",
+    "nodeIds": [
+      "file:src/orgs.ts",
+      "file:src/organization-access.ts",
+      "file:src/routes/org/core.ts"
+    ]
+  },
+  {
+    "order": 4,
+    "title": "Plugin Subsystem Routes & Stores",
+    "description": "Dive deep into the central plugin architecture system handling configurations, connector mapping states, sync jobs, and GitHub App discovery integrations.",
+    "nodeIds": [
+      "file:src/routes/org/plugin-system/routes.ts",
+      "file:src/routes/org/plugin-system/store.ts",
+      "file:src/routes/org/plugin-system/github-app.ts"
+    ]
+  },
+  {
+    "order": 5,
+    "title": "Worker Provisioning & Vanity Domains",
+    "description": "Examine the lifecycle routines that provision sandbox workspaces on Daytona runner agents, trace runner activities, and bind custom worker vanity domains.",
+    "nodeIds": [
+      "file:src/routes/workers/core.ts",
+      "file:src/workers/daytona.ts",
+      "file:src/workers/vanity-domain.ts"
+    ]
+  },
+  {
+    "order": 6,
+    "title": "Model Context Protocol (MCP) Server Router",
+    "description": "See how route endpoints map OpenAPI tool manifests to standard MCP specifications allowing LLM agents to invoke local and remote connectors.",
+    "nodeIds": [
+      "file:src/mcp/index.ts",
+      "file:src/mcp/catalog.ts",
+      "file:src/mcp/invoke.ts"
+    ]
+  }
+]

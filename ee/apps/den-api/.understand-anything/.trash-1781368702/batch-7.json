@@ -1,0 +1,2544 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/active-organization.ts",
+      "type": "file",
+      "name": "active-organization.ts",
+      "filePath": "src/active-organization.ts",
+      "summary": "Service module implementing core logical behaviors for active organization.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/active-organization.ts:getInitialActiveOrganizationIdForUser",
+      "type": "function",
+      "name": "getInitialActiveOrganizationIdForUser",
+      "filePath": "src/active-organization.ts",
+      "lineRange": [
+        6,
+        19
+      ],
+      "summary": "Exported function getInitialActiveOrganizationIdForUser implementing logic inside active-organization.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/admin-allowlist.ts",
+      "type": "file",
+      "name": "admin-allowlist.ts",
+      "filePath": "src/admin-allowlist.ts",
+      "summary": "Service module implementing core logical behaviors for admin allowlist.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/admin-allowlist.ts:seedAdminAllowlist",
+      "type": "function",
+      "name": "seedAdminAllowlist",
+      "filePath": "src/admin-allowlist.ts",
+      "lineRange": [
+        27,
+        42
+      ],
+      "summary": "Exported function seedAdminAllowlist implementing logic inside admin-allowlist.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/admin-allowlist.ts:ensureAdminAllowlistSeeded",
+      "type": "function",
+      "name": "ensureAdminAllowlistSeeded",
+      "filePath": "src/admin-allowlist.ts",
+      "lineRange": [
+        44,
+        53
+      ],
+      "summary": "Exported function ensureAdminAllowlistSeeded implementing logic inside admin-allowlist.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/db.ts",
+      "type": "file",
+      "name": "db.ts",
+      "filePath": "src/db.ts",
+      "summary": "Database client initialization using Drizzle ORM connecting to the MySQL instance.",
+      "tags": [
+        "database",
+        "core",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/inference.ts",
+      "type": "file",
+      "name": "inference.ts",
+      "filePath": "src/inference.ts",
+      "summary": "Service module implementing core logical behaviors for inference.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/inference.ts:isRecord",
+      "type": "function",
+      "name": "isRecord",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        31,
+        33
+      ],
+      "summary": "Exported function isRecord implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/inference.ts:sha256",
+      "type": "function",
+      "name": "sha256",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        35,
+        37
+      ],
+      "summary": "Exported function sha256 implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/inference.ts:createUserFacingInferenceKey",
+      "type": "function",
+      "name": "createUserFacingInferenceKey",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        39,
+        41
+      ],
+      "summary": "Exported function createUserFacingInferenceKey implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/inference.ts:keyPrefix",
+      "type": "function",
+      "name": "keyPrefix",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        43,
+        45
+      ],
+      "summary": "Exported function keyPrefix implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/inference.ts:readInferenceMetadata",
+      "type": "function",
+      "name": "readInferenceMetadata",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        47,
+        58
+      ],
+      "summary": "Exported function readInferenceMetadata implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/inference.ts:setInferenceMetadata",
+      "type": "function",
+      "name": "setInferenceMetadata",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        60,
+        68
+      ],
+      "summary": "Exported function setInferenceMetadata implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/inference.ts:activeMemberCount",
+      "type": "function",
+      "name": "activeMemberCount",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        70,
+        76
+      ],
+      "summary": "Exported function activeMemberCount implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/inference.ts:listOrgMembers",
+      "type": "function",
+      "name": "listOrgMembers",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        78,
+        80
+      ],
+      "summary": "Exported function listOrgMembers implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/inference.ts:addWindow",
+      "type": "function",
+      "name": "addWindow",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        82,
+        84
+      ],
+      "summary": "Exported function addWindow implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/inference.ts:currentWindow",
+      "type": "function",
+      "name": "currentWindow",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        86,
+        94
+      ],
+      "summary": "Exported function currentWindow implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/inference.ts:buildOpenWorkProviderConfig",
+      "type": "function",
+      "name": "buildOpenWorkProviderConfig",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        96,
+        108
+      ],
+      "summary": "Exported function buildOpenWorkProviderConfig implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/inference.ts:revokeMemberInferenceKeys",
+      "type": "function",
+      "name": "revokeMemberInferenceKeys",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        110,
+        115
+      ],
+      "summary": "Exported function revokeMemberInferenceKeys implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/inference.ts:deleteOpenWorkProviders",
+      "type": "function",
+      "name": "deleteOpenWorkProviders",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        117,
+        142
+      ],
+      "summary": "Exported function deleteOpenWorkProviders implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/inference.ts:createMemberInferenceKey",
+      "type": "function",
+      "name": "createMemberInferenceKey",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        144,
+        156
+      ],
+      "summary": "Exported function createMemberInferenceKey implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/inference.ts:ensureOpenWorkLlmProviderForMember",
+      "type": "function",
+      "name": "ensureOpenWorkLlmProviderForMember",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        158,
+        205
+      ],
+      "summary": "Exported function ensureOpenWorkLlmProviderForMember implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/inference.ts:ensureMemberInferenceAccess",
+      "type": "function",
+      "name": "ensureMemberInferenceAccess",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        207,
+        210
+      ],
+      "summary": "Exported function ensureMemberInferenceAccess implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/inference.ts:syncInferenceForOrganizationMembers",
+      "type": "function",
+      "name": "syncInferenceForOrganizationMembers",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        212,
+        253
+      ],
+      "summary": "Exported function syncInferenceForOrganizationMembers implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/inference.ts:syncInferenceAfterMemberChange",
+      "type": "function",
+      "name": "syncInferenceAfterMemberChange",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        255,
+        281
+      ],
+      "summary": "Exported function syncInferenceAfterMemberChange implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/inference.ts:syncInferenceLimitPolicies",
+      "type": "function",
+      "name": "syncInferenceLimitPolicies",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        283,
+        350
+      ],
+      "summary": "Exported function syncInferenceLimitPolicies implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/inference.ts:isOpenRouterKeyCreateResponse",
+      "type": "function",
+      "name": "isOpenRouterKeyCreateResponse",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        360,
+        365
+      ],
+      "summary": "Exported function isOpenRouterKeyCreateResponse implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/inference.ts:createOpenRouterOrgApiKey",
+      "type": "function",
+      "name": "createOpenRouterOrgApiKey",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        367,
+        405
+      ],
+      "summary": "Exported function createOpenRouterOrgApiKey implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/inference.ts:deleteOpenRouterOrgApiKey",
+      "type": "function",
+      "name": "deleteOpenRouterOrgApiKey",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        407,
+        429
+      ],
+      "summary": "Exported function deleteOpenRouterOrgApiKey implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/inference.ts:revokeOrgUpstreamProviderKeys",
+      "type": "function",
+      "name": "revokeOrgUpstreamProviderKeys",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        431,
+        456
+      ],
+      "summary": "Exported function revokeOrgUpstreamProviderKeys implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/inference.ts:ensureOrgUpstreamProviderKey",
+      "type": "function",
+      "name": "ensureOrgUpstreamProviderKey",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        458,
+        498
+      ],
+      "summary": "Exported function ensureOrgUpstreamProviderKey implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/inference.ts:getActiveUsageBuckets",
+      "type": "function",
+      "name": "getActiveUsageBuckets",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        500,
+        523
+      ],
+      "summary": "Exported function getActiveUsageBuckets implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/inference.ts:getInferenceStatus",
+      "type": "function",
+      "name": "getInferenceStatus",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        525,
+        542
+      ],
+      "summary": "Exported function getInferenceStatus implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/inference.ts:setInferenceEnabled",
+      "type": "function",
+      "name": "setInferenceEnabled",
+      "filePath": "src/inference.ts",
+      "lineRange": [
+        544,
+        579
+      ],
+      "summary": "Exported function setInferenceEnabled implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/middleware/admin.ts",
+      "type": "file",
+      "name": "admin.ts",
+      "filePath": "src/middleware/admin.ts",
+      "summary": "Hono HTTP middleware for request handling, validation, or context setup: admin.",
+      "tags": [
+        "middleware",
+        "security",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/middleware/admin.ts:normalizeEmail",
+      "type": "function",
+      "name": "normalizeEmail",
+      "filePath": "src/middleware/admin.ts",
+      "lineRange": [
+        8,
+        10
+      ],
+      "summary": "Exported function normalizeEmail implementing logic inside admin.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/middleware/admin.ts:requireAdminMiddleware",
+      "type": "function",
+      "name": "requireAdminMiddleware",
+      "filePath": "src/middleware/admin.ts",
+      "lineRange": [
+        12,
+        36
+      ],
+      "summary": "Exported function requireAdminMiddleware implementing logic inside admin.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/organization-member-hooks.ts",
+      "type": "file",
+      "name": "organization-member-hooks.ts",
+      "filePath": "src/organization-member-hooks.ts",
+      "summary": "Service module implementing core logical behaviors for organization member-hooks.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/organization-member-hooks.ts:countOrganizationMembers",
+      "type": "function",
+      "name": "countOrganizationMembers",
+      "filePath": "src/organization-member-hooks.ts",
+      "lineRange": [
+        27,
+        33
+      ],
+      "summary": "Exported function countOrganizationMembers implementing logic inside organization-member-hooks.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/organization-member-hooks.ts:runPostOrganizationMemberChangeHooks",
+      "type": "function",
+      "name": "runPostOrganizationMemberChangeHooks",
+      "filePath": "src/organization-member-hooks.ts",
+      "lineRange": [
+        35,
+        44
+      ],
+      "summary": "Exported function runPostOrganizationMemberChangeHooks implementing logic inside organization-member-hooks.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/routes/org/invitations.ts",
+      "type": "file",
+      "name": "invitations.ts",
+      "filePath": "src/routes/org/invitations.ts",
+      "summary": "REST API route router and endpoint handlers for organization invitations.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/org/invitations.ts:registerOrgInvitationRoutes",
+      "type": "function",
+      "name": "registerOrgInvitationRoutes",
+      "filePath": "src/routes/org/invitations.ts",
+      "lineRange": [
+        57,
+        318
+      ],
+      "summary": "Exported function registerOrgInvitationRoutes implementing logic inside invitations.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/stripe-billing.ts",
+      "type": "file",
+      "name": "stripe-billing.ts",
+      "filePath": "src/stripe-billing.ts",
+      "summary": "Service module implementing core logical behaviors for stripe billing.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:stripe",
+      "type": "function",
+      "name": "stripe",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        31,
+        41
+      ],
+      "summary": "Exported function stripe implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:requireInferencePriceId",
+      "type": "function",
+      "name": "requireInferencePriceId",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        43,
+        48
+      ],
+      "summary": "Exported function requireInferencePriceId implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:requireSeatPriceId",
+      "type": "function",
+      "name": "requireSeatPriceId",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        50,
+        55
+      ],
+      "summary": "Exported function requireSeatPriceId implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:requirePriceIdForSubscriptionType",
+      "type": "function",
+      "name": "requirePriceIdForSubscriptionType",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        57,
+        61
+      ],
+      "summary": "Exported function requirePriceIdForSubscriptionType implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:fromUnixSeconds",
+      "type": "function",
+      "name": "fromUnixSeconds",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        63,
+        65
+      ],
+      "summary": "Exported function fromUnixSeconds implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:subscriptionStatus",
+      "type": "function",
+      "name": "subscriptionStatus",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        67,
+        81
+      ],
+      "summary": "Exported function subscriptionStatus implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:customerIdFromSubscription",
+      "type": "function",
+      "name": "customerIdFromSubscription",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        83,
+        85
+      ],
+      "summary": "Exported function customerIdFromSubscription implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:firstSubscriptionItem",
+      "type": "function",
+      "name": "firstSubscriptionItem",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        87,
+        89
+      ],
+      "summary": "Exported function firstSubscriptionItem implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:parseSubscriptionType",
+      "type": "function",
+      "name": "parseSubscriptionType",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        91,
+        101
+      ],
+      "summary": "Exported function parseSubscriptionType implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:getBillingMetadata",
+      "type": "function",
+      "name": "getBillingMetadata",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        103,
+        111
+      ],
+      "summary": "Exported function getBillingMetadata implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:getSubscriptionMetadata",
+      "type": "function",
+      "name": "getSubscriptionMetadata",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        113,
+        115
+      ],
+      "summary": "Exported function getSubscriptionMetadata implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:subscriptionTypeFromStripeSubscription",
+      "type": "function",
+      "name": "subscriptionTypeFromStripeSubscription",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        117,
+        129
+      ],
+      "summary": "Exported function subscriptionTypeFromStripeSubscription implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:activeMemberCount",
+      "type": "function",
+      "name": "activeMemberCount",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        131,
+        137
+      ],
+      "summary": "Exported function activeMemberCount implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:getActiveMemberCountForBilling",
+      "type": "function",
+      "name": "getActiveMemberCountForBilling",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        139,
+        141
+      ],
+      "summary": "Exported function getActiveMemberCountForBilling implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:findOrgSubscriptionByType",
+      "type": "function",
+      "name": "findOrgSubscriptionByType",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        143,
+        153
+      ],
+      "summary": "Exported function findOrgSubscriptionByType implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:findInferenceSubscriptionByOrg",
+      "type": "function",
+      "name": "findInferenceSubscriptionByOrg",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        155,
+        157
+      ],
+      "summary": "Exported function findInferenceSubscriptionByOrg implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:findSeatSubscriptionByOrg",
+      "type": "function",
+      "name": "findSeatSubscriptionByOrg",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        159,
+        161
+      ],
+      "summary": "Exported function findSeatSubscriptionByOrg implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:findOrgSubscriptionByStripeId",
+      "type": "function",
+      "name": "findOrgSubscriptionByStripeId",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        163,
+        170
+      ],
+      "summary": "Exported function findOrgSubscriptionByStripeId implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:findInferenceSubscriptionByStripeId",
+      "type": "function",
+      "name": "findInferenceSubscriptionByStripeId",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        172,
+        175
+      ],
+      "summary": "Exported function findInferenceSubscriptionByStripeId implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:findStripeCustomerIdByOrg",
+      "type": "function",
+      "name": "findStripeCustomerIdByOrg",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        177,
+        184
+      ],
+      "summary": "Exported function findStripeCustomerIdByOrg implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:stripeSearchLiteral",
+      "type": "function",
+      "name": "stripeSearchLiteral",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        186,
+        188
+      ],
+      "summary": "Exported function stripeSearchLiteral implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:findStripeCustomerIdByOrgMetadata",
+      "type": "function",
+      "name": "findStripeCustomerIdByOrgMetadata",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        190,
+        201
+      ],
+      "summary": "Exported function findStripeCustomerIdByOrgMetadata implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:organizationHasActiveInferenceSubscription",
+      "type": "function",
+      "name": "organizationHasActiveInferenceSubscription",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        203,
+        206
+      ],
+      "summary": "Exported function organizationHasActiveInferenceSubscription implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:organizationHasActiveSeatSubscription",
+      "type": "function",
+      "name": "organizationHasActiveSeatSubscription",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        208,
+        211
+      ],
+      "summary": "Exported function organizationHasActiveSeatSubscription implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:billableSeatQuantity",
+      "type": "function",
+      "name": "billableSeatQuantity",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        213,
+        215
+      ],
+      "summary": "Exported function billableSeatQuantity implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:getOrganizationSeatAddEligibility",
+      "type": "function",
+      "name": "getOrganizationSeatAddEligibility",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        217,
+        235
+      ],
+      "summary": "Exported function getOrganizationSeatAddEligibility implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:upsertOrgSubscriptionFromStripe",
+      "type": "function",
+      "name": "upsertOrgSubscriptionFromStripe",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        237,
+        294
+      ],
+      "summary": "Exported function upsertOrgSubscriptionFromStripe implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:upsertInferenceSubscriptionFromStripe",
+      "type": "function",
+      "name": "upsertInferenceSubscriptionFromStripe",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        296,
+        298
+      ],
+      "summary": "Exported function upsertInferenceSubscriptionFromStripe implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:findOrCreateStripeCustomer",
+      "type": "function",
+      "name": "findOrCreateStripeCustomer",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        300,
+        341
+      ],
+      "summary": "Exported function findOrCreateStripeCustomer implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:createOrgSubscriptionCheckoutSession",
+      "type": "function",
+      "name": "createOrgSubscriptionCheckoutSession",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        343,
+        398
+      ],
+      "summary": "Exported function createOrgSubscriptionCheckoutSession implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:createInferenceCheckoutSession",
+      "type": "function",
+      "name": "createInferenceCheckoutSession",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        400,
+        402
+      ],
+      "summary": "Exported function createInferenceCheckoutSession implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:createSeatCheckoutSession",
+      "type": "function",
+      "name": "createSeatCheckoutSession",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        404,
+        406
+      ],
+      "summary": "Exported function createSeatCheckoutSession implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:createStripePortalSession",
+      "type": "function",
+      "name": "createStripePortalSession",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        408,
+        417
+      ],
+      "summary": "Exported function createStripePortalSession implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:createInferencePortalSession",
+      "type": "function",
+      "name": "createInferencePortalSession",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        419,
+        421
+      ],
+      "summary": "Exported function createInferencePortalSession implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:serializeSubscription",
+      "type": "function",
+      "name": "serializeSubscription",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        423,
+        434
+      ],
+      "summary": "Exported function serializeSubscription implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:getOrgBillingSummary",
+      "type": "function",
+      "name": "getOrgBillingSummary",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        436,
+        475
+      ],
+      "summary": "Exported function getOrgBillingSummary implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:syncInferenceSubscriptionQuantityAfterMemberChange",
+      "type": "function",
+      "name": "syncInferenceSubscriptionQuantityAfterMemberChange",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        477,
+        492
+      ],
+      "summary": "Exported function syncInferenceSubscriptionQuantityAfterMemberChange implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:syncSeatSubscriptionQuantityAfterMemberChange",
+      "type": "function",
+      "name": "syncSeatSubscriptionQuantityAfterMemberChange",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        494,
+        508
+      ],
+      "summary": "Exported function syncSeatSubscriptionQuantityAfterMemberChange implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:createSeatSubscriptionFromSetupCheckoutSession",
+      "type": "function",
+      "name": "createSeatSubscriptionFromSetupCheckoutSession",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        510,
+        550
+      ],
+      "summary": "Exported function createSeatSubscriptionFromSetupCheckoutSession implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:syncSeatCheckoutSession",
+      "type": "function",
+      "name": "syncSeatCheckoutSession",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        552,
+        565
+      ],
+      "summary": "Exported function syncSeatCheckoutSession implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/stripe-billing.ts:handleStripeWebhook",
+      "type": "function",
+      "name": "handleStripeWebhook",
+      "filePath": "src/stripe-billing.ts",
+      "lineRange": [
+        567,
+        618
+      ],
+      "summary": "Exported function handleStripeWebhook implementing logic inside stripe-billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/active-organization.ts",
+      "target": "function:src/active-organization.ts:getInitialActiveOrganizationIdForUser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/active-organization.ts",
+      "target": "function:src/active-organization.ts:getInitialActiveOrganizationIdForUser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/active-organization.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/admin-allowlist.ts",
+      "target": "function:src/admin-allowlist.ts:seedAdminAllowlist",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/admin-allowlist.ts",
+      "target": "function:src/admin-allowlist.ts:seedAdminAllowlist",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/admin-allowlist.ts",
+      "target": "function:src/admin-allowlist.ts:ensureAdminAllowlistSeeded",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/admin-allowlist.ts",
+      "target": "function:src/admin-allowlist.ts:ensureAdminAllowlistSeeded",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/admin-allowlist.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/db.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:isRecord",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:isRecord",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:sha256",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:sha256",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:createUserFacingInferenceKey",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:createUserFacingInferenceKey",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:keyPrefix",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:keyPrefix",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:readInferenceMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:readInferenceMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:setInferenceMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:setInferenceMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:activeMemberCount",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:activeMemberCount",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:listOrgMembers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:listOrgMembers",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:addWindow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:addWindow",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:currentWindow",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:currentWindow",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:buildOpenWorkProviderConfig",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:buildOpenWorkProviderConfig",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:revokeMemberInferenceKeys",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:revokeMemberInferenceKeys",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:deleteOpenWorkProviders",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:deleteOpenWorkProviders",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:createMemberInferenceKey",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:createMemberInferenceKey",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:ensureOpenWorkLlmProviderForMember",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:ensureOpenWorkLlmProviderForMember",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:ensureMemberInferenceAccess",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:ensureMemberInferenceAccess",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:syncInferenceForOrganizationMembers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:syncInferenceForOrganizationMembers",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:syncInferenceAfterMemberChange",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:syncInferenceAfterMemberChange",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:syncInferenceLimitPolicies",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:syncInferenceLimitPolicies",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:isOpenRouterKeyCreateResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:isOpenRouterKeyCreateResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:createOpenRouterOrgApiKey",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:createOpenRouterOrgApiKey",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:deleteOpenRouterOrgApiKey",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:deleteOpenRouterOrgApiKey",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:revokeOrgUpstreamProviderKeys",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:revokeOrgUpstreamProviderKeys",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:ensureOrgUpstreamProviderKey",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:ensureOrgUpstreamProviderKey",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:getActiveUsageBuckets",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:getActiveUsageBuckets",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:getInferenceStatus",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:getInferenceStatus",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:setInferenceEnabled",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "function:src/inference.ts:setInferenceEnabled",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/inference.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/middleware/admin.ts",
+      "target": "function:src/middleware/admin.ts:normalizeEmail",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/middleware/admin.ts",
+      "target": "function:src/middleware/admin.ts:normalizeEmail",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/middleware/admin.ts",
+      "target": "function:src/middleware/admin.ts:requireAdminMiddleware",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/middleware/admin.ts",
+      "target": "function:src/middleware/admin.ts:requireAdminMiddleware",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/middleware/admin.ts",
+      "target": "file:src/admin-allowlist.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/middleware/admin.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/middleware/admin.ts",
+      "target": "file:src/session.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/organization-member-hooks.ts",
+      "target": "function:src/organization-member-hooks.ts:countOrganizationMembers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/organization-member-hooks.ts",
+      "target": "function:src/organization-member-hooks.ts:countOrganizationMembers",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/organization-member-hooks.ts",
+      "target": "function:src/organization-member-hooks.ts:runPostOrganizationMemberChangeHooks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/organization-member-hooks.ts",
+      "target": "function:src/organization-member-hooks.ts:runPostOrganizationMemberChangeHooks",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/organization-member-hooks.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/organization-member-hooks.ts",
+      "target": "file:src/inference.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/organization-member-hooks.ts",
+      "target": "file:src/stripe-billing.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/invitations.ts",
+      "target": "function:src/routes/org/invitations.ts:registerOrgInvitationRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/invitations.ts",
+      "target": "function:src/routes/org/invitations.ts:registerOrgInvitationRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/invitations.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/invitations.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/invitations.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/invitations.ts",
+      "target": "file:src/organization-member-hooks.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/invitations.ts",
+      "target": "file:src/orgs.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/invitations.ts",
+      "target": "file:src/routes/org/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/invitations.ts",
+      "target": "file:src/stripe-billing.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/invitations.ts",
+      "target": "file:src/utils/email/send-email.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:stripe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:stripe",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:requireInferencePriceId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:requireInferencePriceId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:requireSeatPriceId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:requireSeatPriceId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:requirePriceIdForSubscriptionType",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:requirePriceIdForSubscriptionType",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:fromUnixSeconds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:fromUnixSeconds",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:subscriptionStatus",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:subscriptionStatus",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:customerIdFromSubscription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:customerIdFromSubscription",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:firstSubscriptionItem",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:firstSubscriptionItem",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:parseSubscriptionType",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:parseSubscriptionType",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:getBillingMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:getBillingMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:getSubscriptionMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:getSubscriptionMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:subscriptionTypeFromStripeSubscription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:subscriptionTypeFromStripeSubscription",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:activeMemberCount",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:activeMemberCount",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:getActiveMemberCountForBilling",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:getActiveMemberCountForBilling",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:findOrgSubscriptionByType",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:findOrgSubscriptionByType",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:findInferenceSubscriptionByOrg",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:findInferenceSubscriptionByOrg",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:findSeatSubscriptionByOrg",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:findSeatSubscriptionByOrg",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:findOrgSubscriptionByStripeId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:findOrgSubscriptionByStripeId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:findInferenceSubscriptionByStripeId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:findInferenceSubscriptionByStripeId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:findStripeCustomerIdByOrg",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:findStripeCustomerIdByOrg",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:stripeSearchLiteral",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:stripeSearchLiteral",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:findStripeCustomerIdByOrgMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:findStripeCustomerIdByOrgMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:organizationHasActiveInferenceSubscription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:organizationHasActiveInferenceSubscription",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:organizationHasActiveSeatSubscription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:organizationHasActiveSeatSubscription",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:billableSeatQuantity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:billableSeatQuantity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:getOrganizationSeatAddEligibility",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:getOrganizationSeatAddEligibility",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:upsertOrgSubscriptionFromStripe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:upsertOrgSubscriptionFromStripe",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:upsertInferenceSubscriptionFromStripe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:upsertInferenceSubscriptionFromStripe",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:findOrCreateStripeCustomer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:findOrCreateStripeCustomer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:createOrgSubscriptionCheckoutSession",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:createOrgSubscriptionCheckoutSession",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:createInferenceCheckoutSession",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:createInferenceCheckoutSession",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:createSeatCheckoutSession",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:createSeatCheckoutSession",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:createStripePortalSession",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:createStripePortalSession",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:createInferencePortalSession",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:createInferencePortalSession",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:serializeSubscription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:serializeSubscription",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:getOrgBillingSummary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:getOrgBillingSummary",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:syncInferenceSubscriptionQuantityAfterMemberChange",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:syncInferenceSubscriptionQuantityAfterMemberChange",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:syncSeatSubscriptionQuantityAfterMemberChange",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:syncSeatSubscriptionQuantityAfterMemberChange",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:createSeatSubscriptionFromSetupCheckoutSession",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:createSeatSubscriptionFromSetupCheckoutSession",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:syncSeatCheckoutSession",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:syncSeatCheckoutSession",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:handleStripeWebhook",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "function:src/stripe-billing.ts:handleStripeWebhook",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/stripe-billing.ts",
+      "target": "file:src/inference.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

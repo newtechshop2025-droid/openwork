@@ -1,0 +1,1138 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/mcp/auth.ts",
+      "type": "file",
+      "name": "auth.ts",
+      "filePath": "src/mcp/auth.ts",
+      "summary": "Model Context Protocol (MCP) server integration handler for auth.",
+      "tags": [
+        "mcp",
+        "integration",
+        "authentication"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/mcp/auth.ts:getMcpResourceUrl",
+      "type": "function",
+      "name": "getMcpResourceUrl",
+      "filePath": "src/mcp/auth.ts",
+      "lineRange": [
+        24,
+        28
+      ],
+      "summary": "Exported function getMcpResourceUrl implementing logic inside auth.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/auth.ts:readBearerToken",
+      "type": "function",
+      "name": "readBearerToken",
+      "filePath": "src/mcp/auth.ts",
+      "lineRange": [
+        30,
+        34
+      ],
+      "summary": "Exported function readBearerToken implementing logic inside auth.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/auth.ts:hashStoredToken",
+      "type": "function",
+      "name": "hashStoredToken",
+      "filePath": "src/mcp/auth.ts",
+      "lineRange": [
+        36,
+        38
+      ],
+      "summary": "Exported function hashStoredToken implementing logic inside auth.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/auth.ts:readStoredScopes",
+      "type": "function",
+      "name": "readStoredScopes",
+      "filePath": "src/mcp/auth.ts",
+      "lineRange": [
+        40,
+        48
+      ],
+      "summary": "Exported function readStoredScopes implementing logic inside auth.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/auth.ts:readScopes",
+      "type": "function",
+      "name": "readScopes",
+      "filePath": "src/mcp/auth.ts",
+      "lineRange": [
+        50,
+        57
+      ],
+      "summary": "Exported function readScopes implementing logic inside auth.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/auth.ts:readStringClaim",
+      "type": "function",
+      "name": "readStringClaim",
+      "filePath": "src/mcp/auth.ts",
+      "lineRange": [
+        59,
+        62
+      ],
+      "summary": "Exported function readStringClaim implementing logic inside auth.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/auth.ts:getJwks",
+      "type": "function",
+      "name": "getJwks",
+      "filePath": "src/mcp/auth.ts",
+      "lineRange": [
+        64,
+        70
+      ],
+      "summary": "Exported function getJwks implementing logic inside auth.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/auth.ts:verifyJwtMcpToken",
+      "type": "function",
+      "name": "verifyJwtMcpToken",
+      "filePath": "src/mcp/auth.ts",
+      "lineRange": [
+        72,
+        81
+      ],
+      "summary": "Exported function verifyJwtMcpToken implementing logic inside auth.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/auth.ts:verifyOpaqueMcpToken",
+      "type": "function",
+      "name": "verifyOpaqueMcpToken",
+      "filePath": "src/mcp/auth.ts",
+      "lineRange": [
+        83,
+        110
+      ],
+      "summary": "Exported function verifyOpaqueMcpToken implementing logic inside auth.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/mcp/auth.ts:verifyMcpRequest",
+      "type": "function",
+      "name": "verifyMcpRequest",
+      "filePath": "src/mcp/auth.ts",
+      "lineRange": [
+        112,
+        167
+      ],
+      "summary": "Exported function verifyMcpRequest implementing logic inside auth.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/mcp/catalog.ts",
+      "type": "file",
+      "name": "catalog.ts",
+      "filePath": "src/mcp/catalog.ts",
+      "summary": "Model Context Protocol (MCP) server integration handler for catalog.",
+      "tags": [
+        "mcp",
+        "integration",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/mcp/catalog.ts:isOpenApiParameter",
+      "type": "function",
+      "name": "isOpenApiParameter",
+      "filePath": "src/mcp/catalog.ts",
+      "lineRange": [
+        39,
+        41
+      ],
+      "summary": "Exported function isOpenApiParameter implementing logic inside catalog.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/catalog.ts:getParameters",
+      "type": "function",
+      "name": "getParameters",
+      "filePath": "src/mcp/catalog.ts",
+      "lineRange": [
+        43,
+        47
+      ],
+      "summary": "Exported function getParameters implementing logic inside catalog.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/catalog.ts:schemaForParameter",
+      "type": "function",
+      "name": "schemaForParameter",
+      "filePath": "src/mcp/catalog.ts",
+      "lineRange": [
+        49,
+        70
+      ],
+      "summary": "Exported function schemaForParameter implementing logic inside catalog.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/mcp/catalog.ts:objectForParameters",
+      "type": "function",
+      "name": "objectForParameters",
+      "filePath": "src/mcp/catalog.ts",
+      "lineRange": [
+        72,
+        83
+      ],
+      "summary": "Exported function objectForParameters implementing logic inside catalog.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/catalog.ts:pathParameterNamesFromTemplate",
+      "type": "function",
+      "name": "pathParameterNamesFromTemplate",
+      "filePath": "src/mcp/catalog.ts",
+      "lineRange": [
+        85,
+        87
+      ],
+      "summary": "Exported function pathParameterNamesFromTemplate implementing logic inside catalog.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/catalog.ts:buildPathSchema",
+      "type": "function",
+      "name": "buildPathSchema",
+      "filePath": "src/mcp/catalog.ts",
+      "lineRange": [
+        89,
+        95
+      ],
+      "summary": "Exported function buildPathSchema implementing logic inside catalog.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/catalog.ts:buildQuerySchema",
+      "type": "function",
+      "name": "buildQuerySchema",
+      "filePath": "src/mcp/catalog.ts",
+      "lineRange": [
+        97,
+        100
+      ],
+      "summary": "Exported function buildQuerySchema implementing logic inside catalog.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/catalog.ts:hasJsonRequestBody",
+      "type": "function",
+      "name": "hasJsonRequestBody",
+      "filePath": "src/mcp/catalog.ts",
+      "lineRange": [
+        102,
+        106
+      ],
+      "summary": "Exported function hasJsonRequestBody implementing logic inside catalog.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/catalog.ts:getRequestBody",
+      "type": "function",
+      "name": "getRequestBody",
+      "filePath": "src/mcp/catalog.ts",
+      "lineRange": [
+        108,
+        111
+      ],
+      "summary": "Exported function getRequestBody implementing logic inside catalog.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/catalog.ts:buildInputSchema",
+      "type": "function",
+      "name": "buildInputSchema",
+      "filePath": "src/mcp/catalog.ts",
+      "lineRange": [
+        113,
+        132
+      ],
+      "summary": "Exported function buildInputSchema implementing logic inside catalog.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/catalog.ts:buildInputGuidance",
+      "type": "function",
+      "name": "buildInputGuidance",
+      "filePath": "src/mcp/catalog.ts",
+      "lineRange": [
+        134,
+        160
+      ],
+      "summary": "Exported function buildInputGuidance implementing logic inside catalog.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/mcp/catalog.ts:loadOpenApiDocument",
+      "type": "function",
+      "name": "loadOpenApiDocument",
+      "filePath": "src/mcp/catalog.ts",
+      "lineRange": [
+        162,
+        168
+      ],
+      "summary": "Exported function loadOpenApiDocument implementing logic inside catalog.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/catalog.ts:buildDescription",
+      "type": "function",
+      "name": "buildDescription",
+      "filePath": "src/mcp/catalog.ts",
+      "lineRange": [
+        170,
+        179
+      ],
+      "summary": "Exported function buildDescription implementing logic inside catalog.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/catalog.ts:getToolDescription",
+      "type": "function",
+      "name": "getToolDescription",
+      "filePath": "src/mcp/catalog.ts",
+      "lineRange": [
+        181,
+        183
+      ],
+      "summary": "Exported function getToolDescription implementing logic inside catalog.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/catalog.ts:buildMcpCatalog",
+      "type": "function",
+      "name": "buildMcpCatalog",
+      "filePath": "src/mcp/catalog.ts",
+      "lineRange": [
+        185,
+        220
+      ],
+      "summary": "Exported function buildMcpCatalog implementing logic inside catalog.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/mcp/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "src/mcp/index.ts",
+      "summary": "Model Context Protocol (MCP) server integration handler for index.",
+      "tags": [
+        "mcp",
+        "integration",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/mcp/index.ts:protectedResourceMetadata",
+      "type": "function",
+      "name": "protectedResourceMetadata",
+      "filePath": "src/mcp/index.ts",
+      "lineRange": [
+        8,
+        16
+      ],
+      "summary": "Exported function protectedResourceMetadata implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/index.ts:registerMcpRoutes",
+      "type": "function",
+      "name": "registerMcpRoutes",
+      "filePath": "src/mcp/index.ts",
+      "lineRange": [
+        18,
+        59
+      ],
+      "summary": "Exported function registerMcpRoutes implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/mcp/invoke.ts",
+      "type": "file",
+      "name": "invoke.ts",
+      "filePath": "src/mcp/invoke.ts",
+      "summary": "Model Context Protocol (MCP) server integration handler for invoke.",
+      "tags": [
+        "mcp",
+        "integration",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/mcp/invoke.ts:encodeQueryValue",
+      "type": "function",
+      "name": "encodeQueryValue",
+      "filePath": "src/mcp/invoke.ts",
+      "lineRange": [
+        13,
+        21
+      ],
+      "summary": "Exported function encodeQueryValue implementing logic inside invoke.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/invoke.ts:buildPath",
+      "type": "function",
+      "name": "buildPath",
+      "filePath": "src/mcp/invoke.ts",
+      "lineRange": [
+        23,
+        31
+      ],
+      "summary": "Exported function buildPath implementing logic inside invoke.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/mcp/invoke.ts:buildInternalRequest",
+      "type": "function",
+      "name": "buildInternalRequest",
+      "filePath": "src/mcp/invoke.ts",
+      "lineRange": [
+        33,
+        67
+      ],
+      "summary": "Exported function buildInternalRequest implementing logic inside invoke.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/mcp/invoke.ts:invokeMcpOperation",
+      "type": "function",
+      "name": "invokeMcpOperation",
+      "filePath": "src/mcp/invoke.ts",
+      "lineRange": [
+        69,
+        103
+      ],
+      "summary": "Exported function invokeMcpOperation implementing logic inside invoke.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/mcp/policy.ts",
+      "type": "file",
+      "name": "policy.ts",
+      "filePath": "src/mcp/policy.ts",
+      "summary": "Model Context Protocol (MCP) server integration handler for policy.",
+      "tags": [
+        "mcp",
+        "integration",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/mcp/policy.ts:isMcpOperationAllowed",
+      "type": "function",
+      "name": "isMcpOperationAllowed",
+      "filePath": "src/mcp/policy.ts",
+      "lineRange": [
+        47,
+        76
+      ],
+      "summary": "Exported function isMcpOperationAllowed implementing logic inside policy.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/mcp/policy.ts:requiredScopeForMethod",
+      "type": "function",
+      "name": "requiredScopeForMethod",
+      "filePath": "src/mcp/policy.ts",
+      "lineRange": [
+        78,
+        80
+      ],
+      "summary": "Exported function requiredScopeForMethod implementing logic inside policy.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:getMcpResourceUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:getMcpResourceUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:readBearerToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:readBearerToken",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:hashStoredToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:hashStoredToken",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:readStoredScopes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:readStoredScopes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:readScopes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:readScopes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:readStringClaim",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:readStringClaim",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:getJwks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:getJwks",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:verifyJwtMcpToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:verifyJwtMcpToken",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:verifyOpaqueMcpToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:verifyOpaqueMcpToken",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:verifyMcpRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "function:src/mcp/auth.ts:verifyMcpRequest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "file:src/auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/mcp/auth.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:isOpenApiParameter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:isOpenApiParameter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:getParameters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:getParameters",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:schemaForParameter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:schemaForParameter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:objectForParameters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:objectForParameters",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:pathParameterNamesFromTemplate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:pathParameterNamesFromTemplate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:buildPathSchema",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:buildPathSchema",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:buildQuerySchema",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:buildQuerySchema",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:hasJsonRequestBody",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:hasJsonRequestBody",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:getRequestBody",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:getRequestBody",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:buildInputSchema",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:buildInputSchema",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:buildInputGuidance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:buildInputGuidance",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:loadOpenApiDocument",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:loadOpenApiDocument",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:buildDescription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:buildDescription",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:getToolDescription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:getToolDescription",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:buildMcpCatalog",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "function:src/mcp/catalog.ts:buildMcpCatalog",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/catalog.ts",
+      "target": "file:src/mcp/policy.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/mcp/index.ts",
+      "target": "function:src/mcp/index.ts:protectedResourceMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/index.ts",
+      "target": "function:src/mcp/index.ts:protectedResourceMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/index.ts",
+      "target": "function:src/mcp/index.ts:registerMcpRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/index.ts",
+      "target": "function:src/mcp/index.ts:registerMcpRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/index.ts",
+      "target": "file:src/mcp/auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/mcp/index.ts",
+      "target": "file:src/mcp/catalog.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/mcp/index.ts",
+      "target": "file:src/mcp/invoke.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/mcp/invoke.ts",
+      "target": "function:src/mcp/invoke.ts:encodeQueryValue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/invoke.ts",
+      "target": "function:src/mcp/invoke.ts:encodeQueryValue",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/invoke.ts",
+      "target": "function:src/mcp/invoke.ts:buildPath",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/invoke.ts",
+      "target": "function:src/mcp/invoke.ts:buildPath",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/invoke.ts",
+      "target": "function:src/mcp/invoke.ts:buildInternalRequest",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/invoke.ts",
+      "target": "function:src/mcp/invoke.ts:buildInternalRequest",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/invoke.ts",
+      "target": "function:src/mcp/invoke.ts:invokeMcpOperation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/invoke.ts",
+      "target": "function:src/mcp/invoke.ts:invokeMcpOperation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/invoke.ts",
+      "target": "file:src/mcp/auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/mcp/invoke.ts",
+      "target": "file:src/mcp/catalog.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/mcp/invoke.ts",
+      "target": "file:src/mcp/policy.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/mcp/invoke.ts",
+      "target": "file:src/session.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/mcp/policy.ts",
+      "target": "function:src/mcp/policy.ts:isMcpOperationAllowed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/policy.ts",
+      "target": "function:src/mcp/policy.ts:isMcpOperationAllowed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/mcp/policy.ts",
+      "target": "function:src/mcp/policy.ts:requiredScopeForMethod",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/mcp/policy.ts",
+      "target": "function:src/mcp/policy.ts:requiredScopeForMethod",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

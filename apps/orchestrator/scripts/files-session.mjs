@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
 import { once } from "node:events";
-import { mkdtemp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, mkdir, readFile, rm, writeFile, realpath } from "node:fs/promises";
 import { createServer } from "node:net";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
@@ -122,7 +122,12 @@ try {
   const workspaces = await fetchJson(`${openworkUrl}/workspaces`, {
     headers: { Authorization: `Bearer ${token}` },
   });
-  const workspaceId = workspaces?.items?.[0]?.id;
+  const canonicalWorkspace = await realpath(workspace).catch(() => resolve(workspace));
+  const matchedWorkspace = workspaces?.items?.find((w) => {
+    const wPath = w.path;
+    return wPath === workspace || wPath === canonicalWorkspace;
+  });
+  const workspaceId = matchedWorkspace?.id;
   assert.ok(workspaceId, "workspace id should be available");
 
   const created = await runCli([
@@ -153,7 +158,7 @@ try {
     token,
     "--json",
   ]);
-  const catalogItem = snapshot.items.find((item) => item.path === "notes/remote.md");
+  const catalogItem = snapshot.items?.find((item) => item.path === "notes/remote.md");
   assert.ok(catalogItem, "catalog should include notes/remote.md");
 
   const firstRead = await runCli([

@@ -1,0 +1,295 @@
+{
+  "nodes": [
+    {
+      "id": "file:.understand-anything/.understandignore",
+      "type": "file",
+      "name": ".understandignore",
+      "filePath": ".understand-anything/.understandignore",
+      "summary": "Service module implementing core logical behaviors for .understandignore.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Documentation guide covering README details.",
+      "tags": [
+        "documentation",
+        "overview",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/mcp/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "src/mcp/README.md",
+      "summary": "Model Context Protocol (MCP) server integration handler for README.md.",
+      "tags": [
+        "documentation",
+        "overview",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/middleware/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "src/middleware/README.md",
+      "summary": "Hono HTTP middleware for request handling, validation, or context setup: README.md.",
+      "tags": [
+        "documentation",
+        "overview",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/middleware/validation.ts",
+      "type": "file",
+      "name": "validation.ts",
+      "filePath": "src/middleware/validation.ts",
+      "summary": "Hono HTTP middleware for request handling, validation, or context setup: validation.",
+      "tags": [
+        "middleware",
+        "security",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/middleware/validation.ts:invalidRequestResponse",
+      "type": "function",
+      "name": "invalidRequestResponse",
+      "filePath": "src/middleware/validation.ts",
+      "lineRange": [
+        4,
+        12
+      ],
+      "summary": "Exported function invalidRequestResponse implementing logic inside validation.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/middleware/validation.ts:jsonValidator",
+      "type": "function",
+      "name": "jsonValidator",
+      "filePath": "src/middleware/validation.ts",
+      "lineRange": [
+        14,
+        20
+      ],
+      "summary": "Exported function jsonValidator implementing logic inside validation.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/middleware/validation.ts:queryValidator",
+      "type": "function",
+      "name": "queryValidator",
+      "filePath": "src/middleware/validation.ts",
+      "lineRange": [
+        22,
+        28
+      ],
+      "summary": "Exported function queryValidator implementing logic inside validation.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/middleware/validation.ts:paramValidator",
+      "type": "function",
+      "name": "paramValidator",
+      "filePath": "src/middleware/validation.ts",
+      "lineRange": [
+        30,
+        36
+      ],
+      "summary": "Exported function paramValidator implementing logic inside validation.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/routes/admin/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "src/routes/admin/README.md",
+      "summary": "REST API routes for admin module.",
+      "tags": [
+        "documentation",
+        "overview",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/routes/auth/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "src/routes/auth/README.md",
+      "summary": "REST API routes for auth module.",
+      "tags": [
+        "documentation",
+        "overview",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/routes/me/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "src/routes/me/README.md",
+      "summary": "REST API routes for me module.",
+      "tags": [
+        "documentation",
+        "overview",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/routes/org/plugin-system/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "src/routes/org/plugin-system/index.ts",
+      "summary": "Plugin architecture subsystem file managing index routes or logic.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/routes/org/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "src/routes/org/README.md",
+      "summary": "REST API route router and endpoint handlers for organization README.md.",
+      "tags": [
+        "documentation",
+        "overview",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/routes/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "src/routes/README.md",
+      "summary": "REST API routes for README.md module.",
+      "tags": [
+        "documentation",
+        "overview",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/routes/version/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "src/routes/version/README.md",
+      "summary": "REST API routes for version module.",
+      "tags": [
+        "documentation",
+        "overview",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/routes/workers/README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "src/routes/workers/README.md",
+      "summary": "REST API endpoints governing background worker and runtime agent README.md.",
+      "tags": [
+        "documentation",
+        "overview",
+        "core"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/middleware/validation.ts",
+      "target": "function:src/middleware/validation.ts:invalidRequestResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/middleware/validation.ts",
+      "target": "function:src/middleware/validation.ts:invalidRequestResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/middleware/validation.ts",
+      "target": "function:src/middleware/validation.ts:jsonValidator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/middleware/validation.ts",
+      "target": "function:src/middleware/validation.ts:jsonValidator",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/middleware/validation.ts",
+      "target": "function:src/middleware/validation.ts:queryValidator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/middleware/validation.ts",
+      "target": "function:src/middleware/validation.ts:queryValidator",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/middleware/validation.ts",
+      "target": "function:src/middleware/validation.ts:paramValidator",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/middleware/validation.ts",
+      "target": "function:src/middleware/validation.ts:paramValidator",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

@@ -102,27 +102,26 @@ function run(command, args, options = {}) {
 }
 
 let startedMysql = false
-let turboChild = null
 let cleaningUp = false
+const activeChildren = new Map()
 
 function stopTurboChild() {
-  if (!turboChild || turboChild.exitCode !== null) {
-    return Promise.resolve()
-  }
-
-  return new Promise((resolve) => {
-    turboChild.once("exit", resolve)
-
-    try {
-      if (process.platform !== "win32") {
-        process.kill(-turboChild.pid, "SIGINT")
-      } else {
-        turboChild.kill("SIGINT")
-      }
-    } catch {
-      turboChild.kill("SIGINT")
+  const promises = []
+  for (const [name, child] of activeChildren.entries()) {
+    if (child && child.exitCode === null) {
+      console.log(`[dev] Stopping ${name}...`)
+      promises.push(new Promise((resolve) => {
+        child.once("exit", resolve)
+        child.kill("SIGINT")
+        setTimeout(() => {
+          if (child.exitCode === null) {
+            child.kill("SIGKILL")
+          }
+        }, 2000)
+      }))
     }
-  })
+  }
+  return Promise.all(promises)
 }
 
 async function cleanup(exitCode = 0) {
@@ -183,53 +182,73 @@ async function main() {
   const webOrigins = detectWebOrigins()
   console.log(`[den] Allowed local web origins: ${webOrigins}`)
 
-  turboChild = spawn(
-    "pnpm",
-    [
-      "exec",
-      "turbo",
-      "run",
-      "dev:local",
-      "--output-logs=full",
-        "--filter=@openwork-ee/den-api",
-        "--filter=@openwork-ee/inference",
-        "--filter=@openwork-ee/den-worker-proxy",
-        "--filter=@openwork-ee/den-web",
-    ],
-    {
-      cwd: rootDir,
-      stdio: "inherit",
-      detached: process.platform !== "win32",
-      env: {
-        ...process.env,
-        OPENWORK_DEV_MODE: process.env.OPENWORK_DEV_MODE?.trim() || "1",
-        DATABASE_URL: databaseUrl,
-        DEN_DB_ENCRYPTION_KEY: dbEncryptionKey,
-        BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET?.trim() || "local-dev-secret-not-for-production-use!!",
-        BETTER_AUTH_URL: process.env.BETTER_AUTH_URL?.trim() || `http://localhost:${webPort}`,
-        DEN_MCP_RESOURCE_URL: process.env.DEN_MCP_RESOURCE_URL?.trim() || `http://127.0.0.1:${apiPort}/mcp`,
-        DEN_BETTER_AUTH_TRUSTED_ORIGINS: process.env.DEN_BETTER_AUTH_TRUSTED_ORIGINS?.trim() || webOrigins,
-        CORS_ORIGINS: process.env.CORS_ORIGINS?.trim() || webOrigins,
-        DEN_API_PORT: apiPort,
-        DEN_CONTROLLER_PORT: apiPort,
-        DEN_WORKER_PROXY_PORT: workerProxyPort,
-        INFERENCE_PORT: inferencePort,
-        INFERENCE_PROXY_BASE_URL: process.env.INFERENCE_PROXY_BASE_URL?.trim() || `http://127.0.0.1:${inferencePort}`,
-        INFERENCE_ADMIN_TOKEN: process.env.INFERENCE_ADMIN_TOKEN?.trim() || "local-dev-admin-token",
-        INFERENCE_WEBHOOK_SECRET: process.env.INFERENCE_WEBHOOK_SECRET?.trim() || "local-dev-webhook-secret",
-        DEN_WEB_PORT: webPort,
-        DEN_API_BASE: process.env.DEN_API_BASE?.trim() || `http://127.0.0.1:${apiPort}`,
-        DEN_AUTH_ORIGIN: process.env.DEN_AUTH_ORIGIN?.trim() || `http://localhost:${webPort}`,
-        DEN_AUTH_FALLBACK_BASE: process.env.DEN_AUTH_FALLBACK_BASE?.trim() || `http://127.0.0.1:${apiPort}`,
-        PROVISIONER_MODE: process.env.PROVISIONER_MODE?.trim() || "stub",
-      },
-    },
-  )
+  const serviceEnv = {
+    ...process.env,
+    OPENWORK_DEV_MODE: process.env.OPENWORK_DEV_MODE?.trim() || "1",
+    DATABASE_URL: databaseUrl,
+    DEN_DB_ENCRYPTION_KEY: dbEncryptionKey,
+    BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET?.trim() || "local-dev-secret-not-for-production-use!!",
+    BETTER_AUTH_URL: process.env.BETTER_AUTH_URL?.trim() || `http://localhost:${webPort}`,
+    DEN_MCP_RESOURCE_URL: process.env.DEN_MCP_RESOURCE_URL?.trim() || `http://127.0.0.1:${apiPort}/mcp`,
+    DEN_BETTER_AUTH_TRUSTED_ORIGINS: process.env.DEN_BETTER_AUTH_TRUSTED_ORIGINS?.trim() || webOrigins,
+    CORS_ORIGINS: process.env.CORS_ORIGINS?.trim() || webOrigins,
+    DEN_API_PORT: apiPort,
+    DEN_CONTROLLER_PORT: apiPort,
+    DEN_WORKER_PROXY_PORT: workerProxyPort,
+    INFERENCE_PORT: inferencePort,
+    INFERENCE_PROXY_BASE_URL: process.env.INFERENCE_PROXY_BASE_URL?.trim() || `http://127.0.0.1:${inferencePort}`,
+    INFERENCE_ADMIN_TOKEN: process.env.INFERENCE_ADMIN_TOKEN?.trim() || "local-dev-admin-token",
+    INFERENCE_WEBHOOK_SECRET: process.env.INFERENCE_WEBHOOK_SECRET?.trim() || "local-dev-webhook-secret",
+    DEN_WEB_PORT: webPort,
+    DEN_API_BASE: process.env.DEN_API_BASE?.trim() || `http://127.0.0.1:${apiPort}`,
+    DEN_AUTH_ORIGIN: process.env.DEN_AUTH_ORIGIN?.trim() || `http://localhost:${webPort}`,
+    DEN_AUTH_FALLBACK_BASE: process.env.DEN_AUTH_FALLBACK_BASE?.trim() || `http://127.0.0.1:${apiPort}`,
+    PROVISIONER_MODE: process.env.PROVISIONER_MODE?.trim() || "stub",
+  }
 
-  turboChild.once("exit", (code, signal) => {
-    const exitCode = code ?? (signal ? 1 : 0)
-    void cleanup(exitCode)
-  })
+  const services = [
+    { name: "@openwork-ee/den-api", cwd: path.join(rootDir, "ee", "apps", "den-api") },
+    { name: "@openwork-ee/inference", cwd: path.join(rootDir, "ee", "apps", "inference") },
+    { name: "@openwork-ee/den-worker-proxy", cwd: path.join(rootDir, "ee", "apps", "den-worker-proxy") },
+    { name: "@openwork-ee/den-web", cwd: path.join(rootDir, "ee", "apps", "den-web") },
+  ]
+
+  const startService = (service) => {
+    if (cleaningUp) return
+    console.log(`[dev] Starting ${service.name}...`)
+    const child = spawn("pnpm", ["run", "dev:local"], {
+      cwd: service.cwd,
+      env: serviceEnv,
+    })
+
+    activeChildren.set(service.name, child)
+
+    child.stdout.on("data", (data) => {
+      const lines = data.toString().split("\n")
+      for (const line of lines) {
+        if (line.trim()) console.log(`${service.name}: ${line}`)
+      }
+    })
+
+    child.stderr.on("data", (data) => {
+      const lines = data.toString().split("\n")
+      for (const line of lines) {
+        if (line.trim()) console.error(`${service.name} [ERR]: ${line}`)
+      }
+    })
+
+    child.once("exit", (code, signal) => {
+      activeChildren.delete(service.name)
+      if (cleaningUp) return
+      const detail = signal ? `signal ${signal}` : `exit code ${code ?? 1}`
+      console.warn(`[dev] ${service.name} crashed or exited with ${detail}. Restarting in 2 seconds...`)
+      setTimeout(() => startService(service), 2000)
+    })
+  }
+
+  for (const service of services) {
+    startService(service)
+  }
 }
 
 main().catch((error) => {

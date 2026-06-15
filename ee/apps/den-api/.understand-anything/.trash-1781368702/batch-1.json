@@ -1,0 +1,4517 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/llm/models-dev.ts",
+      "type": "file",
+      "name": "models-dev.ts",
+      "filePath": "src/llm/models-dev.ts",
+      "summary": "Service module implementing core logical behaviors for models dev.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/llm/models-dev.ts:isRecord",
+      "type": "function",
+      "name": "isRecord",
+      "filePath": "src/llm/models-dev.ts",
+      "lineRange": [
+        41,
+        43
+      ],
+      "summary": "Exported function isRecord implementing logic inside models-dev.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/llm/models-dev.ts:asString",
+      "type": "function",
+      "name": "asString",
+      "filePath": "src/llm/models-dev.ts",
+      "lineRange": [
+        45,
+        47
+      ],
+      "summary": "Exported function asString implementing logic inside models-dev.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/llm/models-dev.ts:asStringList",
+      "type": "function",
+      "name": "asStringList",
+      "filePath": "src/llm/models-dev.ts",
+      "lineRange": [
+        49,
+        53
+      ],
+      "summary": "Exported function asStringList implementing logic inside models-dev.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/llm/models-dev.ts:loadModelsDevCatalog",
+      "type": "function",
+      "name": "loadModelsDevCatalog",
+      "filePath": "src/llm/models-dev.ts",
+      "lineRange": [
+        55,
+        125
+      ],
+      "summary": "Exported function loadModelsDevCatalog implementing logic inside models-dev.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/llm/models-dev.ts:listModelsDevProviders",
+      "type": "function",
+      "name": "listModelsDevProviders",
+      "filePath": "src/llm/models-dev.ts",
+      "lineRange": [
+        127,
+        138
+      ],
+      "summary": "Exported function listModelsDevProviders implementing logic inside models-dev.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/llm/models-dev.ts:getModelsDevProvider",
+      "type": "function",
+      "name": "getModelsDevProvider",
+      "filePath": "src/llm/models-dev.ts",
+      "lineRange": [
+        140,
+        143
+      ],
+      "summary": "Exported function getModelsDevProvider implementing logic inside models-dev.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/middleware/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "src/middleware/index.ts",
+      "summary": "Hono HTTP middleware for request handling, validation, or context setup: index.",
+      "tags": [
+        "middleware",
+        "security",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/openapi.ts",
+      "type": "file",
+      "name": "openapi.ts",
+      "filePath": "src/openapi.ts",
+      "summary": "OpenAPI specification builder exposing endpoint contracts, Swagger UI, and JSON schemas.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/openapi.ts:toPascalCase",
+      "type": "function",
+      "name": "toPascalCase",
+      "filePath": "src/openapi.ts",
+      "lineRange": [
+        7,
+        15
+      ],
+      "summary": "Exported function toPascalCase implementing logic inside openapi.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/openapi.ts:buildOperationId",
+      "type": "function",
+      "name": "buildOperationId",
+      "filePath": "src/openapi.ts",
+      "lineRange": [
+        17,
+        38
+      ],
+      "summary": "Exported function buildOperationId implementing logic inside openapi.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/openapi.ts:denTypeIdSchema",
+      "type": "function",
+      "name": "denTypeIdSchema",
+      "filePath": "src/openapi.ts",
+      "lineRange": [
+        40,
+        47
+      ],
+      "summary": "Exported function denTypeIdSchema implementing logic inside openapi.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/openapi.ts:jsonResponse",
+      "type": "function",
+      "name": "jsonResponse",
+      "filePath": "src/openapi.ts",
+      "lineRange": [
+        79,
+        88
+      ],
+      "summary": "Exported function jsonResponse implementing logic inside openapi.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/openapi.ts:htmlResponse",
+      "type": "function",
+      "name": "htmlResponse",
+      "filePath": "src/openapi.ts",
+      "lineRange": [
+        90,
+        99
+      ],
+      "summary": "Exported function htmlResponse implementing logic inside openapi.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/openapi.ts:textResponse",
+      "type": "function",
+      "name": "textResponse",
+      "filePath": "src/openapi.ts",
+      "lineRange": [
+        101,
+        110
+      ],
+      "summary": "Exported function textResponse implementing logic inside openapi.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/openapi.ts:emptyResponse",
+      "type": "function",
+      "name": "emptyResponse",
+      "filePath": "src/openapi.ts",
+      "lineRange": [
+        112,
+        114
+      ],
+      "summary": "Exported function emptyResponse implementing logic inside openapi.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/routes/org/api-keys.ts",
+      "type": "file",
+      "name": "api-keys.ts",
+      "filePath": "src/routes/org/api-keys.ts",
+      "summary": "REST API route router and endpoint handlers for organization api keys.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/org/api-keys.ts:hideApiKeyGenerationRoute",
+      "type": "function",
+      "name": "hideApiKeyGenerationRoute",
+      "filePath": "src/routes/org/api-keys.ts",
+      "lineRange": [
+        96,
+        96
+      ],
+      "summary": "Exported function hideApiKeyGenerationRoute implementing logic inside api-keys.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/api-keys.ts:registerOrgApiKeyRoutes",
+      "type": "function",
+      "name": "registerOrgApiKeyRoutes",
+      "filePath": "src/routes/org/api-keys.ts",
+      "lineRange": [
+        98,
+        328
+      ],
+      "summary": "Exported function registerOrgApiKeyRoutes implementing logic inside api-keys.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/org/billing.ts",
+      "type": "file",
+      "name": "billing.ts",
+      "filePath": "src/routes/org/billing.ts",
+      "summary": "REST API route router and endpoint handlers for organization billing.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/org/billing.ts:getRequestOrigin",
+      "type": "function",
+      "name": "getRequestOrigin",
+      "filePath": "src/routes/org/billing.ts",
+      "lineRange": [
+        20,
+        28
+      ],
+      "summary": "Exported function getRequestOrigin implementing logic inside billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/billing.ts:billingReturnUrl",
+      "type": "function",
+      "name": "billingReturnUrl",
+      "filePath": "src/routes/org/billing.ts",
+      "lineRange": [
+        30,
+        32
+      ],
+      "summary": "Exported function billingReturnUrl implementing logic inside billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/billing.ts:checkoutSuccessUrl",
+      "type": "function",
+      "name": "checkoutSuccessUrl",
+      "filePath": "src/routes/org/billing.ts",
+      "lineRange": [
+        34,
+        36
+      ],
+      "summary": "Exported function checkoutSuccessUrl implementing logic inside billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/billing.ts:appendSeatCheckoutParams",
+      "type": "function",
+      "name": "appendSeatCheckoutParams",
+      "filePath": "src/routes/org/billing.ts",
+      "lineRange": [
+        38,
+        42
+      ],
+      "summary": "Exported function appendSeatCheckoutParams implementing logic inside billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/billing.ts:seatCheckoutReturnUrl",
+      "type": "function",
+      "name": "seatCheckoutReturnUrl",
+      "filePath": "src/routes/org/billing.ts",
+      "lineRange": [
+        44,
+        61
+      ],
+      "summary": "Exported function seatCheckoutReturnUrl implementing logic inside billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/billing.ts:seatCheckoutSuccessUrl",
+      "type": "function",
+      "name": "seatCheckoutSuccessUrl",
+      "filePath": "src/routes/org/billing.ts",
+      "lineRange": [
+        63,
+        65
+      ],
+      "summary": "Exported function seatCheckoutSuccessUrl implementing logic inside billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/billing.ts:checkoutCancelUrl",
+      "type": "function",
+      "name": "checkoutCancelUrl",
+      "filePath": "src/routes/org/billing.ts",
+      "lineRange": [
+        67,
+        69
+      ],
+      "summary": "Exported function checkoutCancelUrl implementing logic inside billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/billing.ts:registerOrgBillingRoutes",
+      "type": "function",
+      "name": "registerOrgBillingRoutes",
+      "filePath": "src/routes/org/billing.ts",
+      "lineRange": [
+        71,
+        221
+      ],
+      "summary": "Exported function registerOrgBillingRoutes implementing logic inside billing.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/org/core.ts",
+      "type": "file",
+      "name": "core.ts",
+      "filePath": "src/routes/org/core.ts",
+      "summary": "REST API route router and endpoint handlers for organization core.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/org/core.ts:getStoredSessionId",
+      "type": "function",
+      "name": "getStoredSessionId",
+      "filePath": "src/routes/org/core.ts",
+      "lineRange": [
+        103,
+        113
+      ],
+      "summary": "Exported function getStoredSessionId implementing logic inside core.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/core.ts:setRequestActiveOrganization",
+      "type": "function",
+      "name": "setRequestActiveOrganization",
+      "filePath": "src/routes/org/core.ts",
+      "lineRange": [
+        115,
+        134
+      ],
+      "summary": "Exported function setRequestActiveOrganization implementing logic inside core.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/core.ts:registerOrgCoreRoutes",
+      "type": "function",
+      "name": "registerOrgCoreRoutes",
+      "filePath": "src/routes/org/core.ts",
+      "lineRange": [
+        136,
+        416
+      ],
+      "summary": "Exported function registerOrgCoreRoutes implementing logic inside core.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/org/desktop-policies.ts",
+      "type": "file",
+      "name": "desktop-policies.ts",
+      "filePath": "src/routes/org/desktop-policies.ts",
+      "summary": "REST API route router and endpoint handlers for organization desktop policies.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/org/desktop-policies.ts:isOrganizationAdmin",
+      "type": "function",
+      "name": "isOrganizationAdmin",
+      "filePath": "src/routes/org/desktop-policies.ts",
+      "lineRange": [
+        48,
+        50
+      ],
+      "summary": "Exported function isOrganizationAdmin implementing logic inside desktop-policies.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/desktop-policies.ts:parseDesktopPolicyId",
+      "type": "function",
+      "name": "parseDesktopPolicyId",
+      "filePath": "src/routes/org/desktop-policies.ts",
+      "lineRange": [
+        52,
+        54
+      ],
+      "summary": "Exported function parseDesktopPolicyId implementing logic inside desktop-policies.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/desktop-policies.ts:parseMemberId",
+      "type": "function",
+      "name": "parseMemberId",
+      "filePath": "src/routes/org/desktop-policies.ts",
+      "lineRange": [
+        56,
+        58
+      ],
+      "summary": "Exported function parseMemberId implementing logic inside desktop-policies.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/desktop-policies.ts:parseTeamId",
+      "type": "function",
+      "name": "parseTeamId",
+      "filePath": "src/routes/org/desktop-policies.ts",
+      "lineRange": [
+        60,
+        62
+      ],
+      "summary": "Exported function parseTeamId implementing logic inside desktop-policies.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/desktop-policies.ts:resolveMemberIds",
+      "type": "function",
+      "name": "resolveMemberIds",
+      "filePath": "src/routes/org/desktop-policies.ts",
+      "lineRange": [
+        64,
+        81
+      ],
+      "summary": "Exported function resolveMemberIds implementing logic inside desktop-policies.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/desktop-policies.ts:resolveTeamIds",
+      "type": "function",
+      "name": "resolveTeamIds",
+      "filePath": "src/routes/org/desktop-policies.ts",
+      "lineRange": [
+        83,
+        100
+      ],
+      "summary": "Exported function resolveTeamIds implementing logic inside desktop-policies.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/desktop-policies.ts:loadDesktopPolicies",
+      "type": "function",
+      "name": "loadDesktopPolicies",
+      "filePath": "src/routes/org/desktop-policies.ts",
+      "lineRange": [
+        102,
+        145
+      ],
+      "summary": "Exported function loadDesktopPolicies implementing logic inside desktop-policies.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/desktop-policies.ts:registerOrgDesktopPolicyRoutes",
+      "type": "function",
+      "name": "registerOrgDesktopPolicyRoutes",
+      "filePath": "src/routes/org/desktop-policies.ts",
+      "lineRange": [
+        147,
+        402
+      ],
+      "summary": "Exported function registerOrgDesktopPolicyRoutes implementing logic inside desktop-policies.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/org/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "src/routes/org/index.ts",
+      "summary": "REST API route router and endpoint handlers for organization index.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/index.ts:extractLegacyOrgProxyTarget",
+      "type": "function",
+      "name": "extractLegacyOrgProxyTarget",
+      "filePath": "src/routes/org/index.ts",
+      "lineRange": [
+        22,
+        44
+      ],
+      "summary": "Exported function extractLegacyOrgProxyTarget implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/index.ts:registerOrgRoutes",
+      "type": "function",
+      "name": "registerOrgRoutes",
+      "filePath": "src/routes/org/index.ts",
+      "lineRange": [
+        46,
+        80
+      ],
+      "summary": "Exported function registerOrgRoutes implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/org/inference.ts",
+      "type": "file",
+      "name": "inference.ts",
+      "filePath": "src/routes/org/inference.ts",
+      "summary": "REST API route router and endpoint handlers for organization inference.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/inference.ts:registerOrgInferenceRoutes",
+      "type": "function",
+      "name": "registerOrgInferenceRoutes",
+      "filePath": "src/routes/org/inference.ts",
+      "lineRange": [
+        43,
+        123
+      ],
+      "summary": "Exported function registerOrgInferenceRoutes implementing logic inside inference.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/org/llm-providers.ts",
+      "type": "file",
+      "name": "llm-providers.ts",
+      "filePath": "src/routes/org/llm-providers.ts",
+      "summary": "REST API route router and endpoint handlers for organization llm providers.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/org/llm-providers.ts:getInvitedMemberName",
+      "type": "function",
+      "name": "getInvitedMemberName",
+      "filePath": "src/routes/org/llm-providers.ts",
+      "lineRange": [
+        43,
+        46
+      ],
+      "summary": "Exported function getInvitedMemberName implementing logic inside llm-providers.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/llm-providers.ts:createFailure",
+      "type": "function",
+      "name": "createFailure",
+      "filePath": "src/routes/org/llm-providers.ts",
+      "lineRange": [
+        136,
+        138
+      ],
+      "summary": "Exported function createFailure implementing logic inside llm-providers.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/llm-providers.ts:isRouteFailure",
+      "type": "function",
+      "name": "isRouteFailure",
+      "filePath": "src/routes/org/llm-providers.ts",
+      "lineRange": [
+        140,
+        142
+      ],
+      "summary": "Exported function isRouteFailure implementing logic inside llm-providers.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/llm-providers.ts:isOrganizationAdmin",
+      "type": "function",
+      "name": "isOrganizationAdmin",
+      "filePath": "src/routes/org/llm-providers.ts",
+      "lineRange": [
+        144,
+        146
+      ],
+      "summary": "Exported function isOrganizationAdmin implementing logic inside llm-providers.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/llm-providers.ts:canManageLlmProvider",
+      "type": "function",
+      "name": "canManageLlmProvider",
+      "filePath": "src/routes/org/llm-providers.ts",
+      "lineRange": [
+        148,
+        153
+      ],
+      "summary": "Exported function canManageLlmProvider implementing logic inside llm-providers.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/llm-providers.ts:canAccessLlmProvider",
+      "type": "function",
+      "name": "canAccessLlmProvider",
+      "filePath": "src/routes/org/llm-providers.ts",
+      "lineRange": [
+        155,
+        168
+      ],
+      "summary": "Exported function canAccessLlmProvider implementing logic inside llm-providers.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/llm-providers.ts:parseLlmProviderId",
+      "type": "function",
+      "name": "parseLlmProviderId",
+      "filePath": "src/routes/org/llm-providers.ts",
+      "lineRange": [
+        170,
+        172
+      ],
+      "summary": "Exported function parseLlmProviderId implementing logic inside llm-providers.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/llm-providers.ts:parseLlmProviderAccessId",
+      "type": "function",
+      "name": "parseLlmProviderAccessId",
+      "filePath": "src/routes/org/llm-providers.ts",
+      "lineRange": [
+        174,
+        176
+      ],
+      "summary": "Exported function parseLlmProviderAccessId implementing logic inside llm-providers.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/llm-providers.ts:parseMemberId",
+      "type": "function",
+      "name": "parseMemberId",
+      "filePath": "src/routes/org/llm-providers.ts",
+      "lineRange": [
+        178,
+        180
+      ],
+      "summary": "Exported function parseMemberId implementing logic inside llm-providers.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/llm-providers.ts:parseTeamId",
+      "type": "function",
+      "name": "parseTeamId",
+      "filePath": "src/routes/org/llm-providers.ts",
+      "lineRange": [
+        182,
+        184
+      ],
+      "summary": "Exported function parseTeamId implementing logic inside llm-providers.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/llm-providers.ts:listAccessibleProviderAccess",
+      "type": "function",
+      "name": "listAccessibleProviderAccess",
+      "filePath": "src/routes/org/llm-providers.ts",
+      "lineRange": [
+        186,
+        216
+      ],
+      "summary": "Exported function listAccessibleProviderAccess implementing logic inside llm-providers.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/llm-providers.ts:resolveMemberIds",
+      "type": "function",
+      "name": "resolveMemberIds",
+      "filePath": "src/routes/org/llm-providers.ts",
+      "lineRange": [
+        218,
+        245
+      ],
+      "summary": "Exported function resolveMemberIds implementing logic inside llm-providers.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/llm-providers.ts:resolveTeamIds",
+      "type": "function",
+      "name": "resolveTeamIds",
+      "filePath": "src/routes/org/llm-providers.ts",
+      "lineRange": [
+        247,
+        274
+      ],
+      "summary": "Exported function resolveTeamIds implementing logic inside llm-providers.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/llm-providers.ts:normalizeLlmProviderInput",
+      "type": "function",
+      "name": "normalizeLlmProviderInput",
+      "filePath": "src/routes/org/llm-providers.ts",
+      "lineRange": [
+        276,
+        339
+      ],
+      "summary": "Exported function normalizeLlmProviderInput implementing logic inside llm-providers.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/llm-providers.ts:loadLlmProviders",
+      "type": "function",
+      "name": "loadLlmProviders",
+      "filePath": "src/routes/org/llm-providers.ts",
+      "lineRange": [
+        341,
+        502
+      ],
+      "summary": "Exported function loadLlmProviders implementing logic inside llm-providers.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/llm-providers.ts:registerOrgLlmProviderRoutes",
+      "type": "function",
+      "name": "registerOrgLlmProviderRoutes",
+      "filePath": "src/routes/org/llm-providers.ts",
+      "lineRange": [
+        504,
+        1065
+      ],
+      "summary": "Exported function registerOrgLlmProviderRoutes implementing logic inside llm-providers.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/org/members.ts",
+      "type": "file",
+      "name": "members.ts",
+      "filePath": "src/routes/org/members.ts",
+      "summary": "REST API route router and endpoint handlers for organization members.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/members.ts:registerOrgMemberRoutes",
+      "type": "function",
+      "name": "registerOrgMemberRoutes",
+      "filePath": "src/routes/org/members.ts",
+      "lineRange": [
+        21,
+        138
+      ],
+      "summary": "Exported function registerOrgMemberRoutes implementing logic inside members.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/org/plugin-system/access.ts",
+      "type": "file",
+      "name": "access.ts",
+      "filePath": "src/routes/org/plugin-system/access.ts",
+      "summary": "Plugin architecture subsystem file managing access routes or logic.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/org/plugin-system/access.ts:maxRole",
+      "type": "function",
+      "name": "maxRole",
+      "filePath": "src/routes/org/plugin-system/access.ts",
+      "lineRange": [
+        88,
+        92
+      ],
+      "summary": "Exported function maxRole implementing logic inside access.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/plugin-system/access.ts:isPluginArchOrgAdmin",
+      "type": "function",
+      "name": "isPluginArchOrgAdmin",
+      "filePath": "src/routes/org/plugin-system/access.ts",
+      "lineRange": [
+        94,
+        96
+      ],
+      "summary": "Exported function isPluginArchOrgAdmin implementing logic inside access.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/plugin-system/access.ts:hasPluginArchCapability",
+      "type": "function",
+      "name": "hasPluginArchCapability",
+      "filePath": "src/routes/org/plugin-system/access.ts",
+      "lineRange": [
+        98,
+        100
+      ],
+      "summary": "Exported function hasPluginArchCapability implementing logic inside access.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/plugin-system/access.ts:roleSatisfies",
+      "type": "function",
+      "name": "roleSatisfies",
+      "filePath": "src/routes/org/plugin-system/access.ts",
+      "lineRange": [
+        102,
+        105
+      ],
+      "summary": "Exported function roleSatisfies implementing logic inside access.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/plugin-system/access.ts:resolvePluginArchGrantRole",
+      "type": "function",
+      "name": "resolvePluginArchGrantRole",
+      "filePath": "src/routes/org/plugin-system/access.ts",
+      "lineRange": [
+        107,
+        123
+      ],
+      "summary": "Exported function resolvePluginArchGrantRole implementing logic inside access.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/plugin-system/access.ts:resolveGrantRole",
+      "type": "function",
+      "name": "resolveGrantRole",
+      "filePath": "src/routes/org/plugin-system/access.ts",
+      "lineRange": [
+        125,
+        134
+      ],
+      "summary": "Exported function resolveGrantRole implementing logic inside access.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/plugin-system/access.ts:resolvePluginRoleForIds",
+      "type": "function",
+      "name": "resolvePluginRoleForIds",
+      "filePath": "src/routes/org/plugin-system/access.ts",
+      "lineRange": [
+        136,
+        157
+      ],
+      "summary": "Exported function resolvePluginRoleForIds implementing logic inside access.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/plugin-system/access.ts:resolveMarketplaceRoleForIds",
+      "type": "function",
+      "name": "resolveMarketplaceRoleForIds",
+      "filePath": "src/routes/org/plugin-system/access.ts",
+      "lineRange": [
+        159,
+        180
+      ],
+      "summary": "Exported function resolveMarketplaceRoleForIds implementing logic inside access.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/plugin-system/access.ts:resolvePluginArchResourceRole",
+      "type": "function",
+      "name": "resolvePluginArchResourceRole",
+      "filePath": "src/routes/org/plugin-system/access.ts",
+      "lineRange": [
+        182,
+        264
+      ],
+      "summary": "Exported function resolvePluginArchResourceRole implementing logic inside access.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/plugin-system/access.ts:requirePluginArchCapability",
+      "type": "function",
+      "name": "requirePluginArchCapability",
+      "filePath": "src/routes/org/plugin-system/access.ts",
+      "lineRange": [
+        266,
+        272
+      ],
+      "summary": "Exported function requirePluginArchCapability implementing logic inside access.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/plugin-system/access.ts:requirePluginArchResourceRole",
+      "type": "function",
+      "name": "requirePluginArchResourceRole",
+      "filePath": "src/routes/org/plugin-system/access.ts",
+      "lineRange": [
+        274,
+        290
+      ],
+      "summary": "Exported function requirePluginArchResourceRole implementing logic inside access.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/routes/org/plugin-system/access.ts:PluginArchAuthorizationError",
+      "type": "class",
+      "name": "PluginArchAuthorizationError",
+      "filePath": "src/routes/org/plugin-system/access.ts",
+      "lineRange": [
+        71,
+        80
+      ],
+      "summary": "Class PluginArchAuthorizationError wrapping state and methods inside access.ts.",
+      "tags": [
+        "class",
+        "exports"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/org/plugin-system/routes.ts",
+      "type": "file",
+      "name": "routes.ts",
+      "filePath": "src/routes/org/plugin-system/routes.ts",
+      "summary": "Plugin architecture subsystem file managing routes routes or logic.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/org/plugin-system/routes.ts:validRequestPart",
+      "type": "function",
+      "name": "validRequestPart",
+      "filePath": "src/routes/org/plugin-system/routes.ts",
+      "lineRange": [
+        174,
+        176
+      ],
+      "summary": "Exported function validRequestPart implementing logic inside routes.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/plugin-system/routes.ts:validJson",
+      "type": "function",
+      "name": "validJson",
+      "filePath": "src/routes/org/plugin-system/routes.ts",
+      "lineRange": [
+        178,
+        180
+      ],
+      "summary": "Exported function validJson implementing logic inside routes.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/plugin-system/routes.ts:validParam",
+      "type": "function",
+      "name": "validParam",
+      "filePath": "src/routes/org/plugin-system/routes.ts",
+      "lineRange": [
+        182,
+        184
+      ],
+      "summary": "Exported function validParam implementing logic inside routes.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/plugin-system/routes.ts:validQuery",
+      "type": "function",
+      "name": "validQuery",
+      "filePath": "src/routes/org/plugin-system/routes.ts",
+      "lineRange": [
+        186,
+        188
+      ],
+      "summary": "Exported function validQuery implementing logic inside routes.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/plugin-system/routes.ts:actorContext",
+      "type": "function",
+      "name": "actorContext",
+      "filePath": "src/routes/org/plugin-system/routes.ts",
+      "lineRange": [
+        190,
+        200
+      ],
+      "summary": "Exported function actorContext implementing logic inside routes.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/plugin-system/routes.ts:routeErrorResponse",
+      "type": "function",
+      "name": "routeErrorResponse",
+      "filePath": "src/routes/org/plugin-system/routes.ts",
+      "lineRange": [
+        202,
+        212
+      ],
+      "summary": "Exported function routeErrorResponse implementing logic inside routes.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/plugin-system/routes.ts:withPluginArchOrgContext",
+      "type": "function",
+      "name": "withPluginArchOrgContext",
+      "filePath": "src/routes/org/plugin-system/routes.ts",
+      "lineRange": [
+        214,
+        219
+      ],
+      "summary": "Exported function withPluginArchOrgContext implementing logic inside routes.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/plugin-system/routes.ts:registerPluginArchRoutes",
+      "type": "function",
+      "name": "registerPluginArchRoutes",
+      "filePath": "src/routes/org/plugin-system/routes.ts",
+      "lineRange": [
+        221,
+        1963
+      ],
+      "summary": "Exported function registerPluginArchRoutes implementing logic inside routes.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/org/resources.ts",
+      "type": "file",
+      "name": "resources.ts",
+      "filePath": "src/routes/org/resources.ts",
+      "summary": "REST API route router and endpoint handlers for organization resources.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/org/resources.ts:timestamp",
+      "type": "function",
+      "name": "timestamp",
+      "filePath": "src/routes/org/resources.ts",
+      "lineRange": [
+        58,
+        60
+      ],
+      "summary": "Exported function timestamp implementing logic inside resources.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/resources.ts:isRecord",
+      "type": "function",
+      "name": "isRecord",
+      "filePath": "src/routes/org/resources.ts",
+      "lineRange": [
+        62,
+        64
+      ],
+      "summary": "Exported function isRecord implementing logic inside resources.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/resources.ts:readDate",
+      "type": "function",
+      "name": "readDate",
+      "filePath": "src/routes/org/resources.ts",
+      "lineRange": [
+        66,
+        68
+      ],
+      "summary": "Exported function readDate implementing logic inside resources.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/resources.ts:readMemberTeams",
+      "type": "function",
+      "name": "readMemberTeams",
+      "filePath": "src/routes/org/resources.ts",
+      "lineRange": [
+        70,
+        87
+      ],
+      "summary": "Exported function readMemberTeams implementing logic inside resources.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/resources.ts:listAccessibleLlmProviders",
+      "type": "function",
+      "name": "listAccessibleLlmProviders",
+      "filePath": "src/routes/org/resources.ts",
+      "lineRange": [
+        89,
+        122
+      ],
+      "summary": "Exported function listAccessibleLlmProviders implementing logic inside resources.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/resources.ts:listAccessibleMarketplaces",
+      "type": "function",
+      "name": "listAccessibleMarketplaces",
+      "filePath": "src/routes/org/resources.ts",
+      "lineRange": [
+        124,
+        243
+      ],
+      "summary": "Exported function listAccessibleMarketplaces implementing logic inside resources.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/resources.ts:registerOrgResourceRoutes",
+      "type": "function",
+      "name": "registerOrgResourceRoutes",
+      "filePath": "src/routes/org/resources.ts",
+      "lineRange": [
+        245,
+        294
+      ],
+      "summary": "Exported function registerOrgResourceRoutes implementing logic inside resources.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/org/roles.ts",
+      "type": "file",
+      "name": "roles.ts",
+      "filePath": "src/routes/org/roles.ts",
+      "summary": "REST API route router and endpoint handlers for organization roles.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/org/roles.ts:registerOrgRoleRoutes",
+      "type": "function",
+      "name": "registerOrgRoleRoutes",
+      "filePath": "src/routes/org/roles.ts",
+      "lineRange": [
+        29,
+        257
+      ],
+      "summary": "Exported function registerOrgRoleRoutes implementing logic inside roles.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/org/scim.ts",
+      "type": "file",
+      "name": "scim.ts",
+      "filePath": "src/routes/org/scim.ts",
+      "summary": "REST API route router and endpoint handlers for organization scim.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/org/scim.ts:serializeConnection",
+      "type": "function",
+      "name": "serializeConnection",
+      "filePath": "src/routes/org/scim.ts",
+      "lineRange": [
+        49,
+        57
+      ],
+      "summary": "Exported function serializeConnection implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/scim.ts:registerOrgScimRoutes",
+      "type": "function",
+      "name": "registerOrgScimRoutes",
+      "filePath": "src/routes/org/scim.ts",
+      "lineRange": [
+        59,
+        259
+      ],
+      "summary": "Exported function registerOrgScimRoutes implementing logic inside scim.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/org/shared.ts",
+      "type": "file",
+      "name": "shared.ts",
+      "filePath": "src/routes/org/shared.ts",
+      "summary": "REST API route router and endpoint handlers for organization shared.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/org/shared.ts:idParamSchema",
+      "type": "function",
+      "name": "idParamSchema",
+      "filePath": "src/routes/org/shared.ts",
+      "lineRange": [
+        15,
+        25
+      ],
+      "summary": "Exported function idParamSchema implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/shared.ts:splitRoles",
+      "type": "function",
+      "name": "splitRoles",
+      "filePath": "src/routes/org/shared.ts",
+      "lineRange": [
+        27,
+        32
+      ],
+      "summary": "Exported function splitRoles implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/shared.ts:memberHasRole",
+      "type": "function",
+      "name": "memberHasRole",
+      "filePath": "src/routes/org/shared.ts",
+      "lineRange": [
+        34,
+        36
+      ],
+      "summary": "Exported function memberHasRole implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/shared.ts:normalizeRoleName",
+      "type": "function",
+      "name": "normalizeRoleName",
+      "filePath": "src/routes/org/shared.ts",
+      "lineRange": [
+        38,
+        43
+      ],
+      "summary": "Exported function normalizeRoleName implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/shared.ts:replaceRoleValue",
+      "type": "function",
+      "name": "replaceRoleValue",
+      "filePath": "src/routes/org/shared.ts",
+      "lineRange": [
+        45,
+        54
+      ],
+      "summary": "Exported function replaceRoleValue implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/shared.ts:getInvitationOrigin",
+      "type": "function",
+      "name": "getInvitationOrigin",
+      "filePath": "src/routes/org/shared.ts",
+      "lineRange": [
+        56,
+        58
+      ],
+      "summary": "Exported function getInvitationOrigin implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/shared.ts:buildInvitationLink",
+      "type": "function",
+      "name": "buildInvitationLink",
+      "filePath": "src/routes/org/shared.ts",
+      "lineRange": [
+        62,
+        64
+      ],
+      "summary": "Exported function buildInvitationLink implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/shared.ts:ensureOwner",
+      "type": "function",
+      "name": "ensureOwner",
+      "filePath": "src/routes/org/shared.ts",
+      "lineRange": [
+        66,
+        79
+      ],
+      "summary": "Exported function ensureOwner implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/shared.ts:ensureInviteManager",
+      "type": "function",
+      "name": "ensureInviteManager",
+      "filePath": "src/routes/org/shared.ts",
+      "lineRange": [
+        81,
+        103
+      ],
+      "summary": "Exported function ensureInviteManager implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/shared.ts:ensureMemberRemover",
+      "type": "function",
+      "name": "ensureMemberRemover",
+      "filePath": "src/routes/org/shared.ts",
+      "lineRange": [
+        105,
+        127
+      ],
+      "summary": "Exported function ensureMemberRemover implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/shared.ts:ensureTeamManager",
+      "type": "function",
+      "name": "ensureTeamManager",
+      "filePath": "src/routes/org/shared.ts",
+      "lineRange": [
+        129,
+        151
+      ],
+      "summary": "Exported function ensureTeamManager implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/shared.ts:ensureApiKeyManager",
+      "type": "function",
+      "name": "ensureApiKeyManager",
+      "filePath": "src/routes/org/shared.ts",
+      "lineRange": [
+        153,
+        175
+      ],
+      "summary": "Exported function ensureApiKeyManager implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/shared.ts:ensureScimManager",
+      "type": "function",
+      "name": "ensureScimManager",
+      "filePath": "src/routes/org/shared.ts",
+      "lineRange": [
+        177,
+        199
+      ],
+      "summary": "Exported function ensureScimManager implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/shared.ts:ensureSsoManager",
+      "type": "function",
+      "name": "ensureSsoManager",
+      "filePath": "src/routes/org/shared.ts",
+      "lineRange": [
+        201,
+        223
+      ],
+      "summary": "Exported function ensureSsoManager implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/shared.ts:createInvitationId",
+      "type": "function",
+      "name": "createInvitationId",
+      "filePath": "src/routes/org/shared.ts",
+      "lineRange": [
+        225,
+        227
+      ],
+      "summary": "Exported function createInvitationId implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/shared.ts:createInvitationToken",
+      "type": "function",
+      "name": "createInvitationToken",
+      "filePath": "src/routes/org/shared.ts",
+      "lineRange": [
+        229,
+        231
+      ],
+      "summary": "Exported function createInvitationToken implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/shared.ts:createRoleId",
+      "type": "function",
+      "name": "createRoleId",
+      "filePath": "src/routes/org/shared.ts",
+      "lineRange": [
+        233,
+        235
+      ],
+      "summary": "Exported function createRoleId implementing logic inside shared.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/routes/org/skills.ts",
+      "type": "file",
+      "name": "skills.ts",
+      "filePath": "src/routes/org/skills.ts",
+      "summary": "REST API route router and endpoint handlers for organization skills.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/org/skills.ts:getInvitedMemberName",
+      "type": "function",
+      "name": "getInvitedMemberName",
+      "filePath": "src/routes/org/skills.ts",
+      "lineRange": [
+        105,
+        108
+      ],
+      "summary": "Exported function getInvitedMemberName implementing logic inside skills.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/skills.ts:parseSkillId",
+      "type": "function",
+      "name": "parseSkillId",
+      "filePath": "src/routes/org/skills.ts",
+      "lineRange": [
+        144,
+        146
+      ],
+      "summary": "Exported function parseSkillId implementing logic inside skills.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/skills.ts:parseSkillHubId",
+      "type": "function",
+      "name": "parseSkillHubId",
+      "filePath": "src/routes/org/skills.ts",
+      "lineRange": [
+        148,
+        150
+      ],
+      "summary": "Exported function parseSkillHubId implementing logic inside skills.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/skills.ts:parseSkillHubMemberId",
+      "type": "function",
+      "name": "parseSkillHubMemberId",
+      "filePath": "src/routes/org/skills.ts",
+      "lineRange": [
+        152,
+        154
+      ],
+      "summary": "Exported function parseSkillHubMemberId implementing logic inside skills.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/skills.ts:parseMemberId",
+      "type": "function",
+      "name": "parseMemberId",
+      "filePath": "src/routes/org/skills.ts",
+      "lineRange": [
+        156,
+        158
+      ],
+      "summary": "Exported function parseMemberId implementing logic inside skills.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/skills.ts:parseTeamId",
+      "type": "function",
+      "name": "parseTeamId",
+      "filePath": "src/routes/org/skills.ts",
+      "lineRange": [
+        160,
+        162
+      ],
+      "summary": "Exported function parseTeamId implementing logic inside skills.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/skills.ts:parseSkillMetadata",
+      "type": "function",
+      "name": "parseSkillMetadata",
+      "filePath": "src/routes/org/skills.ts",
+      "lineRange": [
+        164,
+        195
+      ],
+      "summary": "Exported function parseSkillMetadata implementing logic inside skills.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/skills.ts:isOrganizationAdmin",
+      "type": "function",
+      "name": "isOrganizationAdmin",
+      "filePath": "src/routes/org/skills.ts",
+      "lineRange": [
+        197,
+        199
+      ],
+      "summary": "Exported function isOrganizationAdmin implementing logic inside skills.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/skills.ts:canManageSkill",
+      "type": "function",
+      "name": "canManageSkill",
+      "filePath": "src/routes/org/skills.ts",
+      "lineRange": [
+        201,
+        203
+      ],
+      "summary": "Exported function canManageSkill implementing logic inside skills.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/skills.ts:canManageHub",
+      "type": "function",
+      "name": "canManageHub",
+      "filePath": "src/routes/org/skills.ts",
+      "lineRange": [
+        205,
+        207
+      ],
+      "summary": "Exported function canManageHub implementing logic inside skills.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/skills.ts:listAccessibleHubMemberships",
+      "type": "function",
+      "name": "listAccessibleHubMemberships",
+      "filePath": "src/routes/org/skills.ts",
+      "lineRange": [
+        209,
+        239
+      ],
+      "summary": "Exported function listAccessibleHubMemberships implementing logic inside skills.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/org/skills.ts:listAccessibleSkillIds",
+      "type": "function",
+      "name": "listAccessibleSkillIds",
+      "filePath": "src/routes/org/skills.ts",
+      "lineRange": [
+        241,
+        258
+      ],
+      "summary": "Exported function listAccessibleSkillIds implementing logic inside skills.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/skills.ts:canViewSkill",
+      "type": "function",
+      "name": "canViewSkill",
+      "filePath": "src/routes/org/skills.ts",
+      "lineRange": [
+        260,
+        268
+      ],
+      "summary": "Exported function canViewSkill implementing logic inside skills.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/skills.ts:registerOrgSkillRoutes",
+      "type": "function",
+      "name": "registerOrgSkillRoutes",
+      "filePath": "src/routes/org/skills.ts",
+      "lineRange": [
+        270,
+        1158
+      ],
+      "summary": "Exported function registerOrgSkillRoutes implementing logic inside skills.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/org/teams.ts",
+      "type": "file",
+      "name": "teams.ts",
+      "filePath": "src/routes/org/teams.ts",
+      "summary": "REST API route router and endpoint handlers for organization teams.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/org/teams.ts:parseTeamId",
+      "type": "function",
+      "name": "parseTeamId",
+      "filePath": "src/routes/org/teams.ts",
+      "lineRange": [
+        60,
+        62
+      ],
+      "summary": "Exported function parseTeamId implementing logic inside teams.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/teams.ts:parseMemberIds",
+      "type": "function",
+      "name": "parseMemberIds",
+      "filePath": "src/routes/org/teams.ts",
+      "lineRange": [
+        64,
+        66
+      ],
+      "summary": "Exported function parseMemberIds implementing logic inside teams.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/teams.ts:ensureMembersBelongToOrganization",
+      "type": "function",
+      "name": "ensureMembersBelongToOrganization",
+      "filePath": "src/routes/org/teams.ts",
+      "lineRange": [
+        68,
+        83
+      ],
+      "summary": "Exported function ensureMembersBelongToOrganization implementing logic inside teams.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/org/teams.ts:registerOrgTeamRoutes",
+      "type": "function",
+      "name": "registerOrgTeamRoutes",
+      "filePath": "src/routes/org/teams.ts",
+      "lineRange": [
+        85,
+        331
+      ],
+      "summary": "Exported function registerOrgTeamRoutes implementing logic inside teams.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/user.ts",
+      "type": "file",
+      "name": "user.ts",
+      "filePath": "src/user.ts",
+      "summary": "Service module implementing core logical behaviors for user.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/user.ts:getRequiredUserEmail",
+      "type": "function",
+      "name": "getRequiredUserEmail",
+      "filePath": "src/user.ts",
+      "lineRange": [
+        1,
+        8
+      ],
+      "summary": "Exported function getRequiredUserEmail implementing logic inside user.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/llm/models-dev.ts",
+      "target": "function:src/llm/models-dev.ts:isRecord",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/llm/models-dev.ts",
+      "target": "function:src/llm/models-dev.ts:isRecord",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/llm/models-dev.ts",
+      "target": "function:src/llm/models-dev.ts:asString",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/llm/models-dev.ts",
+      "target": "function:src/llm/models-dev.ts:asString",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/llm/models-dev.ts",
+      "target": "function:src/llm/models-dev.ts:asStringList",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/llm/models-dev.ts",
+      "target": "function:src/llm/models-dev.ts:asStringList",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/llm/models-dev.ts",
+      "target": "function:src/llm/models-dev.ts:loadModelsDevCatalog",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/llm/models-dev.ts",
+      "target": "function:src/llm/models-dev.ts:loadModelsDevCatalog",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/llm/models-dev.ts",
+      "target": "function:src/llm/models-dev.ts:listModelsDevProviders",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/llm/models-dev.ts",
+      "target": "function:src/llm/models-dev.ts:listModelsDevProviders",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/llm/models-dev.ts",
+      "target": "function:src/llm/models-dev.ts:getModelsDevProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/llm/models-dev.ts",
+      "target": "function:src/llm/models-dev.ts:getModelsDevProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/openapi.ts",
+      "target": "function:src/openapi.ts:toPascalCase",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/openapi.ts",
+      "target": "function:src/openapi.ts:toPascalCase",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/openapi.ts",
+      "target": "function:src/openapi.ts:buildOperationId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/openapi.ts",
+      "target": "function:src/openapi.ts:buildOperationId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/openapi.ts",
+      "target": "function:src/openapi.ts:denTypeIdSchema",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/openapi.ts",
+      "target": "function:src/openapi.ts:denTypeIdSchema",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/openapi.ts",
+      "target": "function:src/openapi.ts:jsonResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/openapi.ts",
+      "target": "function:src/openapi.ts:jsonResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/openapi.ts",
+      "target": "function:src/openapi.ts:htmlResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/openapi.ts",
+      "target": "function:src/openapi.ts:htmlResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/openapi.ts",
+      "target": "function:src/openapi.ts:textResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/openapi.ts",
+      "target": "function:src/openapi.ts:textResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/openapi.ts",
+      "target": "function:src/openapi.ts:emptyResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/openapi.ts",
+      "target": "function:src/openapi.ts:emptyResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/api-keys.ts",
+      "target": "function:src/routes/org/api-keys.ts:hideApiKeyGenerationRoute",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/api-keys.ts",
+      "target": "function:src/routes/org/api-keys.ts:hideApiKeyGenerationRoute",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/api-keys.ts",
+      "target": "function:src/routes/org/api-keys.ts:registerOrgApiKeyRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/api-keys.ts",
+      "target": "function:src/routes/org/api-keys.ts:registerOrgApiKeyRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/api-keys.ts",
+      "target": "file:src/api-keys.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/api-keys.ts",
+      "target": "file:src/auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/api-keys.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/api-keys.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/api-keys.ts",
+      "target": "file:src/routes/org/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "function:src/routes/org/billing.ts:getRequestOrigin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "function:src/routes/org/billing.ts:getRequestOrigin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "function:src/routes/org/billing.ts:billingReturnUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "function:src/routes/org/billing.ts:billingReturnUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "function:src/routes/org/billing.ts:checkoutSuccessUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "function:src/routes/org/billing.ts:checkoutSuccessUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "function:src/routes/org/billing.ts:appendSeatCheckoutParams",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "function:src/routes/org/billing.ts:appendSeatCheckoutParams",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "function:src/routes/org/billing.ts:seatCheckoutReturnUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "function:src/routes/org/billing.ts:seatCheckoutReturnUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "function:src/routes/org/billing.ts:seatCheckoutSuccessUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "function:src/routes/org/billing.ts:seatCheckoutSuccessUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "function:src/routes/org/billing.ts:checkoutCancelUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "function:src/routes/org/billing.ts:checkoutCancelUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "function:src/routes/org/billing.ts:registerOrgBillingRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "function:src/routes/org/billing.ts:registerOrgBillingRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "file:src/billing/polar.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "file:src/routes/org/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "file:src/stripe-billing.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/billing.ts",
+      "target": "file:src/user.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/core.ts",
+      "target": "function:src/routes/org/core.ts:getStoredSessionId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/core.ts",
+      "target": "function:src/routes/org/core.ts:getStoredSessionId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/core.ts",
+      "target": "function:src/routes/org/core.ts:setRequestActiveOrganization",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/core.ts",
+      "target": "function:src/routes/org/core.ts:setRequestActiveOrganization",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/core.ts",
+      "target": "function:src/routes/org/core.ts:registerOrgCoreRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/core.ts",
+      "target": "function:src/routes/org/core.ts:registerOrgCoreRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/core.ts",
+      "target": "file:src/auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/core.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/core.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/core.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/core.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/core.ts",
+      "target": "file:src/orgs.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/core.ts",
+      "target": "file:src/routes/org/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/core.ts",
+      "target": "file:src/user.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "function:src/routes/org/desktop-policies.ts:isOrganizationAdmin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "function:src/routes/org/desktop-policies.ts:isOrganizationAdmin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "function:src/routes/org/desktop-policies.ts:parseDesktopPolicyId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "function:src/routes/org/desktop-policies.ts:parseDesktopPolicyId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "function:src/routes/org/desktop-policies.ts:parseMemberId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "function:src/routes/org/desktop-policies.ts:parseMemberId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "function:src/routes/org/desktop-policies.ts:parseTeamId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "function:src/routes/org/desktop-policies.ts:parseTeamId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "function:src/routes/org/desktop-policies.ts:resolveMemberIds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "function:src/routes/org/desktop-policies.ts:resolveMemberIds",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "function:src/routes/org/desktop-policies.ts:resolveTeamIds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "function:src/routes/org/desktop-policies.ts:resolveTeamIds",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "function:src/routes/org/desktop-policies.ts:loadDesktopPolicies",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "function:src/routes/org/desktop-policies.ts:loadDesktopPolicies",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "function:src/routes/org/desktop-policies.ts:registerOrgDesktopPolicyRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "function:src/routes/org/desktop-policies.ts:registerOrgDesktopPolicyRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/desktop-policies.ts",
+      "target": "file:src/routes/org/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "function:src/routes/org/index.ts:extractLegacyOrgProxyTarget",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "function:src/routes/org/index.ts:extractLegacyOrgProxyTarget",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "function:src/routes/org/index.ts:registerOrgRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "function:src/routes/org/index.ts:registerOrgRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "file:src/middleware/user-organizations.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "file:src/routes/org/api-keys.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "file:src/routes/org/billing.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "file:src/routes/org/core.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "file:src/routes/org/desktop-policies.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "file:src/routes/org/inference.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "file:src/routes/org/invitations.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "file:src/routes/org/llm-providers.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "file:src/routes/org/members.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "file:src/routes/org/plugin-system/routes.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "file:src/routes/org/resources.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "file:src/routes/org/roles.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "file:src/routes/org/scim.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "file:src/routes/org/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "file:src/routes/org/skills.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "file:src/routes/org/sso.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/index.ts",
+      "target": "file:src/routes/org/teams.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/inference.ts",
+      "target": "function:src/routes/org/inference.ts:registerOrgInferenceRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/inference.ts",
+      "target": "function:src/routes/org/inference.ts:registerOrgInferenceRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/inference.ts",
+      "target": "file:src/inference.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/inference.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/inference.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/inference.ts",
+      "target": "file:src/routes/org/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/inference.ts",
+      "target": "file:src/stripe-billing.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:getInvitedMemberName",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:getInvitedMemberName",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:createFailure",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:createFailure",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:isRouteFailure",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:isRouteFailure",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:isOrganizationAdmin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:isOrganizationAdmin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:canManageLlmProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:canManageLlmProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:canAccessLlmProvider",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:canAccessLlmProvider",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:parseLlmProviderId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:parseLlmProviderId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:parseLlmProviderAccessId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:parseLlmProviderAccessId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:parseMemberId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:parseMemberId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:parseTeamId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:parseTeamId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:listAccessibleProviderAccess",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:listAccessibleProviderAccess",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:resolveMemberIds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:resolveMemberIds",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:resolveTeamIds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:resolveTeamIds",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:normalizeLlmProviderInput",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:normalizeLlmProviderInput",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:loadLlmProviders",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:loadLlmProviders",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:registerOrgLlmProviderRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "function:src/routes/org/llm-providers.ts:registerOrgLlmProviderRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "file:src/llm/models-dev.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "file:src/middleware/member-teams.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/llm-providers.ts",
+      "target": "file:src/routes/org/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/members.ts",
+      "target": "function:src/routes/org/members.ts:registerOrgMemberRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/members.ts",
+      "target": "function:src/routes/org/members.ts:registerOrgMemberRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/members.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/members.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/members.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/members.ts",
+      "target": "file:src/orgs.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/members.ts",
+      "target": "file:src/routes/org/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:maxRole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:maxRole",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:isPluginArchOrgAdmin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:isPluginArchOrgAdmin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:hasPluginArchCapability",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:hasPluginArchCapability",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:roleSatisfies",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:roleSatisfies",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:resolvePluginArchGrantRole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:resolvePluginArchGrantRole",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:resolveGrantRole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:resolveGrantRole",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:resolvePluginRoleForIds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:resolvePluginRoleForIds",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:resolveMarketplaceRoleForIds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:resolveMarketplaceRoleForIds",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:resolvePluginArchResourceRole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:resolvePluginArchResourceRole",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:requirePluginArchCapability",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:requirePluginArchCapability",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:requirePluginArchResourceRole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "function:src/routes/org/plugin-system/access.ts:requirePluginArchResourceRole",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "class:src/routes/org/plugin-system/access.ts:PluginArchAuthorizationError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "class:src/routes/org/plugin-system/access.ts:PluginArchAuthorizationError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "file:src/orgs.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/access.ts",
+      "target": "file:src/routes/org/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "function:src/routes/org/plugin-system/routes.ts:validRequestPart",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "function:src/routes/org/plugin-system/routes.ts:validRequestPart",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "function:src/routes/org/plugin-system/routes.ts:validJson",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "function:src/routes/org/plugin-system/routes.ts:validJson",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "function:src/routes/org/plugin-system/routes.ts:validParam",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "function:src/routes/org/plugin-system/routes.ts:validParam",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "function:src/routes/org/plugin-system/routes.ts:validQuery",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "function:src/routes/org/plugin-system/routes.ts:validQuery",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "function:src/routes/org/plugin-system/routes.ts:actorContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "function:src/routes/org/plugin-system/routes.ts:actorContext",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "function:src/routes/org/plugin-system/routes.ts:routeErrorResponse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "function:src/routes/org/plugin-system/routes.ts:routeErrorResponse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "function:src/routes/org/plugin-system/routes.ts:withPluginArchOrgContext",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "function:src/routes/org/plugin-system/routes.ts:withPluginArchOrgContext",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "function:src/routes/org/plugin-system/routes.ts:registerPluginArchRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "function:src/routes/org/plugin-system/routes.ts:registerPluginArchRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "file:src/routes/org/plugin-system/access.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "file:src/routes/org/plugin-system/contracts.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "file:src/routes/org/plugin-system/schemas.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "file:src/routes/org/plugin-system/store.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/plugin-system/routes.ts",
+      "target": "file:src/routes/org/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/resources.ts",
+      "target": "function:src/routes/org/resources.ts:timestamp",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/resources.ts",
+      "target": "function:src/routes/org/resources.ts:timestamp",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/resources.ts",
+      "target": "function:src/routes/org/resources.ts:isRecord",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/resources.ts",
+      "target": "function:src/routes/org/resources.ts:isRecord",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/resources.ts",
+      "target": "function:src/routes/org/resources.ts:readDate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/resources.ts",
+      "target": "function:src/routes/org/resources.ts:readDate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/resources.ts",
+      "target": "function:src/routes/org/resources.ts:readMemberTeams",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/resources.ts",
+      "target": "function:src/routes/org/resources.ts:readMemberTeams",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/resources.ts",
+      "target": "function:src/routes/org/resources.ts:listAccessibleLlmProviders",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/resources.ts",
+      "target": "function:src/routes/org/resources.ts:listAccessibleLlmProviders",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/resources.ts",
+      "target": "function:src/routes/org/resources.ts:listAccessibleMarketplaces",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/resources.ts",
+      "target": "function:src/routes/org/resources.ts:listAccessibleMarketplaces",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/resources.ts",
+      "target": "function:src/routes/org/resources.ts:registerOrgResourceRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/resources.ts",
+      "target": "function:src/routes/org/resources.ts:registerOrgResourceRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/resources.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/resources.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/resources.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/resources.ts",
+      "target": "file:src/routes/org/plugin-system/access.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/resources.ts",
+      "target": "file:src/routes/org/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/roles.ts",
+      "target": "function:src/routes/org/roles.ts:registerOrgRoleRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/roles.ts",
+      "target": "function:src/routes/org/roles.ts:registerOrgRoleRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/roles.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/roles.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/roles.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/roles.ts",
+      "target": "file:src/orgs.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/roles.ts",
+      "target": "file:src/routes/org/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/scim.ts",
+      "target": "function:src/routes/org/scim.ts:serializeConnection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/scim.ts",
+      "target": "function:src/routes/org/scim.ts:serializeConnection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/scim.ts",
+      "target": "function:src/routes/org/scim.ts:registerOrgScimRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/scim.ts",
+      "target": "function:src/routes/org/scim.ts:registerOrgScimRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/scim.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/scim.ts",
+      "target": "file:src/routes/org/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/scim.ts",
+      "target": "file:src/scim.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:idParamSchema",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:idParamSchema",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:splitRoles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:splitRoles",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:memberHasRole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:memberHasRole",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:normalizeRoleName",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:normalizeRoleName",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:replaceRoleValue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:replaceRoleValue",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:getInvitationOrigin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:getInvitationOrigin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:buildInvitationLink",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:buildInvitationLink",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:ensureOwner",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:ensureOwner",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:ensureInviteManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:ensureInviteManager",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:ensureMemberRemover",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:ensureMemberRemover",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:ensureTeamManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:ensureTeamManager",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:ensureApiKeyManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:ensureApiKeyManager",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:ensureScimManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:ensureScimManager",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:ensureSsoManager",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:ensureSsoManager",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:createInvitationId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:createInvitationId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:createInvitationToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:createInvitationToken",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:createRoleId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "function:src/routes/org/shared.ts:createRoleId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "file:src/env.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/shared.ts",
+      "target": "file:src/session.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:getInvitedMemberName",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:getInvitedMemberName",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:parseSkillId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:parseSkillId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:parseSkillHubId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:parseSkillHubId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:parseSkillHubMemberId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:parseSkillHubMemberId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:parseMemberId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:parseMemberId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:parseTeamId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:parseTeamId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:parseSkillMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:parseSkillMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:isOrganizationAdmin",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:isOrganizationAdmin",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:canManageSkill",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:canManageSkill",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:canManageHub",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:canManageHub",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:listAccessibleHubMemberships",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:listAccessibleHubMemberships",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:listAccessibleSkillIds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:listAccessibleSkillIds",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:canViewSkill",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:canViewSkill",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:registerOrgSkillRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "function:src/routes/org/skills.ts:registerOrgSkillRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "file:src/middleware/member-teams.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/skills.ts",
+      "target": "file:src/routes/org/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/teams.ts",
+      "target": "function:src/routes/org/teams.ts:parseTeamId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/teams.ts",
+      "target": "function:src/routes/org/teams.ts:parseTeamId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/teams.ts",
+      "target": "function:src/routes/org/teams.ts:parseMemberIds",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/teams.ts",
+      "target": "function:src/routes/org/teams.ts:parseMemberIds",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/teams.ts",
+      "target": "function:src/routes/org/teams.ts:ensureMembersBelongToOrganization",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/teams.ts",
+      "target": "function:src/routes/org/teams.ts:ensureMembersBelongToOrganization",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/teams.ts",
+      "target": "function:src/routes/org/teams.ts:registerOrgTeamRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/org/teams.ts",
+      "target": "function:src/routes/org/teams.ts:registerOrgTeamRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/org/teams.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/teams.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/teams.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/org/teams.ts",
+      "target": "file:src/routes/org/shared.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/user.ts",
+      "target": "function:src/user.ts:getRequiredUserEmail",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/user.ts",
+      "target": "function:src/user.ts:getRequiredUserEmail",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

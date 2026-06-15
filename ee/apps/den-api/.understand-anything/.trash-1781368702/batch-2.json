@@ -1,0 +1,3056 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/api-keys.ts",
+      "type": "file",
+      "name": "api-keys.ts",
+      "filePath": "src/api-keys.ts",
+      "summary": "Service module implementing core logical behaviors for api keys.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/api-keys.ts:isRecord",
+      "type": "function",
+      "name": "isRecord",
+      "filePath": "src/api-keys.ts",
+      "lineRange": [
+        53,
+        55
+      ],
+      "summary": "Exported function isRecord implementing logic inside api-keys.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/api-keys.ts:parseApiKeyMetadata",
+      "type": "function",
+      "name": "parseApiKeyMetadata",
+      "filePath": "src/api-keys.ts",
+      "lineRange": [
+        57,
+        87
+      ],
+      "summary": "Exported function parseApiKeyMetadata implementing logic inside api-keys.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/api-keys.ts:buildOrganizationApiKeyMetadata",
+      "type": "function",
+      "name": "buildOrganizationApiKeyMetadata",
+      "filePath": "src/api-keys.ts",
+      "lineRange": [
+        89,
+        101
+      ],
+      "summary": "Exported function buildOrganizationApiKeyMetadata implementing logic inside api-keys.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/api-keys.ts:getApiKeySessionById",
+      "type": "function",
+      "name": "getApiKeySessionById",
+      "filePath": "src/api-keys.ts",
+      "lineRange": [
+        103,
+        126
+      ],
+      "summary": "Exported function getApiKeySessionById implementing logic inside api-keys.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/api-keys.ts:listOrganizationApiKeys",
+      "type": "function",
+      "name": "listOrganizationApiKeys",
+      "filePath": "src/api-keys.ts",
+      "lineRange": [
+        128,
+        188
+      ],
+      "summary": "Exported function listOrganizationApiKeys implementing logic inside api-keys.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/api-keys.ts:getOrganizationApiKeyById",
+      "type": "function",
+      "name": "getOrganizationApiKeyById",
+      "filePath": "src/api-keys.ts",
+      "lineRange": [
+        190,
+        196
+      ],
+      "summary": "Exported function getOrganizationApiKeyById implementing logic inside api-keys.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/api-keys.ts:deleteOrganizationApiKey",
+      "type": "function",
+      "name": "deleteOrganizationApiKey",
+      "filePath": "src/api-keys.ts",
+      "lineRange": [
+        198,
+        212
+      ],
+      "summary": "Exported function deleteOrganizationApiKey implementing logic inside api-keys.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/api-keys.ts:isScopedApiKeyForOrganization",
+      "type": "function",
+      "name": "isScopedApiKeyForOrganization",
+      "filePath": "src/api-keys.ts",
+      "lineRange": [
+        214,
+        219
+      ],
+      "summary": "Exported function isScopedApiKeyForOrganization implementing logic inside api-keys.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/api-keys.ts:getApiKeyScopedOrganizationId",
+      "type": "function",
+      "name": "getApiKeyScopedOrganizationId",
+      "filePath": "src/api-keys.ts",
+      "lineRange": [
+        221,
+        223
+      ],
+      "summary": "Exported function getApiKeyScopedOrganizationId implementing logic inside api-keys.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/desktop-policies.ts",
+      "type": "file",
+      "name": "desktop-policies.ts",
+      "filePath": "src/desktop-policies.ts",
+      "summary": "Service module implementing core logical behaviors for desktop policies.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/desktop-policies.ts:ensureDefaultDesktopPolicyForOrganization",
+      "type": "function",
+      "name": "ensureDefaultDesktopPolicyForOrganization",
+      "filePath": "src/desktop-policies.ts",
+      "lineRange": [
+        27,
+        57
+      ],
+      "summary": "Exported function ensureDefaultDesktopPolicyForOrganization implementing logic inside desktop-policies.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/desktop-policies.ts:listTeamIdsForOrgMember",
+      "type": "function",
+      "name": "listTeamIdsForOrgMember",
+      "filePath": "src/desktop-policies.ts",
+      "lineRange": [
+        59,
+        73
+      ],
+      "summary": "Exported function listTeamIdsForOrgMember implementing logic inside desktop-policies.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/desktop-policies.ts:calculateDesktopPolicyForOrgMember",
+      "type": "function",
+      "name": "calculateDesktopPolicyForOrgMember",
+      "filePath": "src/desktop-policies.ts",
+      "lineRange": [
+        75,
+        124
+      ],
+      "summary": "Exported function calculateDesktopPolicyForOrgMember implementing logic inside desktop-policies.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/middleware/current-user.ts",
+      "type": "file",
+      "name": "current-user.ts",
+      "filePath": "src/middleware/current-user.ts",
+      "summary": "Hono HTTP middleware for request handling, validation, or context setup: current user.",
+      "tags": [
+        "middleware",
+        "security",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/middleware/current-user.ts:requireUserMiddleware",
+      "type": "function",
+      "name": "requireUserMiddleware",
+      "filePath": "src/middleware/current-user.ts",
+      "lineRange": [
+        4,
+        10
+      ],
+      "summary": "Exported function requireUserMiddleware implementing logic inside current-user.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/middleware/member-teams.ts",
+      "type": "file",
+      "name": "member-teams.ts",
+      "filePath": "src/middleware/member-teams.ts",
+      "summary": "Hono HTTP middleware for request handling, validation, or context setup: member teams.",
+      "tags": [
+        "middleware",
+        "security",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/middleware/member-teams.ts:resolveMemberTeamsMiddleware",
+      "type": "function",
+      "name": "resolveMemberTeamsMiddleware",
+      "filePath": "src/middleware/member-teams.ts",
+      "lineRange": [
+        10,
+        25
+      ],
+      "summary": "Exported function resolveMemberTeamsMiddleware implementing logic inside member-teams.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/middleware/organization-context.ts",
+      "type": "file",
+      "name": "organization-context.ts",
+      "filePath": "src/middleware/organization-context.ts",
+      "summary": "Hono HTTP middleware for request handling, validation, or context setup: organization context.",
+      "tags": [
+        "middleware",
+        "security",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/middleware/organization-context.ts:resolveOrganizationContextMiddleware",
+      "type": "function",
+      "name": "resolveOrganizationContextMiddleware",
+      "filePath": "src/middleware/organization-context.ts",
+      "lineRange": [
+        12,
+        91
+      ],
+      "summary": "Exported function resolveOrganizationContextMiddleware implementing logic inside organization-context.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/middleware/user-organizations.ts",
+      "type": "file",
+      "name": "user-organizations.ts",
+      "filePath": "src/middleware/user-organizations.ts",
+      "summary": "Hono HTTP middleware for request handling, validation, or context setup: user organizations.",
+      "tags": [
+        "middleware",
+        "security",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/middleware/user-organizations.ts:getLegacyProxyOrganizationId",
+      "type": "function",
+      "name": "getLegacyProxyOrganizationId",
+      "filePath": "src/middleware/user-organizations.ts",
+      "lineRange": [
+        17,
+        28
+      ],
+      "summary": "Exported function getLegacyProxyOrganizationId implementing logic inside user-organizations.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/middleware/user-organizations.ts:shouldHydrateSessionActiveOrganization",
+      "type": "function",
+      "name": "shouldHydrateSessionActiveOrganization",
+      "filePath": "src/middleware/user-organizations.ts",
+      "lineRange": [
+        30,
+        36
+      ],
+      "summary": "Exported function shouldHydrateSessionActiveOrganization implementing logic inside user-organizations.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/middleware/user-organizations.ts:hydrateSessionActiveOrganization",
+      "type": "function",
+      "name": "hydrateSessionActiveOrganization",
+      "filePath": "src/middleware/user-organizations.ts",
+      "lineRange": [
+        38,
+        50
+      ],
+      "summary": "Exported function hydrateSessionActiveOrganization implementing logic inside user-organizations.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/middleware/user-organizations.ts:resolveUserOrganizationsMiddleware",
+      "type": "function",
+      "name": "resolveUserOrganizationsMiddleware",
+      "filePath": "src/middleware/user-organizations.ts",
+      "lineRange": [
+        52,
+        94
+      ],
+      "summary": "Exported function resolveUserOrganizationsMiddleware implementing logic inside user-organizations.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/organization-access.ts",
+      "type": "file",
+      "name": "organization-access.ts",
+      "filePath": "src/organization-access.ts",
+      "summary": "Service module implementing core logical behaviors for organization access.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/organization-limits.ts",
+      "type": "file",
+      "name": "organization-limits.ts",
+      "filePath": "src/organization-limits.ts",
+      "summary": "Service module implementing core logical behaviors for organization limits.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/organization-limits.ts:isRecord",
+      "type": "function",
+      "name": "isRecord",
+      "filePath": "src/organization-limits.ts",
+      "lineRange": [
+        27,
+        29
+      ],
+      "summary": "Exported function isRecord implementing logic inside organization-limits.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/organization-limits.ts:normalizePositiveInteger",
+      "type": "function",
+      "name": "normalizePositiveInteger",
+      "filePath": "src/organization-limits.ts",
+      "lineRange": [
+        31,
+        44
+      ],
+      "summary": "Exported function normalizePositiveInteger implementing logic inside organization-limits.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/organization-limits.ts:normalizeDesktopVersionString",
+      "type": "function",
+      "name": "normalizeDesktopVersionString",
+      "filePath": "src/organization-limits.ts",
+      "lineRange": [
+        46,
+        55
+      ],
+      "summary": "Exported function normalizeDesktopVersionString implementing logic inside organization-limits.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/organization-limits.ts:normalizeAllowedDesktopVersions",
+      "type": "function",
+      "name": "normalizeAllowedDesktopVersions",
+      "filePath": "src/organization-limits.ts",
+      "lineRange": [
+        57,
+        64
+      ],
+      "summary": "Exported function normalizeAllowedDesktopVersions implementing logic inside organization-limits.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/organization-limits.ts:sameStringArray",
+      "type": "function",
+      "name": "sameStringArray",
+      "filePath": "src/organization-limits.ts",
+      "lineRange": [
+        66,
+        76
+      ],
+      "summary": "Exported function sameStringArray implementing logic inside organization-limits.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/organization-limits.ts:parseMetadata",
+      "type": "function",
+      "name": "parseMetadata",
+      "filePath": "src/organization-limits.ts",
+      "lineRange": [
+        78,
+        93
+      ],
+      "summary": "Exported function parseMetadata implementing logic inside organization-limits.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/organization-limits.ts:normalizeOrganizationMetadata",
+      "type": "function",
+      "name": "normalizeOrganizationMetadata",
+      "filePath": "src/organization-limits.ts",
+      "lineRange": [
+        95,
+        130
+      ],
+      "summary": "Exported function normalizeOrganizationMetadata implementing logic inside organization-limits.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/organization-limits.ts:serializeOrganizationMetadata",
+      "type": "function",
+      "name": "serializeOrganizationMetadata",
+      "filePath": "src/organization-limits.ts",
+      "lineRange": [
+        132,
+        135
+      ],
+      "summary": "Exported function serializeOrganizationMetadata implementing logic inside organization-limits.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/organization-limits.ts:getOrInitializeOrganizationMetadata",
+      "type": "function",
+      "name": "getOrInitializeOrganizationMetadata",
+      "filePath": "src/organization-limits.ts",
+      "lineRange": [
+        137,
+        153
+      ],
+      "summary": "Exported function getOrInitializeOrganizationMetadata implementing logic inside organization-limits.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/organization-limits.ts:countOrganizationMembers",
+      "type": "function",
+      "name": "countOrganizationMembers",
+      "filePath": "src/organization-limits.ts",
+      "lineRange": [
+        155,
+        162
+      ],
+      "summary": "Exported function countOrganizationMembers implementing logic inside organization-limits.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/organization-limits.ts:countOrganizationWorkers",
+      "type": "function",
+      "name": "countOrganizationWorkers",
+      "filePath": "src/organization-limits.ts",
+      "lineRange": [
+        164,
+        171
+      ],
+      "summary": "Exported function countOrganizationWorkers implementing logic inside organization-limits.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/organization-limits.ts:getOrganizationLimitStatus",
+      "type": "function",
+      "name": "getOrganizationLimitStatus",
+      "filePath": "src/organization-limits.ts",
+      "lineRange": [
+        173,
+        188
+      ],
+      "summary": "Exported function getOrganizationLimitStatus implementing logic inside organization-limits.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/orgs.ts",
+      "type": "file",
+      "name": "orgs.ts",
+      "filePath": "src/orgs.ts",
+      "summary": "Service module implementing core logical behaviors for orgs.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/orgs.ts:splitRoles",
+      "type": "function",
+      "name": "splitRoles",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        129,
+        134
+      ],
+      "summary": "Exported function splitRoles implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:hasRole",
+      "type": "function",
+      "name": "hasRole",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        136,
+        138
+      ],
+      "summary": "Exported function hasRole implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:roleIncludesOwner",
+      "type": "function",
+      "name": "roleIncludesOwner",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        140,
+        142
+      ],
+      "summary": "Exported function roleIncludesOwner implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:titleCase",
+      "type": "function",
+      "name": "titleCase",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        144,
+        150
+      ],
+      "summary": "Exported function titleCase implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:buildPersonalOrgName",
+      "type": "function",
+      "name": "buildPersonalOrgName",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        152,
+        165
+      ],
+      "summary": "Exported function buildPersonalOrgName implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:normalizeEmailDomainValue",
+      "type": "function",
+      "name": "normalizeEmailDomainValue",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        167,
+        178
+      ],
+      "summary": "Exported function normalizeEmailDomainValue implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:normalizeAllowedEmailDomains",
+      "type": "function",
+      "name": "normalizeAllowedEmailDomains",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        180,
+        207
+      ],
+      "summary": "Exported function normalizeAllowedEmailDomains implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/orgs.ts:getEmailDomain",
+      "type": "function",
+      "name": "getEmailDomain",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        209,
+        216
+      ],
+      "summary": "Exported function getEmailDomain implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:getEmailLocalPart",
+      "type": "function",
+      "name": "getEmailLocalPart",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        218,
+        221
+      ],
+      "summary": "Exported function getEmailLocalPart implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:getEmailDomainName",
+      "type": "function",
+      "name": "getEmailDomainName",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        223,
+        226
+      ],
+      "summary": "Exported function getEmailDomainName implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:getInvitedMemberName",
+      "type": "function",
+      "name": "getInvitedMemberName",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        228,
+        230
+      ],
+      "summary": "Exported function getInvitedMemberName implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:isEmailAllowedForOrganization",
+      "type": "function",
+      "name": "isEmailAllowedForOrganization",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        232,
+        243
+      ],
+      "summary": "Exported function isEmailAllowedForOrganization implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:normalizeStoredAllowedEmailDomains",
+      "type": "function",
+      "name": "normalizeStoredAllowedEmailDomains",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        245,
+        248
+      ],
+      "summary": "Exported function normalizeStoredAllowedEmailDomains implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:parsePermissionRecord",
+      "type": "function",
+      "name": "parsePermissionRecord",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        250,
+        268
+      ],
+      "summary": "Exported function parsePermissionRecord implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:serializePermissionRecord",
+      "type": "function",
+      "name": "serializePermissionRecord",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        270,
+        272
+      ],
+      "summary": "Exported function serializePermissionRecord implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:clonePermissionRecord",
+      "type": "function",
+      "name": "clonePermissionRecord",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        291,
+        295
+      ],
+      "summary": "Exported function clonePermissionRecord implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:listMembershipRows",
+      "type": "function",
+      "name": "listMembershipRows",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        297,
+        303
+      ],
+      "summary": "Exported function listMembershipRows implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:getInvitationStatus",
+      "type": "function",
+      "name": "getInvitationStatus",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        305,
+        311
+      ],
+      "summary": "Exported function getInvitationStatus implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:getInvitationById",
+      "type": "function",
+      "name": "getInvitationById",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        313,
+        338
+      ],
+      "summary": "Exported function getInvitationById implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/orgs.ts:ensureDefaultDynamicRoles",
+      "type": "function",
+      "name": "ensureDefaultDynamicRoles",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        340,
+        357
+      ],
+      "summary": "Exported function ensureDefaultDynamicRoles implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:normalizeAssignableRole",
+      "type": "function",
+      "name": "normalizeAssignableRole",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        359,
+        365
+      ],
+      "summary": "Exported function normalizeAssignableRole implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:listAssignableRoles",
+      "type": "function",
+      "name": "listAssignableRoles",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        367,
+        376
+      ],
+      "summary": "Exported function listAssignableRoles implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:insertMemberIfMissing",
+      "type": "function",
+      "name": "insertMemberIfMissing",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        378,
+        412
+      ],
+      "summary": "Exported function insertMemberIfMissing implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/orgs.ts:acceptInvitation",
+      "type": "function",
+      "name": "acceptInvitation",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        414,
+        481
+      ],
+      "summary": "Exported function acceptInvitation implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/orgs.ts:acceptInvitationForUser",
+      "type": "function",
+      "name": "acceptInvitationForUser",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        483,
+        523
+      ],
+      "summary": "Exported function acceptInvitationForUser implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/orgs.ts:getInvitationPreview",
+      "type": "function",
+      "name": "getInvitationPreview",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        525,
+        568
+      ],
+      "summary": "Exported function getInvitationPreview implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/orgs.ts:createOrganizationRecord",
+      "type": "function",
+      "name": "createOrganizationRecord",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        570,
+        609
+      ],
+      "summary": "Exported function createOrganizationRecord implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/orgs.ts:ensureUserOrgAccess",
+      "type": "function",
+      "name": "ensureUserOrgAccess",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        611,
+        622
+      ],
+      "summary": "Exported function ensureUserOrgAccess implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:ensurePersonalOrganizationForUser",
+      "type": "function",
+      "name": "ensurePersonalOrganizationForUser",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        624,
+        649
+      ],
+      "summary": "Exported function ensurePersonalOrganizationForUser implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/orgs.ts:createOrganizationForUser",
+      "type": "function",
+      "name": "createOrganizationForUser",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        651,
+        659
+      ],
+      "summary": "Exported function createOrganizationForUser implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:updateOrganizationName",
+      "type": "function",
+      "name": "updateOrganizationName",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        661,
+        669
+      ],
+      "summary": "Exported function updateOrganizationName implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:updateOrganizationSettings",
+      "type": "function",
+      "name": "updateOrganizationSettings",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        671,
+        737
+      ],
+      "summary": "Exported function updateOrganizationSettings implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/orgs.ts:seedDefaultOrganizationRoles",
+      "type": "function",
+      "name": "seedDefaultOrganizationRoles",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        739,
+        741
+      ],
+      "summary": "Exported function seedDefaultOrganizationRoles implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:setSessionActiveOrganization",
+      "type": "function",
+      "name": "setSessionActiveOrganization",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        743,
+        748
+      ],
+      "summary": "Exported function setSessionActiveOrganization implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:listUserOrgs",
+      "type": "function",
+      "name": "listUserOrgs",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        750,
+        801
+      ],
+      "summary": "Exported function listUserOrgs implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/orgs.ts:resolveUserOrganizations",
+      "type": "function",
+      "name": "resolveUserOrganizations",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        803,
+        834
+      ],
+      "summary": "Exported function resolveUserOrganizations implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/orgs.ts:getOrganizationContextForUser",
+      "type": "function",
+      "name": "getOrganizationContextForUser",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        836,
+        977
+      ],
+      "summary": "Exported function getOrganizationContextForUser implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/orgs.ts:listOrganizationTeams",
+      "type": "function",
+      "name": "listOrganizationTeams",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        979,
+        1014
+      ],
+      "summary": "Exported function listOrganizationTeams implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/orgs.ts:listTeamsForMember",
+      "type": "function",
+      "name": "listTeamsForMember",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        1016,
+        1032
+      ],
+      "summary": "Exported function listTeamsForMember implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/orgs.ts:removeOrganizationMember",
+      "type": "function",
+      "name": "removeOrganizationMember",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        1034,
+        1064
+      ],
+      "summary": "Exported function removeOrganizationMember implementing logic inside orgs.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/orgs.ts:OrganizationEmailDomainRestrictionError",
+      "type": "class",
+      "name": "OrganizationEmailDomainRestrictionError",
+      "filePath": "src/orgs.ts",
+      "lineRange": [
+        274,
+        289
+      ],
+      "summary": "Class OrganizationEmailDomainRestrictionError wrapping state and methods inside orgs.ts.",
+      "tags": [
+        "class",
+        "exports"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/auth/desktop-handoff.ts",
+      "type": "file",
+      "name": "desktop-handoff.ts",
+      "filePath": "src/routes/auth/desktop-handoff.ts",
+      "summary": "REST API routes for auth module.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/routes/auth/desktop-handoff.ts:readSingleHeader",
+      "type": "function",
+      "name": "readSingleHeader",
+      "filePath": "src/routes/auth/desktop-handoff.ts",
+      "lineRange": [
+        42,
+        45
+      ],
+      "summary": "Exported function readSingleHeader implementing logic inside desktop-handoff.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/auth/desktop-handoff.ts:isWebAppHost",
+      "type": "function",
+      "name": "isWebAppHost",
+      "filePath": "src/routes/auth/desktop-handoff.ts",
+      "lineRange": [
+        47,
+        81
+      ],
+      "summary": "Exported function isWebAppHost implementing logic inside desktop-handoff.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/auth/desktop-handoff.ts:withDenProxyPath",
+      "type": "function",
+      "name": "withDenProxyPath",
+      "filePath": "src/routes/auth/desktop-handoff.ts",
+      "lineRange": [
+        83,
+        91
+      ],
+      "summary": "Exported function withDenProxyPath implementing logic inside desktop-handoff.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/auth/desktop-handoff.ts:resolveDesktopDenBaseUrl",
+      "type": "function",
+      "name": "resolveDesktopDenBaseUrl",
+      "filePath": "src/routes/auth/desktop-handoff.ts",
+      "lineRange": [
+        93,
+        126
+      ],
+      "summary": "Exported function resolveDesktopDenBaseUrl implementing logic inside desktop-handoff.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/auth/desktop-handoff.ts:buildOpenworkDeepLink",
+      "type": "function",
+      "name": "buildOpenworkDeepLink",
+      "filePath": "src/routes/auth/desktop-handoff.ts",
+      "lineRange": [
+        128,
+        141
+      ],
+      "summary": "Exported function buildOpenworkDeepLink implementing logic inside desktop-handoff.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/routes/auth/desktop-handoff.ts:registerDesktopAuthRoutes",
+      "type": "function",
+      "name": "registerDesktopAuthRoutes",
+      "filePath": "src/routes/auth/desktop-handoff.ts",
+      "lineRange": [
+        143,
+        281
+      ],
+      "summary": "Exported function registerDesktopAuthRoutes implementing logic inside desktop-handoff.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/routes/me/index.ts",
+      "type": "file",
+      "name": "index.ts",
+      "filePath": "src/routes/me/index.ts",
+      "summary": "REST API routes for me module.",
+      "tags": [
+        "api-handler",
+        "routing",
+        "core"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/routes/me/index.ts:registerMeRoutes",
+      "type": "function",
+      "name": "registerMeRoutes",
+      "filePath": "src/routes/me/index.ts",
+      "lineRange": [
+        43,
+        164
+      ],
+      "summary": "Exported function registerMeRoutes implementing logic inside index.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/session.ts",
+      "type": "file",
+      "name": "session.ts",
+      "filePath": "src/session.ts",
+      "summary": "Service module implementing core logical behaviors for session.",
+      "tags": [
+        "core",
+        "core",
+        "core"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/session.ts:signPrincipalPayload",
+      "type": "function",
+      "name": "signPrincipalPayload",
+      "filePath": "src/session.ts",
+      "lineRange": [
+        35,
+        37
+      ],
+      "summary": "Exported function signPrincipalPayload implementing logic inside session.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/session.ts:verifySignature",
+      "type": "function",
+      "name": "verifySignature",
+      "filePath": "src/session.ts",
+      "lineRange": [
+        39,
+        44
+      ],
+      "summary": "Exported function verifySignature implementing logic inside session.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/session.ts:createInternalMcpPrincipalHeader",
+      "type": "function",
+      "name": "createInternalMcpPrincipalHeader",
+      "filePath": "src/session.ts",
+      "lineRange": [
+        46,
+        54
+      ],
+      "summary": "Exported function createInternalMcpPrincipalHeader implementing logic inside session.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/session.ts:verifyInternalMcpPrincipalHeader",
+      "type": "function",
+      "name": "verifyInternalMcpPrincipalHeader",
+      "filePath": "src/session.ts",
+      "lineRange": [
+        60,
+        82
+      ],
+      "summary": "Exported function verifyInternalMcpPrincipalHeader implementing logic inside session.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/session.ts:getSessionFromInternalMcpPrincipal",
+      "type": "function",
+      "name": "getSessionFromInternalMcpPrincipal",
+      "filePath": "src/session.ts",
+      "lineRange": [
+        84,
+        128
+      ],
+      "summary": "Exported function getSessionFromInternalMcpPrincipal implementing logic inside session.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/session.ts:readBearerToken",
+      "type": "function",
+      "name": "readBearerToken",
+      "filePath": "src/session.ts",
+      "lineRange": [
+        130,
+        143
+      ],
+      "summary": "Exported function readBearerToken implementing logic inside session.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/session.ts:getSessionFromBearerToken",
+      "type": "function",
+      "name": "getSessionFromBearerToken",
+      "filePath": "src/session.ts",
+      "lineRange": [
+        145,
+        187
+      ],
+      "summary": "Exported function getSessionFromBearerToken implementing logic inside session.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/session.ts:getRequestSession",
+      "type": "function",
+      "name": "getRequestSession",
+      "filePath": "src/session.ts",
+      "lineRange": [
+        189,
+        218
+      ],
+      "summary": "Exported function getRequestSession implementing logic inside session.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/session.ts:getRequestApiKeySession",
+      "type": "function",
+      "name": "getRequestApiKeySession",
+      "filePath": "src/session.ts",
+      "lineRange": [
+        220,
+        226
+      ],
+      "summary": "Exported function getRequestApiKeySession implementing logic inside session.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/session.ts:sessionMiddleware",
+      "type": "function",
+      "name": "sessionMiddleware",
+      "filePath": "src/session.ts",
+      "lineRange": [
+        228,
+        238
+      ],
+      "summary": "Exported function sessionMiddleware implementing logic inside session.ts.",
+      "tags": [
+        "utility",
+        "function"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/api-keys.ts",
+      "target": "function:src/api-keys.ts:isRecord",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/api-keys.ts",
+      "target": "function:src/api-keys.ts:isRecord",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/api-keys.ts",
+      "target": "function:src/api-keys.ts:parseApiKeyMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/api-keys.ts",
+      "target": "function:src/api-keys.ts:parseApiKeyMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/api-keys.ts",
+      "target": "function:src/api-keys.ts:buildOrganizationApiKeyMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/api-keys.ts",
+      "target": "function:src/api-keys.ts:buildOrganizationApiKeyMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/api-keys.ts",
+      "target": "function:src/api-keys.ts:getApiKeySessionById",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/api-keys.ts",
+      "target": "function:src/api-keys.ts:getApiKeySessionById",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/api-keys.ts",
+      "target": "function:src/api-keys.ts:listOrganizationApiKeys",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/api-keys.ts",
+      "target": "function:src/api-keys.ts:listOrganizationApiKeys",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/api-keys.ts",
+      "target": "function:src/api-keys.ts:getOrganizationApiKeyById",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/api-keys.ts",
+      "target": "function:src/api-keys.ts:getOrganizationApiKeyById",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/api-keys.ts",
+      "target": "function:src/api-keys.ts:deleteOrganizationApiKey",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/api-keys.ts",
+      "target": "function:src/api-keys.ts:deleteOrganizationApiKey",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/api-keys.ts",
+      "target": "function:src/api-keys.ts:isScopedApiKeyForOrganization",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/api-keys.ts",
+      "target": "function:src/api-keys.ts:isScopedApiKeyForOrganization",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/api-keys.ts",
+      "target": "function:src/api-keys.ts:getApiKeyScopedOrganizationId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/api-keys.ts",
+      "target": "function:src/api-keys.ts:getApiKeyScopedOrganizationId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/api-keys.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/desktop-policies.ts",
+      "target": "function:src/desktop-policies.ts:ensureDefaultDesktopPolicyForOrganization",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/desktop-policies.ts",
+      "target": "function:src/desktop-policies.ts:ensureDefaultDesktopPolicyForOrganization",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/desktop-policies.ts",
+      "target": "function:src/desktop-policies.ts:listTeamIdsForOrgMember",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/desktop-policies.ts",
+      "target": "function:src/desktop-policies.ts:listTeamIdsForOrgMember",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/desktop-policies.ts",
+      "target": "function:src/desktop-policies.ts:calculateDesktopPolicyForOrgMember",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/desktop-policies.ts",
+      "target": "function:src/desktop-policies.ts:calculateDesktopPolicyForOrgMember",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/desktop-policies.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/middleware/current-user.ts",
+      "target": "function:src/middleware/current-user.ts:requireUserMiddleware",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/middleware/current-user.ts",
+      "target": "function:src/middleware/current-user.ts:requireUserMiddleware",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/middleware/current-user.ts",
+      "target": "file:src/session.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/middleware/member-teams.ts",
+      "target": "function:src/middleware/member-teams.ts:resolveMemberTeamsMiddleware",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/middleware/member-teams.ts",
+      "target": "function:src/middleware/member-teams.ts:resolveMemberTeamsMiddleware",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/middleware/member-teams.ts",
+      "target": "file:src/middleware/organization-context.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/middleware/member-teams.ts",
+      "target": "file:src/orgs.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/middleware/member-teams.ts",
+      "target": "file:src/session.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/middleware/organization-context.ts",
+      "target": "function:src/middleware/organization-context.ts:resolveOrganizationContextMiddleware",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/middleware/organization-context.ts",
+      "target": "function:src/middleware/organization-context.ts:resolveOrganizationContextMiddleware",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/middleware/organization-context.ts",
+      "target": "file:src/api-keys.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/middleware/organization-context.ts",
+      "target": "file:src/middleware/user-organizations.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/middleware/organization-context.ts",
+      "target": "file:src/orgs.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/middleware/organization-context.ts",
+      "target": "file:src/session.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/middleware/user-organizations.ts",
+      "target": "function:src/middleware/user-organizations.ts:getLegacyProxyOrganizationId",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/middleware/user-organizations.ts",
+      "target": "function:src/middleware/user-organizations.ts:getLegacyProxyOrganizationId",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/middleware/user-organizations.ts",
+      "target": "function:src/middleware/user-organizations.ts:shouldHydrateSessionActiveOrganization",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/middleware/user-organizations.ts",
+      "target": "function:src/middleware/user-organizations.ts:shouldHydrateSessionActiveOrganization",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/middleware/user-organizations.ts",
+      "target": "function:src/middleware/user-organizations.ts:hydrateSessionActiveOrganization",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/middleware/user-organizations.ts",
+      "target": "function:src/middleware/user-organizations.ts:hydrateSessionActiveOrganization",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/middleware/user-organizations.ts",
+      "target": "function:src/middleware/user-organizations.ts:resolveUserOrganizationsMiddleware",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/middleware/user-organizations.ts",
+      "target": "function:src/middleware/user-organizations.ts:resolveUserOrganizationsMiddleware",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/middleware/user-organizations.ts",
+      "target": "file:src/api-keys.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/middleware/user-organizations.ts",
+      "target": "file:src/orgs.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/middleware/user-organizations.ts",
+      "target": "file:src/session.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:isRecord",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:isRecord",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:normalizePositiveInteger",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:normalizePositiveInteger",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:normalizeDesktopVersionString",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:normalizeDesktopVersionString",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:normalizeAllowedDesktopVersions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:normalizeAllowedDesktopVersions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:sameStringArray",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:sameStringArray",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:parseMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:parseMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:normalizeOrganizationMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:normalizeOrganizationMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:serializeOrganizationMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:serializeOrganizationMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:getOrInitializeOrganizationMetadata",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:getOrInitializeOrganizationMetadata",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:countOrganizationMembers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:countOrganizationMembers",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:countOrganizationWorkers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:countOrganizationWorkers",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:getOrganizationLimitStatus",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "function:src/organization-limits.ts:getOrganizationLimitStatus",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/organization-limits.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:splitRoles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:splitRoles",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:hasRole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:hasRole",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:roleIncludesOwner",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:roleIncludesOwner",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:titleCase",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:titleCase",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:buildPersonalOrgName",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:buildPersonalOrgName",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:normalizeEmailDomainValue",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:normalizeEmailDomainValue",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:normalizeAllowedEmailDomains",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:normalizeAllowedEmailDomains",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:getEmailDomain",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:getEmailDomain",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:getEmailLocalPart",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:getEmailLocalPart",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:getEmailDomainName",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:getEmailDomainName",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:getInvitedMemberName",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:getInvitedMemberName",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:isEmailAllowedForOrganization",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:isEmailAllowedForOrganization",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:normalizeStoredAllowedEmailDomains",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:normalizeStoredAllowedEmailDomains",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:parsePermissionRecord",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:parsePermissionRecord",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:serializePermissionRecord",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:serializePermissionRecord",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:clonePermissionRecord",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:clonePermissionRecord",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:listMembershipRows",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:listMembershipRows",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:getInvitationStatus",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:getInvitationStatus",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:getInvitationById",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:getInvitationById",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:ensureDefaultDynamicRoles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:ensureDefaultDynamicRoles",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:normalizeAssignableRole",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:normalizeAssignableRole",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:listAssignableRoles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:listAssignableRoles",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:insertMemberIfMissing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:insertMemberIfMissing",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:acceptInvitation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:acceptInvitation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:acceptInvitationForUser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:acceptInvitationForUser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:getInvitationPreview",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:getInvitationPreview",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:createOrganizationRecord",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:createOrganizationRecord",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:ensureUserOrgAccess",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:ensureUserOrgAccess",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:ensurePersonalOrganizationForUser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:ensurePersonalOrganizationForUser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:createOrganizationForUser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:createOrganizationForUser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:updateOrganizationName",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:updateOrganizationName",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:updateOrganizationSettings",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:updateOrganizationSettings",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:seedDefaultOrganizationRoles",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:seedDefaultOrganizationRoles",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:setSessionActiveOrganization",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:setSessionActiveOrganization",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:listUserOrgs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:listUserOrgs",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:resolveUserOrganizations",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:resolveUserOrganizations",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:getOrganizationContextForUser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:getOrganizationContextForUser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:listOrganizationTeams",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:listOrganizationTeams",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:listTeamsForMember",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:listTeamsForMember",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:removeOrganizationMember",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "function:src/orgs.ts:removeOrganizationMember",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "class:src/orgs.ts:OrganizationEmailDomainRestrictionError",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "class:src/orgs.ts:OrganizationEmailDomainRestrictionError",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "file:src/desktop-policies.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "file:src/organization-access.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "file:src/organization-limits.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/orgs.ts",
+      "target": "file:src/organization-member-hooks.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/auth/desktop-handoff.ts",
+      "target": "function:src/routes/auth/desktop-handoff.ts:readSingleHeader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/auth/desktop-handoff.ts",
+      "target": "function:src/routes/auth/desktop-handoff.ts:readSingleHeader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/auth/desktop-handoff.ts",
+      "target": "function:src/routes/auth/desktop-handoff.ts:isWebAppHost",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/auth/desktop-handoff.ts",
+      "target": "function:src/routes/auth/desktop-handoff.ts:isWebAppHost",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/auth/desktop-handoff.ts",
+      "target": "function:src/routes/auth/desktop-handoff.ts:withDenProxyPath",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/auth/desktop-handoff.ts",
+      "target": "function:src/routes/auth/desktop-handoff.ts:withDenProxyPath",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/auth/desktop-handoff.ts",
+      "target": "function:src/routes/auth/desktop-handoff.ts:resolveDesktopDenBaseUrl",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/auth/desktop-handoff.ts",
+      "target": "function:src/routes/auth/desktop-handoff.ts:resolveDesktopDenBaseUrl",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/auth/desktop-handoff.ts",
+      "target": "function:src/routes/auth/desktop-handoff.ts:buildOpenworkDeepLink",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/auth/desktop-handoff.ts",
+      "target": "function:src/routes/auth/desktop-handoff.ts:buildOpenworkDeepLink",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/auth/desktop-handoff.ts",
+      "target": "function:src/routes/auth/desktop-handoff.ts:registerDesktopAuthRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/auth/desktop-handoff.ts",
+      "target": "function:src/routes/auth/desktop-handoff.ts:registerDesktopAuthRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/auth/desktop-handoff.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/auth/desktop-handoff.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/auth/desktop-handoff.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/auth/desktop-handoff.ts",
+      "target": "file:src/session.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/me/index.ts",
+      "target": "function:src/routes/me/index.ts:registerMeRoutes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/routes/me/index.ts",
+      "target": "function:src/routes/me/index.ts:registerMeRoutes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/routes/me/index.ts",
+      "target": "file:src/desktop-policies.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/me/index.ts",
+      "target": "file:src/middleware/index.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/me/index.ts",
+      "target": "file:src/openapi.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/me/index.ts",
+      "target": "file:src/organization-limits.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/me/index.ts",
+      "target": "file:src/orgs.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/routes/me/index.ts",
+      "target": "file:src/session.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:signPrincipalPayload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:signPrincipalPayload",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:verifySignature",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:verifySignature",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:createInternalMcpPrincipalHeader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:createInternalMcpPrincipalHeader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:verifyInternalMcpPrincipalHeader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:verifyInternalMcpPrincipalHeader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:getSessionFromInternalMcpPrincipal",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:getSessionFromInternalMcpPrincipal",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:readBearerToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:readBearerToken",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:getSessionFromBearerToken",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:getSessionFromBearerToken",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:getRequestSession",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:getRequestSession",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:getRequestApiKeySession",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:getRequestApiKeySession",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:sessionMiddleware",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "function:src/session.ts:sessionMiddleware",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "file:src/api-keys.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "file:src/auth.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:src/session.ts",
+      "target": "file:src/db.ts",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

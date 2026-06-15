@@ -773,12 +773,12 @@ export function LexicalPromptEditor(props: EditorProps) {
       onError(error: Error) {
         throw error;
       },
-        editable: !props.disabled,
-        nodes: [ComposerMentionNode, ComposerSlashCommandNode, ComposerSkillNode, ComposerPastedTextNode],
-        editorState: () => {
-          setPrompt(props.value, props.mentions, props.pastedText);
-        },
-      }),
+      editable: !props.disabled,
+      nodes: [ComposerMentionNode, ComposerSlashCommandNode, ComposerSkillNode, ComposerPastedTextNode],
+      editorState: () => {
+        setPrompt(props.value, props.mentions, props.pastedText);
+      },
+    }),
     [],
   );
 
@@ -826,7 +826,7 @@ export function LexicalPromptEditor(props: EditorProps) {
         <PlainTextPlugin
           contentEditable={
             <ContentEditable
-              className="min-h-[60px] max-h-[280px] w-full resize-none overflow-y-auto bg-transparent text-[15px] leading-6 text-dls-text outline-none placeholder:text-dls-secondary [&_p]:min-h-[1.5rem] [&_p]:m-0"
+              className="min-h-[36px] max-h-[280px] w-full resize-none overflow-y-auto bg-transparent text-[15px] leading-6 text-dls-text outline-none placeholder:text-dls-secondary [&_p]:min-h-[1.5rem] [&_p]:m-0"
               aria-placeholder={props.placeholder}
               placeholder={<span />}
               onPaste={props.onPaste}

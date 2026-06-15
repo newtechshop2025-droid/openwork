@@ -818,7 +818,7 @@ export async function startServer(config: ServerConfig): Promise<ServeResult> {
       if (!route) {
         if (
           request.method === "GET" &&
-          (url.pathname.startsWith("/workspace/") || url.pathname === "/" || url.pathname.startsWith("/@") || url.pathname.startsWith("/src/")) &&
+          (url.pathname.startsWith("/workspace/") || url.pathname === "/" || url.pathname.startsWith("/@") || url.pathname.startsWith("/src/") || url.pathname.startsWith("/node_modules/")) &&
           !url.pathname.match(/\/(config|desktop-cloud-sync|cloud-plugins|authorized-folders|runtime-config|opencode-config|audit|sessions|events|inbox|artifacts|files|plugins|skills|mcp|commands|export|import|blueprint|opencode|engine)(?:\/|$)/)
         ) {
           try {
@@ -1678,6 +1678,9 @@ async function listWorkspaceCatalogEntries(workspaceRoot: string): Promise<FileS
     entries.sort((a, b) => a.name.localeCompare(b.name));
 
     for (const entry of entries) {
+      if (entry.name === ".git" || entry.name === "node_modules" || entry.name === ".opencode") {
+        continue;
+      }
       const absPath = join(dirPath, entry.name);
       const relRaw = relative(rootResolved, absPath).replace(/\\/g, "/");
       const rel = normalizeResolvedRelativePath(relRaw);

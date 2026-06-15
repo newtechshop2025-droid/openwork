@@ -1,0 +1,34 @@
+{
+  "issues": [],
+  "warnings": [
+    "Node 'file:.understand-anything/.understandignore' has no edges (orphan)",
+    "Node 'file:README.md' has no edges (orphan)",
+    "Node 'file:src/mcp/README.md' has no edges (orphan)",
+    "Node 'file:src/middleware/README.md' has no edges (orphan)",
+    "Node 'file:src/routes/admin/README.md' has no edges (orphan)",
+    "Node 'file:src/routes/auth/README.md' has no edges (orphan)",
+    "Node 'file:src/routes/me/README.md' has no edges (orphan)",
+    "Node 'file:src/routes/org/plugin-system/index.ts' has no edges (orphan)",
+    "Node 'file:src/routes/org/README.md' has no edges (orphan)",
+    "Node 'file:src/routes/README.md' has no edges (orphan)",
+    "Node 'file:src/routes/version/README.md' has no edges (orphan)",
+    "Node 'file:src/routes/workers/README.md' has no edges (orphan)"
+  ],
+  "stats": {
+    "totalNodes": 804,
+    "totalEdges": 1691,
+    "totalLayers": 7,
+    "tourSteps": 6,
+    "nodeTypes": {
+      "file": 86,
+      "function": 703,
+      "class": 5,
+      "document": 10
+    },
+    "edgeTypes": {
+      "contains": 708,
+      "exports": 708,
+      "imports": 275
+    }
+  }
+}
