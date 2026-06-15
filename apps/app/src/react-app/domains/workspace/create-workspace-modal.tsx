@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { t } from "../../../i18n";
+import { isDesktopRuntime } from "../../../app/utils";
 import type { WorkspacePreset } from "../../../app/types";
 import { CreateWorkspaceLocalPanel } from "./create-workspace-local-panel";
 import {
@@ -206,25 +207,27 @@ export function CreateWorkspaceModal(props: CreateWorkspaceModalProps) {
         {screen === "chooser" ? (
           <div className={modalBodyClass}>
             <div className="space-y-3">
-              <WorkspaceOptionCard
-                title={t("dashboard.create_local_workspace_title")}
-                description={
-                  props.localDisabled
-                    ? props.localDisabledReason?.trim() ||
-                      t("dashboard.chooser_local_desc")
-                    : t("dashboard.chooser_local_desc")
-                }
-                icon={FolderPlus}
-                onClick={() => setScreen("local")}
-                disabled={props.localDisabled}
-                endAdornment={
-                  props.localDisabled ? (
-                    <span className={tagClass}>
-                      {t("dashboard.desktop_badge")}
-                    </span>
-                  ) : undefined
-                }
-              />
+              {isDesktopRuntime() ? (
+                <WorkspaceOptionCard
+                  title={t("dashboard.create_local_workspace_title")}
+                  description={
+                    props.localDisabled
+                      ? props.localDisabledReason?.trim() ||
+                        t("dashboard.chooser_local_desc")
+                      : t("dashboard.chooser_local_desc")
+                  }
+                  icon={FolderPlus}
+                  onClick={() => setScreen("local")}
+                  disabled={props.localDisabled}
+                  endAdornment={
+                    props.localDisabled ? (
+                      <span className={tagClass}>
+                        {t("dashboard.desktop_badge")}
+                      </span>
+                    ) : undefined
+                  }
+                />
+              ) : null}
               <WorkspaceOptionCard
                 title={t("dashboard.create_remote_custom_title")}
                 description={t("dashboard.chooser_remote_desc")}

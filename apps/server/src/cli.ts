@@ -29,6 +29,7 @@ let managedOpencode: ManagedOpencodeServer | null = null;
 if (!config.readOnly) {
   for (const workspace of config.workspaces) {
     if (workspace.workspaceType === "remote") continue;
+    if (!workspace.path) continue;
     await ensureWorkspaceFiles(workspace.path, workspace.preset ?? "starter");
   }
 }
