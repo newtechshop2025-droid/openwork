@@ -5,6 +5,7 @@ import { Download, ExternalLink, X, FolderOpen } from "lucide-react";
 
 import type { OpenworkServerClient } from "@/app/lib/openwork-server";
 import { openDesktopPath } from "@/app/lib/desktop";
+import { isElectronRuntime } from "@/app/utils";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { formatFileSize } from "@/lib/utils";
@@ -210,12 +211,15 @@ function ArtifactPanelView({ sessionId, client, workspaceId, workspaceRoot, isRe
 
       return;
     }
-    else if (!isRemoteWorkspace) {
+
+    // In Electron, open the file with the OS default app.
+    if (isElectronRuntime()) {
       void openDesktopPath(externalPath);
 
       return;
     }
 
+    // In web (non-Electron), download the file so the user can open it locally.
     await download();
   };
 
@@ -334,12 +338,12 @@ function ArtifactPanelView({ sessionId, client, workspaceId, workspaceRoot, isRe
           <Tooltip>
             <TooltipTrigger
               render={(
-                <Button variant="ghost" size="icon-sm" onClick={() => void openExternal()} aria-label={isRemoteWorkspace ? "Download artifact" : "Open externally"}>
+                <Button variant="ghost" size="icon-sm" onClick={() => void openExternal()} aria-label={isElectronRuntime() && !isRemoteWorkspace ? "Open externally" : "Download"}>
                   <ExternalLink />
                 </Button>
               )}
             />
-            <TooltipContent>{isRemoteWorkspace ? "Download artifact" : "Open externally"}</TooltipContent>
+            <TooltipContent>{isElectronRuntime() && !isRemoteWorkspace ? "Open externally" : "Download"}</TooltipContent>
           </Tooltip>
           <Tooltip>
             <TooltipTrigger
