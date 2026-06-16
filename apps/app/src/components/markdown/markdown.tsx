@@ -34,7 +34,10 @@ function escapeAttribute(value: string) {
   return escapeHtml(value).replace(/`/g, "&#96;");
 }
 
-function safeHref(href: string) {
+function safeHref(href: string | null | undefined) {
+  if (!href) {
+    return "#";
+  }
   const trimmed = href.trim();
 
   if (!trimmed) {
@@ -95,7 +98,7 @@ function hasFencedCodeBlock(text: string) {
 
 function sanitizeMarkdownHtml(value: string) {
   return DOMPurify.sanitize(value, {
-    ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto|tel|ftp|cid|xmpp|openwork-target):|[^&:\/?#]*(?:[\/?#]|$)|#)/i,
+    ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto|tel|ftp|cid|xmpp|openwork-target):.*|[^&:\/?#]*(?:[\/?#]|$)|#.*)/i,
     ADD_ATTR: [
       "checked",
       "class",
@@ -172,10 +175,10 @@ const baseMarkedOptions = {
     link({ href, title, tokens }) {
       const safe = escapeAttribute(safeHref(href));
       const titleAttr = title ? ` title="${escapeAttribute(title)}"` : "";
-      const isTargetLink = href.startsWith("#openwork-target:") || href.startsWith("openwork-target:");
+      const isTargetLink = href && (href.startsWith("#openwork-target:") || href.startsWith("openwork-target:"));
 
       if (isTargetLink) {
-        return `<a href="${safe}"${titleAttr} data-openwork-target="${escapeAttribute(href)}" class="text-indigo-10 underline underline-offset-2 cursor-pointer transition-colors hover:text-indigo-8">${this.parser.parseInline(tokens)}</a>`;
+        return `<a href="${safe}"${titleAttr} data-openwork-target="${escapeAttribute(href || "")}" class="text-indigo-10 underline underline-offset-2 cursor-pointer transition-colors hover:text-indigo-8">${this.parser.parseInline(tokens)}</a>`;
       }
 
       return `<a href="${safe}"${titleAttr} target="_blank" rel="noreferrer noopener" class="text-indigo-10 underline underline-offset-2 transition-colors hover:text-indigo-8">${this.parser.parseInline(tokens)}</a>`;
@@ -320,6 +323,8 @@ function MarkdownBlockInner({
       applyTextHighlights(root, highlightQuery ?? "");
     });
   }, [html, highlightQuery]);
+
+  console.log("MarkdownBlock render:", { text, html });
 
   if (!html) {
     return null;
