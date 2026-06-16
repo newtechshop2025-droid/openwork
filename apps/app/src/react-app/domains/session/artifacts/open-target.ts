@@ -194,26 +194,12 @@ export function isLocalhostBrowserTarget(target: OpenTarget) {
   return target.kind === "url" && /(?:https?|wss?):\/\/(localhost|127\.0\.0\.1|0\.0\.0\.0|\[::1\])/i.test(target.value);
 }
 
-export function selectAutoOpenTarget(targets: OpenTarget[]): OpenTarget | null {
-  if (!targets.length) return null;
-
-  // Prefer file targets that are previewable (not "external"), then by
-  // confidence descending. Skip URLs — they open in browser tabs already.
-  const fileTargets = targets.filter(
-    (t) => t.kind === "file" && t.exists !== false && t.preview !== "external",
-  );
-
-  if (!fileTargets.length) return null;
-
-  // Sort by confidence descending, then by value length ascending (shorter
-  // paths tend to be more important root-level files).
-  fileTargets.sort((a, b) => {
-    const confidenceDiff = b.confidence - a.confidence;
-    if (confidenceDiff !== 0) return confidenceDiff;
-    return a.value.length - b.value.length;
-  });
-
-  return fileTargets[0] ?? null;
+export function selectAutoOpenTarget(_targets: OpenTarget[]): OpenTarget | null {
+  // Auto-open is disabled to avoid setState-in-render crashes.
+  // The auto-open effect in session-surface.tsx calls onOpenTarget which
+  // triggers Zustand updates that cascade into SessionRoute setState during
+  // ArtifactPanelView render. Re-enable only after stabilizing the render chain.
+  return null;
 }
 
 function scanText(

@@ -380,8 +380,15 @@ export function SessionPage(props: SessionPageProps) {
     if (sidePanelOpen) return;
     setBrowserPanelDefaultWidth(browserPanelWidth);
   }, [sidePanelOpen, browserPanelWidth]);
+  // Stabilize the callback to avoid triggering parent setState during child render.
+  // Only call onAccessibleTargetsChange when the target IDs actually change.
+  const prevAccessibleTargetIdsRef = useRef<Set<string>>(new Set());
   useEffect(() => {
-    props.onAccessibleTargetsChange?.(accessibleTargets);
+    const currentIds = new Set(accessibleTargets.map((t) => t.id));
+    if (currentIds.size !== prevAccessibleTargetIdsRef.current.size || [...currentIds].some((id) => !prevAccessibleTargetIdsRef.current.has(id))) {
+      prevAccessibleTargetIdsRef.current = currentIds;
+      props.onAccessibleTargetsChange?.(accessibleTargets);
+    }
   }, [accessibleTargets, props.onAccessibleTargetsChange]);
   const commitBrowserPanelWidth = useCallback(() => {
     const size = browserPanelRef.current?.getSize();
