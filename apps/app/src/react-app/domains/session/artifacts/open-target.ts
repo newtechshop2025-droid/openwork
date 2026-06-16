@@ -81,7 +81,8 @@ function normalizePath(path: string, workspaceRoot?: string, isRemote?: boolean)
   // For remote workspaces, preserve leading slashes on absolute paths so the
   // remote server can resolve them against its own workspace root. Local
   // workspaces strip leading slashes since paths are always relative.
-  if (!isRemote) {
+  const isTmpOpencode = clean.startsWith("/tmp/opencode/") || clean.startsWith("tmp/opencode/");
+  if (!isRemote && !isTmpOpencode) {
     clean = clean.replace(/^\/+/, "");
   }
   clean = clean.replace(/^\.\//, "");
@@ -97,20 +98,16 @@ function normalizePath(path: string, workspaceRoot?: string, isRemote?: boolean)
 
   if (clean.toLowerCase().startsWith("workspace/")) {
     clean = clean.slice(10);
-  } else if (clean.toLowerCase().startsWith("tmp/opencode/")) {
-    clean = clean.slice(13);
-  } else if (clean.toLowerCase().startsWith("tmp/workspace/")) {
-    clean = clean.slice(14);
-  } else if (clean.toLowerCase().startsWith("/tmp/opencode/")) {
-    clean = clean.slice(14);
-  } else if (clean.toLowerCase().startsWith("/tmp/workspace/")) {
-    clean = clean.slice(15);
   }
 
   // For remote workspaces, preserve leading slashes on absolute paths so the
   // remote server can resolve them against its own workspace root.
   if (isRemote) {
     return clean;
+  }
+
+  if (isTmpOpencode) {
+    return clean.startsWith("/") ? clean : "/" + clean;
   }
 
   return clean.replace(/^\/+/, "");
@@ -136,7 +133,7 @@ export function classifyOpenTarget(value: string, kind: OpenTargetKind): OpenTar
   if ([".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"].includes(ext)) return "image";
   if (ext === ".pdf") return "pdf";
   if ([".html", ".htm"].includes(ext)) return "html";
-  if ([".txt", ".log", ".json", ".jsonc", ".yaml", ".yml", ".toml", ".xml", ".ts", ".tsx", ".js", ".jsx", ".css", ".scss"].includes(ext)) return "text";
+  if ([".txt", ".log", ".json", ".jsonc", ".json5", ".yaml", ".yml", ".toml", ".xml", ".ini", ".env", ".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs", ".vue", ".svelte", ".css", ".scss", ".sass", ".less", ".py", ".rb", ".go", ".rs", ".java", ".kt", ".swift", ".php", ".c", ".cpp", ".h", ".cs", ".sql", ".sh", ".bash", ".zsh"].includes(ext)) return "text";
   if ([".doc", ".docx", ".odt", ".rtf", ".pages"].includes(ext)) return "document";
   return "external";
 }

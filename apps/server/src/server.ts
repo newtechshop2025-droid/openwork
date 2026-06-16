@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs";
 import { readFile, writeFile, rm, readdir, rename, stat, appendFile, mkdir } from "node:fs/promises";
-import { homedir, hostname } from "node:os";
+import { homedir, hostname, tmpdir } from "node:os";
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 import { createOpencodeClient } from "@opencode-ai/sdk/v2/client";
 import type { ApprovalRequest, Capabilities, ServerConfig, WorkspaceInfo, Actor, ReloadReason, ReloadTrigger, TokenScope } from "./types.js";
@@ -1335,8 +1335,6 @@ export function normalizeWorkspaceRelativePath(input: string, options: { allowSu
   normalized = normalized.replace(/^workspaces\/[^/]+\//i, "");
   normalized = normalized.replace(/^workspace\/(?:ws_[^/]+|\d+|[0-9a-f-]{6,})\//i, "");
   normalized = normalized.replace(/^workspace\//, "");
-  normalized = normalized.replace(/^tmp\/opencode\//, "");
-  normalized = normalized.replace(/^tmp\/workspace\//, "");
   normalized = normalized.replace(/^\/+/, "");
 
   const parts = normalized.split("/").filter(Boolean);
@@ -1359,6 +1357,38 @@ export function resolveWorkspaceRelativePath(workspaceRoot: string, requestedPat
   if (!trimmed) {
     throw new ApiError(400, "invalid_path", "Path is required");
   }
+
+  const opencodeTempDir = resolve(tmpdir(), "opencode");
+  let isUnderTempOpencode = false;
+  if (isAbsolute(trimmed)) {
+    const absolutePath = resolve(trimmed);
+    if (absolutePath.startsWith(opencodeTempDir + sep) || absolutePath === opencodeTempDir) {
+      isUnderTempOpencode = true;
+    }
+  } else {
+    const resolvedPath = resolve(workspaceRoot, trimmed);
+    if (resolvedPath.startsWith(opencodeTempDir + sep) || resolvedPath === opencodeTempDir) {
+      isUnderTempOpencode = true;
+    } else if (trimmed.replace(/\\/g, "/").startsWith("tmp/opencode/")) {
+      isUnderTempOpencode = true;
+    }
+  }
+
+  if (isUnderTempOpencode) {
+    const absolutePath = isAbsolute(trimmed)
+      ? resolve(trimmed)
+      : (trimmed.replace(/\\/g, "/").startsWith("tmp/opencode/")
+          ? resolve("/", trimmed)
+          : resolve(workspaceRoot, trimmed));
+    if (absolutePath === opencodeTempDir) {
+      throw new ApiError(400, "invalid_path", "Path must point to a file");
+    }
+    if (!absolutePath.startsWith(opencodeTempDir + sep)) {
+      throw new ApiError(400, "invalid_path", "Path traversal is not allowed");
+    }
+    return absolutePath;
+  }
+
   const workspaceResolved = resolve(workspaceRoot);
   let pathFromWorkspace = trimmed;
   if (isAbsolute(trimmed)) {
@@ -1381,10 +1411,13 @@ export function isSupportedWorkspaceTextFilePath(relativePath: string): boolean 
     ".tsv",
     ".json",
     ".jsonc",
+    ".json5",
     ".yaml",
     ".yml",
     ".toml",
     ".xml",
+    ".ini",
+    ".env",
     ".html",
     ".htm",
     ".ts",
@@ -1393,8 +1426,28 @@ export function isSupportedWorkspaceTextFilePath(relativePath: string): boolean 
     ".jsx",
     ".mjs",
     ".cjs",
+    ".vue",
+    ".svelte",
     ".css",
     ".scss",
+    ".sass",
+    ".less",
+    ".py",
+    ".rb",
+    ".go",
+    ".rs",
+    ".java",
+    ".kt",
+    ".swift",
+    ".php",
+    ".c",
+    ".cpp",
+    ".h",
+    ".cs",
+    ".sql",
+    ".sh",
+    ".bash",
+    ".zsh",
     ".txt",
     ".log",
   ].some((ext) =>
@@ -1408,7 +1461,11 @@ function resolveSafeChildPath(root: string, child: string): string {
   if (candidate === rootResolved) {
     throw new ApiError(400, "invalid_path", "Path must point to a file");
   }
-  if (!candidate.startsWith(rootResolved + sep)) {
+
+  const opencodeTempDir = resolve(tmpdir(), "opencode");
+  const isUnderTempOpencode = candidate.startsWith(opencodeTempDir + sep);
+
+  if (!isUnderTempOpencode && !candidate.startsWith(rootResolved + sep)) {
     throw new ApiError(400, "invalid_path", "Path traversal is not allowed");
   }
   return candidate;

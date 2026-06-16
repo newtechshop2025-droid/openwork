@@ -44,7 +44,7 @@ export function isHtmlPreviewSupported(extension: string) {
 }
 
 export function isTextPreviewSupported(extension: string) {
-  return ["txt", "log", "json", "jsonc", "yaml", "yml", "toml", "xml", "ts", "tsx", "js", "jsx", "css", "scss"].includes(extension);
+  return ["txt", "log", "json", "jsonc", "json5", "yaml", "yml", "toml", "xml", "ini", "env", "ts", "tsx", "js", "jsx", "mjs", "cjs", "vue", "svelte", "css", "scss", "sass", "less", "py", "rb", "go", "rs", "java", "kt", "swift", "php", "c", "cpp", "h", "cs", "sql", "sh", "bash", "zsh"].includes(extension);
 }
 
 export function isPreviewSupported(extension: string) {
@@ -327,15 +327,11 @@ export function getArtifactsFromMessages(messages: UIMessage[], openTargets: Ope
   const hasAnyDeliverable = [...artifacts.values()].some((a) => isDeliverableType(a.type))
     || openTargets.some((t) => isCollectibleArtifactTarget(t) && isDeliverableType(getArtifactType(t.value)));
 
-  for (const target of openTargets) {
-    if (isCollectibleArtifactTarget(target)) {
-      const targetType = getArtifactType(target.value);
-      if (hasAnyDeliverable && !isDeliverableType(targetType)) continue;
-      addArtifact(artifacts, target.value, fallbackMessageId, openTargets, target);
-    }
+  const result = [...artifacts.values()];
+  if (hasAnyDeliverable) {
+    return result.filter((a) => isDeliverableType(a.type));
   }
-
-  return [...artifacts.values()];
+  return result;
 }
 
 export function useArtifacts(messages: UIMessage[]) {

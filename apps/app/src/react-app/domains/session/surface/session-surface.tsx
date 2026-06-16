@@ -862,7 +862,7 @@ export function SessionSurface(props: SessionSurfaceProps) {
     props.onDraftChange(buildDraft(draft, attachments));
   }, [attachments, buildDraft, draft, props.onDraftChange]);
 
-  const handleAttachFiles = (files: File[]) => {
+  const handleAttachFiles = useCallback((files: File[]) => {
     if (!props.attachmentsEnabled) {
       toast.warning(props.attachmentsDisabledReason ?? "Attachments are unavailable.");
       return;
@@ -886,7 +886,29 @@ export function SessionSurface(props: SessionSurfaceProps) {
       previewUrl: file.type.startsWith("image/") ? URL.createObjectURL(file) : undefined,
     }));
     setComposerAttachments(props.sessionId, [...attachments, ...next]);
-  };
+  }, [props.attachmentsEnabled, props.attachmentsDisabledReason, props.sessionId, attachments, setComposerAttachments]);
+
+  useEffect(() => {
+    const handleGlobalDragOver = (e: DragEvent) => {
+      e.preventDefault();
+    };
+
+    const handleGlobalDrop = (e: DragEvent) => {
+      e.preventDefault();
+      if (e.dataTransfer?.files?.length) {
+        const files = Array.from(e.dataTransfer.files);
+        handleAttachFiles(files);
+      }
+    };
+
+    window.addEventListener("dragover", handleGlobalDragOver);
+    window.addEventListener("drop", handleGlobalDrop);
+
+    return () => {
+      window.removeEventListener("dragover", handleGlobalDragOver);
+      window.removeEventListener("drop", handleGlobalDrop);
+    };
+  }, [handleAttachFiles]);
 
   const handleRemoveAttachment = (id: string) => {
     const target = attachments.find((item) => item.id === id);

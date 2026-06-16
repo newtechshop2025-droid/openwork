@@ -1,4 +1,6 @@
 import { describe, expect, test } from "bun:test";
+import { tmpdir } from "node:os";
+import { resolve } from "node:path";
 import { isSupportedWorkspaceTextFilePath, normalizeWorkspaceRelativePath, resolveWorkspaceRelativePath } from "./server.js";
 
 describe("normalizeWorkspaceRelativePath", () => {
@@ -23,11 +25,6 @@ describe("normalizeWorkspaceRelativePath", () => {
 
   test("strips ./workspace/ prefix", () => {
     expect(normalizeWorkspaceRelativePath("./workspace/notes.md", { allowSubdirs: true })).toBe("notes.md");
-  });
-
-  test("strips tmp/opencode/ and tmp/workspace/ sandbox roots", () => {
-    expect(normalizeWorkspaceRelativePath("tmp/opencode/notes.md", { allowSubdirs: true })).toBe("notes.md");
-    expect(normalizeWorkspaceRelativePath("/tmp/workspace/dir/notes.md", { allowSubdirs: true })).toBe("dir/notes.md");
   });
 
   test("still rejects traversal after stripping prefixes", () => {
@@ -80,5 +77,11 @@ describe("resolveWorkspaceRelativePath", () => {
   test("throws error if absolute path is outside workspace root", () => {
     expect(() => resolveWorkspaceRelativePath("/home/acer/openwork", "/home/acer/downloads/notes.md")).toThrow();
     expect(() => resolveWorkspaceRelativePath("/home/acer/openwork", "/etc/passwd")).toThrow();
+  });
+
+  test("resolves paths under the OS temp directory's opencode subdirectory", () => {
+    const tempDir = resolve(tmpdir(), "opencode");
+    expect(resolveWorkspaceRelativePath("/home/acer/openwork", `${tempDir}/OpenWork.docx`)).toBe(resolve(tempDir, "OpenWork.docx"));
+    expect(resolveWorkspaceRelativePath("/home/acer/openwork", `tmp/opencode/OpenWork.docx`)).toBe(resolve(tempDir, "OpenWork.docx"));
   });
 });

@@ -14,7 +14,7 @@ function message(id: string, role: "user" | "assistant", text: string): UIMessag
   return { id, role, parts: [{ type: "text", text, state: "done" }] };
 }
 
-function toolMessage(id: string, toolName: string, input: Record<string, unknown>, output: unknown) {
+function toolMessage(id: string, toolName: string, input: Record<string, unknown>, output: unknown): UIMessage {
   return {
     id,
     role: "assistant",
@@ -60,16 +60,6 @@ describe("deriveOpenTargets", () => {
 
     expect(targets.map((target) => target.value)).toContain("reports/artifact-eval.md");
     expect(targets.map((target) => target.value)).toContain("reports/artifact-eval.csv");
-  });
-
-  it("normalizes tmp/opencode/ and tmp/workspace/ sandbox roots from artifact paths", () => {
-    const targets = deriveOpenTargets([
-      toolMessage("msg_tool_1", "write", { filePath: "/tmp/opencode/OpenWork.docx" }, { filePath: "/tmp/opencode/OpenWork.docx" }),
-      toolMessage("msg_tool_2", "write", { filePath: "tmp/workspace/reports/summary.csv" }, { filePath: "tmp/workspace/reports/summary.csv" }),
-    ]);
-
-    expect(targets.map((target) => target.value)).toContain("OpenWork.docx");
-    expect(targets.map((target) => target.value)).toContain("reports/summary.csv");
   });
 
   it("prefers explicit dynamic tool metadata over prose guesses", () => {
@@ -303,6 +293,14 @@ describe("deriveOpenTargets", () => {
     ], { isRemoteWorkspace: true });
 
     expect(targets.map((target) => target.value)).toContain("reports/summary.md");
+  });
+
+  it("retains leading slash for paths under /tmp/opencode/ even for local workspaces", () => {
+    const targets = deriveOpenTargets([
+      toolMessage("msg_tool", "write", { filePath: "/tmp/opencode/OpenWork.docx" }, { filePath: "/tmp/opencode/OpenWork.docx" }),
+    ], { workspaceRoot: "/home/user/project" });
+
+    expect(targets.map((target) => target.value)).toContain("/tmp/opencode/OpenWork.docx");
   });
 });
 

@@ -125,25 +125,6 @@ function DenSigninGate({ children }: DenSigninGateProps) {
 export function AppRoot() {
   useDesktopFontZoomBehavior();
 
-  useEffect(() => {
-    const handleDragOver = (e: DragEvent) => {
-      if (e.dataTransfer?.types.includes("Files")) {
-        e.preventDefault();
-      }
-    };
-    const handleDrop = (e: DragEvent) => {
-      if (e.dataTransfer?.types.includes("Files")) {
-        e.preventDefault();
-      }
-    };
-    window.addEventListener("dragover", handleDragOver, false);
-    window.addEventListener("drop", handleDrop, false);
-    return () => {
-      window.removeEventListener("dragover", handleDragOver, false);
-      window.removeEventListener("drop", handleDrop, false);
-    };
-  }, []);
-
   return (
     <>
       <DevProfiler id="AppRoot">
