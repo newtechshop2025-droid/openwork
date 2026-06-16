@@ -214,7 +214,7 @@ export function WorkspaceFilesExplorer({
 
   // Build the full tree structure from catalog items
   const fileTree = useMemo(() => {
-    if (!catalog?.items) return [];
+    if (!catalog?.items) return { root: [], map: {} as Record<string, TreeNode> };
 
     const items = catalog.items;
 
