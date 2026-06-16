@@ -147,6 +147,7 @@ function artifactTypeToPreview(type: ArtifactType): OpenTargetPreview {
   if (type === "pdf") return "pdf";
   if (type === "html") return "html";
   if (type === "text") return "text";
+  if (type === "document") return "document";
   if (type === "website") return "browser";
   return "external";
 }
@@ -319,7 +320,6 @@ export function getArtifactsFromMessages(messages: UIMessage[], openTargets: Ope
     }
   }
 
-  console.log("[DEBUG] artifacts from messages:", JSON.stringify([...artifacts.values()].map(a => ({ name: a.name, path: a.path, type: a.type }))));
 
   const fallbackMessageId = messages[messages.length - 1]?.id ?? "open-target";
   // Check deliverables from both sources so bash-created files (which bypass
