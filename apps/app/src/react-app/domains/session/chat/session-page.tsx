@@ -1203,8 +1203,8 @@ export function SessionPage(props: SessionPageProps) {
                 <ResizableHandle withHandle className="hidden lg:flex" />
                 <ResizablePanel
                   panelRef={browserPanelRef}
-                  defaultSize={`${activeSidePanel === "extensions" ? Math.max(browserPanelDefaultWidth, 480) : browserPanelDefaultWidth}px`}
-                  minSize={activeSidePanel === "extensions" ? "420px" : "320px"}
+                  defaultSize={`${activeSidePanel === "extensions" ? Math.max(browserPanelDefaultWidth, 480) : activeTab?.type === "explorer" ? Math.max(browserPanelDefaultWidth, 560) : browserPanelDefaultWidth}px`}
+                  minSize={activeSidePanel === "extensions" ? "420px" : activeTab?.type === "explorer" ? "480px" : "320px"}
                   maxSize="70%"
                   className="min-h-0 overflow-hidden lg:flex lg:flex-col"
                 >
