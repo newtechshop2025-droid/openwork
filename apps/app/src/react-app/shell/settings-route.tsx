@@ -1152,6 +1152,16 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
     setLocalProviderStatus(null);
     setLocalProviderError(null);
     try {
+      const lowerId = modelId.toLowerCase();
+      const hasVision =
+        lowerId.includes("gemini") ||
+        lowerId.includes("vision") ||
+        lowerId.includes("claude") ||
+        lowerId.includes("gpt-4") ||
+        lowerId.includes("pixtral") ||
+        lowerId.includes("llava") ||
+        lowerId.includes("qwen-vl");
+
       await client.patchConfig(workspaceId, {
         opencode: {
           provider: {
@@ -1159,7 +1169,17 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
               npm: "@ai-sdk/openai-compatible",
               name: input.name,
               options: { baseURL: input.baseURL },
-              models: { [modelId]: { name: input.modelName.trim() || modelId } },
+              models: {
+                [modelId]: {
+                  name: input.modelName.trim() || modelId,
+                  ...(hasVision
+                    ? {
+                        attachment: true,
+                        modalities: { input: ["text", "image"], output: ["text"] },
+                      }
+                    : {}),
+                },
+              },
             },
           },
         },

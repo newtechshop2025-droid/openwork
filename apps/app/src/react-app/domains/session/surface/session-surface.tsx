@@ -48,7 +48,7 @@ import { getSessionActivityStatusLabel, useSessionActivityStore, type SessionAct
 import { PermissionApprovalPanel } from "@/react-app/domains/session/chat/permission-approval-modal";
 import { QuestionPanel } from "@/react-app/domains/session/modals/question-modal";
 import { QueuedMessagesPanel } from "@/react-app/domains/session/modals/queued-messages-panel";
-import { deriveOpenTargets, selectAutoOpenTarget, type OpenTarget } from "@/react-app/domains/session/artifacts/open-target";
+import { classifyOpenTarget, deriveOpenTargets, selectAutoOpenTarget, type OpenTarget } from "@/react-app/domains/session/artifacts/open-target";
 import { usePanelTabStore } from "@/react-app/domains/session/panel/panel-tab-store";
 import {
   seedSessionState,
@@ -610,19 +610,30 @@ export function SessionSurface(props: SessionSurfaceProps) {
         const response = await props.client.resolveArtifacts(props.workspaceId, openTargets);
         if (!cancelled) {
           const serverTargets = response.items as OpenTarget[];
-          // For remote workspaces, the server may report `exists: false` for files
-          // that genuinely exist — path normalization differences or timing can
-          // cause false negatives. Optimistically mark high-confidence file
+          // The server may report `preview: "external"` for file types it doesn't
+          // recognize (e.g., .docx → "external" instead of "document"). The client
+          // has a richer classification, so override "external" with the client-side
+          // result when it yields a more specific preview type.
+          //
+          // For remote workspaces, the server may also report `exists: false` for
+          // files that genuinely exist — path normalization differences or timing
+          // can cause false negatives. Optimistically mark high-confidence file
           // targets as existing so users can always click/open/download them.
           // If the file is truly missing, the artifact panel shows an error.
-          const nextTargets = props.isRemoteWorkspace
-            ? serverTargets.map((target) => {
-                if (target.kind === "file" && target.exists !== true && target.confidence >= 65) {
-                  return { ...target, exists: true };
-                }
-                return target;
-              })
-            : serverTargets;
+          const nextTargets = serverTargets.map((target) => {
+            // Fix server-side "external" preview when client knows better.
+            if (target.kind === "file" && target.preview === "external") {
+              const clientPreview = classifyOpenTarget(target.value, "file");
+              if (clientPreview !== "external") {
+                target = { ...target, preview: clientPreview };
+              }
+            }
+            // Remote workspace: optimistically mark high-confidence files as existing.
+            if (props.isRemoteWorkspace && target.kind === "file" && target.exists !== true && target.confidence >= 65) {
+              target = { ...target, exists: true };
+            }
+            return target;
+          });
           initializeAutoOpenState(nextTargets);
           setVerifiedOpenTargets(nextTargets);
         }

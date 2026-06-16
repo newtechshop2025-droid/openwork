@@ -1323,7 +1323,35 @@ export function createProviderAuthStore(options: CreateProviderAuthStoreOptions)
     try {
       if (providerId === "9router" && extraOptions?.baseURL) {
         const resolvedBaseURL = extraOptions.baseURL.trim();
-        const modelsConfig = extraOptions.models || {};
+        const rawModels = extraOptions.models || {};
+        const modelsConfig: Record<
+          string,
+          {
+            name: string;
+            attachment?: boolean;
+            modalities?: { input: string[]; output: string[] };
+          }
+        > = {};
+        for (const [mId, mInfo] of Object.entries(rawModels)) {
+          const lowerId = mId.toLowerCase();
+          const hasVision =
+            lowerId.includes("gemini") ||
+            lowerId.includes("vision") ||
+            lowerId.includes("claude") ||
+            lowerId.includes("gpt-4") ||
+            lowerId.includes("pixtral") ||
+            lowerId.includes("llava") ||
+            lowerId.includes("qwen-vl");
+          modelsConfig[mId] = {
+            name: (mInfo as { name: string }).name,
+            ...(hasVision
+              ? {
+                  attachment: true,
+                  modalities: { input: ["text", "image"], output: ["text"] },
+                }
+              : {}),
+          };
+        }
         await updateProjectConfigFile(
           (raw) => {
             let updated = raw.trim()
