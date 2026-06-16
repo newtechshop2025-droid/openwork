@@ -417,9 +417,11 @@ export function SessionPage(props: SessionPageProps) {
       });
     }
 
-    // Open artifact preview tab when the target is collectible (exists and
-    // has a previewable format).
-    if (isCollectibleArtifactTarget(target)) {
+    // Open artifact preview tab when the target is a file with a previewable
+    // format. Use a looser check than isCollectibleArtifactTarget so that
+    // newly created files (where exists is still undefined) still open.
+    const canPreview = target.kind === "file" && target.exists !== false && target.preview !== "external";
+    if (canPreview) {
       if (options?.auto && activePanelTab?.id === target.id) return;
       openTab(sessionId, {
         id: target.id,

@@ -66,10 +66,11 @@ export function ArtifactPanel({ sessionId, tab, client, workspaceId, workspaceRo
     const found = artifactTargets.find((item) => item.id === tab.id);
     if (found) return found;
 
-    // When the tab was opened from the file explorer, the target is not in
-    // the transcript targets. Construct a synthetic OpenTarget from the
-    // tab metadata so the panel can still load and display the file.
-    if (tab.origin === "explorer" && tab.id.startsWith("file:")) {
+    // When the tab was opened from the file explorer or a chat link, the
+    // target may not be in the transcript targets (e.g., file hasn't been
+    // verified yet). Construct a synthetic OpenTarget from the tab metadata
+    // so the panel can still load and display the file.
+    if (tab.id.startsWith("file:")) {
       const filePath = tab.path ?? tab.id.slice("file:".length);
       return {
         id: tab.id,
@@ -78,7 +79,7 @@ export function ArtifactPanel({ sessionId, tab, client, workspaceId, workspaceRo
         name: tab.label,
         preview: tab.preview,
         confidence: 100,
-        reason: "explorer",
+        reason: tab.origin ?? "transcript",
         exists: true,
       } satisfies OpenTarget;
     }
