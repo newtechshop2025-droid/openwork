@@ -39,6 +39,7 @@ interface TreeNode {
   size: number;
   mtimeMs: number;
   children?: TreeNode[];
+  descendantCount?: number;
 }
 
 export function WorkspaceFilesExplorer({
@@ -54,6 +55,7 @@ export function WorkspaceFilesExplorer({
   const [expandedFolders, setExpandedFolders] = useState<Record<string, boolean>>({});
   const [downloadingPaths, setDownloadingPaths] = useState<Record<string, boolean>>({});
   const [highlightedPath, setHighlightedPath] = useState<string | null>(null);
+  const [visibleLimit, setVisibleLimit] = useState(200);
   const openTab = usePanelTabStore((state) => state.openTab);
   const { tabs } = useSessionPanelState(sessionId);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
@@ -236,6 +238,26 @@ export function WorkspaceFilesExplorer({
     }));
   };
 
+  // Format large file counts: 999 → "999", 1200 → "1.2K", 2000 → "2K"
+  const formatFileCount = (count: number) => {
+    if (count >= 1000) {
+      const k = count / 1000;
+      return k % 1 === 0 ? `${k}K` : `${k.toFixed(1)}K`;
+    }
+    return count.toLocaleString();
+  };
+
+  // Count total file descendants for a tree node
+  const countDescendants = (node: TreeNode): number => {
+    if (!node.children) return 0;
+    let count = 0;
+    for (const child of node.children) {
+      if (child.kind === "file") count += 1;
+      else count += 1 + countDescendants(child);
+    }
+    return count;
+  };
+
   // Filter and build tree structure
   const fileTree = useMemo(() => {
     if (!catalog?.items) return [];
@@ -316,106 +338,62 @@ export function WorkspaceFilesExplorer({
       }
     };
 
+    // Count descendants for each directory node
+    const annotateDescendants = (nodes: TreeNode[]) => {
+      for (const node of nodes) {
+        if (node.kind === "dir" && node.children) {
+          node.descendantCount = countDescendants(node);
+          annotateDescendants(node.children);
+        }
+      }
+    };
+
     sortTree(root);
+    annotateDescendants(root);
     return root;
   }, [catalog, searchQuery]);
 
-  // Recursively render node tree
-  const renderTreeNodes = (nodes: TreeNode[], depth = 0) => {
-    return nodes.map((node) => {
-      const isDir = node.kind === "dir";
-      const isExpanded = !!expandedFolders[node.path];
-      const isDownloading = !!downloadingPaths[node.path];
+  // Flatten visible tree nodes for rendering with a cap
+  const { visibleNodes, totalVisible, hasMore } = useMemo(() => {
+    const nodes: Array<{ node: TreeNode; depth: number }> = [];
+    const isSearching = searchQuery.trim().length > 0;
+    const limit = isSearching ? Infinity : visibleLimit;
 
-      const isHighlighted = highlightedPath === node.path;
+    const walk = (items: TreeNode[], depth: number) => {
+      for (const node of items) {
+        if (nodes.length >= limit) return;
+        nodes.push({ node, depth });
+        if (node.kind === "dir" && expandedFolders[node.path] && node.children) {
+          walk(node.children, depth + 1);
+        }
+      }
+    };
 
-      return (
-        <div key={node.path} className="flex flex-col">
-          <div
-            data-file-path={!isDir ? node.path : undefined}
-            onClick={() => {
-              if (isDir) {
-                toggleFolder(node.path);
-              } else {
-                handleOpenFile(node.path, node.name);
-              }
-            }}
-            className={`group flex h-8 cursor-pointer items-center justify-between rounded px-2 hover:bg-dls-hover${isHighlighted ? " bg-amber-2 ring-1 ring-amber-5" : ""}`}
-            style={{ paddingLeft: `${Math.max(8, depth * 16)}px` }}
-          >
-            <div className="flex min-w-0 flex-1 items-center gap-1.5 text-xs text-foreground">
-              {isDir ? (
-                <>
-                  <span className="text-muted-foreground">
-                    {isExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
-                  </span>
-                  <span className="text-amber-9">
-                    {isExpanded ? <FolderOpen size={15} /> : <Folder size={15} />}
-                  </span>
-                </>
-              ) : (
-                <>
-                  <span className="w-3.5 shrink-0" />
-                  <span className="text-muted-foreground">
-                    <FileIcon size={14} />
-                  </span>
-                </>
-              )}
-              <span className="truncate" title={node.name}>
-                {node.name}
-              </span>
-              {!isDir && node.size > 0 && (
-                <span className="text-[10px] text-muted-foreground opacity-60">
-                  ({formatFileSize(node.size)})
-                </span>
-              )}
-            </div>
+    walk(fileTree, 0);
+    // Count total visible nodes (without limit) for "show more" calculation
+    const countAll = (items: TreeNode[]): number => {
+      let count = 0;
+      for (const node of items) {
+        count += 1;
+        if (node.kind === "dir" && expandedFolders[node.path] && node.children) {
+          count += countAll(node.children);
+        }
+      }
+      return count;
+    };
+    const total = isSearching ? nodes.length : countAll(fileTree);
 
-            {!isDir && (
-              <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100">
-                <Tooltip>
-                  <TooltipTrigger
-                    render={(
-                      <Button
-                        variant="ghost"
-                        size="icon-sm"
-                        className="h-6 w-6 text-muted-foreground hover:text-foreground"
-                        onClick={(e) => void handleDownload(e, node.path, node.name)}
-                        disabled={isDownloading}
-                        aria-label="Download file"
-                      >
-                        {isDownloading ? (
-                          <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                        ) : (
-                          <Download className="h-3.5 w-3.5" />
-                        )}
-                      </Button>
-                    )}
-                  />
-                  <TooltipContent>Download file</TooltipContent>
-                </Tooltip>
-              </div>
-            )}
-          </div>
+    return {
+      visibleNodes: nodes,
+      totalVisible: total,
+      hasMore: !isSearching && total > visibleLimit,
+    };
+  }, [fileTree, expandedFolders, searchQuery, visibleLimit]);
 
-          {isDir && isExpanded && node.children && node.children.length > 0 && (
-            <div className="flex flex-col">
-              {renderTreeNodes(node.children, depth + 1)}
-            </div>
-          )}
-
-          {isDir && isExpanded && node.children && node.children.length === 0 && (
-            <div 
-              className="py-1 text-[11px] text-muted-foreground italic opacity-50"
-              style={{ paddingLeft: `${(depth + 1) * 16 + 20}px` }}
-            >
-              Empty directory
-            </div>
-          )}
-        </div>
-      );
-    });
-  };
+  // Reset visible limit when search query changes
+  useEffect(() => {
+    setVisibleLimit(200);
+  }, [searchQuery]);
 
   const isBusy = isSessionLoading || isCatalogLoading;
   const isRefreshing = isCatalogFetching && !isCatalogLoading;
@@ -431,7 +409,7 @@ export function WorkspaceFilesExplorer({
             </h3>
             {catalog?.items && (
               <span className="text-xs text-muted-foreground">
-                ({catalog.items.length} files)
+                ({formatFileCount(catalog.items.length)} files)
               </span>
             )}
           </div>
@@ -511,7 +489,105 @@ export function WorkspaceFilesExplorer({
           </div>
         ) : (
           <div className="flex flex-col gap-0.5">
-            {renderTreeNodes(fileTree)}
+            {visibleNodes.map(({ node, depth }) => {
+              const isDir = node.kind === "dir";
+              const isExpanded = !!expandedFolders[node.path];
+              const isDownloading = !!downloadingPaths[node.path];
+              const isHighlighted = highlightedPath === node.path;
+
+              return (
+                <div key={node.path} className="flex flex-col">
+                  <div
+                    data-file-path={!isDir ? node.path : undefined}
+                    onClick={() => {
+                      if (isDir) {
+                        toggleFolder(node.path);
+                      } else {
+                        handleOpenFile(node.path, node.name);
+                      }
+                    }}
+                    className={`group flex h-8 cursor-pointer items-center justify-between rounded px-2 hover:bg-dls-hover${isHighlighted ? " bg-amber-2 ring-1 ring-amber-5" : ""}`}
+                    style={{ paddingLeft: `${Math.max(8, depth * 16)}px` }}
+                  >
+                    <div className="flex min-w-0 flex-1 items-center gap-1.5 text-xs text-foreground">
+                      {isDir ? (
+                        <>
+                          <span className="text-muted-foreground">
+                            {isExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+                          </span>
+                          <span className="text-amber-9">
+                            {isExpanded ? <FolderOpen size={15} /> : <Folder size={15} />}
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="w-3.5 shrink-0" />
+                          <span className="text-muted-foreground">
+                            <FileIcon size={14} />
+                          </span>
+                        </>
+                      )}
+                      <span className="truncate" title={node.name}>
+                        {node.name}
+                      </span>
+                      {isDir && node.descendantCount != null && !isExpanded && (
+                        <span className="shrink-0 text-[10px] text-muted-foreground opacity-60">
+                          {node.descendantCount}
+                        </span>
+                      )}
+                      {!isDir && node.size > 0 && (
+                        <span className="text-[10px] text-muted-foreground opacity-60">
+                          ({formatFileSize(node.size)})
+                        </span>
+                      )}
+                    </div>
+
+                    {!isDir && (
+                      <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100">
+                        <Tooltip>
+                          <TooltipTrigger
+                            render={(
+                              <Button
+                                variant="ghost"
+                                size="icon-sm"
+                                className="h-6 w-6 text-muted-foreground hover:text-foreground"
+                                onClick={(e) => void handleDownload(e, node.path, node.name)}
+                                disabled={isDownloading}
+                                aria-label="Download file"
+                              >
+                                {isDownloading ? (
+                                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                                ) : (
+                                  <Download className="h-3.5 w-3.5" />
+                                )}
+                              </Button>
+                            )}
+                          />
+                          <TooltipContent>Download file</TooltipContent>
+                        </Tooltip>
+                      </div>
+                    )}
+                  </div>
+
+                  {isDir && isExpanded && node.children && node.children.length === 0 && (
+                    <div
+                      className="py-1 text-[11px] text-muted-foreground italic opacity-50"
+                      style={{ paddingLeft: `${(depth + 1) * 16 + 20}px` }}
+                    >
+                      Empty directory
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+            {hasMore && (
+              <button
+                onClick={() => setVisibleLimit((prev) => prev + 200)}
+                className="mt-2 rounded px-2 py-1.5 text-xs text-muted-foreground hover:text-foreground hover:bg-dls-hover transition-colors"
+              >
+                Show {Math.min(200, totalVisible - visibleNodes.length)} more of {totalVisible - visibleNodes.length} remaining files
+              </button>
+            )}
           </div>
         )}
       </div>
