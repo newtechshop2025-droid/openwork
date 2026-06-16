@@ -1335,6 +1335,8 @@ export function normalizeWorkspaceRelativePath(input: string, options: { allowSu
   normalized = normalized.replace(/^workspaces\/[^/]+\//i, "");
   normalized = normalized.replace(/^workspace\/(?:ws_[^/]+|\d+|[0-9a-f-]{6,})\//i, "");
   normalized = normalized.replace(/^workspace\//, "");
+  normalized = normalized.replace(/^tmp\/opencode\//, "");
+  normalized = normalized.replace(/^tmp\/workspace\//, "");
   normalized = normalized.replace(/^\/+/, "");
 
   const parts = normalized.split("/").filter(Boolean);

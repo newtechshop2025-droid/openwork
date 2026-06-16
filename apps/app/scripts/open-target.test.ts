@@ -62,6 +62,16 @@ describe("deriveOpenTargets", () => {
     expect(targets.map((target) => target.value)).toContain("reports/artifact-eval.csv");
   });
 
+  it("normalizes tmp/opencode/ and tmp/workspace/ sandbox roots from artifact paths", () => {
+    const targets = deriveOpenTargets([
+      toolMessage("msg_tool_1", "write", { filePath: "/tmp/opencode/OpenWork.docx" }, { filePath: "/tmp/opencode/OpenWork.docx" }),
+      toolMessage("msg_tool_2", "write", { filePath: "tmp/workspace/reports/summary.csv" }, { filePath: "tmp/workspace/reports/summary.csv" }),
+    ]);
+
+    expect(targets.map((target) => target.value)).toContain("OpenWork.docx");
+    expect(targets.map((target) => target.value)).toContain("reports/summary.csv");
+  });
+
   it("prefers explicit dynamic tool metadata over prose guesses", () => {
     const targets = deriveOpenTargets([
       toolMessage("msg_tool", "write", { path: "summary.md" }, { path: "summary.md" }),

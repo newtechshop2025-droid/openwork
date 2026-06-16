@@ -25,6 +25,11 @@ describe("normalizeWorkspaceRelativePath", () => {
     expect(normalizeWorkspaceRelativePath("./workspace/notes.md", { allowSubdirs: true })).toBe("notes.md");
   });
 
+  test("strips tmp/opencode/ and tmp/workspace/ sandbox roots", () => {
+    expect(normalizeWorkspaceRelativePath("tmp/opencode/notes.md", { allowSubdirs: true })).toBe("notes.md");
+    expect(normalizeWorkspaceRelativePath("/tmp/workspace/dir/notes.md", { allowSubdirs: true })).toBe("dir/notes.md");
+  });
+
   test("still rejects traversal after stripping prefixes", () => {
     expect(() => normalizeWorkspaceRelativePath("workspace/../secrets.md", { allowSubdirs: true })).toThrow();
     expect(() => normalizeWorkspaceRelativePath("/workspace/../secrets.md", { allowSubdirs: true })).toThrow();

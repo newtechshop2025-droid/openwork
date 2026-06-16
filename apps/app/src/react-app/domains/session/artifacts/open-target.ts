@@ -97,6 +97,14 @@ function normalizePath(path: string, workspaceRoot?: string, isRemote?: boolean)
 
   if (clean.toLowerCase().startsWith("workspace/")) {
     clean = clean.slice(10);
+  } else if (clean.toLowerCase().startsWith("tmp/opencode/")) {
+    clean = clean.slice(13);
+  } else if (clean.toLowerCase().startsWith("tmp/workspace/")) {
+    clean = clean.slice(14);
+  } else if (clean.toLowerCase().startsWith("/tmp/opencode/")) {
+    clean = clean.slice(14);
+  } else if (clean.toLowerCase().startsWith("/tmp/workspace/")) {
+    clean = clean.slice(15);
   }
 
   // For remote workspaces, preserve leading slashes on absolute paths so the
