@@ -92,3 +92,13 @@ export function firstLineLocalFileParts(text: string, workspaceRoot: string): Fi
 
   return parts;
 }
+
+export function isMultimodalSupported(mimeType: string): boolean {
+  const normalized = mimeType.toLowerCase();
+  return (
+    normalized.startsWith("image/") ||
+    normalized === "application/pdf" ||
+    normalized === "text/plain" ||
+    normalized.startsWith("text/")
+  );
+}

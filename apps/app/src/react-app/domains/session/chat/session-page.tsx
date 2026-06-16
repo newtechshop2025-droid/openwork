@@ -527,7 +527,6 @@ export function SessionPage(props: SessionPageProps) {
         id: "files",
         type: "explorer",
         label: "Workspace Files",
-        preview: "text",
       });
     }
     if (!panelRailActive) {

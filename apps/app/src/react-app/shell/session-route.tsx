@@ -92,7 +92,7 @@ import {
   seedQuestionState,
   todoKey as reactTodoKey,
 } from "@/react-app/domains/session/sync/session-sync";
-import { firstLineLocalFileParts } from "@/react-app/domains/session/sync/prompt-file-parts";
+import { firstLineLocalFileParts, isMultimodalSupported } from "@/react-app/domains/session/sync/prompt-file-parts";
 import { CreateRemoteWorkspaceModal } from "@/react-app/domains/workspace/create-remote-workspace-modal";
 import { CreateWorkspaceModal } from "@/react-app/domains/workspace/create-workspace-modal";
 import { createProviderAuthStore, useProviderAuthStoreSnapshot } from "@/react-app/domains/connections/provider-auth/store";
@@ -2215,7 +2215,32 @@ export function SessionRoute() {
           return;
         }
 
-        const parts = await draftToParts(draft, selectedWorkspaceRoot);
+        const supportedAttachments: ComposerAttachment[] = [];
+        const unsupportedTextRefs: string[] = [];
+        for (const attachment of draft.attachments) {
+          if (isMultimodalSupported(attachment.mimeType)) {
+            supportedAttachments.push(attachment);
+          } else {
+            const buffer = await attachment.file.arrayBuffer();
+            await client.writeWorkspaceBinaryFile(selectedWorkspaceId, {
+              path: attachment.name,
+              data: buffer,
+              force: true,
+            });
+            unsupportedTextRefs.push(`[Attached file written to workspace: ${attachment.name}]`);
+          }
+        }
+
+        const adjustedDraft = {
+          ...draft,
+          attachments: supportedAttachments,
+          resolvedText: [
+            draft.resolvedText ?? draft.text,
+            ...unsupportedTextRefs,
+          ].join("\n\n").trim(),
+        };
+
+        const parts = await draftToParts(adjustedDraft, selectedWorkspaceRoot);
         const envRuntimeKey = buildOpenworkEnvRuntimeKey({
           baseUrl: client?.baseUrl ?? null,
           pid: openworkServerHostInfoState?.pid ?? null,

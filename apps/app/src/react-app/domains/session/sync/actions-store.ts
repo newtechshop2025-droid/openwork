@@ -32,7 +32,7 @@ import type {
 } from "../../../../app/types";
 import { addOpencodeCacheHint, safeStringify } from "../../../../app/utils";
 import { clearSessionDraft, saveSessionDraft } from "./draft-store";
-import { firstLineLocalFileParts } from "./prompt-file-parts";
+import { firstLineLocalFileParts, isMultimodalSupported } from "./prompt-file-parts";
 
 type SessionModelConfig = {
   applyPendingSessionChoice: (sessionId: string) => void;
@@ -72,6 +72,7 @@ function attachmentMime(attachment: ComposerAttachment) {
 
 export function createSessionActionsStore(options: {
   client: () => Client | null;
+  openworkClient?: () => { writeWorkspaceBinaryFile: (workspaceId: string, payload: { path: string; data: ArrayBuffer; force?: boolean }) => Promise<unknown> } | null;
   baseUrl: () => string;
   developerMode: () => boolean;
   prompt: () => string;
@@ -498,21 +499,56 @@ export function createSessionActionsStore(options: {
       attachments: [] as ComposerAttachment[],
       text: fallbackText,
     };
-    const content = (resolvedDraft.resolvedText ?? resolvedDraft.text).trim();
-    if (!content && !resolvedDraft.attachments.length) return;
 
+    const clientInstance = options.client();
     const workspaceId = options.selectedWorkspaceId().trim();
-    if (!workspaceId) return;
 
-    const ready = await options.ensureWorkspaceRuntime(workspaceId);
+    // Identify unsupported attachments and write them to the workspace
+    const supportedAttachments: ComposerAttachment[] = [];
+    const unsupportedTextRefs: string[] = [];
+    for (const attachment of resolvedDraft.attachments) {
+      if (isMultimodalSupported(attachment.mimeType)) {
+        supportedAttachments.push(attachment);
+      } else {
+        if (clientInstance && workspaceId) {
+          const buffer = await attachment.file.arrayBuffer();
+          const openworkClient = options.openworkClient?.();
+          if (openworkClient) {
+            await openworkClient.writeWorkspaceBinaryFile(workspaceId, {
+              path: attachment.name,
+              data: buffer,
+              force: true,
+            });
+          }
+          unsupportedTextRefs.push(`[Attached file written to workspace: ${attachment.name}]`);
+        }
+      }
+    }
+
+    const adjustedDraft: ComposerDraft = {
+      ...resolvedDraft,
+      attachments: supportedAttachments,
+      resolvedText: [
+        resolvedDraft.resolvedText ?? resolvedDraft.text,
+        ...unsupportedTextRefs,
+      ].join("\n\n").trim(),
+    };
+
+    const content = (adjustedDraft.resolvedText ?? adjustedDraft.text).trim();
+    if (!content && !adjustedDraft.attachments.length) return;
+
+    const workspaceIdForRuntime = options.selectedWorkspaceId().trim();
+    if (!workspaceIdForRuntime) return;
+
+    const ready = await options.ensureWorkspaceRuntime(workspaceIdForRuntime);
     if (!ready) return;
 
     const c = options.client();
     if (!c) return;
 
     const compactShortcut = /^\/compact(?:\s+.*)?$/i.test(content);
-    const compactCommand = resolvedDraft.command?.name === "compact" || compactShortcut;
-    const commandName = compactCommand ? "compact" : (resolvedDraft.command?.name ?? null);
+    const compactCommand = adjustedDraft.command?.name === "compact" || compactShortcut;
+    const commandName = compactCommand ? "compact" : (adjustedDraft.command?.name ?? null);
     if (compactCommand && !options.selectedSessionId()) {
       options.setError(t("app.error_compact_no_session"));
       return;
@@ -520,7 +556,7 @@ export function createSessionActionsStore(options: {
 
     let sessionID = options.selectedSessionId();
     if (!sessionID) {
-      await createSessionInWorkspace(workspaceId);
+      await createSessionInWorkspace(workspaceIdForRuntime);
       sessionID = options.selectedSessionId();
     }
     if (!sessionID) return;
@@ -536,10 +572,10 @@ export function createSessionActionsStore(options: {
     const visibleParts = visible.reduce((total, message) => total + message.parts.length, 0);
     recordPerfLog(perfEnabled, "session.prompt", "start", {
       sessionID,
-      mode: resolvedDraft.mode,
+      mode: adjustedDraft.mode,
       command: commandName,
       charCount: content.length,
-      attachmentCount: resolvedDraft.attachments.length,
+      attachmentCount: adjustedDraft.attachments.length,
       messageCount: visible.length,
       partCount: visibleParts,
     });
@@ -555,32 +591,32 @@ export function createSessionActionsStore(options: {
 
       const model = options.selectedSessionModel();
       const agent = selectedSessionAgent();
-      const parts = await buildPromptParts(resolvedDraft);
+      const parts = await buildPromptParts(adjustedDraft);
       const selectedVariant = options.sanitizeModelVariantForRef(model, options.modelVariant()) ?? undefined;
       const reasoningEffort = options.resolveCodexReasoningEffort(model.modelID, selectedVariant ?? null);
       const requestVariant = reasoningEffort ? undefined : selectedVariant;
       const promptOverrides = reasoningEffort ? ({ reasoning_effort: reasoningEffort } as const) : undefined;
 
-      if (resolvedDraft.mode === "shell") {
+      if (adjustedDraft.mode === "shell") {
         await shellInSession(c, sessionID, content);
-      } else if (resolvedDraft.command || compactCommand) {
+      } else if (adjustedDraft.command || compactCommand) {
         if (compactCommand) {
           await compactCurrentSession(sessionID);
           finishPerf(perfEnabled, "session.prompt", "done", startedAt, {
             sessionID,
-            mode: resolvedDraft.mode,
+            mode: adjustedDraft.mode,
             command: commandName,
           });
           return;
         }
 
-        const command = resolvedDraft.command;
+        const command = adjustedDraft.command;
         if (!command) {
           throw new Error(t("app.error_command_not_resolved"));
         }
 
         const modelString = `${model.providerID}/${model.modelID}`;
-        const files = await buildCommandFileParts(resolvedDraft);
+        const files = await buildCommandFileParts(adjustedDraft);
 
         unwrap(
           await c.session.command({
@@ -615,13 +651,13 @@ export function createSessionActionsStore(options: {
 
       finishPerf(perfEnabled, "session.prompt", "done", startedAt, {
         sessionID,
-        mode: resolvedDraft.mode,
+        mode: adjustedDraft.mode,
         command: commandName,
       });
     } catch (e) {
       finishPerf(perfEnabled, "session.prompt", "error", startedAt, {
         sessionID,
-        mode: resolvedDraft.mode,
+        mode: adjustedDraft.mode,
         command: commandName,
         error: e instanceof Error ? e.message : safeStringify(e),
       });
