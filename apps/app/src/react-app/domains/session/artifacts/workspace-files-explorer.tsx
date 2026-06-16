@@ -1,25 +1,24 @@
 /** @jsxImportSource react */
 import { useState, useMemo, useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { 
-  Folder, 
-  FolderOpen, 
-  File as FileIcon, 
-  Download, 
-  Search, 
-  ChevronRight, 
-  ChevronDown, 
+import {
+  Folder,
+  File as FileIcon,
+  Download,
+  Search,
+  ChevronRight,
   RefreshCw,
   Loader2,
-  X
+  X,
+  Home,
 } from "lucide-react";
 
 import type { OpenworkServerClient } from "@/app/lib/openwork-server";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { formatFileSize } from "@/lib/utils";
-import { usePanelTabStore, useSessionPanelState } from "../panel/panel-tab-store";
-import { basename, classifyOpenTarget } from "./open-target";
+import { usePanelTabStore } from "../panel/panel-tab-store";
+import { classifyOpenTarget } from "./open-target";
 
 type WorkspaceFilesExplorerProps = {
   sessionId: string;
@@ -52,12 +51,11 @@ export function WorkspaceFilesExplorer({
   onClose,
 }: WorkspaceFilesExplorerProps) {
   const [searchQuery, setSearchQuery] = useState("");
-  const [expandedFolders, setExpandedFolders] = useState<Record<string, boolean>>({});
+  const [currentPath, setCurrentPath] = useState("");
   const [downloadingPaths, setDownloadingPaths] = useState<Record<string, boolean>>({});
   const [highlightedPath, setHighlightedPath] = useState<string | null>(null);
   const [visibleLimit, setVisibleLimit] = useState(200);
   const openTab = usePanelTabStore((state) => state.openTab);
-  const { tabs } = useSessionPanelState(sessionId);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
   // 1. Create file session to read catalog
@@ -65,7 +63,7 @@ export function WorkspaceFilesExplorer({
     data: fileSession,
     isLoading: isSessionLoading,
     isError: isSessionError,
-    refetch: refetchSession
+    refetch: refetchSession,
   } = useQuery({
     queryKey: ["file-session", workspaceId],
     queryFn: async () => {
@@ -79,9 +77,6 @@ export function WorkspaceFilesExplorer({
   const fileSessionId = fileSession?.session?.id;
 
   // 2. Fetch workspace files catalog
-  // For remote workspaces, always refetch on mount to stay in sync with
-  // the remote filesystem (files may have been written by the AI since
-  // the last catalog fetch).
   const {
     data: catalog,
     isLoading: isCatalogLoading,
@@ -99,18 +94,13 @@ export function WorkspaceFilesExplorer({
     refetchOnMount: isRemoteWorkspace ? "always" : undefined,
   });
 
-  // Reveal a file path: expand parent folders and highlight the file.
+  // Reveal a file path: navigate to its parent directory and highlight it.
   useEffect(() => {
     if (!revealPath) return;
 
-    // Normalize the reveal path to match catalog item paths.
     const normalized = revealPath.replace(/[\\]+/g, "/").replace(/^\/+/, "");
 
-    // Resolve the reveal path to an actual catalog item path. For remote
-    // workspaces the revealPath may be an absolute path (e.g.
-    // /srv/workspace/word.docx) while catalog items are relative to the
-    // workspace root (e.g. word.docx). Try exact match first, then suffix
-    // match.
+    // Resolve the reveal path to an actual catalog item path.
     let resolvedPath = normalized;
     if (catalog?.items) {
       const exactMatch = catalog.items.some((item) => item.path === normalized);
@@ -124,29 +114,20 @@ export function WorkspaceFilesExplorer({
       }
     }
 
-    setExpandedFolders((prev) => {
-      const next = { ...prev };
-      let changed = false;
-      const parts = resolvedPath.split("/");
-      let current = "";
-      // Expand all parent directories.
-      for (let i = 0; i < parts.length - 1; i++) {
-        const part = parts[i];
-        if (!part) continue;
-        current = current ? `${current}/${part}` : part;
-        if (!next[current]) {
-          next[current] = true;
-          changed = true;
-        }
-      }
-      return changed ? next : prev;
-    });
+    // Navigate to the parent directory.
+    const lastSlash = resolvedPath.lastIndexOf("/");
+    if (lastSlash >= 0) {
+      setCurrentPath(resolvedPath.slice(0, lastSlash));
+    } else {
+      setCurrentPath("");
+    }
 
     // Highlight the file briefly.
     setHighlightedPath(resolvedPath);
+    setVisibleLimit(200);
     const timer = window.setTimeout(() => setHighlightedPath(null), 3000);
 
-    // Scroll to the file after a short delay for the tree to render.
+    // Scroll to the file after a short delay.
     const scrollTimer = window.setTimeout(() => {
       const el = scrollContainerRef.current?.querySelector(`[data-file-path="${CSS.escape(resolvedPath)}"]`);
       el?.scrollIntoView({ block: "center", behavior: "smooth" });
@@ -158,32 +139,6 @@ export function WorkspaceFilesExplorer({
     };
   }, [revealPath, catalog?.items]);
 
-  useEffect(() => {
-    setExpandedFolders((prev) => {
-      const next = { ...prev };
-      let changed = false;
-
-      for (const tab of tabs) {
-        if (tab.type === "artifact" && tab.id.startsWith("file:")) {
-          const filePath = tab.id.slice("file:".length);
-          const parts = filePath.split("/");
-          let current = "";
-          for (let i = 0; i < parts.length - 1; i++) {
-            const part = parts[i];
-            if (!part) continue;
-            current = current ? `${current}/${part}` : part;
-            if (next[current] === undefined) {
-              next[current] = true;
-              changed = true;
-            }
-          }
-        }
-      }
-
-      return changed ? next : prev;
-    });
-  }, [tabs]);
-
   const handleRefresh = () => {
     if (!fileSessionId) {
       void refetchSession();
@@ -192,7 +147,7 @@ export function WorkspaceFilesExplorer({
     }
   };
 
-  // Auto-refresh catalog when refresh key changes (e.g., after AI completes writing files)
+  // Auto-refresh catalog when refresh key changes.
   useEffect(() => {
     if (catalogRefreshKey !== undefined && catalogRefreshKey > 0) {
       handleRefresh();
@@ -231,11 +186,10 @@ export function WorkspaceFilesExplorer({
     });
   };
 
-  const toggleFolder = (path: string) => {
-    setExpandedFolders((prev) => ({
-      ...prev,
-      [path]: !prev[path],
-    }));
+  const navigateTo = (path: string) => {
+    setCurrentPath(path);
+    setHighlightedPath(null);
+    setVisibleLimit(200);
   };
 
   // Format large file counts: 999 → "999", 1200 → "1.2K", 2000 → "2K"
@@ -247,7 +201,7 @@ export function WorkspaceFilesExplorer({
     return count.toLocaleString();
   };
 
-  // Count total file descendants for a tree node
+  // Count total descendants for a tree node
   const countDescendants = (node: TreeNode): number => {
     if (!node.children) return 0;
     let count = 0;
@@ -258,40 +212,17 @@ export function WorkspaceFilesExplorer({
     return count;
   };
 
-  // Filter and build tree structure
+  // Build the full tree structure from catalog items
   const fileTree = useMemo(() => {
     if (!catalog?.items) return [];
 
     const items = catalog.items;
-    const query = searchQuery.trim().toLowerCase();
 
-    let filteredItems = items;
-    if (query) {
-      // If there's a search query, we filter files matching the name/path.
-      // We must also include parent folders so the tree renders properly.
-      const matchedPaths = new Set<string>();
-      
-      for (const item of items) {
-        if (item.path.toLowerCase().includes(query)) {
-          matchedPaths.add(item.path);
-          // Add all parent folders to the set
-          const parts = item.path.split("/");
-          let current = "";
-          for (let i = 0; i < parts.length - 1; i++) {
-            current = current ? `${current}/${parts[i]}` : parts[i]!;
-            matchedPaths.add(current);
-          }
-        }
-      }
-
-      filteredItems = items.filter((item) => matchedPaths.has(item.path));
-    }
-
-    // Build the tree nodes
+    // Build the tree nodes (always full tree, search filtering is separate)
     const root: TreeNode[] = [];
     const map: Record<string, TreeNode> = {};
 
-    for (const item of filteredItems) {
+    for (const item of items) {
       const parts = item.path.split("/");
       let currentPath = "";
       let parentChildren = root;
@@ -338,7 +269,7 @@ export function WorkspaceFilesExplorer({
       }
     };
 
-    // Count descendants for each directory node
+    // Annotate descendant counts
     const annotateDescendants = (nodes: TreeNode[]) => {
       for (const node of nodes) {
         if (node.kind === "dir" && node.children) {
@@ -350,50 +281,78 @@ export function WorkspaceFilesExplorer({
 
     sortTree(root);
     annotateDescendants(root);
-    return root;
-  }, [catalog, searchQuery]);
 
-  // Flatten visible tree nodes for rendering with a cap
-  const { visibleNodes, totalVisible, hasMore } = useMemo(() => {
-    const nodes: Array<{ node: TreeNode; depth: number }> = [];
-    const isSearching = searchQuery.trim().length > 0;
-    const limit = isSearching ? Infinity : visibleLimit;
+    // Build a lookup map for fast directory navigation
+    return { root, map };
+  }, [catalog]);
 
-    const walk = (items: TreeNode[], depth: number) => {
-      for (const node of items) {
-        if (nodes.length >= limit) return;
-        nodes.push({ node, depth });
-        if (node.kind === "dir" && expandedFolders[node.path] && node.children) {
-          walk(node.children, depth + 1);
-        }
+  // Find a directory node by path
+  const findDirByPath = (path: string): TreeNode | null => {
+    if (!path) return null;
+    return fileTree.map[path] ?? null;
+  };
+
+  // Current directory's direct children
+  const currentDirNodes = useMemo(() => {
+    if (!fileTree.root.length) return [];
+    if (searchQuery.trim()) return []; // Search mode is handled separately
+    if (!currentPath) return fileTree.root;
+    const dir = findDirByPath(currentPath);
+    return dir?.children ?? [];
+  }, [fileTree, currentPath, searchQuery]);
+
+  // Search results: flat list of matching items
+  const searchResults = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    if (!query || !catalog?.items) return [];
+
+    const matched: TreeNode[] = [];
+    const matchedPaths = new Set<string>();
+
+    for (const item of catalog.items) {
+      if (item.path.toLowerCase().includes(query)) {
+        matchedPaths.add(item.path);
       }
-    };
+    }
 
-    walk(fileTree, 0);
-    // Count total visible nodes (without limit) for "show more" calculation
-    const countAll = (items: TreeNode[]): number => {
-      let count = 0;
-      for (const node of items) {
-        count += 1;
-        if (node.kind === "dir" && expandedFolders[node.path] && node.children) {
-          count += countAll(node.children);
-        }
+    // Build flat list of matching items (files and their parent dirs)
+    const result: TreeNode[] = [];
+    const addedDirs = new Set<string>();
+
+    for (const path of matchedPaths) {
+      const node = fileTree.map[path];
+      if (node) {
+        result.push(node);
       }
-      return count;
-    };
-    const total = isSearching ? nodes.length : countAll(fileTree);
+    }
 
-    return {
-      visibleNodes: nodes,
-      totalVisible: total,
-      hasMore: !isSearching && total > visibleLimit,
-    };
-  }, [fileTree, expandedFolders, searchQuery, visibleLimit]);
+    // Sort: dirs first, then files
+    result.sort((a, b) => {
+      if (a.kind !== b.kind) return a.kind === "dir" ? -1 : 1;
+      return a.name.localeCompare(b.name);
+    });
 
-  // Reset visible limit when search query changes
+    return result;
+  }, [catalog, searchQuery, fileTree]);
+
+  // Breadcrumb path segments
+  const currentPathSegments = useMemo(() => {
+    if (!currentPath) return [];
+    return currentPath.split("/").map((name, index, parts) => {
+      const path = parts.slice(0, index + 1).join("/");
+      return { name, path };
+    });
+  }, [currentPath]);
+
+  // The items to render
+  const displayItems = searchQuery.trim() ? searchResults : currentDirNodes;
+  const hasMore = displayItems.length > visibleLimit;
+  const visibleItems = hasMore ? displayItems.slice(0, visibleLimit) : displayItems;
+
+  // Reset visible limit on navigation/search
   useEffect(() => {
     setVisibleLimit(200);
-  }, [searchQuery]);
+  }, [currentPath, searchQuery]);
 
   const isBusy = isSessionLoading || isCatalogLoading;
   const isRefreshing = isCatalogFetching && !isCatalogLoading;
@@ -454,8 +413,8 @@ export function WorkspaceFilesExplorer({
               className="h-8 w-full rounded-md border border-input bg-background pl-8 pr-3 text-xs ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
             />
             {searchQuery && (
-              <button 
-                onClick={() => setSearchQuery("")} 
+              <button
+                onClick={() => setSearchQuery("")}
                 className="absolute right-2.5 text-muted-foreground hover:text-foreground"
               >
                 <X className="h-3 w-3" />
@@ -463,6 +422,36 @@ export function WorkspaceFilesExplorer({
             )}
           </div>
         </div>
+
+        {/* Breadcrumb navigation */}
+        {!searchQuery.trim() && (
+          <div className="flex items-center gap-0.5 border-t border-border/60 px-2 py-1.5 text-xs text-muted-foreground no-scrollbar overflow-x-auto">
+            <button
+              onClick={() => navigateTo("")}
+              className="shrink-0 rounded p-0.5 hover:bg-dls-hover hover:text-foreground"
+              aria-label="Go to root"
+            >
+              <Home className="h-3.5 w-3.5" />
+            </button>
+            {currentPathSegments.map((seg, i) => (
+              <span key={seg.path} className="flex shrink-0 items-center gap-0.5">
+                <ChevronRight className="h-3 w-3 opacity-40" />
+                <button
+                  onClick={() => navigateTo(seg.path)}
+                  className={`rounded px-1 hover:bg-dls-hover hover:text-foreground ${i === currentPathSegments.length - 1 ? "text-foreground font-medium" : ""}`}
+                >
+                  {seg.name}
+                </button>
+              </span>
+            ))}
+          </div>
+        )}
+        {searchQuery.trim() && (
+          <div className="flex items-center gap-1 border-t border-border/60 px-3 py-1.5 text-xs text-muted-foreground">
+            <Search className="h-3 w-3" />
+            <span>Searching "{searchQuery.trim()}" — {searchResults.length} results</span>
+          </div>
+        )}
       </div>
 
       <div ref={scrollContainerRef} className="min-h-0 flex-1 overflow-y-auto p-2">
@@ -483,15 +472,14 @@ export function WorkspaceFilesExplorer({
               Retry
             </Button>
           </div>
-        ) : fileTree.length === 0 ? (
+        ) : displayItems.length === 0 ? (
           <div className="flex h-32 flex-col items-center justify-center text-center text-xs text-muted-foreground p-4">
-            {searchQuery ? "No files match your search query." : "No files found in workspace."}
+            {searchQuery ? "No files match your search query." : currentPath ? "This directory is empty." : "No files found in workspace."}
           </div>
         ) : (
           <div className="flex flex-col gap-0.5">
-            {visibleNodes.map(({ node, depth }) => {
+            {visibleItems.map((node) => {
               const isDir = node.kind === "dir";
-              const isExpanded = !!expandedFolders[node.path];
               const isDownloading = !!downloadingPaths[node.path];
               const isHighlighted = highlightedPath === node.path;
 
@@ -501,36 +489,27 @@ export function WorkspaceFilesExplorer({
                     data-file-path={!isDir ? node.path : undefined}
                     onClick={() => {
                       if (isDir) {
-                        toggleFolder(node.path);
+                        navigateTo(node.path);
                       } else {
                         handleOpenFile(node.path, node.name);
                       }
                     }}
                     className={`group flex h-8 cursor-pointer items-center justify-between rounded px-2 hover:bg-dls-hover${isHighlighted ? " bg-amber-2 ring-1 ring-amber-5" : ""}`}
-                    style={{ paddingLeft: `${Math.max(8, depth * 16)}px` }}
                   >
                     <div className="flex min-w-0 flex-1 items-center gap-1.5 text-xs text-foreground">
                       {isDir ? (
-                        <>
-                          <span className="text-muted-foreground">
-                            {isExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
-                          </span>
-                          <span className="text-amber-9">
-                            {isExpanded ? <FolderOpen size={15} /> : <Folder size={15} />}
-                          </span>
-                        </>
+                        <span className="text-amber-9">
+                          <Folder size={15} />
+                        </span>
                       ) : (
-                        <>
-                          <span className="w-3.5 shrink-0" />
-                          <span className="text-muted-foreground">
-                            <FileIcon size={14} />
-                          </span>
-                        </>
+                        <span className="text-muted-foreground">
+                          <FileIcon size={14} />
+                        </span>
                       )}
                       <span className="truncate" title={node.name}>
                         {node.name}
                       </span>
-                      {isDir && node.descendantCount != null && !isExpanded && (
+                      {isDir && node.descendantCount != null && (
                         <span className="shrink-0 text-[10px] text-muted-foreground opacity-60">
                           {node.descendantCount}
                         </span>
@@ -568,15 +547,6 @@ export function WorkspaceFilesExplorer({
                       </div>
                     )}
                   </div>
-
-                  {isDir && isExpanded && node.children && node.children.length === 0 && (
-                    <div
-                      className="py-1 text-[11px] text-muted-foreground italic opacity-50"
-                      style={{ paddingLeft: `${(depth + 1) * 16 + 20}px` }}
-                    >
-                      Empty directory
-                    </div>
-                  )}
                 </div>
               );
             })}
@@ -585,7 +555,7 @@ export function WorkspaceFilesExplorer({
                 onClick={() => setVisibleLimit((prev) => prev + 200)}
                 className="mt-2 rounded px-2 py-1.5 text-xs text-muted-foreground hover:text-foreground hover:bg-dls-hover transition-colors"
               >
-                Show {Math.min(200, totalVisible - visibleNodes.length)} more of {totalVisible - visibleNodes.length} remaining files
+                Show {Math.min(200, displayItems.length - visibleLimit)} more of {displayItems.length - visibleItems.length} remaining
               </button>
             )}
           </div>
