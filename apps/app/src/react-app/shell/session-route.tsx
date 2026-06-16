@@ -93,6 +93,7 @@ import {
   todoKey as reactTodoKey,
 } from "@/react-app/domains/session/sync/session-sync";
 import { firstLineLocalFileParts, isMultimodalSupported, ensureModelVisionCapabilities } from "@/react-app/domains/session/sync/prompt-file-parts";
+import { parseSpreadsheet } from "@/react-app/domains/session/artifacts/artifact-spreadsheet-model";
 import { CreateRemoteWorkspaceModal } from "@/react-app/domains/workspace/create-remote-workspace-modal";
 import { CreateWorkspaceModal } from "@/react-app/domains/workspace/create-workspace-modal";
 import { createProviderAuthStore, useProviderAuthStoreSnapshot } from "@/react-app/domains/connections/provider-auth/store";
@@ -443,6 +444,22 @@ function attachmentMime(attachment: ComposerAttachment) {
   return attachment.mimeType;
 }
 
+function uniqueWorkspacePath(name: string, usedNames: Set<string>): string {
+  if (!usedNames.has(name)) {
+    usedNames.add(name);
+    return name;
+  }
+  const ext = name.includes(".") ? name.slice(name.lastIndexOf(".")) : "";
+  const base = ext ? name.slice(0, -ext.length) : name;
+  let index = 2;
+  let candidate = `${base} (${index})${ext}`;
+  while (usedNames.has(candidate)) {
+    candidate = `${base} (${++index})${ext}`;
+  }
+  usedNames.add(candidate);
+  return candidate;
+}
+
 async function draftToParts(draft: ComposerDraft, workspaceRoot: string) {
   const parts: Array<TextPartInput | FilePartInput | AgentPartInput> = [];
   const root = workspaceRoot.trim();
@@ -496,6 +513,40 @@ async function draftToParts(draft: ComposerDraft, workspaceRoot: string) {
   parts.push(
     ...(await Promise.all(
       draft.attachments.map(async (attachment) => {
+        const name = attachment.name;
+        const isSpreadsheetBinary = /\.(xlsx|xls|ods)$/i.test(name);
+        if (isSpreadsheetBinary) {
+          try {
+            const buffer = await attachment.file.arrayBuffer();
+            const rows = await parseSpreadsheet({
+              name,
+              content: { kind: "binary", data: buffer },
+            });
+            const csvText = rows
+              .map((row) =>
+                row
+                  .map((cell) => {
+                    const s = String(cell ?? "");
+                    if (s.includes(",") || s.includes('"') || s.includes("\n") || s.includes("\r")) {
+                      return `"${s.replace(/"/g, '""')}"`;
+                    }
+                    return s;
+                  })
+                  .join(","),
+              )
+              .join("\n");
+            const dataUrl = `data:text/plain;base64,${btoa(unescape(encodeURIComponent(csvText)))}`;
+            return {
+              type: "file" as const,
+              url: dataUrl,
+              filename: `${name}.csv`,
+              mime: "text/plain",
+            };
+          } catch (error) {
+            console.error(`[Spreadsheet Parse] failed for ${name}:`, error);
+          }
+        }
+
         const mime = attachmentMime(attachment);
         return {
           type: "file" as const,
@@ -2217,18 +2268,36 @@ export function SessionRoute() {
 
         const supportedAttachments: ComposerAttachment[] = [];
         const unsupportedTextRefs: string[] = [];
+        const failedUploads: string[] = [];
+        const usedWorkspaceNames = new Set<string>();
         for (const attachment of draft.attachments) {
-          if (isMultimodalSupported(attachment.mimeType)) {
+          if (isMultimodalSupported(attachment.mimeType, local.prefs.defaultModel)) {
             supportedAttachments.push(attachment);
-          } else {
+            continue;
+          }
+
+          try {
             const buffer = await attachment.file.arrayBuffer();
+            const path = uniqueWorkspacePath(attachment.name, usedWorkspaceNames);
             await client.writeWorkspaceBinaryFile(selectedWorkspaceId, {
-              path: attachment.name,
+              path,
               data: buffer,
               force: true,
             });
-            unsupportedTextRefs.push(`[Attached file written to workspace: ${attachment.name}]`);
+            unsupportedTextRefs.push(`[Attached file written to workspace: ${path}]`);
+          } catch (error) {
+            const message = error instanceof Error ? error.message : String(error);
+            console.error(`[attachment upload] failed for ${attachment.name}:`, message);
+            failedUploads.push(`${attachment.name} (${message})`);
           }
+        }
+
+        if (failedUploads.length) {
+          unsupportedTextRefs.push(`[Could not upload: ${failedUploads.join(", ")}]`);
+          toast.warning(
+            `${failedUploads.length} file(s) could not be uploaded to the workspace.`,
+            { description: "The remaining files were still sent." },
+          );
         }
 
         const adjustedDraft = {

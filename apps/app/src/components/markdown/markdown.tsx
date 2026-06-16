@@ -95,6 +95,7 @@ function hasFencedCodeBlock(text: string) {
 
 function sanitizeMarkdownHtml(value: string) {
   return DOMPurify.sanitize(value, {
+    ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto|tel|ftp|cid|xmpp):|[^&:\/?#]*(?:[\/?#]|$)|#openwork-target:)/i,
     ADD_ATTR: [
       "checked",
       "class",

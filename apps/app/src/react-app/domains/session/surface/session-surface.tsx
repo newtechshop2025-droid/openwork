@@ -682,7 +682,7 @@ export function SessionSurface(props: SessionSurfaceProps) {
     renderedSessionId: renderedMessages.length > 0 || snapshot ? props.sessionId : null,
     hasSnapshot: Boolean(snapshot) || renderedMessages.length > 0,
     isFetching: snapshotQuery.isFetching,
-    isError: snapshotQuery.isError || Boolean(error),
+    isError: snapshotQuery.isError,
   });
 
   const buildDraft = useCallback((text: string, nextAttachments: ComposerAttachment[]): ComposerDraft => {
@@ -756,6 +756,7 @@ export function SessionSurface(props: SessionSurfaceProps) {
       const parsed = parseSessionError(nextError);
       setError(parsed);
       useSessionActivityStore.getState().setError(props.workspaceId, props.sessionId, parsed.message);
+      useSessionActivityStore.getState().setRunStatus(props.workspaceId, props.sessionId, { type: "idle" });
       setComposerDraft(props.sessionId, "");
       setAwaitingAssistantBaseline(null);
       setSending(false);
@@ -876,15 +877,18 @@ export function SessionSurface(props: SessionSurfaceProps) {
       );
     }
     if (!accepted.length) return;
-    const next = accepted.map((file) => ({
-      id: `${file.name}-${file.lastModified}-${Math.random().toString(36).slice(2)}`,
-      name: file.name,
-      mimeType: file.type || "application/octet-stream",
-      size: file.size,
-      kind: file.type.startsWith("image/") ? "image" as const : "file" as const,
-      file,
-      previewUrl: file.type.startsWith("image/") ? URL.createObjectURL(file) : undefined,
-    }));
+    const next = accepted.map((file) => {
+      const isImage = typeof file.type === "string" && file.type.startsWith("image/");
+      return {
+        id: `${file.name}-${file.lastModified}-${Math.random().toString(36).slice(2)}`,
+        name: file.name,
+        mimeType: file.type || "application/octet-stream",
+        size: file.size,
+        kind: isImage ? "image" as const : "file" as const,
+        file,
+        previewUrl: isImage ? URL.createObjectURL(file) : undefined,
+      };
+    });
     setComposerAttachments(props.sessionId, [...attachments, ...next]);
   }, [props.attachmentsEnabled, props.attachmentsDisabledReason, props.sessionId, attachments, setComposerAttachments]);
 

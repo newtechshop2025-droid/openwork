@@ -78,6 +78,22 @@ describe("deriveOpenTargets", () => {
     expect(targets[0]).toMatchObject({ value: "reports/summary.md", preview: "markdown", confidence: 95 });
   });
 
+  it("extracts Dockerfile, Makefile, and gitignore correctly and classifies them as text", () => {
+    const targets = deriveOpenTargets([
+      toolMessage("msg_tool_1", "write", { filePath: "Dockerfile" }, { filePath: "Dockerfile" }),
+      toolMessage("msg_tool_2", "write", { filePath: "Makefile" }, { filePath: "Makefile" }),
+      toolMessage("msg_tool_3", "write", { filePath: ".gitignore" }, { filePath: ".gitignore" }),
+    ]);
+
+    const dockerfileTarget = targets.find((t) => t.value === "Dockerfile");
+    const makefileTarget = targets.find((t) => t.value === "Makefile");
+    const gitignoreTarget = targets.find((t) => t.value === ".gitignore");
+
+    expect(dockerfileTarget).toMatchObject({ preview: "text", confidence: 95 });
+    expect(makefileTarget).toMatchObject({ preview: "text", confidence: 95 });
+    expect(gitignoreTarget).toMatchObject({ preview: "text", confidence: 95 });
+  });
+
   it("extracts PowerPoint decks from assistant artifact summaries", () => {
     const targets = deriveOpenTargets([
       message("msg_1", "assistant", "Updated file: decks/openwork-vertebrae-deck.pptx"),
@@ -433,3 +449,4 @@ describe("isOpenWorkTargetHref", () => {
     expect(isOpenWorkTargetHref("https://example.com")).toBe(false);
   });
 });
+

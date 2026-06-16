@@ -79,7 +79,7 @@ import {
 import type { ThreadStatus } from "@/lib/messages"
 import { cn } from "@/lib/utils"
 import { useOpenTargets } from "@/lib/target-provider"
-import { linkifyOpenTargets, parseOpenWorkTargetHref } from "@/react-app/domains/session/artifacts/open-target"
+import { linkifyOpenTargets, parseOpenWorkTargetHref, classifyOpenTarget, basename, type OpenTarget } from "@/react-app/domains/session/artifacts/open-target"
 import { groupMessages, isMessageGroup, getLastTextPart, getAssistantRenderGroups, getFileTitle, getMediaBadge, type UIMessageWithIndex, getMessagesText } from "./utils"
 
 interface ToolMessageProps {
@@ -278,7 +278,6 @@ export const AssistantMessage = React.memo(
       [assistantRenderGroups, openTargets],
     )
 
-    // Delegated click handler for #openwork-target: links in rendered markdown
     const handleClick = React.useCallback((e: React.MouseEvent<HTMLDivElement>) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest("a[data-openwork-target]");
@@ -288,8 +287,34 @@ export const AssistantMessage = React.memo(
       const targetId = parseOpenWorkTargetHref(href);
       if (!targetId) return;
 
-      // Find the matching OpenTarget
-      const matchedTarget = openTargets.find((t) => t.id === targetId);
+      // Find the matching OpenTarget, or construct a synthetic one if not found
+      let matchedTarget: OpenTarget | undefined = openTargets.find((t) => t.id === targetId);
+      if (!matchedTarget) {
+        if (targetId.startsWith("file:")) {
+          const value = targetId.slice(5);
+          matchedTarget = {
+            id: targetId,
+            kind: "file",
+            value,
+            name: basename(value),
+            preview: classifyOpenTarget(value, "file"),
+            confidence: 100,
+            reason: "explicit link click",
+          };
+        } else if (targetId.startsWith("url:")) {
+          const value = targetId.slice(4);
+          matchedTarget = {
+            id: targetId,
+            kind: "url",
+            value,
+            name: basename(value) || value,
+            preview: "browser",
+            confidence: 100,
+            reason: "explicit link click",
+          };
+        }
+      }
+
       if (matchedTarget && onOpenTarget) {
         e.preventDefault();
         e.stopPropagation();

@@ -1403,6 +1403,33 @@ export function resolveWorkspaceRelativePath(workspaceRoot: string, requestedPat
 
 export function isSupportedWorkspaceTextFilePath(relativePath: string): boolean {
   const lowered = relativePath.toLowerCase();
+  const filename = lowered.split("/").pop() || "";
+
+  // Exact filename matches
+  const exactFilenames = [
+    "dockerfile",
+    "makefile",
+    "gemfile",
+    "rakefile",
+    "jenkinsfile",
+    "procfile",
+    "license",
+    "readme",
+    "go.mod",
+    "go.sum",
+    "package-lock.json",
+    "pnpm-lock.yaml",
+    "yarn.lock",
+  ];
+  if (exactFilenames.includes(filename)) {
+    return true;
+  }
+
+  // Check prefix matches for eslint, prettier config/ignore files
+  if (filename.startsWith(".eslint") || filename.startsWith(".prettier")) {
+    return true;
+  }
+
   return [
     ".md",
     ".mdx",
@@ -1450,8 +1477,24 @@ export function isSupportedWorkspaceTextFilePath(relativePath: string): boolean 
     ".zsh",
     ".txt",
     ".log",
+    ".gitignore",
+    ".gitattributes",
+    ".gitmodules",
+    ".gitconfig",
+    ".dockerignore",
+    ".editorconfig",
+    ".gradle",
+    ".properties",
+    ".conf",
+    ".cfg",
+    ".bat",
+    ".cmd",
+    ".ps1",
+    ".lock",
+    ".lockb",
+    ".pom",
   ].some((ext) =>
-    lowered.endsWith(ext),
+    filename.endsWith(ext),
   );
 }
 

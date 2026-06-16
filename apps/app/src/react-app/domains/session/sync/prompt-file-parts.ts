@@ -93,13 +93,44 @@ export function firstLineLocalFileParts(text: string, workspaceRoot: string): Fi
   return parts;
 }
 
-export function isMultimodalSupported(mimeType: string): boolean {
+function modelSupportsPdf(model?: { providerID: string; modelID: string } | null): boolean {
+  if (!model) return false;
+  const modelId = model.modelID.toLowerCase();
+  const providerId = model.providerID.toLowerCase();
+  return (
+    modelId.includes("gemini") ||
+    modelId.includes("claude") ||
+    providerId.includes("gemini") ||
+    providerId.includes("claude") ||
+    providerId.includes("google") ||
+    providerId.includes("anthropic")
+  );
+}
+
+function isSpreadsheetMime(mimeType: string): boolean {
   const normalized = mimeType.toLowerCase();
   return (
+    normalized === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
+    normalized === "application/vnd.ms-excel" ||
+    normalized === "application/vnd.oasis.opendocument.spreadsheet" ||
+    normalized === "text/csv" ||
+    normalized === "text/tab-separated-values"
+  );
+}
+
+export function isMultimodalSupported(
+  mimeType: string,
+  model?: { providerID: string; modelID: string } | null
+): boolean {
+  const normalized = mimeType.toLowerCase();
+  if (normalized === "application/pdf") {
+    return modelSupportsPdf(model);
+  }
+  return (
     normalized.startsWith("image/") ||
-    normalized === "application/pdf" ||
     normalized === "text/plain" ||
-    normalized.startsWith("text/")
+    normalized.startsWith("text/") ||
+    isSpreadsheetMime(normalized)
   );
 }
 
@@ -138,7 +169,10 @@ export async function ensureModelVisionCapabilities(
     const modelConfig = providerConfig.models?.[modelId];
     if (!modelConfig) return;
 
-    if (!modelConfig.attachment || !modelConfig.modalities) {
+    const inputModalities = (modelConfig.modalities as { input?: string[] } | undefined)?.input;
+    const hasImageInput = Array.isArray(inputModalities) && inputModalities.includes("image");
+
+    if (!modelConfig.attachment || !hasImageInput) {
       console.log(`[Vision Auto-Fix] Patching vision capabilities for model ${modelId} of provider ${providerId}`);
       const updatedModels = {
         ...providerConfig.models,

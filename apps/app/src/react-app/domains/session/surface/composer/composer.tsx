@@ -951,7 +951,8 @@ export function ReactSessionComposer(props: ComposerProps) {
     const oversize: string[] = [];
 
     for (const original of inputFiles) {
-      const processed = original.type.startsWith("image/") ? await compressImageFile(original) : original;
+      const isImage = typeof original.type === "string" && original.type.startsWith("image/");
+      const processed = isImage ? await compressImageFile(original) : original;
       if (processed.size > MAX_ATTACHMENT_BYTES) {
         oversize.push(processed.name || original.name);
         continue;

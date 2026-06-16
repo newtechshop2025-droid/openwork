@@ -33,6 +33,8 @@ import type {
 import { addOpencodeCacheHint, safeStringify } from "../../../../app/utils";
 import { clearSessionDraft, saveSessionDraft } from "./draft-store";
 import { firstLineLocalFileParts, isMultimodalSupported, ensureModelVisionCapabilities } from "./prompt-file-parts";
+import { toast } from "@/components/ui/sonner";
+import { parseSpreadsheet } from "../artifacts/artifact-spreadsheet-model";
 
 type SessionModelConfig = {
   applyPendingSessionChoice: (sessionId: string) => void;
@@ -68,6 +70,22 @@ function attachmentMime(attachment: ComposerAttachment) {
   if (attachment.mimeType === "application/json") return "text/plain";
   if (attachment.mimeType.startsWith("text/")) return "text/plain";
   return attachment.mimeType;
+}
+
+function uniqueWorkspacePath(name: string, usedNames: Set<string>): string {
+  if (!usedNames.has(name)) {
+    usedNames.add(name);
+    return name;
+  }
+  const ext = name.includes(".") ? name.slice(name.lastIndexOf(".")) : "";
+  const base = ext ? name.slice(0, -ext.length) : name;
+  let index = 2;
+  let candidate = `${base} (${index})${ext}`;
+  while (usedNames.has(candidate)) {
+    candidate = `${base} (${++index})${ext}`;
+  }
+  usedNames.add(candidate);
+  return candidate;
 }
 
 export function createSessionActionsStore(options: {
@@ -162,6 +180,40 @@ export function createSessionActionsStore(options: {
   type PartInput = TextPartInput | FilePartInput | AgentPartInput | SubtaskPartInput;
 
   const attachmentToFilePart = async (attachment: ComposerAttachment): Promise<FilePartInput> => {
+    const name = attachment.name;
+    const isSpreadsheetBinary = /\.(xlsx|xls|ods)$/i.test(name);
+    if (isSpreadsheetBinary) {
+      try {
+        const buffer = await attachment.file.arrayBuffer();
+        const rows = await parseSpreadsheet({
+          name,
+          content: { kind: "binary", data: buffer },
+        });
+        const csvText = rows
+          .map((row) =>
+            row
+              .map((cell) => {
+                const s = String(cell ?? "");
+                if (s.includes(",") || s.includes('"') || s.includes("\n") || s.includes("\r")) {
+                  return `"${s.replace(/"/g, '""')}"`;
+                }
+                return s;
+              })
+              .join(","),
+          )
+          .join("\n");
+        const dataUrl = `data:text/plain;base64,${btoa(unescape(encodeURIComponent(csvText)))}`;
+        return {
+          type: "file",
+          url: dataUrl,
+          filename: `${name}.csv`,
+          mime: "text/plain",
+        };
+      } catch (error) {
+        console.error(`[Spreadsheet Parse] failed for ${name}:`, error);
+      }
+    }
+
     const mime = attachmentMime(attachment);
     return {
       type: "file",
@@ -508,26 +560,46 @@ export function createSessionActionsStore(options: {
     const clientInstance = options.client();
     const workspaceId = options.selectedWorkspaceId().trim();
 
-    // Identify unsupported attachments and write them to the workspace
+    // Identify unsupported attachments and write them to the workspace.
+    // Each upload is independent: one failure must not kill the whole prompt.
     const supportedAttachments: ComposerAttachment[] = [];
     const unsupportedTextRefs: string[] = [];
+    const failedUploads: string[] = [];
+    const usedWorkspaceNames = new Set<string>();
     for (const attachment of resolvedDraft.attachments) {
-      if (isMultimodalSupported(attachment.mimeType)) {
+      if (isMultimodalSupported(attachment.mimeType, options.selectedSessionModel())) {
         supportedAttachments.push(attachment);
-      } else {
-        if (clientInstance && workspaceId) {
-          const buffer = await attachment.file.arrayBuffer();
-          const openworkClient = options.openworkClient?.();
-          if (openworkClient) {
-            await openworkClient.writeWorkspaceBinaryFile(workspaceId, {
-              path: attachment.name,
-              data: buffer,
-              force: true,
-            });
-          }
-          unsupportedTextRefs.push(`[Attached file written to workspace: ${attachment.name}]`);
-        }
+        continue;
       }
+
+      const openworkClient = options.openworkClient?.();
+      if (!clientInstance || !workspaceId || !openworkClient) {
+        failedUploads.push(attachment.name);
+        continue;
+      }
+
+      try {
+        const buffer = await attachment.file.arrayBuffer();
+        const path = uniqueWorkspacePath(attachment.name, usedWorkspaceNames);
+        await openworkClient.writeWorkspaceBinaryFile(workspaceId, {
+          path,
+          data: buffer,
+          force: true,
+        });
+        unsupportedTextRefs.push(`[Attached file written to workspace: ${path}]`);
+      } catch (error) {
+        const message = error instanceof Error ? error.message : String(error);
+        console.error(`[attachment upload] failed for ${attachment.name}:`, message);
+        failedUploads.push(`${attachment.name} (${message})`);
+      }
+    }
+
+    if (failedUploads.length) {
+      unsupportedTextRefs.push(`[Could not upload: ${failedUploads.join(", ")}]`);
+      toast.warning(
+        `${failedUploads.length} file(s) could not be uploaded to the workspace.`,
+        { description: "The remaining files were still sent." },
+      );
     }
 
     const adjustedDraft: ComposerDraft = {

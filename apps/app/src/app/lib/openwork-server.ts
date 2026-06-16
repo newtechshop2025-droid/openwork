@@ -905,7 +905,19 @@ async function requestJson<T>(
   );
 
   const text = await response.text();
-  const json = text ? JSON.parse(text) : null;
+  const contentType = response.headers.get("content-type") ?? "";
+  const isJson = contentType.includes("application/json");
+
+  let json: Record<string, unknown> | null = null;
+  if (isJson) {
+    json = text ? (JSON.parse(text) as Record<string, unknown>) : null;
+  } else if (!response.ok) {
+    throw new OpenworkServerError(
+      response.status,
+      "request_failed",
+      text.trim() || response.statusText,
+    );
+  }
 
   if (!response.ok) {
     const code = typeof json?.code === "string" ? json.code : "request_failed";

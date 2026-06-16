@@ -126,6 +126,27 @@ function extname(value: string) {
 
 export function classifyOpenTarget(value: string, kind: OpenTargetKind): OpenTargetPreview {
   if (kind === "url") return "browser";
+  const name = basename(value).toLowerCase();
+
+  const exactFilenames = [
+    "dockerfile",
+    "makefile",
+    "gemfile",
+    "rakefile",
+    "jenkinsfile",
+    "procfile",
+    "license",
+    "readme",
+    "go.mod",
+    "go.sum",
+    "package-lock.json",
+    "pnpm-lock.yaml",
+    "yarn.lock",
+  ];
+  if (exactFilenames.includes(name) || name.startsWith(".eslint") || name.startsWith(".prettier")) {
+    return "text";
+  }
+
   const ext = extname(value);
   if ([".md", ".markdown", ".mdx"].includes(ext)) return "markdown";
   if ([".csv", ".tsv", ".xlsx", ".xls", ".ods"].includes(ext)) return "sheet";
@@ -133,7 +154,14 @@ export function classifyOpenTarget(value: string, kind: OpenTargetKind): OpenTar
   if ([".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"].includes(ext)) return "image";
   if (ext === ".pdf") return "pdf";
   if ([".html", ".htm"].includes(ext)) return "html";
-  if ([".txt", ".log", ".json", ".jsonc", ".json5", ".yaml", ".yml", ".toml", ".xml", ".ini", ".env", ".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs", ".vue", ".svelte", ".css", ".scss", ".sass", ".less", ".py", ".rb", ".go", ".rs", ".java", ".kt", ".swift", ".php", ".c", ".cpp", ".h", ".cs", ".sql", ".sh", ".bash", ".zsh"].includes(ext)) return "text";
+  if ([
+    ".txt", ".log", ".json", ".jsonc", ".json5", ".yaml", ".yml", ".toml", ".xml", ".ini", ".env",
+    ".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs", ".vue", ".svelte", ".css", ".scss", ".sass", ".less",
+    ".py", ".rb", ".go", ".rs", ".java", ".kt", ".swift", ".php", ".c", ".cpp", ".h", ".cs", ".sql",
+    ".sh", ".bash", ".zsh",
+    ".gitignore", ".gitattributes", ".gitmodules", ".gitconfig", ".dockerignore", ".editorconfig",
+    ".gradle", ".properties", ".conf", ".cfg", ".bat", ".cmd", ".ps1", ".lock", ".lockb", ".pom"
+  ].includes(ext)) return "text";
   if ([".doc", ".docx", ".odt", ".rtf", ".pages"].includes(ext)) return "document";
   return "external";
 }
@@ -144,9 +172,21 @@ function shouldScanAssistantFileMentions(text: string) {
 
 function targetFromFile(path: string, confidence: number, reason: string, workspaceRoot?: string, isRemote?: boolean): OpenTarget | null {
   const normalized = normalizePath(path, workspaceRoot, isRemote).replace(/[.,;:]+$/, "");
-  // Require a dot in the path — directories don't have extensions, so paths
-  // without dots are almost certainly directories, not files.
-  if (!normalized || normalized.length > 500 || !normalized.includes(".")) return null;
+  // Require a dot in the path or a known file name without dot — directories don't
+  // have extensions, so paths without dots are almost certainly directories, not files.
+  const name = basename(normalized).toLowerCase();
+  const knownNoDotFiles = [
+    "dockerfile",
+    "makefile",
+    "gemfile",
+    "rakefile",
+    "jenkinsfile",
+    "procfile",
+    "license",
+    "readme",
+  ];
+  const isValidFile = normalized.includes(".") || knownNoDotFiles.includes(name);
+  if (!normalized || normalized.length > 500 || !isValidFile) return null;
   return {
     id: `file:${normalized.toLowerCase()}`,
     kind: "file",
