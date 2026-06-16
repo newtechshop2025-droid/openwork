@@ -120,7 +120,42 @@ function getTextPartValue(part: Part) {
   return "";
 }
 
+// MIME types that the AI SDK's file part renderer can handle (images and
+// common web formats). Everything else (documents, spreadsheets, etc.)
+// is converted to a text part to avoid the SDK throwing
+// "file part media type ... functionality not supported".
+const SDK_SUPPORTED_FILE_MEDIA_TYPES = new Set([
+  "image/png",
+  "image/jpeg",
+  "image/gif",
+  "image/webp",
+  "image/svg+xml",
+  "image/avif",
+  "image/bmp",
+  "image/x-icon",
+  "audio/mpeg",
+  "audio/wav",
+  "audio/ogg",
+  "audio/webm",
+  "video/mp4",
+  "video/webm",
+  "video/ogg",
+  "application/pdf",
+  "text/plain",
+]);
+
 function mapFilePart(part: FilePart): UIMessage["parts"][number] {
+  // If the media type is not supported by the AI SDK's file renderer,
+  // emit a text part instead so the artifact system handles it.
+  if (part.mime && !SDK_SUPPORTED_FILE_MEDIA_TYPES.has(part.mime)) {
+    const filename = part.filename ?? "file";
+    return {
+      type: "text",
+      text: `📎 ${filename}`,
+      providerMetadata: fileProviderMetadata(part),
+    };
+  }
+
   return {
     type: "file",
     url: part.url,
