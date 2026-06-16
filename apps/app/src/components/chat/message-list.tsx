@@ -258,7 +258,7 @@ type AssistantMessageProps = {
   isLastStep: boolean
 }
 
-const AssistantMessage = React.memo(
+export const AssistantMessage = React.memo(
   ({ message }: AssistantMessageProps) => {
     const { showThinking } = useMessageList()
     const { openTargets, onOpenTarget } = useOpenTargets()

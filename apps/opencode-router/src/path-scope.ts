@@ -1,4 +1,4 @@
-import { isAbsolute, relative, resolve } from "node:path";
+import path from "node:path";
 
 export function normalizeScopedDirectoryPath(input: string, platform = process.platform) {
   const trimmed = input.trim();
@@ -20,18 +20,19 @@ export function isWithinWorkspaceRootPath(input: {
   platform?: NodeJS.Platform;
 }) {
   const platform = input.platform ?? process.platform;
+  const pathModule = platform === "win32" ? path.win32 : path.posix;
   const rootForComparison =
     platform === "win32"
       ? normalizeScopedDirectoryPath(input.workspaceRoot, platform)
       : input.workspaceRoot;
-  const resolved = resolve(input.candidate || input.workspaceRoot);
+  const resolved = pathModule.resolve(input.candidate || input.workspaceRoot);
   const resolvedForComparison =
     platform === "win32"
       ? normalizeScopedDirectoryPath(resolved, platform)
       : resolved;
-  const relativePath = relative(rootForComparison, resolvedForComparison);
+  const relativePath = pathModule.relative(rootForComparison, resolvedForComparison);
   if (!relativePath || relativePath === ".") return true;
-  if (relativePath.startsWith("..") || isAbsolute(relativePath)) return false;
+  if (relativePath.startsWith("..") || pathModule.isAbsolute(relativePath)) return false;
   const boundary = rootForComparison.endsWith("/")
     ? rootForComparison
     : `${rootForComparison}/`;

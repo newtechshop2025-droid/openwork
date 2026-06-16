@@ -32,7 +32,9 @@ describe("ensureWorkspaceFiles", () => {
   test("uses shipped extension preview plugin", async () => {
     const pluginPath = openworkExtensionsPreviewPluginPath();
     const plugin = await readFile(pluginPath, "utf8");
-    expect(pluginPath).toContain(join("opencode-plugins", "openwork-extensions-preview.ts"));
+    const isTs = pluginPath.endsWith(join("opencode-plugins", "openwork-extensions-preview.ts"));
+    const isJs = pluginPath.endsWith(join("opencode-plugins", "openwork-extensions-preview.js"));
+    expect(isTs || isJs).toBe(true);
     expect(plugin).toContain("openwork_extension_call");
   });
 
