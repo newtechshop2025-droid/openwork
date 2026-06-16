@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-import { isCollectibleArtifactTarget, type OpenTarget, type OpenTargetPreview } from "../artifacts/open-target";
+import { type OpenTarget, type OpenTargetPreview } from "../artifacts/open-target";
 
 export const PERSISTED_PANEL_TAB_STORE_KEY = "openwork:panel-tabs:v1";
 
@@ -95,7 +95,7 @@ function updateSession(
 
 function reconcileOpenArtifactTabs(
   session: SessionPanelState,
-  targets: Array<{ id: string; name: string; preview: OpenTargetPreview }>,
+  targets: Array<{ id: string; name: string; preview: OpenTargetPreview; exists?: boolean }>,
 ): SessionPanelState {
   const targetMap = new Map(targets.map((target) => [target.id, target]));
 
@@ -113,7 +113,11 @@ function reconcileOpenArtifactTabs(
       const target = targetMap.get(tab.id);
 
       if (!target) {
-        return null;
+        // Target not yet verified — keep the tab alive so the panel can
+        // render a synthetic OpenTarget and attempt to load the file.
+        // Only remove tabs whose target was explicitly verified as
+        // non-existent (exists === false).
+        return tab;
       }
 
       return {
@@ -346,14 +350,17 @@ export const usePanelTabStore = create<PanelTabStore>()(
       syncTranscriptArtifacts: (sessionId, targets) => set((state) => {
         const currentTranscript = state.transcriptArtifactTargets[sessionId] ?? [];
         const session = getWritableSession(state, sessionId);
-        const collectibleTargets = targets
-          .filter(isCollectibleArtifactTarget)
+        // Pass all file targets (not just collectible) to reconciliation so
+        // that tabs for newly created files (not yet verified) are not removed.
+        const reconcilableTargets = targets
+          .filter((t) => t.kind === "file")
           .map((target) => ({
             id: target.id,
             name: target.name,
             preview: target.preview,
+            exists: target.exists,
           }));
-        const nextSession = reconcileOpenArtifactTabs(session, collectibleTargets);
+        const nextSession = reconcileOpenArtifactTabs(session, reconcilableTargets);
         const transcriptChanged = !isSameTranscriptArtifactTargets(currentTranscript, targets);
         const sessionChanged = !isSameSessionPanelState(session, nextSession.tabs, nextSession.activeTabId);
 
