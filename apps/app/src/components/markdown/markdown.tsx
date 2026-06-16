@@ -41,14 +41,14 @@ function safeHref(href: string) {
     return "#";
   }
 
-  if (trimmed.startsWith("#") || trimmed.startsWith("/") || trimmed.startsWith("./") || trimmed.startsWith("../")) {
+  if (trimmed.startsWith("#") || trimmed.startsWith("/") || trimmed.startsWith("./") || trimmed.startsWith("../") || trimmed.startsWith("openwork-target:")) {
     return trimmed;
   }
 
   try {
     const parsed = new URL(trimmed);
 
-    if (["http:", "https:", "mailto:"].includes(parsed.protocol)) {
+    if (["http:", "https:", "mailto:", "openwork-target:"].includes(parsed.protocol)) {
       return trimmed;
     }
   } catch {
@@ -95,7 +95,7 @@ function hasFencedCodeBlock(text: string) {
 
 function sanitizeMarkdownHtml(value: string) {
   return DOMPurify.sanitize(value, {
-    ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto|tel|ftp|cid|xmpp):|[^&:\/?#]*(?:[\/?#]|$)|#openwork-target:)/i,
+    ALLOWED_URI_REGEXP: /^(?:(?:https?|mailto|tel|ftp|cid|xmpp|openwork-target):|[^&:\/?#]*(?:[\/?#]|$)|#)/i,
     ADD_ATTR: [
       "checked",
       "class",
@@ -172,7 +172,7 @@ const baseMarkedOptions = {
     link({ href, title, tokens }) {
       const safe = escapeAttribute(safeHref(href));
       const titleAttr = title ? ` title="${escapeAttribute(title)}"` : "";
-      const isTargetLink = href.startsWith("#openwork-target:");
+      const isTargetLink = href.startsWith("#openwork-target:") || href.startsWith("openwork-target:");
 
       if (isTargetLink) {
         return `<a href="${safe}"${titleAttr} data-openwork-target="${escapeAttribute(href)}" class="text-indigo-10 underline underline-offset-2 cursor-pointer transition-colors hover:text-indigo-8">${this.parser.parseInline(tokens)}</a>`;

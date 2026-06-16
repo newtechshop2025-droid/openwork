@@ -426,7 +426,7 @@ const OPENWORK_TARGET_HREF_PREFIX = "#openwork-target:";
  * Check if an `<a>` href points to an OpenTarget (fragment-based protocol).
  */
 export function isOpenWorkTargetHref(href: string): boolean {
-  return href.startsWith(OPENWORK_TARGET_HREF_PREFIX);
+  return href.startsWith("#openwork-target:") || href.startsWith("openwork-target:");
 }
 
 /**
@@ -434,7 +434,8 @@ export function isOpenWorkTargetHref(href: string): boolean {
  */
 export function parseOpenWorkTargetHref(href: string): string | null {
   if (!isOpenWorkTargetHref(href)) return null;
-  return decodeURIComponent(href.slice(OPENWORK_TARGET_HREF_PREFIX.length));
+  const prefix = href.startsWith("#openwork-target:") ? "#openwork-target:" : "openwork-target:";
+  return decodeURIComponent(href.slice(prefix.length));
 }
 
 /**

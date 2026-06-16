@@ -33,12 +33,12 @@ function escapeAttribute(value: string) {
 function safeHref(href: string) {
   const trimmed = href.trim();
   if (!trimmed) return "#";
-  if (trimmed.startsWith("#") || trimmed.startsWith("/") || trimmed.startsWith("./") || trimmed.startsWith("../")) {
+  if (trimmed.startsWith("#") || trimmed.startsWith("/") || trimmed.startsWith("./") || trimmed.startsWith("../") || trimmed.startsWith("openwork-target:")) {
     return trimmed;
   }
   try {
     const parsed = new URL(trimmed);
-    if (["http:", "https:", "mailto:"].includes(parsed.protocol)) return trimmed;
+    if (["http:", "https:", "mailto:", "openwork-target:"].includes(parsed.protocol)) return trimmed;
   } catch {
     return "#";
   }
@@ -126,8 +126,9 @@ const baseMarkedOptions = {
     link({ href, title, tokens }) {
       const safe = escapeAttribute(safeHref(href));
       const titleAttr = title ? ` title="${escapeAttribute(title)}"` : "";
-      if (href.startsWith("#openwork-target:")) {
-        return `<a href="${safe}"${titleAttr} data-openwork-target="${safe}" class="text-indigo-10 underline underline-offset-2 transition-colors hover:text-indigo-8">${this.parser.parseInline(tokens)}</a>`;
+      const isTargetLink = href.startsWith("#openwork-target:") || href.startsWith("openwork-target:");
+      if (isTargetLink) {
+        return `<a href="${safe}"${titleAttr} data-openwork-target="${escapeAttribute(href)}" class="text-indigo-10 underline underline-offset-2 transition-colors hover:text-indigo-8">${this.parser.parseInline(tokens)}</a>`;
       }
       return `<a href="${safe}"${titleAttr} target="_blank" rel="noreferrer noopener" class="text-indigo-10 underline underline-offset-2 transition-colors hover:text-indigo-8">${this.parser.parseInline(tokens)}</a>`;
     },

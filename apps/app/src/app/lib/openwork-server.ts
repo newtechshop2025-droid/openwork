@@ -1583,6 +1583,21 @@ export function createOpenworkServerClient(options: { baseUrl: string; token?: s
         { token, hostToken }
       ),
 
+    applyFileSessionOperations: (
+      sessionId: string,
+      operations: Array<{ type: string; path?: string; from?: string; to?: string; recursive?: boolean }>,
+    ) =>
+      requestJson<{ items: Array<{ ok: boolean; code?: string; message?: string }> }>(
+        baseUrl,
+        `/files/sessions/${encodeURIComponent(sessionId)}/ops`,
+        {
+          token,
+          hostToken,
+          method: "POST",
+          body: { operations },
+        }
+      ),
+
 
     listArtifacts: (workspaceId: string) =>
       requestJson<OpenworkArtifactList>(baseUrl, `/workspace/${encodeURIComponent(workspaceId)}/artifacts`, {

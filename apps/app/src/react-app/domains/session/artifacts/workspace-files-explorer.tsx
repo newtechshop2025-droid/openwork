@@ -11,6 +11,7 @@ import {
   Loader2,
   X,
   Home,
+  Trash2,
 } from "lucide-react";
 
 import type { OpenworkServerClient } from "@/app/lib/openwork-server";
@@ -58,6 +59,7 @@ export function WorkspaceFilesExplorer({
   const [highlightedPath, setHighlightedPath] = useState<string | null>(null);
   const [visibleLimit, setVisibleLimit] = useState(200);
   const openTab = usePanelTabStore((state) => state.openTab);
+  const closeTab = usePanelTabStore((state) => state.closeTab);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
   // 1. Create file session to read catalog
@@ -173,6 +175,28 @@ export function WorkspaceFilesExplorer({
       console.error("Download workspace file failed", err);
     } finally {
       setDownloadingPaths((prev) => ({ ...prev, [path]: false }));
+    }
+  };
+
+  const handleDelete = async (event: React.MouseEvent, path: string, name: string) => {
+    event.stopPropagation();
+    if (!client || !workspaceId || !fileSessionId) return;
+
+    const confirmDelete = window.confirm(`Bạn có chắc chắn muốn xóa file ${name}?`);
+    if (!confirmDelete) return;
+
+    try {
+      await client.applyFileSessionOperations(fileSessionId, [
+        { type: "delete", path, recursive: true }
+      ]);
+
+      const tabId = `file:${path.toLowerCase()}`;
+      closeTab(sessionId, tabId);
+
+      handleRefresh();
+    } catch (err) {
+      console.error("Delete file failed", err);
+      alert("Xóa file thất bại. Vui lòng thử lại.");
     }
   };
 
@@ -552,6 +576,22 @@ export function WorkspaceFilesExplorer({
                             )}
                           />
                           <TooltipContent>Download file</TooltipContent>
+                        </Tooltip>
+                        <Tooltip>
+                          <TooltipTrigger
+                            render={(
+                              <Button
+                                variant="ghost"
+                                size="icon-sm"
+                                className="h-6 w-6 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                                onClick={(e) => void handleDelete(e, node.path, node.name)}
+                                aria-label="Delete file"
+                              >
+                                <Trash2 className="h-3.5 w-3.5" />
+                              </Button>
+                            )}
+                          />
+                          <TooltipContent>Delete file</TooltipContent>
                         </Tooltip>
                       </div>
                     )}

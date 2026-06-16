@@ -1,7 +1,7 @@
 /** @jsxImportSource react */
 import { Component, lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Download, ExternalLink, X, FolderOpen } from "lucide-react";
+import { Download, ExternalLink, X, FolderOpen, Trash2 } from "lucide-react";
 
 import type { OpenworkServerClient } from "@/app/lib/openwork-server";
 import { openDesktopPath } from "@/app/lib/desktop";
@@ -137,11 +137,40 @@ export function ArtifactPanel({ sessionId, tab, client, workspaceId, workspaceRo
 
 function ArtifactPanelView({ sessionId, client, workspaceId, workspaceRoot, isRemoteWorkspace = false, target, onClose }: ArtifactPanelViewProps) {
   const openTab = usePanelTabStore((state) => state.openTab);
+  const closeTab = usePanelTabStore((state) => state.closeTab);
   const queryClient = useQueryClient();
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState("");
   const isDirectTextEdit = isTextContent(target) && target.preview === "markdown";
   const externalPath = useMemo(() => target.kind === "file" ? absoluteWorkspacePath(workspaceRoot, target.value) : target.value, [target.kind, target.value, workspaceRoot]);
+
+  const handleDelete = async () => {
+    if (target.kind !== "file") return;
+
+    const confirmDelete = window.confirm(`Bạn có chắc chắn muốn xóa file ${target.name}?`);
+    if (!confirmDelete) return;
+
+    try {
+      const fileSession = await client.createFileSession(workspaceId);
+      const fileSessionId = fileSession?.session?.id;
+      if (!fileSessionId) {
+        throw new Error("Không thể tạo file session.");
+      }
+
+      await client.applyFileSessionOperations(fileSessionId, [
+        { type: "delete", path: target.value, recursive: true }
+      ]);
+
+      await queryClient.invalidateQueries({
+        queryKey: ["workspace-files-catalog", workspaceId]
+      });
+
+      closeTab(sessionId, target.id);
+    } catch (err) {
+      console.error("Delete file failed from artifact panel", err);
+      alert("Xóa file thất bại. Vui lòng thử lại.");
+    }
+  };
 
   const { data, error, isError, isLoading } = useQuery<ArtifactQueryState>({
     queryKey: ["artifact-panel", workspaceId, target.id] as const,
@@ -364,6 +393,22 @@ function ArtifactPanelView({ sessionId, client, workspaceId, workspaceRoot, isRe
                   )}
                 />
                 <TooltipContent>Download artifact</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger
+                  render={(
+                    <Button
+                      variant="ghost"
+                      size="icon-sm"
+                      className="text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                      onClick={() => void handleDelete()}
+                      aria-label="Delete artifact"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  )}
+                />
+                <TooltipContent>Delete file</TooltipContent>
               </Tooltip>
             </>
           ) : null}
