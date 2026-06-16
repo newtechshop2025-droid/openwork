@@ -87,8 +87,39 @@ export function ArtifactPanel({ sessionId, tab, client, workspaceId, workspaceRo
     return null;
   }, [artifactTargets, tab]);
 
-  if (!target || !client || !workspaceId) {
+  if (!target) {
     return null;
+  }
+
+  if (!client || !workspaceId) {
+    return (
+      <div className="flex h-full min-h-0 flex-col bg-background">
+        <div className="shrink-0 border-b border-border bg-background mac:bg-background/80 mac:backdrop-blur-2xl mac:backdrop-saturate-150">
+          <div className="flex h-10 items-center gap-2 pe-2 ps-4">
+            <div className="min-w-0 flex-1 flex items-center gap-1.5">
+              <h3 className="text-sm font-medium text-foreground">
+                <span className="truncate">{target.name}</span>
+              </h3>
+            </div>
+            <Tooltip>
+              <TooltipTrigger
+                render={(
+                  <Button variant="ghost" size="icon-sm" onClick={onClose} aria-label="Close artifact">
+                    <X />
+                  </Button>
+                )}
+              />
+              <TooltipContent>Close</TooltipContent>
+            </Tooltip>
+          </div>
+        </div>
+        <div className="flex flex-1 items-center justify-center p-6 text-center text-sm text-red-9">
+          {isRemoteWorkspace
+            ? "Cannot connect to remote workspace to load this file."
+            : "Workspace not available."}
+        </div>
+      </div>
+    );
   }
 
   return (

@@ -357,6 +357,7 @@ export function WorkspaceFilesExplorer({
   const isBusy = isSessionLoading || isCatalogLoading;
   const isRefreshing = isCatalogFetching && !isCatalogLoading;
   const isErr = isSessionError || isCatalogError;
+  const isDisconnected = !client || !workspaceId;
 
   return (
     <div className="flex h-full min-h-0 flex-col bg-background">
@@ -455,7 +456,13 @@ export function WorkspaceFilesExplorer({
       </div>
 
       <div ref={scrollContainerRef} className="min-h-0 flex-1 overflow-y-auto p-2">
-        {isBusy ? (
+        {isDisconnected ? (
+          <div className="flex h-32 flex-col items-center justify-center gap-2 text-center text-xs text-red-9 p-4">
+            {isRemoteWorkspace
+              ? "Cannot connect to remote workspace. Check your connection and try again."
+              : "Workspace not available."}
+          </div>
+        ) : isBusy ? (
           <div className="flex h-32 flex-col items-center justify-center gap-2 text-center text-xs text-muted-foreground">
             <Loader2 className="h-5 w-5 animate-spin" />
             Loading workspace files...

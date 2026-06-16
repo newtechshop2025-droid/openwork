@@ -435,6 +435,8 @@ export function SessionPage(props: SessionPageProps) {
         type: "artifact",
         label: target.name,
         preview: target.preview,
+        origin: "transcript",
+        ...(target.kind === "file" ? { path: target.value } : {}),
       });
     }
     preserveSidePanelOnPanelOpenRef.current = true;
