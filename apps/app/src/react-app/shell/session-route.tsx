@@ -92,7 +92,7 @@ import {
   seedQuestionState,
   todoKey as reactTodoKey,
 } from "@/react-app/domains/session/sync/session-sync";
-import { firstLineLocalFileParts, isMultimodalSupported } from "@/react-app/domains/session/sync/prompt-file-parts";
+import { firstLineLocalFileParts, isMultimodalSupported, ensureModelVisionCapabilities } from "@/react-app/domains/session/sync/prompt-file-parts";
 import { CreateRemoteWorkspaceModal } from "@/react-app/domains/workspace/create-remote-workspace-modal";
 import { CreateWorkspaceModal } from "@/react-app/domains/workspace/create-workspace-modal";
 import { createProviderAuthStore, useProviderAuthStoreSnapshot } from "@/react-app/domains/connections/provider-auth/store";
@@ -2239,6 +2239,8 @@ export function SessionRoute() {
             ...unsupportedTextRefs,
           ].join("\n\n").trim(),
         };
+
+        await ensureModelVisionCapabilities(client, selectedWorkspaceId, local.prefs.defaultModel ?? undefined);
 
         const parts = await draftToParts(adjustedDraft, selectedWorkspaceRoot);
         const envRuntimeKey = buildOpenworkEnvRuntimeKey({

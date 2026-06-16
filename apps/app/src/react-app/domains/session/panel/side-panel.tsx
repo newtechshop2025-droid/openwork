@@ -453,6 +453,7 @@ export function SidePanel({
               isRemoteWorkspace={isRemoteWorkspace}
               catalogRefreshKey={catalogRefreshKey}
               revealPath={activeTab.revealPath}
+              revealKey={activeTab.revealKey}
               onClose={onClose}
             />
           </div>

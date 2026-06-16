@@ -345,7 +345,7 @@ function ArtifactPanelView({ sessionId, client, workspaceId, workspaceRoot, isRe
                       variant="ghost"
                       size="icon-sm"
                       onClick={() => {
-                        openTab(sessionId, { id: "files", type: "explorer", label: "Workspace Files", revealPath: target.value });
+                        openTab(sessionId, { id: "files", type: "explorer", label: "Workspace Files", revealPath: target.value, revealKey: Date.now() });
                       }}
                       aria-label="Reveal in Explorer"
                     >
@@ -418,7 +418,7 @@ function ArtifactPanelView({ sessionId, client, workspaceId, workspaceRoot, isRe
           <PreviewUnavailable
             onDownload={download}
             onReveal={() => {
-              openTab(sessionId, { id: "files", type: "explorer", label: "Workspace Files", revealPath: target.value });
+              openTab(sessionId, { id: "files", type: "explorer", label: "Workspace Files", revealPath: target.value, revealKey: Date.now() });
             }}
           />
         )}

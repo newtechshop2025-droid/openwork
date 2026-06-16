@@ -421,6 +421,7 @@ export function SessionPage(props: SessionPageProps) {
         type: "explorer",
         label: "Workspace Files",
         revealPath: target.value,
+        revealKey: Date.now(),
       });
     }
 
@@ -529,6 +530,7 @@ export function SessionPage(props: SessionPageProps) {
         id: "files",
         type: "explorer",
         label: "Workspace Files",
+        revealKey: Date.now(),
       });
     }
     if (!panelRailActive) {

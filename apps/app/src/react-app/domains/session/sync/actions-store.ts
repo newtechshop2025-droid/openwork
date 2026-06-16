@@ -32,7 +32,7 @@ import type {
 } from "../../../../app/types";
 import { addOpencodeCacheHint, safeStringify } from "../../../../app/utils";
 import { clearSessionDraft, saveSessionDraft } from "./draft-store";
-import { firstLineLocalFileParts, isMultimodalSupported } from "./prompt-file-parts";
+import { firstLineLocalFileParts, isMultimodalSupported, ensureModelVisionCapabilities } from "./prompt-file-parts";
 
 type SessionModelConfig = {
   applyPendingSessionChoice: (sessionId: string) => void;
@@ -72,7 +72,12 @@ function attachmentMime(attachment: ComposerAttachment) {
 
 export function createSessionActionsStore(options: {
   client: () => Client | null;
-  openworkClient?: () => { writeWorkspaceBinaryFile: (workspaceId: string, payload: { path: string; data: ArrayBuffer; force?: boolean }) => Promise<unknown> } | null;
+  openworkClient?: () => {
+    getConfig: (workspaceId: string) => Promise<unknown>;
+    patchConfig: (workspaceId: string, delta: unknown) => Promise<unknown>;
+    reloadEngine: (workspaceId: string) => Promise<unknown>;
+    writeWorkspaceBinaryFile: (workspaceId: string, payload: { path: string; data: ArrayBuffer; force?: boolean }) => Promise<unknown>;
+  } | null;
   baseUrl: () => string;
   developerMode: () => boolean;
   prompt: () => string;
@@ -591,6 +596,10 @@ export function createSessionActionsStore(options: {
 
       const model = options.selectedSessionModel();
       const agent = selectedSessionAgent();
+      const openworkClient = options.openworkClient?.();
+      if (openworkClient) {
+        await ensureModelVisionCapabilities(openworkClient, workspaceId, model);
+      }
       const parts = await buildPromptParts(adjustedDraft);
       const selectedVariant = options.sanitizeModelVariantForRef(model, options.modelVariant()) ?? undefined;
       const reasoningEffort = options.resolveCodexReasoningEffort(model.modelID, selectedVariant ?? null);

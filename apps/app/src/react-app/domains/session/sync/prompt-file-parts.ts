@@ -102,3 +102,68 @@ export function isMultimodalSupported(mimeType: string): boolean {
     normalized.startsWith("text/")
   );
 }
+
+export interface ConfigClient {
+  getConfig(workspaceId: string): Promise<unknown>;
+  patchConfig(workspaceId: string, delta: unknown): Promise<unknown>;
+  reloadEngine(workspaceId: string): Promise<unknown>;
+}
+
+export async function ensureModelVisionCapabilities(
+  client: ConfigClient,
+  workspaceId: string,
+  defaultModel?: { providerID: string; modelID: string }
+) {
+  if (!defaultModel) return;
+  const providerId = defaultModel.providerID;
+  const modelId = defaultModel.modelID;
+
+  const lowerModelId = modelId.toLowerCase();
+  const shouldHaveVision =
+    lowerModelId.includes("gemini") ||
+    lowerModelId.includes("vision") ||
+    lowerModelId.includes("claude") ||
+    lowerModelId.includes("gpt-4") ||
+    lowerModelId.includes("pixtral") ||
+    lowerModelId.includes("llava") ||
+    lowerModelId.includes("qwen-vl");
+
+  if (!shouldHaveVision) return;
+
+  try {
+    const config = await client.getConfig(workspaceId);
+    const providerConfig = (config as { opencode?: { provider?: Record<string, { models?: Record<string, { name: string; attachment?: boolean; modalities?: unknown }> }> } })?.opencode?.provider?.[providerId];
+    if (!providerConfig) return;
+
+    const modelConfig = providerConfig.models?.[modelId];
+    if (!modelConfig) return;
+
+    if (!modelConfig.attachment || !modelConfig.modalities) {
+      console.log(`[Vision Auto-Fix] Patching vision capabilities for model ${modelId} of provider ${providerId}`);
+      const updatedModels = {
+        ...providerConfig.models,
+        [modelId]: {
+          ...modelConfig,
+          attachment: true,
+          modalities: { input: ["text", "image"], output: ["text"] },
+        }
+      };
+
+      await client.patchConfig(workspaceId, {
+        opencode: {
+          provider: {
+            [providerId]: {
+              ...providerConfig,
+              models: updatedModels,
+            }
+          }
+        }
+      });
+
+      await client.reloadEngine(workspaceId);
+      console.log(`[Vision Auto-Fix] Reloaded engine for workspace ${workspaceId}`);
+    }
+  } catch (error) {
+    console.error("[Vision Auto-Fix] Failed to check or patch model capabilities:", error);
+  }
+}

@@ -28,6 +28,7 @@ type WorkspaceFilesExplorerProps = {
   isRemoteWorkspace?: boolean;
   catalogRefreshKey?: number;
   revealPath?: string;
+  revealKey?: number;
   onClose: () => void;
 };
 
@@ -48,6 +49,7 @@ export function WorkspaceFilesExplorer({
   isRemoteWorkspace = false,
   catalogRefreshKey,
   revealPath,
+  revealKey,
   onClose,
 }: WorkspaceFilesExplorerProps) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -137,7 +139,7 @@ export function WorkspaceFilesExplorer({
       window.clearTimeout(timer);
       window.clearTimeout(scrollTimer);
     };
-  }, [revealPath, catalog?.items]);
+  }, [revealPath, revealKey, catalog?.items]);
 
   const handleRefresh = () => {
     if (!fileSessionId) {

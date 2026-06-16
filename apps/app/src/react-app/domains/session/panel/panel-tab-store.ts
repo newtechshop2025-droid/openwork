@@ -32,6 +32,7 @@ export type ExplorerPanelTab = {
   type: "explorer";
   label: string;
   revealPath?: string;
+  revealKey?: number;
 }
 
 export type PanelTab = BrowserPanelTab | ArtifactPanelTab | ExplorerPanelTab;
@@ -172,6 +173,14 @@ function isSameTab(left: PanelTab, right: PanelTab) {
       left.status === right.status &&
       left.canGoBack === right.canGoBack &&
       left.canGoForward === right.canGoForward
+    );
+  }
+
+  if (left.type === "explorer" && right.type === "explorer") {
+    return (
+      left.label === right.label &&
+      left.revealPath === right.revealPath &&
+      left.revealKey === right.revealKey
     );
   }
 
