@@ -99,6 +99,7 @@ function sanitizeMarkdownHtml(value: string) {
       "checked",
       "class",
       "data-openwork-shiki",
+      "data-openwork-target",
       "decoding",
       "disabled",
       "loading",

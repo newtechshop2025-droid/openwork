@@ -1,5 +1,5 @@
 /** @jsxImportSource react */
-import { lazy, Suspense, useEffect, useMemo, useState } from "react";
+import { Component, lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Download, ExternalLink, X, FolderOpen } from "lucide-react";
 
@@ -354,6 +354,7 @@ function ArtifactPanelView({ sessionId, client, workspaceId, workspaceRoot, isRe
         </div>
       </div>
       <div className="min-h-0 flex-1 overflow-hidden">
+        <PreviewErrorBoundary>
         {isLoading || (data?.kind === "binary" && !binaryObjectUrl) ? (
           <PreviewLoading />
         ) : isError ? (
@@ -385,9 +386,28 @@ function ArtifactPanelView({ sessionId, client, workspaceId, workspaceRoot, isRe
             }}
           />
         )}
+        </PreviewErrorBoundary>
       </div>
     </div>
   );
+}
+
+type ErrorBoundaryProps = { children: React.ReactNode };
+type ErrorBoundaryState = { hasError: boolean; error: Error | null };
+
+class PreviewErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  state: ErrorBoundaryState = { hasError: false, error: null };
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <PreviewError message={this.state.error?.message ?? "Preview crashed"} />;
+    }
+    return this.props.children;
+  }
 }
 
 interface TextEditorProps extends React.ComponentProps<typeof ArtifactTextEditor> {

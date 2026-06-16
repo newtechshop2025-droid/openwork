@@ -138,6 +138,8 @@ function shouldScanAssistantFileMentions(text: string) {
 
 function targetFromFile(path: string, confidence: number, reason: string, workspaceRoot?: string, isRemote?: boolean): OpenTarget | null {
   const normalized = normalizePath(path, workspaceRoot, isRemote).replace(/[.,;:]+$/, "");
+  // Require a dot in the path — directories don't have extensions, so paths
+  // without dots are almost certainly directories, not files.
   if (!normalized || normalized.length > 500 || !normalized.includes(".")) return null;
   return {
     id: `file:${normalized.toLowerCase()}`,

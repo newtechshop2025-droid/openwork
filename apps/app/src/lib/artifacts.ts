@@ -202,6 +202,34 @@ function parseApplyPatchPaths(patchText: string) {
   return paths;
 }
 
+const ARTIFACT_METADATA_TOOL_NAMES = new Set(["openwork_extension_call"]);
+const FILE_METADATA_KEYS = ["path", "file", "filePath", "filepath"];
+
+function isObject(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === "object";
+}
+
+function collectFileMetadataValues(value: unknown) {
+  if (!isObject(value)) return [];
+  const values: string[] = [];
+  for (const key of FILE_METADATA_KEYS) {
+    const file = value[key];
+    if (typeof file === "string") values.push(file);
+  }
+  const files = value.files;
+  if (Array.isArray(files)) {
+    for (const file of files) {
+      if (typeof file === "string") values.push(file);
+    }
+  }
+  return values;
+}
+
+function collectNestedFileMetadataValues(value: unknown) {
+  if (!isObject(value)) return [];
+  return [value, value.result].flatMap(collectFileMetadataValues);
+}
+
 function getArtifactPathsFromMessage(message: UIMessage) {
   const paths: (string | undefined)[] = [];
 
@@ -231,6 +259,18 @@ function getArtifactPathsFromMessage(message: UIMessage) {
     if (isApplyPatchToolPart(part)) {
       paths.push(...parseApplyPatchPaths(part.input.patchText));
     }
+
+    // Extract file paths from extension calls (e.g., docx/xlsx creation)
+    // so they appear as artifacts even before the server confirms existence.
+    // Only include paths with a file extension (contain '.') to filter out
+    // directory paths like "/srv/workspace" or "/srv/workspace/docs".
+    if (ARTIFACT_METADATA_TOOL_NAMES.has(part.toolName.trim().toLowerCase())) {
+      const extensionPaths = [
+        ...collectNestedFileMetadataValues(part.input),
+        ...collectNestedFileMetadataValues(part.output),
+      ].filter((p): p is string => typeof p === "string" && p.includes("."));
+      paths.push(...extensionPaths);
+    }
   }
 
   return paths.map((path) => path?.trim().toLowerCase()).filter((path) => path) as string[];
@@ -258,18 +298,39 @@ function addArtifact(
   });
 }
 
+function isDeliverableType(type: ArtifactType): boolean {
+  return type !== "text" && type !== "unknown";
+}
+
 export function getArtifactsFromMessages(messages: UIMessage[], openTargets: OpenTarget[] = []) {
   const artifacts = new Map<string, ArtifactItem>();
 
   for (const message of messages) {
-    for (const path of getArtifactPathsFromMessage(message)) {
+    const paths = getArtifactPathsFromMessage(message);
+    const hasDeliverable = paths.some((path) => path && isDeliverableType(getArtifactType(path)));
+
+    for (const path of paths) {
+      if (!path) continue;
+      const type = getArtifactType(path);
+      // Hide helper scripts when the message also produces deliverable files
+      // (documents, sheets, etc.) — they're intermediate, not end results.
+      if (hasDeliverable && !isDeliverableType(type)) continue;
       addArtifact(artifacts, path, message.id, openTargets);
     }
   }
 
+  console.log("[DEBUG] artifacts from messages:", JSON.stringify([...artifacts.values()].map(a => ({ name: a.name, path: a.path, type: a.type }))));
+
   const fallbackMessageId = messages[messages.length - 1]?.id ?? "open-target";
+  // Check deliverables from both sources so bash-created files (which bypass
+  // getArtifactPathsFromMessage) still trigger the helper-script filter.
+  const hasAnyDeliverable = [...artifacts.values()].some((a) => isDeliverableType(a.type))
+    || openTargets.some((t) => isCollectibleArtifactTarget(t) && isDeliverableType(getArtifactType(t.value)));
+
   for (const target of openTargets) {
     if (isCollectibleArtifactTarget(target)) {
+      const targetType = getArtifactType(target.value);
+      if (hasAnyDeliverable && !isDeliverableType(targetType)) continue;
       addArtifact(artifacts, target.value, fallbackMessageId, openTargets, target);
     }
   }

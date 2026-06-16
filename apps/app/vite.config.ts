@@ -19,6 +19,7 @@ const addHost = (value?: string | null) => {
 
 envAllowedHosts.split(",").forEach(addHost);
 addHost(process.env.OPENWORK_PUBLIC_HOST ?? null);
+addHost("openwork.openit.vn");
 const hostname = os.hostname();
 addHost(hostname);
 const shortHostname = hostname.split(".")[0];

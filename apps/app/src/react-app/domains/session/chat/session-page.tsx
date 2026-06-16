@@ -403,22 +403,29 @@ export function SessionPage(props: SessionPageProps) {
       return;
     }
     const sessionId = sourceSessionId ?? props.selectedSessionId;
-    if (!sessionId || !isCollectibleArtifactTarget(target)) return;
-    if (options?.auto && activePanelTab?.id === target.id) return;
-    openTab(sessionId, {
-      id: target.id,
-      type: "artifact",
-      label: target.name,
-      preview: target.preview,
-    });
-    // Also reveal the file in the workspace explorer so the user can
-    // navigate to and manage the file directly.
+    if (!sessionId) return;
+
+    // Always reveal file targets in the workspace explorer so users can
+    // navigate to the file even when the artifact panel can't preview it
+    // (e.g., remote files without local preview support).
     if (target.kind === "file") {
       openTab(sessionId, {
         id: "files",
         type: "explorer",
         label: "Workspace Files",
         revealPath: target.value,
+      });
+    }
+
+    // Open artifact preview tab when the target is collectible (exists and
+    // has a previewable format).
+    if (isCollectibleArtifactTarget(target)) {
+      if (options?.auto && activePanelTab?.id === target.id) return;
+      openTab(sessionId, {
+        id: target.id,
+        type: "artifact",
+        label: target.name,
+        preview: target.preview,
       });
     }
     preserveSidePanelOnPanelOpenRef.current = true;

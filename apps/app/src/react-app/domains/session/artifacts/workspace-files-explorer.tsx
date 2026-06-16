@@ -58,79 +58,12 @@ export function WorkspaceFilesExplorer({
   const { tabs } = useSessionPanelState(sessionId);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
-  // Reveal a file path: expand parent folders and highlight the file.
-  useEffect(() => {
-    if (!revealPath) return;
-
-    // Normalize the reveal path to match catalog item paths.
-    const normalized = revealPath.replace(/[\\]+/g, "/").replace(/^\/+/, "");
-
-    setExpandedFolders((prev) => {
-      const next = { ...prev };
-      let changed = false;
-      const parts = normalized.split("/");
-      let current = "";
-      // Expand all parent directories.
-      for (let i = 0; i < parts.length - 1; i++) {
-        const part = parts[i];
-        if (!part) continue;
-        current = current ? `${current}/${part}` : part;
-        if (!next[current]) {
-          next[current] = true;
-          changed = true;
-        }
-      }
-      return changed ? next : prev;
-    });
-
-    // Highlight the file briefly.
-    setHighlightedPath(normalized);
-    const timer = window.setTimeout(() => setHighlightedPath(null), 3000);
-
-    // Scroll to the file after a short delay for the tree to render.
-    const scrollTimer = window.setTimeout(() => {
-      const el = scrollContainerRef.current?.querySelector(`[data-file-path="${CSS.escape(normalized)}"]`);
-      el?.scrollIntoView({ block: "center", behavior: "smooth" });
-    }, 150);
-
-    return () => {
-      window.clearTimeout(timer);
-      window.clearTimeout(scrollTimer);
-    };
-  }, [revealPath]);
-
-  useEffect(() => {
-    setExpandedFolders((prev) => {
-      const next = { ...prev };
-      let changed = false;
-
-      for (const tab of tabs) {
-        if (tab.type === "artifact" && tab.id.startsWith("file:")) {
-          const filePath = tab.id.slice("file:".length);
-          const parts = filePath.split("/");
-          let current = "";
-          for (let i = 0; i < parts.length - 1; i++) {
-            const part = parts[i];
-            if (!part) continue;
-            current = current ? `${current}/${part}` : part;
-            if (next[current] === undefined) {
-              next[current] = true;
-              changed = true;
-            }
-          }
-        }
-      }
-
-      return changed ? next : prev;
-    });
-  }, [tabs]);
-
   // 1. Create file session to read catalog
-  const { 
-    data: fileSession, 
-    isLoading: isSessionLoading, 
-    isError: isSessionError, 
-    refetch: refetchSession 
+  const {
+    data: fileSession,
+    isLoading: isSessionLoading,
+    isError: isSessionError,
+    refetch: refetchSession
   } = useQuery({
     queryKey: ["file-session", workspaceId],
     queryFn: async () => {
@@ -163,6 +96,91 @@ export function WorkspaceFilesExplorer({
     enabled: !!client && !!fileSessionId,
     refetchOnMount: isRemoteWorkspace ? "always" : undefined,
   });
+
+  // Reveal a file path: expand parent folders and highlight the file.
+  useEffect(() => {
+    if (!revealPath) return;
+
+    // Normalize the reveal path to match catalog item paths.
+    const normalized = revealPath.replace(/[\\]+/g, "/").replace(/^\/+/, "");
+
+    // Resolve the reveal path to an actual catalog item path. For remote
+    // workspaces the revealPath may be an absolute path (e.g.
+    // /srv/workspace/word.docx) while catalog items are relative to the
+    // workspace root (e.g. word.docx). Try exact match first, then suffix
+    // match.
+    let resolvedPath = normalized;
+    if (catalog?.items) {
+      const exactMatch = catalog.items.some((item) => item.path === normalized);
+      if (!exactMatch) {
+        const suffixItem = catalog.items.find(
+          (item) => normalized.endsWith("/" + item.path),
+        );
+        if (suffixItem) {
+          resolvedPath = suffixItem.path;
+        }
+      }
+    }
+
+    setExpandedFolders((prev) => {
+      const next = { ...prev };
+      let changed = false;
+      const parts = resolvedPath.split("/");
+      let current = "";
+      // Expand all parent directories.
+      for (let i = 0; i < parts.length - 1; i++) {
+        const part = parts[i];
+        if (!part) continue;
+        current = current ? `${current}/${part}` : part;
+        if (!next[current]) {
+          next[current] = true;
+          changed = true;
+        }
+      }
+      return changed ? next : prev;
+    });
+
+    // Highlight the file briefly.
+    setHighlightedPath(resolvedPath);
+    const timer = window.setTimeout(() => setHighlightedPath(null), 3000);
+
+    // Scroll to the file after a short delay for the tree to render.
+    const scrollTimer = window.setTimeout(() => {
+      const el = scrollContainerRef.current?.querySelector(`[data-file-path="${CSS.escape(resolvedPath)}"]`);
+      el?.scrollIntoView({ block: "center", behavior: "smooth" });
+    }, 150);
+
+    return () => {
+      window.clearTimeout(timer);
+      window.clearTimeout(scrollTimer);
+    };
+  }, [revealPath, catalog?.items]);
+
+  useEffect(() => {
+    setExpandedFolders((prev) => {
+      const next = { ...prev };
+      let changed = false;
+
+      for (const tab of tabs) {
+        if (tab.type === "artifact" && tab.id.startsWith("file:")) {
+          const filePath = tab.id.slice("file:".length);
+          const parts = filePath.split("/");
+          let current = "";
+          for (let i = 0; i < parts.length - 1; i++) {
+            const part = parts[i];
+            if (!part) continue;
+            current = current ? `${current}/${part}` : part;
+            if (next[current] === undefined) {
+              next[current] = true;
+              changed = true;
+            }
+          }
+        }
+      }
+
+      return changed ? next : prev;
+    });
+  }, [tabs]);
 
   const handleRefresh = () => {
     if (!fileSessionId) {
