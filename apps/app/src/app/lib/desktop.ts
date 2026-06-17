@@ -205,6 +205,50 @@ function isLoopbackUrl(input: RequestInfo | URL): boolean {
   }
 }
 
+async function serializeRequestBody(body: unknown): Promise<{ type: "string" | "binary" | "form-data"; value: unknown } | undefined> {
+  if (body === null || body === undefined) {
+    return undefined;
+  }
+  if (typeof body === "string") {
+    return { type: "string", value: body };
+  }
+  if (typeof FormData !== "undefined" && body instanceof FormData) {
+    const fields: Array<{ name: string; value: string | { data: Uint8Array; name: string; type: string } }> = [];
+    for (const [key, val] of body.entries()) {
+      if (typeof val === "string") {
+        fields.push({ name: key, value: val });
+      } else if (val && typeof val === "object" && "arrayBuffer" in val) {
+        const blob = val as Blob;
+        const buffer = await blob.arrayBuffer();
+        fields.push({
+          name: key,
+          value: {
+            data: new Uint8Array(buffer),
+            name: (val as any).name || "file",
+            type: blob.type,
+          }
+        });
+      }
+    }
+    return { type: "form-data", value: fields };
+  }
+  if (typeof ArrayBuffer !== "undefined" && body instanceof ArrayBuffer) {
+    return { type: "binary", value: new Uint8Array(body) };
+  }
+  if (ArrayBuffer.isView(body)) {
+    const view = body as ArrayBufferView;
+    return { type: "binary", value: new Uint8Array(view.buffer, view.byteOffset, view.byteLength) };
+  }
+  if (typeof Blob !== "undefined" && body instanceof Blob) {
+    const buffer = await body.arrayBuffer();
+    return { type: "binary", value: new Uint8Array(buffer) };
+  }
+  if (body && typeof (body as any).toString === "function") {
+    return { type: "string", value: (body as any).toString() };
+  }
+  return undefined;
+}
+
 export const desktopFetch: typeof globalThis.fetch = async (input, init) => {
   if (isLoopbackUrl(input)) {
     return globalThis.fetch(input, init);
@@ -217,25 +261,28 @@ export const desktopFetch: typeof globalThis.fetch = async (input, init) => {
   let url: string;
   let method: string | undefined;
   let headers: Record<string, string> | undefined;
-  let body: string | undefined;
+  let body: unknown | undefined;
 
   if (typeof Request !== "undefined" && input instanceof Request) {
     url = input.url;
     method = init?.method ?? input.method;
     const headersSource = init?.headers ? new Headers(init.headers) : input.headers;
     headers = Object.fromEntries(headersSource.entries());
-    if (typeof init?.body === "string") {
-      body = init.body;
+    if (init?.body !== undefined) {
+      body = await serializeRequestBody(init.body);
     } else if (input.body) {
-      // Request body is a stream — buffer to text so it survives the IPC hop
-      // to the Electron main process.
-      body = await input.clone().text();
+      try {
+        const buffer = await input.clone().arrayBuffer();
+        body = { type: "binary", value: new Uint8Array(buffer) };
+      } catch {
+        body = { type: "string", value: await input.clone().text() };
+      }
     }
   } else {
     url = typeof input === "string" ? input : input.toString();
     method = init?.method;
     headers = init?.headers ? Object.fromEntries(new Headers(init.headers).entries()) : undefined;
-    body = typeof init?.body === "string" ? init.body : undefined;
+    body = await serializeRequestBody(init?.body);
   }
 
   const result = await invokeElectronHelper<{
@@ -261,23 +308,28 @@ export async function desktopFetchViaMain(input: RequestInfo | URL, init?: Reque
   let url: string;
   let method: string | undefined;
   let headers: Record<string, string> | undefined;
-  let body: string | undefined;
+  let body: unknown | undefined;
 
   if (typeof Request !== "undefined" && input instanceof Request) {
     url = input.url;
     method = init?.method ?? input.method;
     const headersSource = init?.headers ? new Headers(init.headers) : input.headers;
     headers = Object.fromEntries(headersSource.entries());
-    if (typeof init?.body === "string") {
-      body = init.body;
+    if (init?.body !== undefined) {
+      body = await serializeRequestBody(init.body);
     } else if (input.body) {
-      body = await input.clone().text();
+      try {
+        const buffer = await input.clone().arrayBuffer();
+        body = { type: "binary", value: new Uint8Array(buffer) };
+      } catch {
+        body = { type: "string", value: await input.clone().text() };
+      }
     }
   } else {
     url = typeof input === "string" ? input : input.toString();
     method = init?.method;
     headers = init?.headers ? Object.fromEntries(new Headers(init.headers).entries()) : undefined;
-    body = typeof init?.body === "string" ? init.body : undefined;
+    body = await serializeRequestBody(init?.body);
   }
 
   const result = await invokeElectronHelper<{

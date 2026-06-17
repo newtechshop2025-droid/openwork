@@ -2784,10 +2784,43 @@ async function handleDesktopInvoke(event, command, ...args) {
       const init = args[1] ?? {};
       if (!url) throw new Error("URL is required.");
       const timeoutMs = Number(init.timeoutMs);
+      let headers = init.headers && typeof init.headers === "object" ? init.headers : undefined;
+      let fetchBody;
+      if (typeof init.body === "string") {
+        fetchBody = init.body;
+      } else if (init.body && typeof init.body === "object") {
+        if (init.body.type === "string") {
+          fetchBody = init.body.value;
+        } else if (init.body.type === "binary") {
+          fetchBody = init.body.value;
+        } else if (init.body.type === "form-data") {
+          const form = new FormData();
+          for (const field of init.body.value) {
+            if (typeof field.value === "string") {
+              form.append(field.name, field.value);
+            } else if (field.value && typeof field.value === "object") {
+              const fileData = field.value.data;
+              const fileName = field.value.name;
+              const fileType = field.value.type;
+              const blob = new Blob([fileData], { type: fileType });
+              form.append(field.name, blob, fileName);
+            }
+          }
+          fetchBody = form;
+          if (headers) {
+            headers = { ...headers };
+            for (const key of Object.keys(headers)) {
+              if (key.toLowerCase() === "content-type") {
+                delete headers[key];
+              }
+            }
+          }
+        }
+      }
       const response = await fetch(url, {
         method: typeof init.method === "string" ? init.method : undefined,
-        headers: init.headers && typeof init.headers === "object" ? init.headers : undefined,
-        body: typeof init.body === "string" ? init.body : undefined,
+        headers,
+        body: fetchBody,
         signal: Number.isFinite(timeoutMs) && timeoutMs > 0 ? AbortSignal.timeout(timeoutMs) : undefined,
       });
       const arrayBuffer = await response.arrayBuffer();
