@@ -3924,6 +3924,48 @@ function createRoutes(
       throw new ApiError(404, "file_not_found", "File not found");
     }
 
+    const preview = ctx.url.searchParams.get("preview") === "true";
+    const ext = relativePath.toLowerCase().slice(relativePath.lastIndexOf("."));
+    const isOffice = [".docx", ".doc", ".xlsx", ".xls", ".pptx", ".ppt"].includes(ext);
+
+    if (preview && isOffice) {
+      try {
+        const { execFile } = await import("node:child_process");
+        const { promisify } = await import("node:util");
+        const { unlink } = await import("node:fs/promises");
+        const execFileAsync = promisify(execFile);
+
+        const tempDir = resolveSafeChildPath(workspace.path, "tmp/previews");
+        await mkdir(tempDir, { recursive: true });
+
+        await execFileAsync("libreoffice", [
+          "--headless",
+          "--convert-to",
+          "pdf",
+          "--outdir",
+          tempDir,
+          absPath,
+        ]);
+
+        const nameWithoutExt = basename(relativePath).slice(0, basename(relativePath).lastIndexOf("."));
+        const pdfPath = join(tempDir, `${nameWithoutExt}.pdf`);
+
+        if (await exists(pdfPath)) {
+          const pdfInfo = await stat(pdfPath);
+          const pdfData = await readFile(pdfPath);
+          await unlink(pdfPath).catch(() => {});
+
+          const headers = new Headers();
+          headers.set("Content-Type", "application/pdf");
+          headers.set("Content-Length", String(pdfInfo.size));
+          headers.set("Content-Disposition", `inline; filename="${nameWithoutExt}.pdf"`);
+          return new Response(pdfData, { status: 200, headers });
+        }
+      } catch (err) {
+        console.error("LibreOffice conversion failed:", err);
+      }
+    }
+
     const headers = new Headers();
     headers.set("Content-Type", contentTypeForPath(relativePath));
     headers.set("Content-Length", String(info.size));

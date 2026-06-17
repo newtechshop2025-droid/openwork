@@ -1555,12 +1555,14 @@ export function createOpenworkServerClient(options: { baseUrl: string; token?: s
         },
       ),
 
-    downloadWorkspaceFile: (workspaceId: string, path: string) =>
-      requestBinary(
+    downloadWorkspaceFile: (workspaceId: string, path: string, options?: { preview?: boolean }) => {
+      const query = options?.preview ? "&preview=true" : "";
+      return requestBinary(
         baseUrl,
-        `/workspace/${encodeURIComponent(workspaceId)}/files/raw?path=${encodeURIComponent(path)}`,
+        `/workspace/${encodeURIComponent(workspaceId)}/files/raw?path=${encodeURIComponent(path)}${query}`,
         { token, hostToken, timeoutMs: timeouts.binary },
-      ),
+      );
+    },
 
     createFileSession: (workspaceId: string) =>
       requestJson<{ session: { id: string } }>(

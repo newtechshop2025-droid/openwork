@@ -188,7 +188,7 @@ function ArtifactPanelView({ sessionId, client, workspaceId, workspaceRoot, isRe
         return { kind: "text", data: result.content, updatedAt: result.updatedAt ?? null };
       }
 
-      const result = await client.downloadWorkspaceFile(workspaceId, target.value);
+      const result = await client.downloadWorkspaceFile(workspaceId, target.value, { preview: true });
 
       return { kind: "binary", data: result.data, contentType: result.contentType, updatedAt: target.updatedAt ?? null };
     },
@@ -444,7 +444,7 @@ function ArtifactPanelView({ sessionId, client, workspaceId, workspaceRoot, isRe
           <TextEditor value={draft} language={target.preview === "markdown" ? "markdown" : "text"} onChange={setDraft} />
         ) : target.preview === "markdown" && data?.kind === "text" ? (
           <MarkdownPreview content={data.data} />
-        ) : target.preview === "sheet" ? (
+        ) : target.preview === "sheet" && (data?.kind === "text" || (data?.kind === "binary" && data.contentType !== "application/pdf")) ? (
           <SheetEditor
             name={target.name}
             content={data ?? { kind: "binary", data: new ArrayBuffer(0) }}
@@ -455,7 +455,7 @@ function ArtifactPanelView({ sessionId, client, workspaceId, workspaceRoot, isRe
           <HTMLPreview type="text" title={target.name} content={data.data} />
         ) : target.preview === "image" && data?.kind === "binary" && binaryObjectUrl ? (
           <ImagePreview src={binaryObjectUrl} alt={target.name} />
-        ) : data?.kind === "binary" && binaryObjectUrl && (target.preview === "pdf" || target.preview === "html") ? (
+        ) : data?.kind === "binary" && binaryObjectUrl && (target.preview === "pdf" || target.preview === "html" || target.preview === "document" || target.preview === "slides" || (target.preview === "sheet" && data.contentType === "application/pdf")) ? (
           <HTMLPreview type="binary" title={target.name} url={binaryObjectUrl} />
         ) : data?.kind === "text" ? (
           <PlainText content={data.data} />

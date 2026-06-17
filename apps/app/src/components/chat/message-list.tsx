@@ -627,7 +627,7 @@ function MessageGroup({
   messages,
   isStreaming,
 }: AssistantMessageGroupProps) {
-  const { onRevertToUserMessage, onForkAtMessage } = useMessageList()
+  const { onRevertToUserMessage, onForkAtMessage, showThinking } = useMessageList()
   const [open, setOpen] = React.useState(false)
   // Only run layout animations while the collapsible is expanding/collapsing.
   // Otherwise (e.g. while streaming) layout changes apply instantly.
@@ -688,7 +688,7 @@ function MessageGroup({
         </StepsContent>
       </Steps>
       <AnimatePresence initial={false}>
-        {!open ? renderableItems.map(({ index, message }) => (
+        {!open ? (showThinking ? renderableItems : renderableItems.slice(-1)).map(({ index, message }) => (
           <motion.div
             key={message.id}
             layoutId={`msg-${message.id}`}
