@@ -1155,7 +1155,15 @@ function withCors(response: Response, request: Request, config: ServerConfig) {
 async function requireClient(request: Request, config: ServerConfig, tokens: TokenService): Promise<Actor> {
   const header = request.headers.get("authorization") ?? "";
   const match = header.match(/^Bearer\s+(.+)$/i);
-  const token = match?.[1];
+  let token = match?.[1];
+  if (!token) {
+    try {
+      const parsedUrl = new URL(request.url);
+      token = parsedUrl.searchParams.get("token") || undefined;
+    } catch {
+      // ignore
+    }
+  }
   console.log(`[DEBUG auth] requireClient: auth header length: ${header.length}, matched token: "${token || ""}"`);
   if (!token) {
     throw new ApiError(401, "unauthorized", "Invalid bearer token");
@@ -3932,33 +3940,58 @@ function createRoutes(
       try {
         const { execFile } = await import("node:child_process");
         const { promisify } = await import("node:util");
-        const { unlink } = await import("node:fs/promises");
         const execFileAsync = promisify(execFile);
 
         const tempDir = resolveSafeChildPath(workspace.path, "tmp/previews");
         await mkdir(tempDir, { recursive: true });
 
-        await execFileAsync("libreoffice", [
-          "--headless",
-          "--convert-to",
-          "pdf",
-          "--outdir",
-          tempDir,
-          absPath,
-        ]);
+        const isExcel = [".xlsx", ".xls"].includes(ext);
+        const format = isExcel ? "html" : "pdf";
+        const outputExt = isExcel ? ".html" : ".pdf";
 
         const nameWithoutExt = basename(relativePath).slice(0, basename(relativePath).lastIndexOf("."));
-        const pdfPath = join(tempDir, `${nameWithoutExt}.pdf`);
+        const pdfPath = join(tempDir, `${nameWithoutExt}${outputExt}`);
+
+        let shouldConvert = true;
+        if (await exists(pdfPath)) {
+          const sourceStat = await stat(absPath);
+          const pdfStat = await stat(pdfPath);
+          if (pdfStat.mtimeMs > sourceStat.mtimeMs) {
+            shouldConvert = false;
+          }
+        }
+
+        if (shouldConvert) {
+          await execFileAsync("libreoffice", [
+            "--headless",
+            "--convert-to",
+            format,
+            "--outdir",
+            tempDir,
+            absPath,
+          ]);
+        }
 
         if (await exists(pdfPath)) {
-          const pdfInfo = await stat(pdfPath);
-          const pdfData = await readFile(pdfPath);
-          await unlink(pdfPath).catch(() => {});
+          let pdfData = await readFile(pdfPath);
+
+          if (isExcel) {
+            let htmlStr = pdfData.toString("utf-8");
+            const styleInject = `
+<style type="text/css">
+  table { border-collapse: collapse !important; margin: 0 !important; }
+  td { border: 1px solid #d0d0d0 !important; font-family: Calibri, 'Segoe UI', Arial, sans-serif !important; font-size: 11pt !important; padding: 4px 6px !important; }
+  body { background-color: #ffffff !important; padding: 0 !important; margin: 0 !important; }
+</style>
+`;
+            htmlStr = htmlStr.replace("</head>", `${styleInject}</head>`);
+            pdfData = Buffer.from(htmlStr, "utf-8");
+          }
 
           const headers = new Headers();
-          headers.set("Content-Type", "application/pdf");
-          headers.set("Content-Length", String(pdfInfo.size));
-          headers.set("Content-Disposition", `inline; filename="${nameWithoutExt}.pdf"`);
+          headers.set("Content-Type", isExcel ? "text/html" : "application/pdf");
+          headers.set("Content-Length", String(pdfData.length));
+          headers.set("Content-Disposition", `inline; filename="${nameWithoutExt}${outputExt}"`);
           return new Response(pdfData, { status: 200, headers });
         }
       } catch (err) {
