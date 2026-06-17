@@ -573,6 +573,7 @@ function OfficePreviewContainer({ title, url, previewType, contentType, onDownlo
   const isExcel = previewType === "sheet" || title.endsWith(".xlsx") || title.endsWith(".xls");
   const isPowerPoint = previewType === "slides" || title.endsWith(".pptx") || title.endsWith(".ppt");
   const isPdf = !isWord && !isExcel && !isPowerPoint && (previewType === "pdf" || title.endsWith(".pdf") || contentType === "application/pdf");
+  const isConverted = contentType === "application/pdf" || contentType === "text/html" || contentType?.includes("pdf") || contentType?.includes("html");
 
   let brandColor = "bg-[#185abd]"; // Word Blue
   let brandBorderColor = "border-[#185abd]";
@@ -662,6 +663,43 @@ function OfficePreviewContainer({ title, url, previewType, contentType, onDownlo
     hashParams.push("navpanes=0");
     return `${base}#${hashParams.join("&")}`;
   }, [url, currentPage, zoom]);
+
+  const renderIframeOrFallback = () => {
+    if (isConverted) {
+      return (
+        <iframe
+          src={cleanUrl}
+          title={title}
+          className="w-full h-full border-none"
+        />
+      );
+    }
+
+    return (
+      <div className="flex flex-col items-center justify-center h-full p-8 text-center bg-white select-text">
+        <div className="rounded-full bg-amber-50 p-3 mb-4 border border-amber-100">
+          <svg className="h-8 w-8 text-amber-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </div>
+        <h3 className="text-sm font-semibold text-foreground mb-2">Xem trước trực tiếp không khả dụng</h3>
+        <p className="text-xs text-muted-foreground max-w-sm mb-6 leading-relaxed">
+          Không thể hiển thị xem trước định dạng này trực tiếp (thông thường do LibreOffice chưa được cài đặt hoặc cấu hình trên server).
+          Bạn vẫn có thể mở file gốc hoặc tải xuống để xem bằng các ứng dụng như Microsoft Office hay WPS Office.
+        </p>
+        <div className="flex items-center gap-3">
+          <Button onClick={onOpenExternal} variant="default" size="sm" className="gap-2">
+            <ExternalLink className="h-4 w-4" />
+            Mở File Gốc
+          </Button>
+          <Button onClick={onDownload} variant="outline" size="sm" className="gap-2">
+            <Download className="h-4 w-4" />
+            Tải về
+          </Button>
+        </div>
+      </div>
+    );
+  };
 
   const ribbonTabs = isExcel
     ? (["home", "insert", "formulas", "data", "view"] as const)
@@ -1291,11 +1329,7 @@ function OfficePreviewContainer({ title, url, previewType, contentType, onDownlo
                 >
                   {/* The PDF iframe centered on top of the grid */}
                   <div className="w-full max-w-[1200px] h-[1200px] bg-white rounded shadow-md border border-border/80 overflow-hidden relative">
-                    <iframe
-                      src={cleanUrl}
-                      title={title}
-                      className="w-full h-full border-none"
-                    />
+                    {renderIframeOrFallback()}
                   </div>
                 </div>
               </div>
@@ -1305,11 +1339,7 @@ function OfficePreviewContainer({ title, url, previewType, contentType, onDownlo
       ) : (
         <div className="flex-1 overflow-hidden p-4 bg-[#f3f2f1] flex justify-center items-stretch relative">
           <div className="w-full max-w-[850px] bg-white rounded shadow-md border border-border/80 overflow-hidden relative">
-            <iframe
-              src={cleanUrl}
-              title={title}
-              className="w-full h-full border-none"
-            />
+            {renderIframeOrFallback()}
           </div>
         </div>
       )}
