@@ -103,7 +103,10 @@ export function useElectronUpdaterState(options: UseElectronUpdaterStateOptions)
   const autoCheckKeyRef = useRef<string | null>(null);
 
   useEffect(() => {
-    if (!isElectronRuntime()) return;
+    if (!isElectronRuntime()) {
+      dispatchEnvState({ type: "unsupported", reason: "Electron update checks are available only in the Electron desktop app." });
+      return;
+    }
     const bridge = electronUpdaterBridge();
     if (!bridge?.getChannel) {
       dispatchEnvState({ type: "unsupported", reason: "Electron updater bridge is unavailable." });

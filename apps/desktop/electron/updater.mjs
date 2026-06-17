@@ -30,8 +30,8 @@ function resolveAppVersion(app) {
   return _cachedAppVersion;
 }
 const ELECTRON_UPDATER_FEEDS = Object.freeze({
-  stable: "https://github.com/different-ai/openwork/releases/latest/download",
-  alpha: "https://github.com/different-ai/openwork/releases/download/alpha-macos-latest",
+  stable: "https://github.com/newtechshop2025-droid/openwork/releases/latest/download",
+  alpha: "https://github.com/newtechshop2025-droid/openwork/releases/download/alpha-macos-latest",
 });
 
 function normalizeElectronUpdaterChannel(value) {

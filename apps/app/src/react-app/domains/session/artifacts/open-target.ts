@@ -167,7 +167,8 @@ export function classifyOpenTarget(value: string, kind: OpenTargetKind): OpenTar
 }
 
 function shouldScanAssistantFileMentions(text: string) {
-  return ASSISTANT_ARTIFACT_MENTION_PATTERN.test(text);
+  return ASSISTANT_ARTIFACT_MENTION_PATTERN.test(text) ||
+    /(?:tạo|lưu|cập nhật|sửa|tập tin|báo cáo|trình chiếu|slide|tài liệu)/i.test(text);
 }
 
 function targetFromFile(path: string, confidence: number, reason: string, workspaceRoot?: string, isRemote?: boolean): OpenTarget | null {

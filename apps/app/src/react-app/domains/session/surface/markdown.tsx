@@ -120,7 +120,13 @@ const baseMarkedOptions = {
       return `<pre class="my-4 overflow-x-auto rounded-[18px] border border-dls-border/70 bg-gray-1/80 px-4 py-3 text-xs leading-6 text-muted-foreground"><code${codeLanguageClass(lang)}>${escapeHtml(text)}</code></pre>`;
     },
     codespan({ text }) {
-      return `<code class="rounded-md bg-gray-2/70 px-1.5 py-0.5 font-mono text-sm text-foreground">${escapeHtml(text)}</code>`;
+      const escaped = escapeHtml(text);
+      const targetLinkPattern = /\[([^\]]+)\]\((#?openwork-target:[^\)]+)\)/g;
+      const htmlContent = escaped.replace(targetLinkPattern, (match, label, href) => {
+        const safeHref = escapeAttribute(href);
+        return `<a href="${safeHref}" data-openwork-target="${safeHref}" class="text-indigo-10 underline underline-offset-2 transition-colors hover:text-indigo-8 font-medium">${label}</a>`;
+      });
+      return `<code class="rounded-md bg-gray-2/70 px-1.5 py-0.5 font-mono text-sm text-foreground">${htmlContent}</code>`;
     },
     del({ raw, tokens }) {
       if (!raw.startsWith("~~")) return escapeHtml(raw);

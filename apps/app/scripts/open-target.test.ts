@@ -318,6 +318,15 @@ describe("deriveOpenTargets", () => {
 
     expect(targets.map((target) => target.value)).toContain("/tmp/opencode/OpenWork.docx");
   });
+
+  it("extracts targets from assistant summaries in Vietnamese", () => {
+    const targets = deriveOpenTargets([
+      message("msg_1", "assistant", "Đã tạo hello.docx với nội dung \"Xin chào thế giới\"."),
+    ]);
+    const doc = targets.find((target) => target.value === "hello.docx");
+
+    expect(doc).toMatchObject({ preview: "document", confidence: 65 });
+  });
 });
 
 describe("isCollectibleArtifactTarget", () => {

@@ -29,6 +29,12 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { ConfirmModal } from "../../../design-system/modals/confirm-modal";
 import ProviderAuthModal, { type ProviderAuthModalProps } from "../../connections/provider-auth/provider-auth-modal";
 import { RenameSessionModal } from "../modals/rename-session-modal";
@@ -1291,26 +1297,60 @@ export function SessionPage(props: SessionPageProps) {
             >
               <FolderOpen size={17} />
             </Button>
-            <Button
-              variant="ghost"
-              size="icon-sm"
-              className={cn(
-                "rounded-xl transition-colors hover:bg-muted hover:text-foreground relative",
-                artifactsRailActive && "bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary",
-              )}
-              onClick={openArtifactRailPane}
-              title={hasArtifactTargets ? `Artifacts (${artifactTargetCount})` : "No artifacts yet"}
-              aria-label={hasArtifactTargets ? `Artifacts (${artifactTargetCount})` : "No artifacts yet"}
-              aria-pressed={artifactsRailActive}
-              disabled={!hasArtifactTargets}
-            >
-              <FileText size={17} />
-              {artifactTargetCount > 0 ? (
-                <span className="absolute right-0 top-0 flex min-w-3.5 translate-x-1 -translate-y-1 items-center justify-center rounded-full bg-primary px-1 text-[9px] font-semibold leading-3 text-primary-foreground">
-                  {artifactTargetCount > 9 ? "9+" : artifactTargetCount}
-                </span>
-              ) : null}
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                render={(
+                  <Button
+                    variant="ghost"
+                    size="icon-sm"
+                    className={cn(
+                      "rounded-xl transition-colors hover:bg-muted hover:text-foreground relative",
+                      artifactsRailActive && "bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary",
+                    )}
+                    title={hasArtifactTargets ? `Artifacts (${artifactTargetCount})` : "No artifacts yet"}
+                    aria-label={hasArtifactTargets ? `Artifacts (${artifactTargetCount})` : "No artifacts yet"}
+                    aria-pressed={artifactsRailActive}
+                    disabled={!hasArtifactTargets}
+                  >
+                    <FileText size={17} />
+                    {artifactTargetCount > 0 ? (
+                      <span className="absolute right-0 top-0 flex min-w-3.5 translate-x-1 -translate-y-1 items-center justify-center rounded-full bg-primary px-1 text-[9px] font-semibold leading-3 text-primary-foreground">
+                        {artifactTargetCount > 9 ? "9+" : artifactTargetCount}
+                      </span>
+                    ) : null}
+                  </Button>
+                )}
+              />
+              <DropdownMenuContent align="end" className="w-64 max-h-[300px] overflow-y-auto">
+                {artifactFileTargets.map((target) => (
+                  <DropdownMenuItem
+                    key={target.id}
+                    className="cursor-pointer"
+                    onClick={() => {
+                      openTab(props.selectedSessionId!, {
+                        id: target.id,
+                        type: "artifact",
+                        label: target.name,
+                        preview: target.preview,
+                        ...(target.kind === "file" ? { path: target.value } : {}),
+                      });
+                      if (!panelRailActive) {
+                        toggleCurrentSidePanel("panel");
+                      }
+                    }}
+                  >
+                    <div className="flex flex-col min-w-0 flex-1">
+                      <span className="truncate text-sm font-medium text-foreground" title={target.name}>
+                        {target.name}
+                      </span>
+                      <span className="truncate text-[10px] text-muted-foreground" title={target.value}>
+                        {target.value}
+                      </span>
+                    </div>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Button
               variant="ghost"
               size="icon-sm"

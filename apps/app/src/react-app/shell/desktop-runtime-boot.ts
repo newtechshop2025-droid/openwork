@@ -116,12 +116,16 @@ export function useDesktopRuntimeBoot() {
 
         const startServerWithoutDesktopWorkspace = async () => {
           setPhase("starting-engine", "Starting OpenWork server");
-          const serverInfo = await openworkServerRestart({ remoteAccessEnabled: preferredRemoteAccess }).catch((error) => {
+          let serverInfo = null;
+          let launchError = "";
+          try {
+            serverInfo = await openworkServerRestart({ remoteAccessEnabled: preferredRemoteAccess });
+          } catch (error) {
             console.warn("[desktop-boot] openworkServerRestart failed:", error);
-            return null;
-          });
+            launchError = error instanceof Error ? error.message : safeStringify(error);
+          }
           if (!isOpenworkServerInfoLike(serverInfo) || !isOpenworkServerReady(serverInfo)) {
-            setError("OpenWork server did not finish starting. Please restart OpenWork.");
+            setError(launchError || "OpenWork server did not finish starting. Please restart OpenWork.");
             return;
           }
           publishOpenworkServerInfo(serverInfo);

@@ -96,14 +96,14 @@ function WebDownloadSection({ currentVersion }: WebDownloadSectionProps) {
     }
 
     let active = true;
-    fetch("https://api.github.com/repos/different-ai/openwork/releases/latest", {
+    fetch("https://api.github.com/repos/newtechshop2025-droid/openwork/releases/latest", {
       headers: { Accept: "application/vnd.github+json" },
     })
       .then((res) => (res.ok ? res.json() : null))
       .then((release: ReleaseData | null) => {
         if (!active || !release) return;
         const assets = Array.isArray(release.assets) ? release.assets : [];
-        const releaseUrl = release.html_url || "https://github.com/different-ai/openwork/releases";
+        const releaseUrl = release.html_url || "https://github.com/newtechshop2025-droid/openwork/releases";
         const releaseTag = release.tag_name || "";
 
         const selectAsset = (exts: string[], keywords: string[]) => {
@@ -316,7 +316,7 @@ function WebDownloadSection({ currentVersion }: WebDownloadSectionProps) {
       <div className="text-xs text-dls-secondary mt-2">
         Looking for older versions or other platforms? Visit our{" "}
         <a
-          href="https://github.com/different-ai/openwork/releases"
+          href="https://github.com/newtechshop2025-droid/openwork/releases"
           target="_blank"
           rel="noreferrer"
           className="text-blue-11 hover:underline"
