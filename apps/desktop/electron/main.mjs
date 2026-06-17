@@ -2790,11 +2790,13 @@ async function handleDesktopInvoke(event, command, ...args) {
         body: typeof init.body === "string" ? init.body : undefined,
         signal: Number.isFinite(timeoutMs) && timeoutMs > 0 ? AbortSignal.timeout(timeoutMs) : undefined,
       });
+      const arrayBuffer = await response.arrayBuffer();
+      const body = new Uint8Array(arrayBuffer);
       return {
         status: response.status,
         statusText: response.statusText,
         headers: Array.from(response.headers.entries()),
-        body: await response.text(),
+        body,
       };
     }
     case "__homeDir":

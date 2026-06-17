@@ -20,6 +20,8 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { formatFileSize } from "@/lib/utils";
 import { usePanelTabStore } from "../panel/panel-tab-store";
 import { classifyOpenTarget } from "./open-target";
+import { isElectronRuntime } from "@/app/utils";
+import { revealDesktopItemInDir } from "@/app/lib/desktop";
 
 type WorkspaceFilesExplorerProps = {
   sessionId: string;
@@ -47,6 +49,7 @@ export function WorkspaceFilesExplorer({
   sessionId,
   client,
   workspaceId,
+  workspaceRoot,
   isRemoteWorkspace = false,
   catalogRefreshKey,
   revealPath,
@@ -556,6 +559,28 @@ export function WorkspaceFilesExplorer({
 
                     {!isDir && (
                       <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100">
+                        {isElectronRuntime() && !isRemoteWorkspace ? (
+                          <Tooltip>
+                            <TooltipTrigger
+                              render={(
+                                <Button
+                                  variant="ghost"
+                                  size="icon-sm"
+                                  className="h-6 w-6 text-muted-foreground hover:text-foreground"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    const absPath = `${workspaceRoot.replace(/[/\\]+$/, "")}/${node.path.replace(/^\.\//, "")}`;
+                                    void revealDesktopItemInDir(absPath);
+                                  }}
+                                  aria-label="Show in Folder"
+                                >
+                                  <Folder className="h-3.5 w-3.5" />
+                                </Button>
+                              )}
+                            />
+                            <TooltipContent>Show in Folder</TooltipContent>
+                          </Tooltip>
+                        ) : null}
                         <Tooltip>
                           <TooltipTrigger
                             render={(

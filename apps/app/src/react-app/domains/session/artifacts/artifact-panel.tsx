@@ -1,10 +1,10 @@
 /** @jsxImportSource react */
 import { Component, lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Download, ExternalLink, X, FolderOpen, Trash2 } from "lucide-react";
+import { Download, ExternalLink, X, FolderOpen, Trash2, Folder } from "lucide-react";
 
 import type { OpenworkServerClient } from "@/app/lib/openwork-server";
-import { openDesktopPath } from "@/app/lib/desktop";
+import { openDesktopPath, revealDesktopItemInDir } from "@/app/lib/desktop";
 import { isElectronRuntime } from "@/app/utils";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -384,6 +384,25 @@ function ArtifactPanelView({ sessionId, client, workspaceId, workspaceRoot, isRe
                 />
                 <TooltipContent>Reveal in Explorer</TooltipContent>
               </Tooltip>
+              {isElectronRuntime() && !isRemoteWorkspace ? (
+                <Tooltip>
+                  <TooltipTrigger
+                    render={(
+                      <Button
+                        variant="ghost"
+                        size="icon-sm"
+                        onClick={() => {
+                          void revealDesktopItemInDir(externalPath);
+                        }}
+                        aria-label="Show in Folder"
+                      >
+                        <Folder className="h-4 w-4" />
+                      </Button>
+                    )}
+                  />
+                  <TooltipContent>Show in Folder</TooltipContent>
+                </Tooltip>
+              ) : null}
               <Tooltip>
                 <TooltipTrigger
                   render={(

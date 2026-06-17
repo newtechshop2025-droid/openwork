@@ -242,13 +242,13 @@ export const desktopFetch: typeof globalThis.fetch = async (input, init) => {
     status: number;
     statusText: string;
     headers: [string, string][];
-    body: string;
+    body: Uint8Array;
   }>("__fetch", url, { method, headers, body });
 
   // Response constructor rejects bodies for null-body status codes, so we
   // must pass null instead of an empty string for those.
   const NULL_BODY_STATUSES = new Set([101, 204, 205, 304]);
-  const responseBody = NULL_BODY_STATUSES.has(result.status) ? null : result.body;
+  const responseBody = NULL_BODY_STATUSES.has(result.status) ? null : new Blob([result.body as any]);
 
   return new Response(responseBody, {
     status: result.status,
@@ -284,11 +284,11 @@ export async function desktopFetchViaMain(input: RequestInfo | URL, init?: Reque
     status: number;
     statusText: string;
     headers: [string, string][];
-    body: string;
+    body: Uint8Array;
   }>("__fetch", url, { method, headers, body, timeoutMs });
 
   const NULL_BODY_STATUSES = new Set([101, 204, 205, 304]);
-  const responseBody = NULL_BODY_STATUSES.has(result.status) ? null : result.body;
+  const responseBody = NULL_BODY_STATUSES.has(result.status) ? null : new Blob([result.body as any]);
 
   return new Response(responseBody, {
     status: result.status,
