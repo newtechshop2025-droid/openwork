@@ -1555,10 +1555,18 @@ export function SessionRoute() {
     return next;
   }, [errorsByWorkspaceId, workspaceConnectionOverrides, workspaces]);
 
+  const selectedWorkspaceEndpoint = useMemo(
+    () => resolveWorkspaceEndpoint(selectedWorkspace, { baseUrl, token }),
+    [baseUrl, selectedWorkspace, token],
+  );
+  const opencodeBaseUrl = selectedWorkspaceEndpoint?.opencodeBaseUrl ?? "";
+
   useEffect(() => {
     if (!isDesktopRuntime()) return;
     if (loading) return;
-    if (client) {
+    const isLocalWorkspace = selectedWorkspace?.workspaceType === "local";
+    const alreadyAttempted = reconnectAttemptedWorkspaceIdRef.current === selectedWorkspace?.id;
+    if (client && opencodeBaseUrl && (!isLocalWorkspace || alreadyAttempted)) {
       reconnectAttemptedWorkspaceIdRef.current = "";
       return;
     }
@@ -1575,18 +1583,10 @@ export function SessionRoute() {
       const message = error instanceof Error ? error.message : describeRouteError(error);
       setRouteError(message);
     });
-  }, [client, loading, selectedWorkspace, workspaces]);
+  }, [client, loading, selectedWorkspace, workspaces, opencodeBaseUrl]);
 
   const selectedWorkspaceRoot = selectedWorkspace?.path?.trim() || "";
-  // Single source of truth for the selected workspace's server URL/token/id.
-  // For remote workspaces this is the worker that owns the workspace; for
-  // local workspaces it's the user's local OpenWork server.
-  const selectedWorkspaceEndpoint = useMemo(
-    () => resolveWorkspaceEndpoint(selectedWorkspace, { baseUrl, token }),
-    [baseUrl, selectedWorkspace, token],
-  );
   const selectedWorkspaceServerToken = selectedWorkspaceEndpoint?.token ?? "";
-  const opencodeBaseUrl = selectedWorkspaceEndpoint?.opencodeBaseUrl ?? "";
   const selectedWorkspaceIsLoading = retryingWorkspaceIds.includes(selectedWorkspaceId);
   const selectedWorkspaceError = errorsByWorkspaceId[selectedWorkspaceId] ?? null;
   const selectedSessionKnown = Boolean(
@@ -2631,6 +2631,7 @@ export function SessionRoute() {
     ) {
       return;
     }
+    reconnectAttemptedWorkspaceIdRef.current = "";
     const endpoint = resolveWorkspaceEndpoint(workspace, { baseUrl, token });
     if (!endpoint || !endpoint.token) {
       return;
@@ -3136,7 +3137,15 @@ export function SessionRoute() {
         sidebarHydratedFromCache: Object.values(sessionsByWorkspaceId).some((list) => list.length > 0),
         startupPhase: effectiveLoading ? "nativeInit" : "ready",
         onSelectWorkspace: async (workspaceId) => {
-          if (workspaceId === selectedWorkspaceId) return true;
+          if (workspaceId === selectedWorkspaceId) {
+            if (errorsByWorkspaceId[workspaceId]) {
+              reconnectAttemptedWorkspaceIdRef.current = "";
+              setErrorsByWorkspaceId((current) => ({ ...current, [workspaceId]: null }));
+              setRouteError(null);
+              void refreshRouteState();
+            }
+            return true;
+          }
           setLegacySelectedWorkspaceId(workspaceId);
           writeActiveWorkspaceId(workspaceId || null);
           const workspace = workspaces.find((item) => item.id === workspaceId);

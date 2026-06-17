@@ -1554,7 +1554,9 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
   useEffect(() => {
     if (!isDesktopRuntime()) return;
     if (loading) return;
-    if (openworkClient) {
+    const isLocalWorkspace = selectedWorkspace?.workspaceType === "local";
+    const alreadyAttempted = reconnectAttemptedWorkspaceIdRef.current === selectedWorkspace?.id;
+    if (openworkClient && opencodeBaseUrl && (!isLocalWorkspace || alreadyAttempted)) {
       reconnectAttemptedWorkspaceIdRef.current = "";
       return;
     }
@@ -1571,7 +1573,7 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
       const message = error instanceof Error ? error.message : describeRouteError(error);
       toast.error(message);
     });
-  }, [loading, openworkClient, selectedWorkspace, workspaces]);
+  }, [loading, openworkClient, selectedWorkspace, workspaces, opencodeBaseUrl]);
 
   useEffect(() => {
     void refreshRouteState();
@@ -1901,6 +1903,7 @@ function SettingsRouteContent(props: SettingsSurfaceProps = {}) {
   };
 
   const handleSelectSettingsWorkspace = useCallback((workspaceId: string) => {
+    reconnectAttemptedWorkspaceIdRef.current = "";
     setLegacySelectedWorkspaceId(workspaceId);
     writeActiveWorkspaceId(workspaceId);
     const workspace = workspaces.find((item) => item.id === workspaceId) ?? null;

@@ -66,7 +66,14 @@ export async function ensureDesktopLocalOpenworkConnection(
 
   try {
     const engine = await engineInfo().catch(() => null) as EngineInfo | null;
-    if (!engine?.running || !engine.baseUrl) {
+    const normalizePath = (p: string) => p.replace(/\\/g, "/").replace(/\/+$/, "").toLowerCase();
+    const isDifferentWorkspace = Boolean(
+      engine?.running &&
+        engine.projectDir &&
+        normalizePath(engine.projectDir) !== normalizePath(workspaceRoot)
+    );
+
+    if (!engine?.running || !engine.baseUrl || isDifferentWorkspace) {
       await engineStart(workspaceRoot, {
         runtime: "direct",
         workspacePaths,

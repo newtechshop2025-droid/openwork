@@ -1072,28 +1072,32 @@ export function SessionPage(props: SessionPageProps) {
                           >
                             Retry
                           </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => void Promise.resolve(props.sidebar.onTestWorkspaceConnection(props.selectedWorkspaceId))}
-                          >
-                            {t("workspace_list.test_connection")}
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => props.sidebar.onEditWorkspaceConnection(props.selectedWorkspaceId)}
-                          >
-                            {t("workspace_list.edit_connection")}
-                          </Button>
-                          {props.sidebar.workspaceConnectionStateById[props.selectedWorkspaceId]?.status === "error" ? (
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => void Promise.resolve(props.sidebar.onRecoverWorkspace(props.selectedWorkspaceId))}
-                            >
-                              {t("workspace_list.recover")}
-                            </Button>
+                          {props.selectedWorkspaceDisplay.workspaceType === "remote" ? (
+                            <>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => void Promise.resolve(props.sidebar.onTestWorkspaceConnection(props.selectedWorkspaceId))}
+                              >
+                                {t("workspace_list.test_connection")}
+                              </Button>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => props.sidebar.onEditWorkspaceConnection(props.selectedWorkspaceId)}
+                              >
+                                {t("workspace_list.edit_connection")}
+                              </Button>
+                              {props.sidebar.workspaceConnectionStateById[props.selectedWorkspaceId]?.status === "error" ? (
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => void Promise.resolve(props.sidebar.onRecoverWorkspace(props.selectedWorkspaceId))}
+                                >
+                                  {t("workspace_list.recover")}
+                                </Button>
+                              ) : null}
+                            </>
                           ) : null}
                         </div>
                       </div>
